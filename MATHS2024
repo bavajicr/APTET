@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APTET Mathematics Quiz - 16 October 2024 (Afternoon Session)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .quiz-wrapper {
+    max-width: 650px;
+    width: 100%;
+    margin: 20px auto;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 20px 22px;
+    margin-bottom: 15px;
+  }
+  .header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  .header h1 {
+    font-size: 22px;
+    margin: 0 0 5px 0;
+  }
+  .header p {
+    font-size: 14px;
+    margin: 2px 0;
+    opacity: 0.9;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #182848;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg,#4b6cb7,#182848);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .timer {
+    background: #ff5252;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .qnum {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 6px;
+  }
+  .question-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    display: block;
+    padding: 12px 14px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #333;
+    transition: all 0.2s ease;
+    background: #fafafa;
+    white-space: pre-line;
+  }
+  .option:hover {
+    border-color: #4b6cb7;
+    background: #eef2ff;
+  }
+  .option.selected {
+    border-color: #4b6cb7;
+    background: #dbe4ff;
+  }
+  .option.correct {
+    border-color: #2e7d32;
+    background: #c8f7c5;
+    color: #1b5e20;
+    font-weight: 700;
+  }
+  .option.incorrect {
+    border-color: #c62828;
+    background: #ffcdd2;
+    color: #b71c1c;
+    font-weight: 700;
+  }
+  .option.disabled {
+    pointer-events: none;
+  }
+  .feedback {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 18px;
+  }
+  .feedback.correct-text { color: #2e7d32; }
+  .feedback.incorrect-text { color: #c62828; }
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .nav-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.2s;
+  }
+  .nav-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .nav-buttons button:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  #prevBtn { background: #ccc; color: #333; }
+  #nextBtn { background: linear-gradient(90deg,#4b6cb7,#182848); color: #fff; }
+  #submitBtn { background: linear-gradient(90deg,#ff8a00,#e52e71); color: #fff; }
+
+  .score-screen { text-align: center; }
+  .score-screen h2 { color: #182848; font-size: 26px; }
+  .score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(#4b6cb7 var(--pct), #e0e0e0 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+    position: relative;
+  }
+  .score-circle::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .score-circle span {
+    position: relative;
+    font-size: 24px;
+    font-weight: 800;
+    color: #182848;
+  }
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stat-box {
+    background: #f2f4f9;
+    border-radius: 10px;
+    padding: 12px 18px;
+    min-width: 90px;
+  }
+  .stat-box .num { font-size: 20px; font-weight: 800; color: #182848; }
+  .stat-box .label { font-size: 12px; color: #666; }
+
+  .review-item {
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+  }
+  .review-item .rq { font-weight: 700; margin-bottom: 6px; }
+  .review-item .ra { font-size: 14px; margin: 2px 0; }
+  .review-item .ra.correct-line { color: #2e7d32; font-weight: 700; }
+  .review-item .ra.wrong-line { color: #c62828; font-weight: 700; }
+
+  .restart-btn {
+    margin-top: 15px;
+    background: linear-gradient(90deg,#4b6cb7,#182848);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .credits {
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    opacity: 0.9;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .credits b { font-size: 14px; }
+
+  .start-screen { text-align: center; }
+  .start-screen h2 { color: #182848; }
+  .start-screen p { color: #555; font-size: 14px; line-height: 1.6; }
+  .start-btn {
+    background: linear-gradient(90deg,#4b6cb7,#182848);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  @media (max-width: 480px) {
+    .header h1 { font-size: 18px; }
+    .question-text { font-size: 15px; }
+    .option { font-size: 14px; padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="quiz-wrapper">
+
+  <div class="header">
+    <h1>APTET Mathematics Quiz</h1>
+    <p>Previous Question Paper &ndash; 16 October 2024 (Afternoon Session)</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div class="card" id="startScreen">
+    <div class="start-screen">
+      <h2>📘 Subject: MATHEMATICS</h2>
+      <p>
+        This quiz is based on the APTET Mathematics &amp; Science paper conducted on
+        16th October 2024, Afternoon Session (includes Mathematics Methodology questions).<br><br>
+        Questions and options are shuffled every attempt.<br>
+        You will get instant feedback after each answer.<br>
+        A timer will track your total time taken.
+      </p>
+      <button class="start-btn" onclick="startQuiz()">Start Quiz</button>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="card" id="quizScreen" style="display:none;">
+    <div class="top-bar">
+      <span id="qCounter">Question 1 / 30</span>
+      <span class="timer" id="timerDisplay">00:00</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="qnum" id="scoreLive">Score: 0</div>
+    <div class="question-text" id="questionText"></div>
+    <div class="options" id="optionsContainer"></div>
+    <div class="feedback" id="feedbackText"></div>
+    <div class="nav-buttons">
+      <button id="prevBtn" onclick="prevQuestion()">⬅ Previous</button>
+      <button id="nextBtn" onclick="nextQuestion()">Next ➡</button>
+      <button id="submitBtn" style="display:none;" onclick="finishQuiz()">Submit Quiz ✅</button>
+    </div>
+  </div>
+
+  <!-- SCORE SCREEN -->
+  <div class="card score-screen" id="scoreScreen" style="display:none;">
+    <h2>🎉 Quiz Completed!</h2>
+    <div class="score-circle" id="scoreCircle"><span id="scorePercentText">0%</span></div>
+    <div class="stats">
+      <div class="stat-box"><div class="num" id="correctCount">0</div><div class="label">Correct</div></div>
+      <div class="stat-box"><div class="num" id="wrongCount">0</div><div class="label">Wrong</div></div>
+      <div class="stat-box"><div class="num" id="totalTime">0s</div><div class="label">Time Taken</div></div>
+    </div>
+    <button class="restart-btn" onclick="location.reload()">🔄 Restart Quiz</button>
+  </div>
+
+  <!-- REVIEW / ANSWER KEY SCREEN -->
+  <div class="card" id="reviewScreen" style="display:none;">
+    <h2 style="text-align:center;color:#182848;">📋 Answer Key &amp; Review</h2>
+    <div id="reviewContainer"></div>
+  </div>
+
+  <div class="credits">
+    <b>C. RASOOL BAVAJI</b><br>
+    S.A.(P.S.), MADANAPALLE<br>
+    Quiz prepared for practice purposes only
+  </div>
+
+</div>
+
+<script>
+// ============ QUESTION BANK (Mathematics, Q.91 to Q.120, 16 Oct 2024 Afternoon Session) ============
+const questionBank = [
+{
+  q: "ΔABC ~ ΔDEF and their areas are respectively 64cm² and 121cm², EF=15.4cm, then BC = (in cms)",
+  options: ["11", "8", "11.2", "8.4"],
+  answer: "11.2"
+},
+{
+  q: "If (1+Sinθ)/Cosθ = 1+√2, then the value of Secθ(1−Sinθ) is",
+  options: ["1 − √2", "√2 − 1", "−1 − √2", "1 + √2"],
+  answer: "√2 − 1"
+},
+{
+  q: "Sum of roots of the quadratic equation 2x² − 2√2x + 1 = 0 is",
+  options: ["2", "√2", "−√2", "−2"],
+  answer: "√2"
+},
+{
+  q: "The least number which when divided by 15, 16 and 18 leaves a remainder 4 in each case is",
+  options: ["556", "564", "716", "724"],
+  answer: "724"
+},
+{
+  q: "tan(A−B) = 1/√3 and Sin(A+B) = Cos(A+B). If A−B and A+B are acute angles, then the angle A is",
+  options: ["7½°", "15½°", "29½°", "37½°"],
+  answer: "37½°"
+},
+{
+  q: "If the following pair of linear equations have infinitely many solutions then p = _____\npx + 3y − (p−3) = 0 ; 12x + py − p = 0",
+  options: ["−6", "6, −6", "6", "36"],
+  answer: "6"
+},
+{
+  q: "The sum of either pair of opposite angles of a cyclic quadrilateral is ___",
+  options: ["2π", "π", "π/3", "π/4"],
+  answer: "π"
+},
+{
+  q: "Number of zeroes of the polynomial represented by the adjacent graph is",
+  options: ["4", "3", "2", "1"],
+  answer: "4"
+},
+{
+  q: "The complementary angle of (x+3)° is (2x)°. Then x =",
+  options: ["28°", "29°", "31°", "33°"],
+  answer: "29°"
+},
+{
+  q: "Identify the FALSE statement:",
+  options: [
+    "The two points (−a,b) and (a,−b) are equidistant from origin",
+    "The distance of the point (a,b) from y-axis is 'b' units",
+    "If x<0 and y>0 then (−x,y) lies in Quadrant-I",
+    "Equation of x-axis is \"y = 0\""
+  ],
+  answer: "The distance of the point (a,b) from y-axis is 'b' units"
+},
+{
+  q: "2, 2√2, 4, ....... is a Geometric progression. In this GP, 10th term is ____",
+  options: ["32√2", "32", "16√2", "16"],
+  answer: "32√2"
+},
+{
+  q: "The smallest natural number by which 3136 must be multiplied to get a perfect cube is",
+  options: ["2", "3", "5", "7"],
+  answer: "7"
+},
+{
+  q: "A circle with radius 'a' units is inscribed in a square. Suppose a die is dropped on the square region, then the probability that it will land inside the circle is (take π = 22/7)",
+  options: ["11/7", "11/14", "2/7", "7/22"],
+  answer: "11/14"
+},
+{
+  q: "A cone of height 10cm and radius of base 5cm is made up of modeling clay. A child reshapes it in the form of a hemisphere. Then the radius of the hemisphere is",
+  options: ["3cm", "4cm", "5cm", "6cm"],
+  answer: "5cm"
+},
+{
+  q: "Identify the FALSE statement:",
+  options: [
+    "1 lakh = 1000 hundreds",
+    "1 crore = 1000 thousands",
+    "1 million = 10 lakhs",
+    "1 crore = 10 million"
+  ],
+  answer: "1 crore = 1000 thousands"
+},
+{
+  q: "The value of 12½% of 64",
+  options: ["7", "25/2", "16", "8"],
+  answer: "8"
+},
+{
+  q: "Mode of certain observations is K. If each observation is decreased by 2, then the mode of the new data is",
+  options: ["K", "K−2", "2K", "K+2"],
+  answer: "K−2"
+},
+{
+  q: "The perimeter of a rectangle is 10cm and length is 2.4cm, then breadth is",
+  options: ["7.6cm", "5.2cm", "2.6cm", "5cm"],
+  answer: "2.6cm"
+},
+{
+  q: "Three points (4,p), (5,6) and (6,8) are collinear. Then value of 'p' is _____",
+  options: ["−2", "−4", "4", "2"],
+  answer: "4"
+},
+{
+  q: "The mean of 11 observations is 40. If the mean of first six observations is 35 and the mean of last six observations is 42, then the sixth observation is",
+  options: ["37", "33", "47", "22"],
+  answer: "22"
+},
+{
+  q: "The area of a rhombus is (x²+5x+6)cm² and one of the diagonals is (x+2)cm, then the second diagonal is",
+  options: ["2(x+1)cm", "(x+2)cm", "2(x+3)cm", "(x+3)cm"],
+  answer: "2(x+3)cm"
+},
+{
+  q: "Match the following properties of rational numbers with their names (associative law, distributive law, additive inverse property, commutative law) as illustrated by the given equations (a), (b), (c), (d):",
+  options: [
+    "a-ii, b-i, c-iii, d-iv",
+    "a-iii, b-ii, c-i, d-iv",
+    "a-ii, b-iii, c-iv, d-i",
+    "a-iii, b-i, c-ii, d-iv"
+  ],
+  answer: "a-ii, b-iii, c-iv, d-i"
+},
+{
+  q: "15% of 20 + 20% of 30 = x% of 50, then x =",
+  options: ["16", "17", "19", "18"],
+  answer: "18"
+},
+{
+  q: "If two dice are rolled simultaneously, then the probability of getting odd numbers on both dice is",
+  options: ["1/4", "3/4", "1/9", "2/9"],
+  answer: "1/4"
+},
+{
+  q: "\"The knowledge of numbers, mass and measurement is the mathematics\". This definition is given by",
+  options: ["Bell", "Pascal", "Russel", "Peirce"],
+  answer: "Bell"
+},
+{
+  q: "\"Among different closed figures having same perimeter, circle has the highest area\". This is proved by",
+  options: ["Euclid", "Archimedes", "Ptolemy", "Pythagoras"],
+  answer: "Pythagoras"
+},
+{
+  q: "'The learner understands the method of solving problems.' This belongs to the following academic standard:",
+  options: ["Problem-solving", "Reasoning - proofs", "Communication", "Connection"],
+  answer: "Reasoning - proofs"
+},
+{
+  q: "According to Herbart's, this step should take place before 'Generalization' in lesson plan preparation.",
+  options: ["Application", "Presentation", "Association", "Recapitulation"],
+  answer: "Association"
+},
+{
+  q: "Assessment is:\na) Quantitative\nb) Qualitative",
+  options: ["Only (a) correct", "Only (b) correct", "(a) and (b) are not correct", "(a) and (b) both are correct"],
+  answer: "(a) and (b) both are correct"
+},
+{
+  q: "One of the following is related to the Inductive approach:",
+  options: ["Abstract to concrete", "From general to specific", "Generalization from observations", "Tests Formulae"],
+  answer: "Generalization from observations"
+}
+];
+
+// ============ QUIZ ENGINE ============
+let quizQuestions = [];
+let currentIndex = 0;
+let userAnswers = []; // {selected, correct, isCorrect}
+let score = 0;
+let timerInterval;
+let secondsElapsed = 0;
+
+function shuffleArray(arr) {
+  let a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz() {
+  // Shuffle question order and option order
+  let pool = shuffleArray(questionBank);
+  let count = Math.min(30, pool.length);
+  quizQuestions = pool.slice(0, count).map(item => {
+    return {
+      q: item.q,
+      options: shuffleArray(item.options),
+      answer: item.answer
+    };
+  });
+  userAnswers = new Array(quizQuestions.length).fill(null);
+  currentIndex = 0;
+  score = 0;
+  secondsElapsed = 0;
+
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'block';
+
+  startTimer();
+  renderQuestion();
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    const m = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+    const s = String(secondsElapsed % 60).padStart(2, '0');
+    document.getElementById('timerDisplay').textContent = m + ":" + s;
+  }, 1000);
+}
+
+function renderQuestion() {
+  const item = quizQuestions[currentIndex];
+  document.getElementById('qCounter').textContent = `Question ${currentIndex + 1} / ${quizQuestions.length}`;
+  document.getElementById('scoreLive').textContent = `Score: ${score}`;
+  document.getElementById('questionText').textContent = `${currentIndex + 1}. ${item.q}`;
+
+  const pct = ((currentIndex) / quizQuestions.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  const optContainer = document.getElementById('optionsContainer');
+  optContainer.innerHTML = '';
+  const existingAnswer = userAnswers[currentIndex];
+
+  item.options.forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.textContent = opt;
+    div.onclick = () => selectOption(opt);
+
+    if (existingAnswer) {
+      div.classList.add('disabled');
+      if (opt === existingAnswer.correct) {
+        div.classList.add('correct');
+      }
+      if (opt === existingAnswer.selected && !existingAnswer.isCorrect) {
+        div.classList.add('incorrect');
+      }
+      if (opt === existingAnswer.selected && existingAnswer.isCorrect) {
+        div.classList.add('selected');
+      }
+    }
+    optContainer.appendChild(div);
+  });
+
+  const feedback = document.getElementById('feedbackText');
+  if (existingAnswer) {
+    feedback.textContent = existingAnswer.isCorrect ? "✅ Correct!" : `❌ Incorrect! Correct answer: ${existingAnswer.correct}`;
+    feedback.className = 'feedback ' + (existingAnswer.isCorrect ? 'correct-text' : 'incorrect-text');
+  } else {
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+  }
+
+  document.getElementById('prevBtn').disabled = currentIndex === 0;
+
+  if (currentIndex === quizQuestions.length - 1) {
+    document.getElementById('nextBtn').style.display = 'none';
+    document.getElementById('submitBtn').style.display = 'block';
+  } else {
+    document.getElementById('nextBtn').style.display = 'block';
+    document.getElementById('submitBtn').style.display = 'none';
+  }
+}
+
+function selectOption(selected) {
+  if (userAnswers[currentIndex]) return; // already answered
+  const item = quizQuestions[currentIndex];
+  const isCorrect = selected === item.answer;
+  userAnswers[currentIndex] = { selected: selected, correct: item.answer, isCorrect: isCorrect };
+  if (isCorrect) score++;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentIndex < quizQuestions.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+}
+
+function finishQuiz() {
+  clearInterval(timerInterval);
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('scoreScreen').style.display = 'block';
+
+  const total = quizQuestions.length;
+  const correct = score;
+  const wrong = userAnswers.filter(a => a && !a.isCorrect).length;
+  const unanswered = userAnswers.filter(a => a === null).length;
+  const pct = Math.round((correct / total) * 100);
+
+  document.getElementById('scoreCircle').style.setProperty('--pct', pct + '%');
+  document.getElementById('scorePercentText').textContent = pct + '%';
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = wrong + unanswered;
+  const m = Math.floor(secondsElapsed / 60);
+  const s = secondsElapsed % 60;
+  document.getElementById('totalTime').textContent = (m > 0 ? m + "m " : "") + s + "s";
+
+  renderReview();
+  document.getElementById('reviewScreen').style.display = 'block';
+}
+
+function renderReview() {
+  const container = document.getElementById('reviewContainer');
+  container.innerHTML = '';
+  quizQuestions.forEach((item, idx) => {
+    const ans = userAnswers[idx];
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    let yourAnsLine = '';
+    if (ans) {
+      yourAnsLine = `<div class="ra ${ans.isCorrect ? 'correct-line' : 'wrong-line'}">Your Answer: ${ans.selected} ${ans.isCorrect ? '✅' : '❌'}</div>`;
+    } else {
+      yourAnsLine = `<div class="ra wrong-line">Your Answer: Not Attempted ❌</div>`;
+    }
+    div.innerHTML = `
+      <div class="rq">${idx + 1}. ${item.q}</div>
+      ${yourAnsLine}
+      <div class="ra correct-line">Correct Answer: ${item.answer} ✅</div>
+    `;
+    container.appendChild(div);
+  });
+}
+</script>
+</body>
+</html>
