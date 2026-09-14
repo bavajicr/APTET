@@ -18,7 +18,46 @@
       <p class="acdp19d-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
     </div>
   </div>
+<!-- MANDATORY STUDENT INFO FORM -->
+<div id="student-modal" style="background:#f8fafc; border:2px solid #cbd5e1; padding:1.5rem; border-radius:12px; max-width:400px; margin:2rem auto; text-align:center;">
+    <h3 style="color:#0f172a; margin-bottom:1rem;">Enter Details to Start Test</h3>
+    <form id="quiz-start-form" onsubmit="startQuiz(event)">
+        <input type="text" id="student-name" placeholder="Enter Your Full Name" required style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" />
+        <button type="submit" style="background:#2563eb; color:#fff; border:none; padding:0.75rem 1.5rem; border-radius:8px; font-weight:bold; cursor:pointer; width:100%;">Start Test</button>
+    </form>
+</div>
 
+<!-- SCRIPT TO SUBMIT SCORE TO GOOGLE SHEET -->
+<script>
+let studentName = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4NhL2aH2C6FqqlNmypIZ_kazgKtNVAbpJTUhUITI91qrmSO_vQTR6netidsMRcr6y/exec"; // Paste your Web App URL here
+
+function startQuiz(event) {
+    event.preventDefault();
+    studentName = document.getElementById("student-name").value.trim();
+    if (!studentName) {
+        alert("Please enter your name to proceed!");
+        return;
+    }
+    document.getElementById("student-modal").style.display = "none";
+    // Code to display your quiz questions goes here...
+}
+
+function submitScoreToLeaderboard(subjectName, finalScore) {
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: studentName,
+            subject: subjectName,
+            score: finalScore
+        })
+    })
+    .then(() => alert("Score submitted to leaderboard successfully!"))
+    .catch(err => console.error("Error submitting score:", err));
+}
+</script>
   <!-- SCREEN 2: QUIZ -->
   <div id="acdp19d-quiz" class="acdp19d-screen">
     <div class="acdp19d-card">
