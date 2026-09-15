@@ -1,0 +1,680 @@
+<!-- ===================== TELUGU APTET QUIZ (19-Dec-2025, Shift-1) ===================== -->
+<!-- Blogger-compatible single HTML block. Scoped CSS + IIFE JS. -->
+
+<div id="crb-tq-root" class="crb-tq-wrap">
+
+  <div class="crb-tq-card" id="crb-tq-lockCard">
+    <div class="crb-tq-badge">APTET PAPER-II (A)</div>
+    <h2 class="crb-tq-title">TELUGU</h2>
+    <p class="crb-tq-sub">APTET Previous Question Paper &ndash; 19 December 2025 (First Shift)</p>
+    <div class="crb-tq-lockBox">
+      <span class="crb-tq-lockIcon">🔒</span>
+      <p class="crb-tq-lockMsg">This quiz will open at <strong>7:00&nbsp;PM IST today (15&#8209;09&#8209;2026)</strong>. Please check back then.</p>
+      <p class="crb-tq-lockCountdown" id="crb-tq-countdown">Opens in --:--:--</p>
+    </div>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-startCard" style="display:none;">
+    <div class="crb-tq-badge">APTET PAPER-II (A)</div>
+    <h2 class="crb-tq-title">TELUGU</h2>
+    <p class="crb-tq-sub">APTET Previous Question Paper &ndash; 19 December 2025 (First Shift)</p>
+    <div class="crb-tq-info">
+      <div><span>📋</span> 30 Questions</div>
+      <div><span>⏱️</span> Timer Enabled</div>
+      <div><span>🔀</span> Options Shuffle</div>
+    </div>
+    <p class="crb-tq-note">Each question carries 1 mark. Answer feedback is shown instantly after you choose an option. Good luck!</p>
+    <div class="crb-tq-nameField">
+      <label for="crb-tq-nameInput" class="crb-tq-nameLabel">Enter your Name <span class="crb-tq-req">*</span></label>
+      <input type="text" id="crb-tq-nameInput" class="crb-tq-nameInput" placeholder="Type your full name" autocomplete="off" />
+      <p id="crb-tq-nameError" class="crb-tq-nameError" style="display:none;">Please enter your name before starting the quiz.</p>
+    </div>
+    <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-startBtn" disabled>Start Quiz</button>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-quizCard" style="display:none;">
+    <div class="crb-tq-topbar">
+      <div class="crb-tq-timer">⏱️ <span id="crb-tq-timer">00:00</span></div>
+      <div class="crb-tq-score">Score: <span id="crb-tq-liveScore">0</span> / 30</div>
+    </div>
+
+    <div class="crb-tq-progressOuter">
+      <div class="crb-tq-progressInner" id="crb-tq-progressBar"></div>
+    </div>
+    <div class="crb-tq-qcount">Question <span id="crb-tq-qNum">1</span> of 30</div>
+
+    <div class="crb-tq-qBox">
+      <div class="crb-tq-qHeading">TELUGU &ndash; APTET Previous Question Paper – 19 December 2025 (First Shift)</div>
+      <div class="crb-tq-qText" id="crb-tq-qText"></div>
+      <div class="crb-tq-options" id="crb-tq-options"></div>
+      <div class="crb-tq-feedback" id="crb-tq-feedback"></div>
+    </div>
+
+    <div class="crb-tq-navRow">
+      <button class="crb-tq-btn crb-tq-btn-secondary" id="crb-tq-prevBtn">◀ Previous</button>
+      <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-nextBtn">Next ▶</button>
+      <button class="crb-tq-btn crb-tq-btn-success" id="crb-tq-submitBtn" style="display:none;">Submit ✅</button>
+    </div>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-resultCard" style="display:none;">
+    <div class="crb-tq-badge">RESULT</div>
+    <h2 class="crb-tq-title">Quiz Completed!</h2>
+    <div class="crb-tq-resultRing">
+      <div class="crb-tq-resultScore"><span id="crb-tq-finalScore">0</span>/30</div>
+    </div>
+    <div class="crb-tq-resultStats">
+      <div class="crb-tq-statBox crb-tq-good"><div id="crb-tq-correctCount">0</div><span>Correct</span></div>
+      <div class="crb-tq-statBox crb-tq-bad"><div id="crb-tq-wrongCount">0</div><span>Wrong</span></div>
+      <div class="crb-tq-statBox crb-tq-time"><div id="crb-tq-timeTaken">00:00</div><span>Time Taken</span></div>
+    </div>
+    <div class="crb-tq-resultBtns">
+      <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-restartBtn">🔄 Restart Quiz</button>
+      <button class="crb-tq-btn crb-tq-btn-secondary" id="crb-tq-pdfBtn">⬇️ Download Result (PDF)</button>
+    </div>
+
+    <div class="crb-tq-leaderboard">
+      <div class="crb-tq-lbHeader">
+        <h3 class="crb-tq-lbTitle">🏆 Leaderboard &ndash; Top 10</h3>
+        <button id="crb-tq-lbRefreshBtn" class="crb-tq-lbRefreshBtn" title="Refresh leaderboard">🔄</button>
+      </div>
+      <div id="crb-tq-lbList" class="crb-tq-lbList">
+        <p class="crb-tq-lbStatus">Loading leaderboard&hellip;</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="crb-tq-footer">
+    C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE
+  </div>
+</div>
+
+<style>
+  .crb-tq-wrap{
+    max-width:600px; margin:20px auto; font-family:'Segoe UI', Roboto, Arial, sans-serif;
+    color:#1c2b47;
+  }
+  .crb-tq-card{
+    background:linear-gradient(160deg,#f6f9ff 0%, #e6eefc 100%);
+    border-radius:18px; padding:24px 20px; box-shadow:0 10px 30px rgba(30,60,120,0.14);
+    border:1px solid #c3d6f2;
+  }
+  .crb-tq-badge{
+    display:inline-block; background:#1c4f8a; color:#e3f0ff; font-size:12px; font-weight:700;
+    letter-spacing:1px; padding:4px 12px; border-radius:20px; margin-bottom:10px;
+  }
+  .crb-tq-title{ margin:4px 0 2px 0; font-size:26px; color:#1a2740; font-weight:800; }
+  .crb-tq-sub{ margin:0 0 16px 0; color:#3f5c96; font-size:14px; }
+  .crb-tq-info{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+  .crb-tq-info div{
+    background:rgba(15,35,70,0.05); padding:8px 12px; border-radius:10px; font-size:13px; color:#2b3a56;
+  }
+  .crb-tq-note{ font-size:13px; color:#45577e; margin-bottom:18px; line-height:1.5; }
+  .crb-tq-btn{
+    border:none; border-radius:12px; padding:13px 22px; font-size:15px; font-weight:700;
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; margin:4px;
+  }
+  .crb-tq-btn:active{ transform:scale(0.97); }
+  .crb-tq-btn-primary{ background:linear-gradient(135deg,#2f80ed,#1c5fc9); color:#fff; }
+  .crb-tq-btn-secondary{ background:rgba(15,35,70,0.06); color:#2b3a56; border:1px solid rgba(15,35,70,0.14); }
+  .crb-tq-btn-success{ background:linear-gradient(135deg,#22a06b,#178754); color:#fff; }
+  .crb-tq-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+
+  .crb-tq-topbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:14px; }
+  .crb-tq-timer{ background:rgba(15,35,70,0.05); padding:6px 12px; border-radius:10px; color:#1a4fce; font-weight:700; }
+  .crb-tq-score{ background:rgba(15,35,70,0.05); padding:6px 12px; border-radius:10px; color:#16875c; font-weight:700; }
+
+  .crb-tq-progressOuter{ background:rgba(15,35,70,0.04); border-radius:10px; height:10px; overflow:hidden; margin-bottom:6px; }
+  .crb-tq-progressInner{ background:linear-gradient(90deg,#2f80ed,#22a06b); height:100%; width:0%; transition:width .3s ease; }
+  .crb-tq-qcount{ font-size:12px; color:#4a5f8a; margin-bottom:14px; text-align:right; }
+
+  .crb-tq-qBox{ background:rgba(15,35,70,0.04); border-radius:14px; padding:18px; margin-bottom:16px; }
+  .crb-tq-qHeading{ font-size:12.5px; font-weight:700; letter-spacing:.3px; color:#1a4fce; background:rgba(15,35,70,0.05); display:inline-block; padding:5px 12px; border-radius:8px; margin-bottom:12px; }
+  .crb-tq-qText{ font-size:18px; line-height:1.6; margin-bottom:16px; color:#1a2740; white-space:pre-line; }
+  .crb-tq-options{ display:flex; flex-direction:column; gap:10px; }
+  .crb-tq-option{
+    background:#ffffff; border:2px solid rgba(15,35,70,0.16); border-radius:12px; padding:12px 14px;
+    font-size:15.5px; cursor:pointer; color:#1c2b47; transition:all .15s ease; line-height:1.5;
+  }
+  .crb-tq-option:hover{ border-color:#2f80ed; }
+  .crb-tq-option.crb-tq-selected{ border-color:#2f80ed; background:rgba(47,128,237,0.10); }
+  .crb-tq-option.crb-tq-correct{ background:rgba(34,160,107,0.15); border-color:#22a06b; color:#0f6b3f; }
+  .crb-tq-option.crb-tq-wrong{ background:rgba(224,80,90,0.15); border-color:#e0505a; color:#9c2430; }
+  .crb-tq-option.crb-tq-disabled{ cursor:default; }
+  .crb-tq-feedback{ margin-top:12px; font-weight:700; font-size:14.5px; min-height:20px; }
+  .crb-tq-feedback.correct{ color:#16875c; }
+  .crb-tq-feedback.wrong{ color:#b3323f; }
+
+  .crb-tq-navRow{ display:flex; justify-content:space-between; gap:10px; }
+  .crb-tq-navRow .crb-tq-btn{ flex:1; }
+
+  .crb-tq-resultRing{
+    width:150px; height:150px; border-radius:50%; margin:10px auto 20px auto;
+    background:radial-gradient(circle at 50% 50%, #eef4ff 60%, transparent 61%),
+    conic-gradient(#22a06b 0deg, #2f80ed 360deg);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .crb-tq-resultScore{ font-size:26px; font-weight:800; color:#1a2740; }
+  .crb-tq-resultStats{ display:flex; gap:10px; margin-bottom:20px; }
+  .crb-tq-statBox{ flex:1; background:rgba(15,35,70,0.04); border-radius:12px; padding:14px 6px; text-align:center; }
+  .crb-tq-statBox div{ font-size:20px; font-weight:800; margin-bottom:4px; }
+  .crb-tq-statBox span{ font-size:12px; color:#45577e; }
+  .crb-tq-good div{ color:#16875c; }
+  .crb-tq-bad div{ color:#b3323f; }
+  .crb-tq-time div{ color:#1a4fce; }
+  .crb-tq-resultBtns{ display:flex; gap:10px; flex-wrap:wrap; }
+  .crb-tq-resultBtns .crb-tq-btn{ flex:1; min-width:150px; }
+
+  .crb-tq-footer{
+    text-align:center; font-size:12.5px; color:#5b6d8f; margin-top:14px; letter-spacing:.4px; font-weight:600;
+  }
+
+  .crb-tq-lockBox{
+    text-align:center; background:rgba(15,35,70,0.045); border:1px solid rgba(15,35,70,0.10);
+    border-radius:12px; padding:20px 16px; margin-bottom:6px;
+  }
+  .crb-tq-lockIcon{ font-size:34px; display:block; margin-bottom:8px; }
+  .crb-tq-lockMsg{ font-size:14.5px; color:#2b3a56; line-height:1.5; margin:0 0 10px; }
+  .crb-tq-lockCountdown{ font-size:17px; font-weight:700; color:#1a4fce; margin:0; letter-spacing:.4px; }
+
+  .crb-tq-nameField{ margin-bottom:16px; text-align:left; }
+  .crb-tq-nameLabel{ display:block; font-size:13.5px; font-weight:600; color:#2b3a56; margin-bottom:6px; }
+  .crb-tq-req{ color:#d64545; }
+  .crb-tq-nameInput{
+    width:100%; font-family:inherit; font-size:15px; padding:10px 14px; border-radius:10px;
+    border:1.5px solid rgba(15,35,70,0.18); background:#fff; color:#1c2b47; box-sizing:border-box;
+  }
+  .crb-tq-nameInput:focus{ outline:none; border-color:#2f80ed; }
+  .crb-tq-nameError{ color:#d64545; font-size:12.5px; margin:6px 0 0; }
+
+  .crb-tq-leaderboard{
+    margin-top:20px; text-align:left; background:rgba(15,35,70,0.035);
+    border:1px solid rgba(15,35,70,0.08); border-radius:12px; padding:14px 16px;
+  }
+  .crb-tq-lbHeader{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .crb-tq-lbTitle{ font-size:15px; margin:0; color:#1a2740; }
+  .crb-tq-lbRefreshBtn{
+    background:rgba(15,35,70,0.06); border:1px solid rgba(15,35,70,0.14); color:#2b3a56;
+    border-radius:8px; width:30px; height:30px; font-size:15px; cursor:pointer;
+  }
+  .crb-tq-lbList{ min-height:20px; }
+  .crb-tq-lbRow{
+    display:flex; align-items:center; gap:10px; padding:7px 0;
+    border-bottom:1px solid rgba(15,35,70,0.07); font-size:13.5px;
+  }
+  .crb-tq-lbRow:last-child{ border-bottom:none; }
+  .crb-tq-lbRank{
+    width:22px; height:22px; flex:none; background:#1a4fce; color:#fff; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:11.5px; font-weight:700;
+  }
+  .crb-tq-lbName{ flex:1; color:#1c2b47; font-weight:600; overflow-wrap:anywhere; }
+  .crb-tq-lbScore{ color:#2b3a56; font-size:12.5px; white-space:nowrap; }
+  .crb-tq-lbStatus{ font-size:13px; color:#5b6d8f; margin:4px 0; }
+
+  @media (max-width:480px){
+    .crb-tq-title{ font-size:22px; }
+    .crb-tq-qText{ font-size:16.5px; }
+    .crb-tq-option{ font-size:14.5px; }
+    .crb-tq-resultBtns .crb-tq-btn{ min-width:120px; font-size:13.5px; }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+(function(){
+
+  var QUESTIONS = [
+    { q:"ఒక ప్రత్యేక అభినివేశంతో కవిత్వం రాస్తున్న కవి శేషేంద్ర. కవిత్వంలో వస్తువుతోపాటు రీతి కూడా మారాలని, కవిత్వం రాజకీయ నినాదాల్లో బందీకారాదని శేషేంద్ర అభిప్రాయపడ్డాడు. ఈయన కవిత్వంలో సౌందర్యానికి ప్రత్యేక ప్రాధాన్యమిచ్చాడు. 'కవిసేన'కు స్థాపన నాయకులై అకవిత్వానికి వ్యతిరేకంగా ధ్వజమెత్తాడు.\n\nపై గద్యం ఆధారంగా అసత్యం.",
+      options:["కవిత్వం రాజకీయ నినాదాల్లో బందీకారాదు.","శేషేంద్ర సుకవిత్వానికి వ్యతిరేకంగా ధ్వజమెత్తాడు.","కవిత్వంలో వస్తువుతో పాటు రీతి కూడా మారాలని శేషేంద్ర అభిప్రాయపడ్డాడు.","శేషేంద్ర కవిత్వంలో సౌందర్యానికి ప్రత్యేక ప్రాధాన్యత నిచ్చాడు."], answer:1 },
+
+    { q:"పురుష ప్రపంచంలో స్త్రీ బానిస బతుకును చిత్రిస్తూ స్త్రీ తన వ్యక్తిత్వం కొరకు పోరాడాలని ప్రబోధించే రచయిత్రి రంగనాయకమ్మ. వీరి పేకమేడలు, స్వీట్‌హోమ్, జానకి విముక్తి మొదలైన రచనలు ప్రసిద్ధి కెక్కాయి. సామాజిక సమస్యలను వస్తువుగా తీసుకొని వాసిరెడ్డి సీతాదేవి రచించిన 'మట్టిమనిషి', 'అడవి మల్లి', ఇల్లిందల సరస్వతీ దేవి 'భవతీ భిక్షాందేహి', దరిజేరిన ప్రాణాలు - నిర్దిష్ట ప్రయోజనంతో రాసిన నవలలు.\n\nపై గద్యం ఆధారంగా సీతాదేవికి చెందిన రచనలు",
+      options:["దరిజేరిన ప్రాణాలు, భవతీ భిక్షాందేహి","పేకమేడలు, మట్టి మనిషి","భవతీ భిక్షాందేహి, స్వీట్‌హోమ్","అడవి మల్లి, మట్టి మనిషి"], answer:3 },
+
+    { q:"తిరుగకు దుర్మార్గులతో\nనరుగకు గహనాంతర స్థలాదుల కొంటన్\nజరుగకు శత్రుల మేల\nన్‌రువకు మేల్ హితుల యెడల కుమారా!\n\nపై పద్యం ఆధారంగా ఒంటరిగా వెళ్ళకూడని ప్రదేశం",
+      options:["శత్రువుల రాజ్యం","అప్పులు ఎవరూ లేని పురానికి","భయంకరమైన కొండ గుహలలోకి","దట్టమైన అరణ్యములలోకి"], answer:3 },
+
+    { q:"దివిజేంద్ర సుతుని జంపియు\nరవిసుతు రక్షించినావు రఘురాముడవై\nదివిజేంద్ర సుతుని గాచియు\nరవి సుతు బరి మార్చితౌర రణమున కృష్ణా!\n\nపై పద్యంలో చెప్పిన దివిజేంద్ర సుతులు",
+      options:["కర్ణుడు, వాలి","వాలి, అర్జునుడు","సుగ్రీవుడు, కర్ణుడు","సుగ్రీవుడు, అర్జునుడు"], answer:1 },
+
+    { q:"\"పిల్లల పేల్ల మీద నెలనెలా తినితినకా వొందొంద రూపాయలు చాన్నాల్లుగా కడతావుంటి\". బతుకు గంప పాఠంలో ఈ మాటలు అన్నది.",
+      options:["రచయిత్రి","మల్లమ్మ","ఎల్లమ్మ","లలిత"], answer:2 },
+
+    { q:"జీవితంలో ఆత్మవిశ్వాసంతో ముందడుగు వేయాలని గొప్ప ప్రయత్నాల చేత ఒడిదుడుకులను అధిగమిస్తూ మనల్ని మనం తీర్చిదిద్దుకోవాలని తెలియజేయడం ఉద్దేశంగా గల పాఠం.",
+      options:["మాతృభూమి","శతక సారథం","మేలిమలుపు","సందేశం"], answer:2 },
+
+    { q:"ఉపోద్ఘాతం, విషయవిస్తరణ, ముగింపు వంటి ప్రధానాంగాలు గల ప్రక్రియ",
+      options:["కథానిక","నాటిక","నవల","వ్యాసం"], answer:3 },
+
+    { q:"రావూరి భరద్వాజ రచించిన 'జలప్రళయం'",
+      options:["నాటకం","నవల","కథానిక","వ్యాసం"], answer:1 },
+
+    { q:"'ప్రియమైన నాన్నకు' పాఠం",
+      options:["పి. సత్యవతి గారి 'రాగ భూపాలం' లోనిది.","పింగళి బాలదేవి గారి తెలుగు కథా పారిజాతాలు లోనిది.","పి. సత్యవతిగారి మెలకువ లోనిది.","పింగళి బాలదేవి గారి \"నాన్నకు రాయని ఉత్తరం' లోనిది."], answer:1 },
+
+    { q:"'గడ్డపార'ను కళింగ ప్రాంతంలో ఇలా పిలుస్తారు.",
+      options:["గడ్డ పలుగు","గుడారు","గునపం","గడారు"], answer:2 },
+
+    { q:"కింది వానిలో 'తద్భవం'.",
+      options:["సంద్రం","గృహం","ఉత్తరీయం","దీపం"], answer:0 },
+
+    { q:"'సుంత' - అర్థం",
+      options:["సున్నితం","అధికం","కొంచెం","కఠినం"], answer:2 },
+
+    { q:"'వాహిని' - నానార్థాలు",
+      options:["నది, ప్రవంతి","నది, సైన్యం","నది, నిర్ధరి","ఝురీ, ప్రవంతి"], answer:1 },
+
+    { q:"'అగస్త్యభ్రాత' అనే జాతీయం ఈ సందర్భంలో వాడతారు.",
+      options:["అగస్త్యుని గురించి చెప్పే సందర్భంలో","పురాణాల ప్రస్తావన సందర్భంలో","యుద్ధంలో వీరుల గురించి తెలిపే సందర్భంలో","పేరు తెలియని వారిని గురించి తెలిపే సందర్భంలో"], answer:3 },
+
+    { q:"రొట్లో తలదూర్చి రోకటి పోటుకు వెరచినట్లు - అనేది",
+      options:["సామెత","శబ్దపల్లవం","జాతీయం","పొడుపు కథ"], answer:0 },
+
+    { q:"నాలుగు పాదాల్లో కలిపి 8 సగణాలు 8 తగణాలు గలిగిన వృత్త పద్యం",
+      options:["మత్తేభం","చంపకమాల","ఉత్పలమాల","శార్దూలం"], answer:3 },
+
+    { q:"సమాసంలోని రెండు పదాలు విశేషణాలు అయితే అది",
+      options:["ఉపమాన పూర్వపద కర్మధారయ సమాసం","విశేషణ ఉత్తరపద కర్మధారయ సమాసం","ఉపమాన ఉభయపద కర్మధారయ సమాసం","విశేషణ ఉభయపద కర్మధారయ సమాసం"], answer:3 },
+
+    { q:"\"ఇంక దైవంబకాని యెొందు శరణంబులేదు.\" ఈ వాక్యానికి ఆధునిక వచనం.",
+      options:["ఇక దైవమే నాకు శరణం కాదు.","దైవంబు కానిదే శరణంబు నాకు.","ఇంకా దైవ శరణమే నాకు దిక్కు.","ఇక దైవం తప్ప వేరే శరణం లేదు."], answer:3 },
+
+    { q:"వడ్డాది పాపయ్యగారి 'బొమ్మలకే ప్రాణం వస్తే' శీర్షిక ఈ పత్రికలో వెలువడేది.",
+      options:["చందమామ","బాలమిత్ర","యువ","స్వాతి"], answer:2 },
+
+    { q:"కింది వాటిని జతపరచండి.\n(అ) సభాసదులు      (య) వృద్ధిసంధి\n(ఆ) పరమేశ్వరుడు     (ర) ద్విరుక్తటకారసంధి\n(ఇ) కట్టకడ         (ల) సవర్ణదీర్ఘ సంధి\n(ఈ) రసౌచిత్యం      (వ) గుణసంధి",
+      options:["అ-ల, ఆ-య, ఇ-ర, ఈ-వ","అ-య, ఆ-ల, ఇ-వ, ఈ-ర","అ-య, ఆ-ర, ఇ-ల, ఈ-వ","అ-ల, ఆ-వ, ఇ-ర, ఈ-య"], answer:3 },
+
+    { q:"సంధి పదాలను సంబంధిత పదాలతో జతపరచండి.\n(అ) ఒకానొక          (య) నిత్యం\n(ఆ) రామయ్య          (ర) నిషేధం\n(ఇ) మేనల్లుడు, మేనయల్లుడు (ల) అన్యవిధం\n(ఈ) దూతయితడు        (వ) వైకల్పికం",
+      options:["అ-యు, ఆ-ల, ఇ-ర, ఈ-వ","అ-ల, ఆ-యు, ఇ-వ, ఈ-ర","అ-ర, ఆ-వ, ఇ-ల, ఈ-యు","అ-ల, ఆ-వ, ఇ-ర, ఈ-యు"], answer:1 },
+
+    { q:"కర్మణి వాక్యాల్లో కర్తకు, కర్మకు వచ్చే విభక్తులు",
+      options:["ద్వితీయా; ప్రథమా","ప్రథమా; తృతీయా","చతుర్థీ; ద్వితీయా","తృతీయా; ప్రథమా"], answer:3 },
+
+    { q:"\"కడవంత గుమ్మడికాయ కత్తిపీటకు లోకువన్నట్లు\" దీనికి సంబంధించిన న్యాయం",
+      options:["పంక ప్రక్షాళన న్యాయం","ఘటిక కూష్మాండ న్యాయం","కరకపిత్త న్యాయం","దగ్ధపద మార్జాల న్యాయం"], answer:1 },
+
+    { q:"తొలి తెలుగు పురాణం",
+      options:["మార్కండేయ పురాణం","మత్స్య పురాణం","వరాహ పురాణం","గరుడ పురాణం"], answer:0 },
+
+    { q:"'హరివిల్లు' పాఠంలోని కింది పద్యాలను సంబంధిత కవులతో జతపరచండి.\n(అ) తారా సస్యము పండినస్....   (య) వీపూరి వేంకటాచార్యుడు\n(ఆ) శమనుని దుంతం బట్టుకొనె.... (ర) మొల్ల\n(ఇ) అల్లన కాలవర్తకుడు.......  (ల) రామరాజ భూషణుడు\n(ఈ) నారదులైరి సన్మనులు.....   (వ) కూచిమంచి తిమ్మకవి",
+      options:["అ-య, ఆ-ల, ఇ-వ, ఈ-ర","అ-ల, ఆ-వ, ఇ-య, ఈ-ర","అ-ర, ఆ-య, ఇ-ల, ఈ-వ","అ-వ, ఆ-ర, ఇ-య, ఈ-ల"], answer:1 },
+
+    { q:"'నవ్యాంధ్రం నా జీవిత కథ' రచయిత",
+      options:["న్యాపతి సుబ్బారావు","కాశీనాథుని నాగేశ్వరరావు","కొండ వెంకటప్పయ్య","అయ్యదేవర కాళేశ్వరరావు"], answer:3 },
+
+    { q:"కింది వాటిలో సరైనవి.\nఅ. సింహిక - నాగమాత\nఆ. సురస - రాక్షసి\nఇ. సంపాతి - జటాయువు అన్న\nఈ. స్వయంప్రభ - యోగిని",
+      options:["అ, ఆ","ఆ, ఇ","ఆ, ఈ","ఇ, ఈ"], answer:3 },
+
+    { q:"\"ఇప్పుడు తమాషాలు కాదమ్మా! రేపు పట్నం వెళ్ళి సైన్యంలో చేరుతాను\". ఈ వాక్యంలో క్త్వార్థకం.",
+      options:["తమాషాలు","వెళ్ళి","చేరుతాను","కాదమ్మా!"], answer:1 },
+
+    { q:"'ఆమెకి ఇద్దరు పిల్లలు' వాక్యంలో 'కి'",
+      options:["సంబంధార్థం","సంప్రదానార్థం","అపాదానార్థం","దేహ మనఃస్థితి బోధకం"], answer:0 },
+
+    { q:"తాను జీవితంలో ఎన్నో కష్టాలనెదుర్కొని ఈ స్థితికి చేరానని కలాం అన్నారు. ఈ వాక్యానికి ప్రత్యక్ష కథనం.",
+      options:["\"జీవితంలో ఎన్నో కష్టాలను ఎదుర్కొని ఈ స్థితికి చేరతారు\" అన్నారు కలాం.","'నేను జీవితంలో ఎన్నో కష్టాలు ఎదుర్కొని ఈ స్థితికి చేరాను\". అని అన్నారు కలాం.","\"నా జీవితంలో ఎన్నో కష్టాలు నాచే ఎదుర్కొబడ్డాయి\". అన్నారు కలాం.","'అతను జీవితంలో ఎన్నో కష్టాలు ఎదుర్కొని ఈ స్థితికి చేరాడు' అన్నారు కలాం."], answer:1 }
+  ];
+
+  var root = document.getElementById('crb-tq-root');
+
+  function $(id){ return root.querySelector('#'+id); }
+
+  // ---- Unlock time: 7:00 PM IST on 15-Sep-2026 = 13:30 UTC ----
+  var UNLOCK_TIME_UTC = Date.UTC(2026, 8, 15, 13, 30, 0);
+  var lockInterval = null;
+
+  // ---- Leaderboard backend (Google Apps Script + Google Sheet) ----
+  var QUIZ_ID = 'telugu_aptet_19dec2025_shift1';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwN_E1NgTc9oUTF6aRIkoC7rton139z-nk8JUP-rclpuLDaBTIGti1Ga9ScwDgLPdciPA/exec'; // <-- paste the SAME shared leaderboard_backend_shared.gs deployment URL used across all your quizzes
+  var studentName = '';
+
+  var lockCard = $('crb-tq-lockCard');
+  var countdownEl = $('crb-tq-countdown');
+  var startCard = $('crb-tq-startCard');
+  var quizCard = $('crb-tq-quizCard');
+  var resultCard = $('crb-tq-resultCard');
+  var nameInput = $('crb-tq-nameInput');
+  var nameError = $('crb-tq-nameError');
+  var startBtn = $('crb-tq-startBtn');
+  var prevBtn = $('crb-tq-prevBtn');
+  var nextBtn = $('crb-tq-nextBtn');
+  var submitBtn = $('crb-tq-submitBtn');
+  var restartBtn = $('crb-tq-restartBtn');
+  var pdfBtn = $('crb-tq-pdfBtn');
+  var lbList = $('crb-tq-lbList');
+  var lbRefreshBtn = $('crb-tq-lbRefreshBtn');
+
+  var qTextEl = $('crb-tq-qText');
+  var optionsEl = $('crb-tq-options');
+  var feedbackEl = $('crb-tq-feedback');
+  var progressBar = $('crb-tq-progressBar');
+  var qNumEl = $('crb-tq-qNum');
+  var liveScoreEl = $('crb-tq-liveScore');
+  var timerEl = $('crb-tq-timer');
+
+  var order = [];        // question order (all 30, shuffled)
+  var current = 0;
+  var score = 0;
+  var answered = [];      // per-question: {selectedText, correctText, isCorrect}
+  var timerInterval = null;
+  var secondsElapsed = 0;
+  var currentShuffledOptions = [];
+  var currentAnswerLocked = false;
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+  function fmtCountdown(totalSeconds){
+    var h = Math.floor(totalSeconds / 3600);
+    var m = Math.floor((totalSeconds % 3600) / 60);
+    var s = totalSeconds % 60;
+    return pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+
+  function updateCountdown(){
+    var diffMs = UNLOCK_TIME_UTC - Date.now();
+    var totalSec = Math.max(0, Math.floor(diffMs / 1000));
+    countdownEl.textContent = 'Opens in ' + fmtCountdown(totalSec);
+  }
+
+  function checkLockState(){
+    if (Date.now() < UNLOCK_TIME_UTC){
+      lockCard.style.display = 'block';
+      startCard.style.display = 'none';
+      updateCountdown();
+      lockInterval = setInterval(function(){
+        if (Date.now() >= UNLOCK_TIME_UTC){
+          clearInterval(lockInterval);
+          lockCard.style.display = 'none';
+          startCard.style.display = 'block';
+        } else {
+          updateCountdown();
+        }
+      }, 1000);
+    } else {
+      lockCard.style.display = 'none';
+      startCard.style.display = 'block';
+    }
+  }
+
+  function escapeHtml(str){
+    var d = document.createElement('div');
+    d.textContent = (str === null || str === undefined) ? '' : String(str);
+    return d.innerHTML;
+  }
+
+  function isBackendConfigured(){
+    return APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PASTE_YOUR') === -1;
+  }
+
+  function submitScore(correct, total, wrong, timeSec){
+    if (!isBackendConfigured()) return;
+    var payload = {
+      action: 'submit',
+      quizId: QUIZ_ID,
+      name: studentName || 'Anonymous',
+      score: correct,
+      total: total,
+      percent: Math.round((correct / total) * 100),
+      timeTaken: timeSec,
+      timestamp: new Date().toISOString()
+    };
+    try {
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(function(){});
+    } catch(e){}
+  }
+
+  function loadLeaderboard(){
+    if (!lbList) return;
+    if (!isBackendConfigured()){
+      lbList.innerHTML = '<p class="crb-tq-lbStatus">Leaderboard not connected yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="crb-tq-lbStatus">Loading leaderboard&hellip;</p>';
+    fetch(APPS_SCRIPT_URL + '?action=leaderboard&quizId=' + encodeURIComponent(QUIZ_ID))
+      .then(function(res){ return res.json(); })
+      .then(function(data){ renderLeaderboard(data); })
+      .catch(function(){
+        lbList.innerHTML = '<p class="crb-tq-lbStatus">Leaderboard unavailable right now. Try refreshing.</p>';
+      });
+  }
+
+  function renderLeaderboard(data){
+    var rows = (data && data.leaderboard) ? data.leaderboard : [];
+    if (!rows.length){
+      lbList.innerHTML = '<p class="crb-tq-lbStatus">No scores yet. Be the first!</p>';
+      return;
+    }
+    var html = '';
+    rows.slice(0, 10).forEach(function(r, i){
+      html += '<div class="crb-tq-lbRow">' +
+        '<span class="crb-tq-lbRank">' + (i+1) + '</span>' +
+        '<span class="crb-tq-lbName">' + escapeHtml(r.name) + '</span>' +
+        '<span class="crb-tq-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + ' (' + escapeHtml(r.percent) + '%)</span>' +
+        '</div>';
+    });
+    lbList.innerHTML = html;
+  }
+
+  function startTimer(){
+    secondsElapsed = 0;
+    timerEl.textContent = '00:00';
+    timerInterval = setInterval(function(){
+      secondsElapsed++;
+      var m = Math.floor(secondsElapsed/60);
+      var s = secondsElapsed%60;
+      timerEl.textContent = pad(m)+':'+pad(s);
+    }, 1000);
+  }
+
+  function stopTimer(){
+    if (timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+  }
+
+  function initQuiz(){
+    order = shuffleArray(QUESTIONS.map(function(_, idx){ return idx; }));
+    current = 0;
+    score = 0;
+    answered = new Array(order.length).fill(null);
+    liveScoreEl.textContent = '0';
+    startCard.style.display = 'none';
+    resultCard.style.display = 'none';
+    quizCard.style.display = 'block';
+    startTimer();
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    currentAnswerLocked = !!answered[current];
+    var qIdx = order[current];
+    var qObj = QUESTIONS[qIdx];
+
+    qNumEl.textContent = (current+1);
+    progressBar.style.width = Math.round(((current+1)/order.length)*100) + '%';
+
+    qTextEl.textContent = qObj.q;
+    optionsEl.innerHTML = '';
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'crb-tq-feedback';
+
+    // Build shuffled options with correctness mapping, but keep stable per-question via cache
+    if (!qObj._shuffledCache){
+      var withFlags = qObj.options.map(function(text, i){
+        return { text:text, isCorrect: i === qObj.answer };
+      });
+      qObj._shuffledCache = shuffleArray(withFlags);
+    }
+    currentShuffledOptions = qObj._shuffledCache;
+
+    currentShuffledOptions.forEach(function(opt, i){
+      var div = document.createElement('div');
+      div.className = 'crb-tq-option';
+      div.textContent = opt.text;
+      div.setAttribute('data-idx', i);
+
+      var prevAnswer = answered[current];
+      if (prevAnswer){
+        div.classList.add('crb-tq-disabled');
+        if (opt.isCorrect){ div.classList.add('crb-tq-correct'); }
+        if (opt.text === prevAnswer.selectedText && !opt.isCorrect){ div.classList.add('crb-tq-wrong'); }
+      } else {
+        div.addEventListener('click', function(){ selectOption(opt); });
+      }
+      optionsEl.appendChild(div);
+    });
+
+    if (answered[current]){
+      showFeedback(answered[current].isCorrect);
+    }
+
+    prevBtn.disabled = (current === 0);
+    if (current === order.length - 1){
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'inline-block';
+    } else {
+      nextBtn.style.display = 'inline-block';
+      submitBtn.style.display = 'none';
+    }
+  }
+
+  function showFeedback(isCorrect){
+    feedbackEl.textContent = isCorrect ? '✅ Correct!' : '❌ Incorrect.';
+    feedbackEl.className = 'crb-tq-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  }
+
+  function selectOption(opt){
+    if (answered[current]) return;
+    answered[current] = { selectedText: opt.text, isCorrect: opt.isCorrect };
+    if (opt.isCorrect) score++;
+    liveScoreEl.textContent = score;
+    renderQuestion();
+  }
+
+  prevBtn.addEventListener('click', function(){
+    if (current > 0){ current--; renderQuestion(); }
+  });
+
+  nextBtn.addEventListener('click', function(){
+    if (current < order.length - 1){ current++; renderQuestion(); }
+  });
+
+  submitBtn.addEventListener('click', function(){
+    finishQuiz();
+  });
+
+  function finishQuiz(){
+    stopTimer();
+    var correct = answered.filter(function(a){ return a && a.isCorrect; }).length;
+    var attempted = answered.filter(function(a){ return a; }).length;
+    var wrong = attempted - correct;
+
+    quizCard.style.display = 'none';
+    resultCard.style.display = 'block';
+
+    $('crb-tq-finalScore').textContent = correct;
+    $('crb-tq-correctCount').textContent = correct;
+    $('crb-tq-wrongCount').textContent = wrong;
+    var m = Math.floor(secondsElapsed/60);
+    var s = secondsElapsed%60;
+    $('crb-tq-timeTaken').textContent = pad(m)+':'+pad(s);
+
+    submitScore(correct, order.length, wrong, secondsElapsed);
+    loadLeaderboard();
+  }
+
+  restartBtn.addEventListener('click', function(){
+    QUESTIONS.forEach(function(q){ delete q._shuffledCache; });
+    initQuiz();
+  });
+
+  pdfBtn.addEventListener('click', function(){
+    try{
+      var jsPDFCtor = window.jspdf ? window.jspdf.jsPDF : null;
+      if (!jsPDFCtor){ alert('PDF library failed to load. Please check your internet connection and try again.'); return; }
+      var doc = new jsPDFCtor();
+      var y = 15;
+      doc.setFontSize(14);
+      doc.text('TELUGU - APTET Previous Question Paper', 15, y); y+=7;
+      doc.setFontSize(11);
+      doc.text('19 December 2025 (First Shift)', 15, y); y+=10;
+
+      var correct = answered.filter(function(a){ return a && a.isCorrect; }).length;
+      var attempted = answered.filter(function(a){ return a; }).length;
+      var wrong = attempted - correct;
+      var m = Math.floor(secondsElapsed/60), s = secondsElapsed%60;
+
+      doc.text('Name: ' + (studentName || '-'), 15, y); y+=7;
+      doc.text('Score: ' + correct + ' / ' + order.length, 15, y); y+=7;
+      doc.text('Correct: ' + correct + '   Wrong: ' + wrong, 15, y); y+=7;
+      doc.text('Time Taken: ' + pad(m) + ':' + pad(s), 15, y); y+=7;
+      doc.text('Date: ' + new Date().toLocaleDateString(), 15, y); y+=12;
+
+      doc.setFontSize(9);
+      doc.text('Q.No | Your Answer | Correct Answer | Result', 15, y); y+=6;
+
+      for (var i=0;i<order.length;i++){
+        var qIdx = order[i];
+        var qObj = QUESTIONS[qIdx];
+        var a = answered[i];
+        var correctText = qObj.options[qObj.answer];
+        var yourText = a ? a.selectedText : '(Not answered)';
+        var result = a ? (a.isCorrect ? 'Correct' : 'Wrong') : 'Skipped';
+
+        if (y > 275){ doc.addPage(); y = 15; }
+        doc.text(String(i+1) + '. ' + result, 15, y); y+=5;
+        doc.setFontSize(8);
+        doc.text('Your: ' + yourText, 18, y); y+=4.5;
+        doc.text('Correct: ' + correctText, 18, y); y+=6;
+        doc.setFontSize(9);
+      }
+
+      y+=6;
+      if (y > 275){ doc.addPage(); y=15; }
+      doc.setFontSize(9);
+      doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE', 15, y);
+
+      doc.save('Telugu_APTET_19Dec2025_Shift1_Result.pdf');
+    } catch(e){
+      alert('Could not generate PDF. Please try again.');
+    }
+  });
+
+  nameInput.addEventListener('input', function(){
+    var val = nameInput.value.trim();
+    startBtn.disabled = (val.length === 0);
+    if (val.length > 0) nameError.style.display = 'none';
+  });
+  nameInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !startBtn.disabled) startBtn.click();
+  });
+
+  startBtn.addEventListener('click', function(){
+    var name = nameInput.value.trim();
+    if (!name){
+      nameError.style.display = 'block';
+      return;
+    }
+    studentName = name;
+    initQuiz();
+  });
+
+  lbRefreshBtn.addEventListener('click', loadLeaderboard);
+
+  checkLockState();
+
+})();
+</script>
