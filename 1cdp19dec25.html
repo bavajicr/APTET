@@ -1,7 +1,21 @@
 <div id="acdp19d-root" class="acdp19d-container">
 
+  <!-- SCREEN 0: LOCKED -->
+  <div id="acdp19d-locked" class="acdp19d-screen">
+    <div class="acdp19d-card acdp19d-start-card">
+      <h2 class="acdp19d-title">CHILD DEVELOPMENT AND PEDAGOGY</h2>
+      <p class="acdp19d-subtitle">APTET Previous Question Paper &ndash; 19 December 2025 (First Shift)</p>
+      <div class="acdp19d-lockBox">
+        <span class="acdp19d-lockIcon">&#128274;</span>
+        <p class="acdp19d-lockMsg">This quiz will open at <strong>6:00&nbsp;PM IST today (15&#8209;09&#8209;2026)</strong>. Please check back then.</p>
+        <p class="acdp19d-lockCountdown" id="acdp19d-countdown">Opens in --:--:--</p>
+      </div>
+      <p class="acdp19d-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
+    </div>
+  </div>
+
   <!-- SCREEN 1: START -->
-  <div id="acdp19d-start" class="acdp19d-screen acdp19d-active">
+  <div id="acdp19d-start" class="acdp19d-screen">
     <div class="acdp19d-card acdp19d-start-card">
       <h2 class="acdp19d-title">CHILD DEVELOPMENT AND PEDAGOGY</h2>
       <p class="acdp19d-subtitle">APTET Previous Question Paper &ndash; 19 December 2025 (First Shift)</p>
@@ -10,56 +24,20 @@
         <span>&#9200; Timed</span>
         <span>&#127760; English + Telugu</span>
       </div>
-
-      </div>
-<!-- MANDATORY STUDENT INFO FORM -->
-<div id="student-modal" style="background:#f8fafc; border:2px solid #cbd5e1; padding:1.5rem; border-radius:12px; max-width:400px; margin:2rem auto; text-align:center;">
-    <h3 style="color:#0f172a; margin-bottom:1rem;">Enter Details to Start Test</h3>
-    <form id="quiz-start-form" onsubmit="startQuiz(event)">
-        <input type="text" id="student-name" placeholder="Enter Your Full Name" required style="width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem;" />
-        <button type="submit" style="background:#2563eb; color:#fff; border:none; padding:0.75rem 1.5rem; border-radius:8px; font-weight:bold; cursor:pointer; width:100%;">Start Test</button>
-    </form>
-</div>
-      
       <p class="acdp19d-instructions">
         This test carries all 30 questions from the paper (30 marks), with the question order shuffled on every attempt.
         Select an answer to see instant feedback. Use Next / Previous to move between questions.
       </p>
-      <button id="acdp19d-startBtn" class="acdp19d-btn acdp19d-btn-primary">Start Quiz</button>
+      <div class="acdp19d-nameField">
+        <label for="acdp19d-nameInput" class="acdp19d-nameLabel">Enter your Name <span class="acdp19d-req">*</span></label>
+        <input type="text" id="acdp19d-nameInput" class="acdp19d-nameInput" placeholder="Type your full name" autocomplete="off" />
+        <p id="acdp19d-nameError" class="acdp19d-nameError" style="display:none;">Please enter your name before starting the quiz.</p>
+      </div>
+      <button id="acdp19d-startBtn" class="acdp19d-btn acdp19d-btn-primary" disabled>Start Quiz</button>
       <p class="acdp19d-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
     </div>
-  
-<!-- SCRIPT TO SUBMIT SCORE TO GOOGLE SHEET -->
-<script>
-let studentName = "";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4NhL2aH2C6FqqlNmypIZ_kazgKtNVAbpJTUhUITI91qrmSO_vQTR6netidsMRcr6y/exec"; // Paste your Web App URL here
+  </div>
 
-function startQuiz(event) {
-    event.preventDefault();
-    studentName = document.getElementById("student-name").value.trim();
-    if (!studentName) {
-        alert("Please enter your name to proceed!");
-        return;
-    }
-    document.getElementById("student-modal").style.display = "none";
-    // Code to display your quiz questions goes here...
-}
-
-function submitScoreToLeaderboard(subjectName, finalScore) {
-    fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            name: studentName,
-            subject: subjectName,
-            score: finalScore
-        })
-    })
-    .then(() => alert("Score submitted to leaderboard successfully!"))
-    .catch(err => console.error("Error submitting score:", err));
-}
-</script>
   <!-- SCREEN 2: QUIZ -->
   <div id="acdp19d-quiz" class="acdp19d-screen">
     <div class="acdp19d-card">
@@ -126,6 +104,16 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
         <button id="acdp19d-restartBtn" class="acdp19d-btn acdp19d-btn-primary">&#8635; Restart Quiz</button>
       </div>
 
+      <div class="acdp19d-leaderboard">
+        <div class="acdp19d-lbHeader">
+          <h3 class="acdp19d-lbTitle">&#127942; Leaderboard &ndash; Top 10</h3>
+          <button id="acdp19d-lbRefreshBtn" class="acdp19d-lbRefreshBtn" title="Refresh leaderboard">&#8635;</button>
+        </div>
+        <div id="acdp19d-lbList" class="acdp19d-lbList">
+          <p class="acdp19d-lbStatus">Loading leaderboard&hellip;</p>
+        </div>
+      </div>
+
       <p class="acdp19d-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
     </div>
   </div>
@@ -140,27 +128,27 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     font-family: 'Segoe UI', Roboto, Arial, sans-serif;
     max-width: 680px;
     margin: 20px auto;
-    color: #e8ecf5;
+    color: #1c2b47;
   }
   #acdp19d-root .acdp19d-screen { display: none; }
   #acdp19d-root .acdp19d-screen.acdp19d-active { display: block; }
   #acdp19d-root .acdp19d-card {
-    background: linear-gradient(145deg,#0d1b3d,#122a5c);
-    border: 1px solid #2b4a8c;
+    background: linear-gradient(145deg,#f6f9ff,#e6eefc);
+    border: 1px solid #c3d6f2;
     border-radius: 16px;
     padding: 24px 20px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 28px rgba(30,60,120,0.14);
   }
   #acdp19d-root .acdp19d-title {
     text-align: center;
-    color: #ffd166;
+    color: #a8720c;
     margin: 0 0 6px;
     font-size: 22px;
     letter-spacing: 0.5px;
   }
   #acdp19d-root .acdp19d-subtitle {
     text-align: center;
-    color: #9fc0ff;
+    color: #4a5f8a;
     margin: 0 0 18px;
     font-size: 14px;
   }
@@ -171,16 +159,16 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     flex-wrap: wrap;
     margin-bottom: 18px;
     font-size: 13px;
-    color: #cfe0ff;
+    color: #34486e;
   }
   #acdp19d-root .acdp19d-instructions {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(15,35,70,0.045);
+    border: 1px solid rgba(15,35,70,0.06);
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 13.5px;
     line-height: 1.5;
-    color: #d7e2fb;
+    color: #2b3a56;
     margin-bottom: 20px;
   }
   #acdp19d-root .acdp19d-btn {
@@ -203,15 +191,15 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
   #acdp19d-root .acdp19d-navRow .acdp19d-btn-primary,
   #acdp19d-root .acdp19d-navRow .acdp19d-btn-secondary { width: auto; flex: 1; }
   #acdp19d-root .acdp19d-btn-secondary {
-    background: rgba(255,255,255,0.08);
-    color: #cfe0ff;
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(15,35,70,0.06);
+    color: #34486e;
+    border: 1px solid rgba(15,35,70,0.14);
     width: 100%;
   }
   #acdp19d-root .acdp19d-credit {
     text-align: center;
     font-size: 11.5px;
-    color: #7d93c2;
+    color: #5b6d8f;
     margin-top: 18px;
     letter-spacing: 0.3px;
   }
@@ -220,7 +208,7 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
   #acdp19d-root .acdp19d-topbar { margin-bottom: 14px; }
   #acdp19d-root .acdp19d-progressWrap { margin-bottom: 10px; }
   #acdp19d-root .acdp19d-progressBar {
-    background: rgba(255,255,255,0.1);
+    background: rgba(15,35,70,0.08);
     border-radius: 20px;
     height: 8px;
     overflow: hidden;
@@ -233,22 +221,22 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     border-radius: 20px;
     transition: width 0.3s ease;
   }
-  #acdp19d-root .acdp19d-qCounter { font-size: 12.5px; color: #9fc0ff; }
+  #acdp19d-root .acdp19d-qCounter { font-size: 12.5px; color: #4a5f8a; }
   #acdp19d-root .acdp19d-statsRow { display: flex; gap: 10px; }
   #acdp19d-root .acdp19d-pill {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(15,35,70,0.05);
+    border: 1px solid rgba(15,35,70,0.10);
     border-radius: 20px;
     padding: 5px 12px;
     font-size: 12.5px;
-    color: #ffe08a;
+    color: #8a5b06;
   }
 
   #acdp19d-root .acdp19d-examHeading {
     text-align: center;
     font-size: 12.5px;
-    color: #8fb0f0;
-    border-bottom: 1px dashed rgba(255,255,255,0.15);
+    color: #3f5c96;
+    border-bottom: 1px dashed rgba(15,35,70,0.14);
     padding-bottom: 10px;
     margin-bottom: 14px;
     line-height: 1.4;
@@ -257,13 +245,13 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
   #acdp19d-root .acdp19d-qText {
     font-size: 16px;
     font-weight: 600;
-    color: #f2f5ff;
+    color: #1a2740;
     margin-bottom: 4px;
     line-height: 1.45;
   }
   #acdp19d-root .acdp19d-qTextTe {
     font-size: 15px;
-    color: #bcd2ff;
+    color: #35538c;
     margin-bottom: 16px;
     line-height: 1.5;
   }
@@ -272,9 +260,9 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     display: block;
     width: 100%;
     text-align: left;
-    background: rgba(255,255,255,0.05);
-    border: 1.5px solid rgba(255,255,255,0.15);
-    color: #e8ecf5;
+    background: rgba(15,35,70,0.045);
+    border: 1.5px solid rgba(15,35,70,0.14);
+    color: #1c2b47;
     border-radius: 10px;
     padding: 10px 14px;
     margin-bottom: 10px;
@@ -286,7 +274,7 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
   #acdp19d-root .acdp19d-option .acdp19d-optTe {
     display: block;
     font-size: 13.5px;
-    color: #b7c8ee;
+    color: #46628f;
     margin-top: 2px;
   }
   #acdp19d-root .acdp19d-option:hover:not(:disabled) {
@@ -320,14 +308,14 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    background: conic-gradient(#34d399 0deg, rgba(255,255,255,0.08) 0deg);
+    background: conic-gradient(#34d399 0deg, rgba(15,35,70,0.06) 0deg);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
   }
   #acdp19d-root .acdp19d-scoreCircle span {
-    background: #0d1b3d;
+    background: #eef4ff;
     width: 106px;
     height: 106px;
     border-radius: 50%;
@@ -336,7 +324,7 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     justify-content: center;
     font-size: 22px;
     font-weight: 700;
-    color: #ffd166;
+    color: #a8720c;
   }
   #acdp19d-root .acdp19d-resultStats {
     display: grid;
@@ -345,8 +333,8 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     margin: 16px 0;
   }
   #acdp19d-root .acdp19d-resultStatBox {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(15,35,70,0.045);
+    border: 1px solid rgba(15,35,70,0.08);
     border-radius: 12px;
     padding: 12px;
   }
@@ -354,17 +342,17 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     display: block;
     font-size: 19px;
     font-weight: 700;
-    color: #9fe6c8;
+    color: #16875c;
   }
   #acdp19d-root .acdp19d-resultStatLabel {
     display: block;
     font-size: 12px;
-    color: #9fc0ff;
+    color: #4a5f8a;
     margin-top: 3px;
   }
   #acdp19d-root .acdp19d-remark {
     font-size: 14px;
-    color: #ffe08a;
+    color: #8a5b06;
     margin: 14px 0 4px;
   }
   #acdp19d-root .acdp19d-resultBtnRow {
@@ -372,6 +360,101 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     gap: 10px;
     margin-top: 16px;
   }
+
+  /* lock screen */
+  #acdp19d-root .acdp19d-lockBox {
+    text-align: center;
+    background: rgba(15,35,70,0.045);
+    border: 1px solid rgba(15,35,70,0.10);
+    border-radius: 12px;
+    padding: 20px 16px;
+    margin-bottom: 18px;
+  }
+  #acdp19d-root .acdp19d-lockIcon { font-size: 34px; display: block; margin-bottom: 8px; }
+  #acdp19d-root .acdp19d-lockMsg { font-size: 14.5px; color: #2b3a56; line-height: 1.5; margin: 0 0 10px; }
+  #acdp19d-root .acdp19d-lockCountdown {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a4fce;
+    margin: 0;
+    letter-spacing: 0.4px;
+  }
+
+  /* name field */
+  #acdp19d-root .acdp19d-nameField { margin-bottom: 18px; text-align: left; }
+  #acdp19d-root .acdp19d-nameLabel {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #2b3a56;
+    margin-bottom: 6px;
+  }
+  #acdp19d-root .acdp19d-req { color: #d64545; }
+  #acdp19d-root .acdp19d-nameInput {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(15,35,70,0.18);
+    background: #fff;
+    color: #1c2b47;
+  }
+  #acdp19d-root .acdp19d-nameInput:focus { outline: none; border-color: #2f6fed; }
+  #acdp19d-root .acdp19d-nameError { color: #d64545; font-size: 12.5px; margin: 6px 0 0; }
+
+  /* leaderboard */
+  #acdp19d-root .acdp19d-leaderboard {
+    margin-top: 22px;
+    text-align: left;
+    background: rgba(15,35,70,0.035);
+    border: 1px solid rgba(15,35,70,0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  #acdp19d-root .acdp19d-lbHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  #acdp19d-root .acdp19d-lbTitle { font-size: 15px; margin: 0; color: #1a2740; }
+  #acdp19d-root .acdp19d-lbRefreshBtn {
+    background: rgba(15,35,70,0.06);
+    border: 1px solid rgba(15,35,70,0.14);
+    color: #34486e;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  #acdp19d-root .acdp19d-lbList { min-height: 20px; }
+  #acdp19d-root .acdp19d-lbRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(15,35,70,0.07);
+    font-size: 13.5px;
+  }
+  #acdp19d-root .acdp19d-lbRow:last-child { border-bottom: none; }
+  #acdp19d-root .acdp19d-lbRank {
+    width: 22px;
+    height: 22px;
+    flex: none;
+    background: #1a4fce;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11.5px;
+    font-weight: 700;
+  }
+  #acdp19d-root .acdp19d-lbName { flex: 1; color: #1c2b47; font-weight: 600; overflow-wrap: anywhere; }
+  #acdp19d-root .acdp19d-lbScore { color: #34486e; font-size: 12.5px; white-space: nowrap; }
+  #acdp19d-root .acdp19d-lbStatus { font-size: 13px; color: #5b6d8f; margin: 4px 0; }
 
   @media (max-width: 480px) {
     #acdp19d-root .acdp19d-card { padding: 18px 14px; }
@@ -657,10 +740,21 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
 
   var TOTAL_TO_SHOW = 30; // full paper — all questions included, order shuffled only
 
+  // ---- Unlock time: 6:00 PM IST on 15-Sep-2026 = 12:30 UTC ----
+  var UNLOCK_TIME_UTC = Date.UTC(2026, 8, 15, 12, 30, 0);
+
+  // ---- Leaderboard backend (Google Apps Script + Google Sheet) ----
+  var QUIZ_ID = 'aptet_cdp_19dec2025_shift1';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtiDO1l7vIonVVxDca0IIm-gUmLZuV6dfLpsj8kAPBZG33waD24zTarj7zo0bez8sL/exec'; // <-- replace after deploying the companion .gs backend
+
   var el = {
+    locked: document.getElementById('acdp19d-locked'),
+    countdown: document.getElementById('acdp19d-countdown'),
     start: document.getElementById('acdp19d-start'),
     quiz: document.getElementById('acdp19d-quiz'),
     result: document.getElementById('acdp19d-result'),
+    nameInput: document.getElementById('acdp19d-nameInput'),
+    nameError: document.getElementById('acdp19d-nameError'),
     startBtn: document.getElementById('acdp19d-startBtn'),
     qBlock: document.getElementById('acdp19d-qBlock'),
     prevBtn: document.getElementById('acdp19d-prevBtn'),
@@ -678,7 +772,9 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     wrongText: document.getElementById('acdp19d-wrongText'),
     remark: document.getElementById('acdp19d-remark'),
     downloadBtn: document.getElementById('acdp19d-downloadBtn'),
-    restartBtn: document.getElementById('acdp19d-restartBtn')
+    restartBtn: document.getElementById('acdp19d-restartBtn'),
+    lbList: document.getElementById('acdp19d-lbList'),
+    lbRefreshBtn: document.getElementById('acdp19d-lbRefreshBtn')
   };
 
   var state = {
@@ -688,7 +784,9 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     score: 0,
     startTime: null,
     timerInterval: null,
-    elapsedSeconds: 0
+    elapsedSeconds: 0,
+    studentName: '',
+    lockInterval: null
   };
 
   function shuffleArray(arr){
@@ -731,12 +829,44 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
   }
 
   function showScreen(name){
+    el.locked.classList.remove('acdp19d-active');
     el.start.classList.remove('acdp19d-active');
     el.quiz.classList.remove('acdp19d-active');
     el.result.classList.remove('acdp19d-active');
+    if (name === 'locked') el.locked.classList.add('acdp19d-active');
     if (name === 'start') el.start.classList.add('acdp19d-active');
     if (name === 'quiz') el.quiz.classList.add('acdp19d-active');
     if (name === 'result') el.result.classList.add('acdp19d-active');
+  }
+
+  function fmtCountdown(totalSeconds){
+    var h = Math.floor(totalSeconds / 3600);
+    var m = Math.floor((totalSeconds % 3600) / 60);
+    var s = totalSeconds % 60;
+    return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function updateCountdown(){
+    var diffMs = UNLOCK_TIME_UTC - Date.now();
+    var totalSec = Math.max(0, Math.floor(diffMs / 1000));
+    el.countdown.textContent = 'Opens in ' + fmtCountdown(totalSec);
+  }
+
+  function checkLockState(){
+    if (Date.now() < UNLOCK_TIME_UTC) {
+      showScreen('locked');
+      updateCountdown();
+      state.lockInterval = setInterval(function(){
+        if (Date.now() >= UNLOCK_TIME_UTC) {
+          clearInterval(state.lockInterval);
+          showScreen('start');
+        } else {
+          updateCountdown();
+        }
+      }, 1000);
+    } else {
+      showScreen('start');
+    }
   }
 
   function renderQuestion(){
@@ -841,6 +971,73 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     el.remark.textContent = remarkMsg;
 
     showScreen('result');
+    submitScore();
+    loadLeaderboard();
+  }
+
+  function escapeHtml(str){
+    var d = document.createElement('div');
+    d.textContent = (str === null || str === undefined) ? '' : String(str);
+    return d.innerHTML;
+  }
+
+  function isBackendConfigured(){
+    return APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PASTE_YOUR') === -1;
+  }
+
+  function submitScore(){
+    if (!isBackendConfigured()) return;
+    var total = state.questions.length;
+    var payload = {
+      action: 'submit',
+      quizId: QUIZ_ID,
+      name: state.studentName || 'Anonymous',
+      score: state.score,
+      total: total,
+      percent: Math.round((state.score / total) * 100),
+      timeTaken: state.elapsedSeconds,
+      timestamp: new Date().toISOString()
+    };
+    try {
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(function(){});
+    } catch (e) {}
+  }
+
+  function loadLeaderboard(){
+    if (!el.lbList) return;
+    if (!isBackendConfigured()) {
+      el.lbList.innerHTML = '<p class="acdp19d-lbStatus">Leaderboard not connected yet.</p>';
+      return;
+    }
+    el.lbList.innerHTML = '<p class="acdp19d-lbStatus">Loading leaderboard&hellip;</p>';
+    fetch(APPS_SCRIPT_URL + '?action=leaderboard&quizId=' + encodeURIComponent(QUIZ_ID))
+      .then(function(res){ return res.json(); })
+      .then(function(data){ renderLeaderboard(data); })
+      .catch(function(){
+        el.lbList.innerHTML = '<p class="acdp19d-lbStatus">Leaderboard unavailable right now. Try refreshing.</p>';
+      });
+  }
+
+  function renderLeaderboard(data){
+    var rows = (data && data.leaderboard) ? data.leaderboard : [];
+    if (!rows.length) {
+      el.lbList.innerHTML = '<p class="acdp19d-lbStatus">No scores yet. Be the first!</p>';
+      return;
+    }
+    var html = '';
+    rows.slice(0, 10).forEach(function(r, i){
+      html += '<div class="acdp19d-lbRow">' +
+        '<span class="acdp19d-lbRank">' + (i + 1) + '</span>' +
+        '<span class="acdp19d-lbName">' + escapeHtml(r.name) + '</span>' +
+        '<span class="acdp19d-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + ' (' + escapeHtml(r.percent) + '%)</span>' +
+        '</div>';
+    });
+    el.lbList.innerHTML = html;
   }
 
   function restartQuiz(){
@@ -872,20 +1069,36 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     doc.text('Child Development and Pedagogy - Quiz Result', 15, 30);
 
     doc.setFontSize(11);
-    doc.text('Date: ' + new Date().toLocaleString(), 15, 42);
-    doc.text('Total Questions: ' + total, 15, 50);
-    doc.text('Correct Answers: ' + correct, 15, 58);
-    doc.text('Wrong Answers: ' + wrong, 15, 66);
-    doc.text('Score: ' + correct + ' / ' + total + '  (' + percent + '%)', 15, 74);
-    doc.text('Time Taken: ' + fmtTime(state.elapsedSeconds), 15, 82);
+    doc.text('Name: ' + (state.studentName || '-'), 15, 42);
+    doc.text('Date: ' + new Date().toLocaleString(), 15, 50);
+    doc.text('Total Questions: ' + total, 15, 58);
+    doc.text('Correct Answers: ' + correct, 15, 66);
+    doc.text('Wrong Answers: ' + wrong, 15, 74);
+    doc.text('Score: ' + correct + ' / ' + total + '  (' + percent + '%)', 15, 82);
+    doc.text('Time Taken: ' + fmtTime(state.elapsedSeconds), 15, 90);
 
     doc.setFontSize(10);
-    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE', 15, 100);
+    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE', 15, 106);
 
     doc.save('APTET_ChildDev_Pedagogy_19Dec2025_Shift1_Result.pdf');
   }
 
+  el.nameInput.addEventListener('input', function(){
+    var val = el.nameInput.value.trim();
+    el.startBtn.disabled = (val.length === 0);
+    if (val.length > 0) el.nameError.style.display = 'none';
+  });
+  el.nameInput.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && !el.startBtn.disabled) el.startBtn.click();
+  });
+
   el.startBtn.addEventListener('click', function(){
+    var name = el.nameInput.value.trim();
+    if (!name) {
+      el.nameError.style.display = 'block';
+      return;
+    }
+    state.studentName = name;
     restartQuiz();
   });
   el.prevBtn.addEventListener('click', goPrev);
@@ -895,8 +1108,9 @@ function submitScoreToLeaderboard(subjectName, finalScore) {
     showScreen('start');
   });
   el.downloadBtn.addEventListener('click', downloadResultPDF);
+  el.lbRefreshBtn.addEventListener('click', loadLeaderboard);
 
-  showScreen('start');
+  checkLockState();
 
 })();
 </script>
