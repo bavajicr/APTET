@@ -1,0 +1,451 @@
+<div id="aptet-eng-quiz-root" style="max-width:720px;margin:20px auto;font-family:'Segoe UI',Arial,sans-serif;">
+<style>
+#aptet-eng-quiz-root *{box-sizing:border-box;}
+#aptet-eng-quiz-root{color:#2d3748;}
+.aeq-card{
+  background:linear-gradient(160deg, #f8fafc 0%, #edf2f7 100%);
+  border-radius:16px;
+  padding:20px 18px 26px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08), 0 0 0 1px rgba(66,153,225,0.2) inset;
+  position:relative;
+  overflow:hidden;
+}
+.aeq-card::before{
+  content:"";
+  position:absolute; top:-60px; right:-60px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(66,153,225,0.15),transparent 70%);
+}
+.aeq-topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;position:relative;z-index:2;}
+.aeq-badge{
+  background:#ebf8ff;
+  border:1px solid #90cdf4;
+  padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:600;letter-spacing:.3px;color:#2b6cb0;
+}
+.aeq-timer{
+  background:#fffaf0;
+  border:1px solid #fbd38d;
+  padding:5px 12px;border-radius:20px;font-size:13px;font-weight:700;color:#c05621;
+  display:flex;align-items:center;gap:5px;
+}
+.aeq-heading{
+  text-align:center;margin:6px 0 14px;position:relative;z-index:2;
+}
+.aeq-heading h2{font-size:16px;margin:0 0 4px;color:#2b6cb0;font-weight:800;letter-spacing:.4px;}
+.aeq-heading p{font-size:12.5px;margin:0;color:#4a5568;font-weight:500;}
+.aeq-progress-wrap{
+  background:#e2e8f0;
+  border-radius:10px;height:10px;overflow:hidden;margin-bottom:14px;position:relative;z-index:2;
+}
+.aeq-progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,#3182ce,#319795);
+  width:0%;
+  transition:width .35s ease;
+  border-radius:10px;
+}
+.aeq-meta-row{display:flex;justify-content:space-between;font-size:12px;color:#4a5568;margin-bottom:14px;position:relative;z-index:2;}
+.aeq-score-pill{
+  background:#e6fffa;border:1px solid #81e6d9;
+  color:#234e52;padding:3px 10px;border-radius:14px;font-weight:700;
+}
+.aeq-qbox{
+  background:#ffffff;
+  border:1px solid #cbd5e0;
+  border-radius:12px;padding:16px;margin-bottom:16px;position:relative;z-index:2;
+  min-height:70px;box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.aeq-qtext{font-size:15.5px;line-height:1.55;color:#1a202c;font-weight:600;}
+.aeq-options{display:flex;flex-direction:column;gap:10px;position:relative;z-index:2;}
+.aeq-opt{
+  display:block;width:100%;text-align:left;
+  background:#ffffff;
+  border:1.5px solid #cbd5e0;
+  color:#2d3748;padding:12px 14px;border-radius:10px;
+  font-size:14.5px;font-weight:500;cursor:pointer;
+  transition:all .18s ease;
+  line-height:1.4;
+}
+.aeq-opt:hover{background:#ebf8ff;border-color:#3182ce;}
+.aeq-opt.aeq-correct{background:#f0fff4!important;border-color:#38a169!important;color:#22543d;font-weight:700;}
+.aeq-opt.aeq-wrong{background:#fff5f5!important;border-color:#e53e3e!important;color:#742a2a;font-weight:700;}
+.aeq-opt.aeq-disabled{cursor:default;}
+.aeq-feedback{
+  margin-top:10px;font-size:13px;font-weight:700;position:relative;z-index:2;
+}
+.aeq-feedback.ok{color:#2f855a;}
+.aeq-feedback.no{color:#c53030;}
+.aeq-navrow{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:relative;z-index:2;}
+.aeq-btn{
+  flex:1;padding:11px 14px;border-radius:10px;border:none;
+  font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.2px;
+  transition:transform .12s ease, opacity .12s ease;
+}
+.aeq-btn:active{transform:scale(0.97);}
+.aeq-btn:disabled{opacity:.35;cursor:not-allowed;}
+.aeq-btn-prev{background:#edf2f7;color:#2d3748;border:1px solid #cbd5e0;}
+.aeq-btn-next{background:linear-gradient(90deg,#3182ce,#2b6cb0);color:#fff;}
+.aeq-btn-submit{background:linear-gradient(90deg,#38a169,#2f855a);color:#fff;}
+.aeq-start-wrap{text-align:center;position:relative;z-index:2;}
+.aeq-start-wrap input{
+  width:100%;max-width:320px;padding:11px 14px;border-radius:10px;
+  border:1.5px solid #cbd5e0;background:#ffffff;
+  color:#1a202c;font-size:14px;margin:14px 0 6px 0;text-align:center;
+}
+.aeq-start-wrap input::placeholder{color:#a0aec0;}
+.aeq-error-msg{color:#e53e3e;font-size:12.5px;font-weight:600;min-height:18px;margin-bottom:8px;}
+.aeq-startbtn{
+  background:linear-gradient(90deg,#3182ce,#319795);color:#ffffff;
+  border:none;padding:13px 28px;border-radius:12px;font-size:15px;font-weight:800;
+  cursor:pointer;box-shadow:0 4px 12px rgba(49,130,206,0.3);
+}
+.aeq-result{text-align:center;position:relative;z-index:2;}
+.aeq-result h2{color:#2b6cb0;margin-bottom:4px;}
+.aeq-scorecircle{
+  width:130px;height:130px;border-radius:50%;
+  margin:16px auto;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  background:conic-gradient(#319795 var(--pct,0%), #e2e8f0 0);
+  position:relative;
+}
+.aeq-scorecircle::before{
+  content:"";position:absolute;width:104px;height:104px;border-radius:50%;
+  background:#ffffff;
+}
+.aeq-scorecircle span{position:relative;z-index:2;font-size:24px;font-weight:900;color:#2d3748;}
+.aeq-scorecircle small{position:relative;z-index:2;font-size:11px;color:#718096;}
+.aeq-statgrid{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:16px 0;}
+.aeq-stat{
+  background:#ffffff;border:1px solid #cbd5e0;
+  border-radius:12px;padding:10px 16px;min-width:90px;
+}
+.aeq-stat b{display:block;font-size:18px;}
+.aeq-stat span{font-size:11px;color:#718096;}
+.aeq-review-list{text-align:left;margin-top:20px;max-height:400px;overflow-y:auto;padding-right:6px;}
+.aeq-review-item{background:#ffffff;border:1px solid #cbd5e0;border-radius:10px;padding:12px;margin-bottom:12px;}
+.aeq-review-q{font-weight:700;font-size:14px;color:#2d3748;margin-bottom:8px;}
+.aeq-review-ans{font-size:13px;line-height:1.5;}
+.aeq-review-ans .user-ans{display:block;margin-bottom:4px;}
+.aeq-review-ans .corr-ans{color:#276749;font-weight:600;display:block;}
+.aeq-credit{
+  text-align:center;font-size:11.5px;color:#718096;margin-top:16px;letter-spacing:.3px;position:relative;z-index:2;
+}
+.aeq-locked-box{
+  background:#fff5f5;border:1px solid #feb2b2;border-radius:12px;padding:24px;text-align:center;
+}
+.aeq-locked-box h3{color:#c53030;margin:0 0 8px 0;font-size:18px;}
+.aeq-locked-box p{color:#742a2a;margin:0;font-size:14px;font-weight:600;}
+@media (max-width:480px){
+  .aeq-qtext{font-size:14.5px;}
+  .aeq-opt{font-size:13.5px;padding:10px 12px;}
+}
+</style>
+
+<div class="aeq-card">
+  <div class="aeq-topbar">
+    <span class="aeq-badge">📘 ENGLISH</span>
+    <span class="aeq-timer" id="aeqTimer">⏱ 00:00</span>
+  </div>
+  <div class="aeq-heading">
+    <h2>APTET Previous Question Paper</h2>
+    <p>19 December 2025 &ndash; First Shift &nbsp;|&nbsp; Subject: English</p>
+  </div>
+
+  <div id="aeqLockScreen" class="aeq-locked-box" style="display:none;">
+    <h3>🔒 Quiz Scheduled</h3>
+    <p>It will open at 6.00 PM IST on 16-09-2026.</p>
+  </div>
+
+  <div id="aeqStartScreen" class="aeq-start-wrap">
+    <p style="font-size:14px;color:#4a5568;margin-bottom:6px;">30 Questions &nbsp;|&nbsp; Instant Feedback &nbsp;|&nbsp; Live Score &amp; Timer</p>
+    <input type="text" id="aeqNameInput" placeholder="Enter your full name (Mandatory)" required/>
+    <div id="aeqErrorMsg" class="aeq-error-msg"></div>
+    <button class="aeq-startbtn" id="aeqStartBtn">🚀 Start Quiz</button>
+  </div>
+
+  <div id="aeqQuizScreen" style="display:none;">
+    <div class="aeq-progress-wrap"><div class="aeq-progress-bar" id="aeqProgressBar"></div></div>
+    <div class="aeq-meta-row">
+      <span id="aeqQNoLabel">Question 1 / 30</span>
+      <span class="aeq-score-pill" id="aeqScorePill">Score: 0</span>
+    </div>
+    <div class="aeq-qbox">
+      <div class="aeq-qtext" id="aeqQuestionText"></div>
+    </div>
+    <div class="aeq-options" id="aeqOptionsBox"></div>
+    <div class="aeq-feedback" id="aeqFeedback"></div>
+    <div class="aeq-navrow">
+      <button class="aeq-btn aeq-btn-prev" id="aeqPrevBtn">◀ Previous</button>
+      <button class="aeq-btn aeq-btn-next" id="aeqNextBtn">Next ▶</button>
+    </div>
+  </div>
+
+  <div id="aeqResultScreen" style="display:none;" class="aeq-result">
+    <h2>🏁 Quiz Completed!</h2>
+    <p id="aeqResultName" style="color:#4a5568;font-size:14px;font-weight:600;"></p>
+    <div class="aeq-scorecircle" id="aeqScoreCircle"><span id="aeqScoreCircleText">0/30</span><small>SCORE</small></div>
+    <div class="aeq-statgrid">
+      <div class="aeq-stat"><b id="aeqCorrectCount" style="color:#2f855a;">0</b><span>Correct</span></div>
+      <div class="aeq-stat"><b id="aeqWrongCount" style="color:#c53030;">0</b><span>Wrong</span></div>
+      <div class="aeq-stat"><b id="aeqTimeTaken" style="color:#dd6b20;">00:00</b><span>Time Taken</span></div>
+    </div>
+    <div class="aeq-navrow">
+      <button class="aeq-btn aeq-btn-prev" id="aeqRestartBtn">🔄 Restart</button>
+      <button class="aeq-btn aeq-btn-next" id="aeqViewResponsesBtn">👁 View Responses</button>
+    </div>
+    <div id="aeqReviewContainer" class="aeq-review-list" style="display:none;"></div>
+  </div>
+
+  <div class="aeq-credit">Credit: C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+</div>
+</div>
+
+<script>
+(function(){
+  // --- GOOGLE SHEETS SCRIPT URL FOR LEADERBOARD ---
+  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzy24lGhvzrQU6qAjxf-KKbI31f1I8cgPFXh_xrCleCQXqzsdggoyAJ1aStoGZQ1-WMg/exec"; 
+
+  // Scheduled Start Date/Time: 16-09-2026 18:00:00 IST
+  var SCHEDULED_TIME = Date.UTC(2020, 8, 16, 12, 30, 0); // 6:00 PM IST = 12:30 PM UTC
+
+  var RAW_QUESTIONS = [
+    {q:"The little girl's eyes <u>glinted</u> with rare happiness as she listened to the good news.<br>Choose the synonym of the underlined word.", opts:["smeare","shone","concealed","moved"], correct:1},
+    {q:"The fawn was <u>sleek</u> and had a sweet scent.<br>Pick out the antonym for the underlined word.", opts:["daring","dull","wobbling","starting"], correct:1},
+    {q:"Naseema________yet.<br>Choose the option that fits the blank.", opts:["did not turn up","is not turning up","has not turned up","was not turning up"], correct:2},
+    {q:"Which of the following has the meaning 'away'?", opts:["convert","revert","avert","subvert"], correct:2},
+    {q:"Don't ask me for any help now. Now my <u>hands are full</u>.<br>What does the underlined part mean?", opts:["The speaker is very busy at that time.","The speaker has something in his hands.","The speaker is already helping others.","The speaker won't help anyone anytime."], correct:0},
+    {q:"The new director wanted to <u>discard</u> the age-old practices in the office.<br>Replace the underlined word with a suitable phrasal verb.", opts:["break down","break open","break up","break away"], correct:3},
+    {q:"Which of the following is the correct order as per dictionary arrangement?", opts:["applaud, appalling, appraise, approach","appalling, applaud, appraise, approach","appalling, applaud, approach, appraise","appalling, applaud, appraise, approach"], correct:[1,3]},
+    {q:"The boy / is my neighbour / with long hair<br>Identify the correctly punctuated sentence.", opts:["The boy is my neighbour, with long hair.","The boy with, long hair, is my neighbour.","The boy, is my neighbour with long hair.","The boy, with long hair, is my neighbour."], correct:3},
+    {q:"On seeing the boss, he ran away.<br>Choose the complex sentence of the above sentence.", opts:["He saw the boss and he ran away.","Having seen the boss, he ran away.","When he saw the boss, he ran away.","He saw the boss so he ran away."], correct:2},
+    {q:"Choose the grammatically correct sentence from the following.", opts:["He have two brother-in-laws.","He has two brothers - in-law.","He has two brother - inlaws.","he has two brothers - inlaws."], correct:1},
+    {q:"&ldquo;Let me take the spade and work in your place.&rdquo;<br>Identify the language function of the above sentence.", opts:["request","order","offering help","seeking help"], correct:2},
+    {q:"Identify the correct spelling of the word.", opts:["melifluous","mallifluous","meliflous","mellifluous"], correct:3},
+    {q:"The boy said stubbornly, &ldquo;I like him and I'm going to try and be his friend.&rdquo;<br>Identify the correct reported speech of the above sentence.", opts:["The boy said stubbornly why he liked him and he was going to try and be his friend.","The boy said stubbornly that he liked him and he was going to try and be his friend.","The boy says stubbornly that he likes him and he was going to try and be his friend.","The boy told to like him and he was going to try and be his friend."], correct:1},
+    {q:"Choose the correct example of a noun clause as an object.", opts:["I don't understand you.","What he said was true.","What did he say?","I understand what you want."], correct:3},
+    {q:"One of the following words describes a female rule over a small community.", opts:["monarchy","matriarch","democracy","oligarchy"], correct:1},
+    {q:"Identify the sentence in which the verb agrees with the subject.", opts:["Neither the servants nor the master shall found in the house.","Neither the servants nor the master were founded in the house.","Neither the servants nor the master was found in the house.","Neither the servant nor the master have found in the house."], correct:2},
+    {q:"Ramu has seen the movie.<br>Choose the interrogative form of the above statement from the options given.", opts:["Did Ramu saw the movie?","Ramu hasn't seen the movie, has he?","Has Ramu seen the movie?","Ramu has seen the movie, hasn't he?"], correct:2},
+    {q:"He was obstinate; ______, he was punished.<br>Choose the linker that fits the blank.", opts:["while","where as","therefore","still"], correct:2},
+    {q:"Identify the sentence with the correct use of articles or no article.", opts:["Dinner is ready.","Copper is useful metal.","He was elected chairman of the Board.","I learnt the French at school."], correct:0},
+    {q:"______you please let me use your phone?<br>Choose the appropriate modal verb to make it a request.", opts:["Should","Might","Could","Must"], correct:2},
+    {q:"Identify the pair that shows possessive pronouns.", opts:["My and her","Yours and hers","Your's and hers","You and her"], correct:1},
+    {q:"Choose the word with odd sound. Pay attention only to the underlined letters (Sound).", opts:["Fa<u>x</u>","Wa<u>x</u>","Rela<u>x</u>","<u>X</u>erox"], correct:3},
+    {q:"Here is an entry from Raju's personal records: &ldquo;I woke up very late today and promptly got a scolding from mum. I can't help it - how can I miss the FIFA World Cup matches?&rdquo;<br>Choose a right word that describes it the best.", opts:["a diary","a journal","a log","a memoir"], correct:0},
+    {q:"A/an _______ is the history of the life of a person written by someone else.", opts:["autobiography","biography","paragraph","autograph"], correct:1},
+    {q:"Which of the following options is in present perfect tense?", opts:["I have known him for a longtime.","I have been knowing him for a long time.","I have knew him for a long time.","I had known him for a long time."], correct:0},
+    {q:"Where_______? Which hair dresser did you go to?<br>Choose the correct option to fill in the blank.", opts:["do you cut your hair","have you cut your hair","did you have cut your hair","did you have your hair cut"], correct:3},
+    {q:"A cloud of_________.<br>Choose the correct word to complete the phrase.", opts:["wind","cotton","dust","gold"], correct:2},
+    {q:"We travelled_____6.45 train, which arrived at 8.30.<br>Choose the correct preposition.", opts:["over the","on the","for the","with the"], correct:1},
+    {q:"Read the following: Honeybees are very sophisticated at position, location, and navigation. It is known that they use the sun as a guide. They also appear to have a good memory. They convey the information of a new find of food to the hive through an amazingly clever dance language. The dance indicates the direction and distance of the food source with respect to the direction of the sun in the sky!<br><br>The amazingly clever dance of honey bees indicates____.", opts:["their good memory","direction of the sun","direction and distance of the food source","direction and distance of the hive"], correct:2},
+    {q:"Read the following: Stamp collecting is limitless and endless. Countries are always issuing stamps to celebrate important events. It is fascinating to receive letters from distant countries and to discover stamps in old books. Stamps show us geographical and historical pictures, famous people and incidents. These small things contain vast knowledge.<br><br>The expression &ldquo;these small things&rdquo; refers to________.", opts:["distant countries","old books","historical pictures","stamps"], correct:3}
+  ];
+
+  var TOTAL_Q = RAW_QUESTIONS.length;
+  var quiz = [];
+  var current = 0;
+  var score = 0;
+  var answered = [];
+  var timerInterval = null;
+  var seconds = 0;
+  var studentName = "";
+
+  function checkAvailability(){
+    var now = new Date().getTime();
+    if(now < SCHEDULED_TIME){
+      document.getElementById('aeqStartScreen').style.display = "none";
+      document.getElementById('aeqLockScreen').style.display = "block";
+      return false;
+    }
+    return true;
+  }
+
+  function shuffleArr(a){
+    var arr = a.slice();
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t=arr[i]; arr[i]=arr[j]; arr[j]=t;
+    }
+    return arr;
+  }
+
+  function buildQuiz(){
+    var order = shuffleArr(RAW_QUESTIONS.map(function(_,i){return i;}));
+    quiz = order.map(function(idx){
+      var src = RAW_QUESTIONS[idx];
+      var correctSet = Array.isArray(src.correct) ? src.correct : [src.correct];
+      var optOrder = shuffleArr(src.opts.map(function(_,i){return i;}));
+      var newOpts = optOrder.map(function(oi){return src.opts[oi];});
+      var newCorrect = [];
+      optOrder.forEach(function(origIdx, newIdx){
+        if(correctSet.indexOf(origIdx) !== -1){ newCorrect.push(newIdx); }
+      });
+      return {q:src.q, opts:newOpts, correct:newCorrect, chosen:null};
+    });
+    current = 0; score = 0; answered = new Array(TOTAL_Q).fill(false);
+  }
+
+  function fmtTime(s){
+    var m = Math.floor(s/60); var sec = s%60;
+    return (m<10?"0":"")+m+":"+(sec<10?"0":"")+sec;
+  }
+
+  function startTimer(){
+    seconds = 0;
+    document.getElementById('aeqTimer').textContent = "⏱ 00:00";
+    timerInterval = setInterval(function(){
+      seconds++;
+      document.getElementById('aeqTimer').textContent = "⏱ " + fmtTime(seconds);
+    },1000);
+  }
+  function stopTimer(){ clearInterval(timerInterval); }
+
+  function renderQuestion(){
+    var item = quiz[current];
+    document.getElementById('aeqQNoLabel').textContent = "Question " + (current+1) + " / " + TOTAL_Q;
+    document.getElementById('aeqScorePill').textContent = "Score: " + score;
+    document.getElementById('aeqProgressBar').style.width = (((current)/TOTAL_Q)*100) + "%";
+    document.getElementById('aeqQuestionText').innerHTML = item.q;
+    var box = document.getElementById('aeqOptionsBox');
+    box.innerHTML = "";
+    var fb = document.getElementById('aeqFeedback');
+    fb.textContent = ""; fb.className = "aeq-feedback";
+
+    item.opts.forEach(function(optText, idx){
+      var btn = document.createElement('button');
+      btn.type = "button";
+      btn.className = "aeq-opt";
+      btn.innerHTML = optText;
+      if(item.chosen !== null){
+        btn.classList.add('aeq-disabled');
+        if(item.correct.indexOf(idx) !== -1){ btn.classList.add('aeq-correct'); }
+        else if(idx === item.chosen){ btn.classList.add('aeq-wrong'); }
+      }
+      btn.addEventListener('click', function(){
+        if(item.chosen !== null) return;
+        item.chosen = idx;
+        var isRight = item.correct.indexOf(idx) !== -1;
+        if(isRight){ score++; }
+        answered[current] = true;
+        renderQuestion();
+        var fbEl = document.getElementById('aeqFeedback');
+        if(isRight){
+          fbEl.textContent = "✅ Correct!";
+          fbEl.className = "aeq-feedback ok";
+        } else {
+          fbEl.textContent = "❌ Wrong! Correct answer highlighted in green.";
+          fbEl.className = "aeq-feedback no";
+        }
+      });
+      box.appendChild(btn);
+    });
+
+    document.getElementById('aeqPrevBtn').disabled = (current === 0);
+    var nextBtn = document.getElementById('aeqNextBtn');
+    nextBtn.textContent = (current === TOTAL_Q-1) ? "Submit ✅" : "Next ▶";
+    nextBtn.className = (current === TOTAL_Q-1) ? "aeq-btn aeq-btn-submit" : "aeq-btn aeq-btn-next";
+  }
+
+  function goNext(){
+    if(current === TOTAL_Q-1){
+      finishQuiz();
+    } else {
+      current++;
+      renderQuestion();
+    }
+  }
+  function goPrev(){
+    if(current > 0){ current--; renderQuestion(); }
+  }
+
+  function sendToGoogleSheets(name, userScore, timeTaken){
+    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") return;
+    var payload = {
+      name: name,
+      score: userScore + "/" + TOTAL_Q,
+      time: timeTaken,
+      timestamp: new Date().toLocaleString("en-IN", {timeZone: "Asia/Kolkata"})
+    };
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function(e){ console.log("Leaderboard error:", e); });
+  }
+
+  function finishQuiz(){
+    stopTimer();
+    document.getElementById('aeqQuizScreen').style.display = "none";
+    document.getElementById('aeqProgressBar').style.width = "100%";
+    var wrong = TOTAL_Q - score;
+    var pct = Math.round((score/TOTAL_Q)*100);
+    document.getElementById('aeqScoreCircle').style.setProperty('--pct', pct + '%');
+    document.getElementById('aeqScoreCircleText').textContent = score + "/" + TOTAL_Q;
+    document.getElementById('aeqCorrectCount').textContent = score;
+    document.getElementById('aeqWrongCount').textContent = wrong;
+    document.getElementById('aeqTimeTaken').textContent = fmtTime(seconds);
+    document.getElementById('aeqResultName').textContent = "Name: " + studentName;
+    document.getElementById('aeqResultScreen').style.display = "block";
+
+    sendToGoogleSheets(studentName, score, fmtTime(seconds));
+  }
+
+  function renderReview(){
+    var container = document.getElementById('aeqReviewContainer');
+    if(container.style.display === "block"){
+      container.style.display = "none";
+      return;
+    }
+    container.innerHTML = "";
+    quiz.forEach(function(item, idx){
+      var div = document.createElement('div');
+      div.className = "aeq-review-item";
+      
+      var userAnsText = (item.chosen !== null) ? item.opts[item.chosen] : "Not Answered";
+      var correctAnsTexts = item.correct.map(function(ci){ return item.opts[ci]; }).join(" OR ");
+      var isCorrect = item.chosen !== null && item.correct.indexOf(item.chosen) !== -1;
+
+      var html = '<div class="aeq-review-q">Q' + (idx+1) + '. ' + item.q + '</div>';
+      html += '<div class="aeq-review-ans">';
+      html += '<span class="user-ans" style="color:' + (isCorrect ? '#276749' : '#c53030') + ';"><b>Your Choice:</b> ' + userAnsText + ' ' + (isCorrect ? '✅' : '❌') + '</span>';
+      if(!isCorrect){
+        html += '<span class="corr-ans"><b>Correct Answer:</b> ' + correctAnsTexts + '</span>';
+      }
+      html += '</div>';
+      div.innerHTML = html;
+      container.appendChild(div);
+    });
+    container.style.display = "block";
+  }
+
+  document.getElementById('aeqStartBtn').addEventListener('click', function(){
+    if(!checkAvailability()) return;
+    var nameVal = document.getElementById('aeqNameInput').value.trim();
+    if(!nameVal){
+      document.getElementById('aeqErrorMsg').textContent = "⚠️ Entering your name is mandatory to take the quiz.";
+      return;
+    }
+    document.getElementById('aeqErrorMsg').textContent = "";
+    studentName = nameVal;
+    buildQuiz();
+    document.getElementById('aeqStartScreen').style.display = "none";
+    document.getElementById('aeqResultScreen').style.display = "none";
+    document.getElementById('aeqQuizScreen').style.display = "block";
+    renderQuestion();
+    startTimer();
+  });
+
+  document.getElementById('aeqNextBtn').addEventListener('click', goNext);
+  document.getElementById('aeqPrevBtn').addEventListener('click', goPrev);
+  document.getElementById('aeqRestartBtn').addEventListener('click', function(){
+    if(!checkAvailability()) return;
+    document.getElementById('aeqReviewContainer').style.display = "none";
+    document.getElementById('aeqResultScreen').style.display = "none";
+    document.getElementById('aeqStartScreen').style.display = "block";
+  });
+  document.getElementById('aeqViewResponsesBtn').addEventListener('click', renderReview);
+
+  // Initial time check on load
+  checkAvailability();
+})();
+</script>
