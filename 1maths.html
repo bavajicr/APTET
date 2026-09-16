@@ -1,4 +1,4 @@
-<!-- APTET Mathematics Quiz - 19th Dec 2025 Shift 1 - by C. RASOOL BAVAJI -->
+<!-- APTET Mathematics practice test - from previous papers - by C. RASOOL BAVAJI -->
 <div class="crbq-wrap-91011">
 <style>
 .crbq-wrap-91011{
@@ -307,8 +307,8 @@
 </style>
 
 <div class="crbq-header">
-  <h1>📘 APTET Mathematics Quiz</h1>
-  <p>Previous Question Paper &nbsp;|&nbsp; 19th December 2025 – First Shift</p>
+  <h1>📘 APTET Mathematics Practive Paper</h1>
+  <p>from Previous Question Papers</p>
   <p>పూర్వ ప్రశ్నాపత్రం – గణితం (Content &amp; Methodology)</p>
 </div>
 
@@ -322,9 +322,9 @@
 
 <div class="crbq-body">
   <div id="crbq-lock-area" class="crbq-lock-screen" style="display:none;">
-    <h2>🔒 Quiz Not Yet Available</h2>
+    <h2>🔒 Test Not Yet Available</h2>
     <p style="color:#475569; margin:14px 0; font-size:15px;">
-      This quiz will open at <b>6.00 PM IST on 16-09-2026</b>.
+      This quiz will open at <b>7.00 PM IST on 16-09-2026</b>.
     </p>
     <p style="font-size:13px; color:#64748b;">Please return at the scheduled time to take the test.</p>
   </div>
@@ -356,7 +356,7 @@
   "use strict";
 
   // Google Sheet Web App URL for Leaderboard tracking
-  var GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; // Replace with your Web App URL
+  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzy24lGhvzrQU6qAjxf-KKbI31f1I8cgPFXh_xrCleCQXqzsdggoyAJ1aStoGZQ1-WMg/exec"; // Replace with your Web App URL
   var LEADERBOARD_SHEET_URL = "YOUR_GOOGLE_SHEET_VIEW_URL_HERE"; // Replace with your Google Sheet public link
 
   var OPEN_TIME = new Date("2025-09-16T19:00:00+05:30").getTime();
@@ -623,7 +623,7 @@
     if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") return;
 
     var payload = {
-      quizTitle: "APTET Maths 19Dec2025 Shift1",
+      quizTitle: "APTET Maths Practive paper 1",
       name: studentName,
       score: score + "/" + quizQuestions.length,
       time: timeStr,
