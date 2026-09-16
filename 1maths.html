@@ -1,0 +1,729 @@
+<!-- APTET Mathematics Quiz - 19th Dec 2025 Shift 1 - by C. RASOOL BAVAJI -->
+<div class="crbq-wrap-91011">
+<style>
+.crbq-wrap-91011{
+  --crbq-blue1:#eef4fc;
+  --crbq-blue2:#e2edfd;
+  --crbq-blue3:#d6e4fa;
+  --crbq-accent:#1a73e8;
+  --crbq-gold:#d97706;
+  --crbq-green:#16a34a;
+  --crbq-red:#dc2626;
+  --crbq-text:#1e293b;
+  max-width:700px;
+  margin:20px auto;
+  font-family:'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--crbq-text);
+  background:linear-gradient(160deg,var(--crbq-blue1),var(--crbq-blue2) 60%,var(--crbq-blue3));
+  border-radius:18px;
+  padding:0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  border:1px solid #cbd5e1;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.crbq-wrap-91011 *{box-sizing:border-box;}
+.crbq-header{
+  text-align:center;
+  padding:18px 14px 12px;
+  background:rgba(255,255,255,0.6);
+  border-bottom:1px solid #cbd5e1;
+}
+.crbq-header h1{
+  font-size:20px;
+  margin:0 0 4px;
+  color:#1e3a8a;
+  letter-spacing:.5px;
+}
+.crbq-header p{
+  margin:2px 0;
+  font-size:13px;
+  color:#334155;
+}
+.crbq-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 16px;
+  font-size:13px;
+  background:rgba(255,255,255,0.4);
+  flex-wrap:wrap;
+  gap:6px;
+}
+.crbq-topbar span{display:flex;align-items:center;gap:5px;}
+.crbq-badge{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  padding:4px 10px;
+  border-radius:20px;
+  font-weight:600;
+  color:#1e293b;
+}
+.crbq-progress-outer{
+  height:8px;
+  background:#cbd5e1;
+  margin:0 16px;
+  border-radius:6px;
+  overflow:hidden;
+}
+.crbq-progress-inner{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--crbq-accent),#0284c7);
+  transition:width .35s ease;
+}
+.crbq-body{padding:18px 18px 22px;}
+.crbq-qcard{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  padding:16px 16px 18px;
+  min-height:170px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.03);
+  animation:crbqFade .35s ease;
+}
+@keyframes crbqFade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.crbq-qnum{
+  font-size:12px;
+  color:var(--crbq-gold);
+  font-weight:700;
+  margin-bottom:8px;
+  letter-spacing:.5px;
+}
+.crbq-qtext-en{
+  font-size:16px;
+  line-height:1.5;
+  margin-bottom:6px;
+  font-weight:600;
+  color:#0f172a;
+}
+.crbq-qtext-te{
+  font-size:15.5px;
+  line-height:1.6;
+  margin-bottom:14px;
+  color:#334155;
+}
+.crbq-options{display:flex;flex-direction:column;gap:10px;}
+.crbq-opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#f8fafc;
+  border:1px solid #cbd5e1;
+  padding:11px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  color:#1e293b;
+  transition:.2s all;
+  user-select:none;
+}
+.crbq-opt:hover{background:#e0f2fe;border-color:var(--crbq-accent);}
+.crbq-opt .crbq-optletter{
+  min-width:24px;height:24px;border-radius:50%;
+  background:#e2e8f0;
+  color:#334155;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.crbq-opt.crbq-correct{
+  background:#dcfce7;
+  border-color:var(--crbq-green);
+  color:#14532d;
+}
+.crbq-opt.crbq-correct .crbq-optletter{background:var(--crbq-green);color:#ffffff;}
+.crbq-opt.crbq-wrong{
+  background:#fee2e2;
+  border-color:var(--crbq-red);
+  color:#7f1d1d;
+}
+.crbq-opt.crbq-wrong .crbq-optletter{background:var(--crbq-red);color:#ffffff;}
+.crbq-opt.crbq-disabled{cursor:default;}
+.crbq-opt.crbq-disabled:hover{background:#f8fafc;border-color:#cbd5e1;}
+.crbq-feedback{
+  margin-top:12px;
+  font-size:13.5px;
+  font-weight:600;
+  min-height:18px;
+}
+.crbq-feedback.crbq-fb-correct{color:var(--crbq-green);}
+.crbq-feedback.crbq-fb-wrong{color:var(--crbq-red);}
+.crbq-nav{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:18px;
+}
+.crbq-btn{
+  flex:1;
+  padding:12px 10px;
+  border-radius:10px;
+  border:none;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.crbq-btn-prev{background:#e2e8f0;color:#334155;}
+.crbq-btn-prev:hover{background:#cbd5e1;}
+.crbq-btn-next{background:linear-gradient(90deg,var(--crbq-accent),#0284c7);color:#ffffff;}
+.crbq-btn-next:hover{filter:brightness(1.08);}
+.crbq-btn-next:disabled{opacity:.4;cursor:not-allowed;}
+.crbq-btn:disabled{opacity:.4;cursor:not-allowed;}
+.crbq-btn-submit{background:linear-gradient(90deg,#d97706,#b45309);color:#ffffff;}
+
+/* Start Screen & Lock Screen */
+.crbq-start-screen, .crbq-lock-screen{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  padding:24px 20px;
+  text-align:center;
+  box-shadow:0 2px 5px rgba(0,0,0,0.03);
+}
+.crbq-start-screen h2, .crbq-lock-screen h2{
+  color:#1e3a8a;
+  margin-top:0;
+  font-size:20px;
+}
+.crbq-input-group{
+  margin:20px 0;
+  text-align:left;
+}
+.crbq-input-group label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:6px;
+  color:#1e293b;
+}
+.crbq-input-group input{
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
+.crbq-input-group input:focus{
+  border-color:var(--crbq-accent);
+  box-shadow:0 0 0 3px rgba(26,115,232,0.15);
+}
+.crbq-error-msg{
+  color:var(--crbq-red);
+  font-size:13px;
+  margin-top:6px;
+  display:none;
+}
+
+/* Result screen */
+.crbq-result{text-align:center;padding:10px 6px 6px;}
+.crbq-result h2{color:#1e3a8a;font-size:22px;margin-bottom:6px;}
+.crbq-score-circle{
+  width:140px;height:140px;border-radius:50%;
+  margin:14px auto;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  background:conic-gradient(var(--crbq-accent) calc(var(--crbq-pct,0)*1%), #e2e8f0 0);
+  position:relative;
+}
+.crbq-score-circle::before{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  border-radius:50%;
+  background:#ffffff;
+}
+.crbq-score-circle .crbq-score-num{position:relative;font-size:28px;font-weight:800;color:#1e293b;}
+.crbq-score-circle .crbq-score-sub{position:relative;font-size:12px;color:#64748b;}
+.crbq-result-stats{
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  margin:16px 0;
+}
+.crbq-stat{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:10px 16px;
+  min-width:90px;
+}
+.crbq-stat .crbq-stat-num{font-size:18px;font-weight:800;color:var(--crbq-gold);}
+.crbq-stat .crbq-stat-label{font-size:11px;color:#64748b;margin-top:2px;}
+.crbq-result-actions{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;
+}
+.crbq-result-actions .crbq-btn{flex:none;min-width:150px;}
+.crbq-btn-restart{background:linear-gradient(90deg,#4f46e5,#3b82f6);color:#fff;}
+.crbq-btn-review{background:linear-gradient(90deg,#16a34a,#15803d);color:#fff;}
+.crbq-btn-leaderboard{background:linear-gradient(90deg,#0284c7,#0369a1);color:#fff;}
+
+/* Review Section */
+.crbq-review-item{
+  background:#ffffff;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:14px;
+  text-align:left;
+}
+.crbq-review-qnum{
+  font-weight:700;
+  font-size:13px;
+  color:var(--crbq-accent);
+  margin-bottom:6px;
+}
+.crbq-review-ans{
+  font-size:14px;
+  margin-top:8px;
+  padding:8px 10px;
+  border-radius:6px;
+}
+.crbq-review-ans.correct{background:#dcfce7;color:#14532d;}
+.crbq-review-ans.wrong{background:#fee2e2;color:#7f1d1d;}
+
+.crbq-footer{
+  text-align:center;
+  font-size:12px;
+  color:#64748b;
+  padding:14px 10px 18px;
+  border-top:1px solid #cbd5e1;
+  margin-top:6px;
+  line-height:1.6;
+}
+.crbq-footer b{color:#1e3a8a;}
+
+@media (max-width:480px){
+  .crbq-header h1{font-size:17px;}
+  .crbq-qtext-en{font-size:14.5px;}
+  .crbq-qtext-te{font-size:14px;}
+  .crbq-opt{font-size:14px;padding:10px 12px;}
+  .crbq-score-circle{width:120px;height:120px;}
+  .crbq-score-circle::before{width:92px;height:92px;}
+}
+</style>
+
+<div class="crbq-header">
+  <h1>📘 APTET Mathematics Quiz</h1>
+  <p>Previous Question Paper &nbsp;|&nbsp; 19th December 2025 – First Shift</p>
+  <p>పూర్వ ప్రశ్నాపత్రం – గణితం (Content &amp; Methodology)</p>
+</div>
+
+<div class="crbq-topbar" id="crbq-topbar" style="display:none;">
+  <span class="crbq-badge">👤 <span id="crbq-user-display">Student</span></span>
+  <span class="crbq-badge">⏱ <span id="crbq-timer">00:00</span></span>
+  <span class="crbq-badge">🏆 Score: <span id="crbq-score">0</span>/<span id="crbq-total">20</span></span>
+  <span class="crbq-badge" id="crbq-qcounter">Q 1 / 20</span>
+</div>
+<div class="crbq-progress-outer" id="crbq-progress-bar" style="display:none;"><div class="crbq-progress-inner" id="crbq-progress"></div></div>
+
+<div class="crbq-body">
+  <div id="crbq-lock-area" class="crbq-lock-screen" style="display:none;">
+    <h2>🔒 Quiz Not Yet Available</h2>
+    <p style="color:#475569; margin:14px 0; font-size:15px;">
+      This quiz will open at <b>6.00 PM IST on 16-09-2026</b>.
+    </p>
+    <p style="font-size:13px; color:#64748b;">Please return at the scheduled time to take the test.</p>
+  </div>
+
+  <div id="crbq-start-area" class="crbq-start-screen" style="display:none;">
+    <h2>Welcome to the Quiz</h2>
+    <p style="color:#475569; font-size:14px; margin-bottom:15px;">Please enter your full name to start the test.</p>
+    <div class="crbq-input-group">
+      <label for="crbq-student-name">Student Full Name *</label>
+      <input type="text" id="crbq-student-name" placeholder="Enter your full name here..." autocomplete="off">
+      <div id="crbq-name-error" class="crbq-error-msg">⚠️ Entering name is mandatory to write the test.</div>
+    </div>
+    <button class="crbq-btn crbq-btn-next" id="crbq-start-btn" style="width:100%;">Start Quiz Now ➡</button>
+  </div>
+
+  <div id="crbq-quiz-area" style="display:none;"></div>
+  <div id="crbq-result-area" style="display:none;"></div>
+  <div id="crbq-review-area" style="display:none;"></div>
+</div>
+
+<div class="crbq-footer">
+  Credit: <b>C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</b><br>
+  Visit: <a href="https://tenthquiz.blogspot.com" target="_blank" style="color:var(--crbq-accent);">tenthquiz.blogspot.com</a>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // Google Sheet Web App URL for Leaderboard tracking
+  var GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; // Replace with your Web App URL
+  var LEADERBOARD_SHEET_URL = "YOUR_GOOGLE_SHEET_VIEW_URL_HERE"; // Replace with your Google Sheet public link
+
+  var OPEN_TIME = new Date("2025-09-16T19:00:00+05:30").getTime();
+
+  var QUESTION_BANK = [
+    {en:"Certain amount becomes twice through compound interest in 4 years. In how many years the amount will be 8 times with the same rate of compound interest.",
+     te:"కొంత సొమ్ము 4 సం॥లలో చక్రవడ్డీ ప్రకారం రెట్టింపైతే, అదే సొమ్ము 8 రెట్లు అగుటకు అదే రేటుతో ఎన్ని సంవత్సరాల కాలం పడుతుంది.",
+     opts:["8","6","14","12"], correct:3},
+
+    {en:"A water Melon is in a spherical shape. Its diameter is 28 cms and if layer of thickness 1 cm is peeled out, then the volume of the pulp in the water melon is (in cm³)",
+     te:"ఒక పుచ్చకాయ గోళాకారంలో ఉన్నది. దాని వ్యాసం 28 సెం.మీ. మరియు 1 సెం.మీ. మందము గల దాని పై పొరను తొలగించగా దానిలో ఉండే పదార్థము ఘనపరిమాణం (ఘ.సెం.మీలలో)",
+     opts:["2128⁄3 π","988⁄3 π","8788⁄3 π","1094⁄3 π"], correct:2},
+
+    {en:"If x = 2 + √3 then the value of x² + 1/x² =",
+     te:"x = 2 + √3 అయితే x² + 1/x² విలువ =",
+     opts:["4","8","10","14"], correct:3},
+
+    {en:"(1296)^0.2 × (1296)^0.02 × (1296)^0.03 =",
+     te:"(1296)^0.2 × (1296)^0.02 × (1296)^0.03 =",
+     opts:["(1/2 − 1/3)⁻¹","2³","3²","36"], correct:0},
+
+    {en:"Which of the following is not a perfect square?",
+     te:"ఈ క్రింది వానిలో పరిపూర్ణ వర్గము కానిది ఏది?",
+     opts:["5776","2209","4456","7744"], correct:2},
+
+    {en:"Which of the following can not be the probability of an event?",
+     te:"క్రింది వానిలో ఏది ఒక ఘటన యొక్క సంభావ్యతను సూచించదు?",
+     opts:["2/3","−1.5","15%","0.7"], correct:1},
+
+    {en:"The average value of the median of 2, 8, 3, 7, 4, 6, 7 and mode of 2, 9, 3, 4, 9, 6, 9 is",
+     te:"2, 8, 3, 7, 4, 6, 7 అంశముల మధ్యగతము మరియు 2, 9, 3, 4, 9, 6, 9 అంశముల బాహుళకముల సగటు",
+     opts:["9","8","7.5","6"], correct:2},
+
+    {en:"The ratio in which the line segment joining (3, 4) and (−1, 2) is divided by y-axis is ______",
+     te:"(3, 4) మరియు (−1, 2) లను కలుపు రేఖాఖండాన్ని y-అక్షం విభజించు నిష్పత్తి ______",
+     opts:["1 : 2","1 : 3","3 : 2","3 : 1"], correct:3},
+
+    {en:"The equation of the line passing through (1, 2) and having slope 3 is",
+     te:"(1, 2) బిందువు గుండా పోతూ 3 వాలుగా గల సరళరేఖ సమీకరణము",
+     opts:["y − 3x + 1 = 0","y + 3x + 1 = 0","y − 3x − 1 = 0","y + 3x − 1 = 0"], correct:0},
+
+    {en:"sin²5° + sin²10° + sin²15° + …………….. + sin²90° = ____",
+     te:"sin²5° + sin²10° + sin²15° + …………….. + sin²90° = ____",
+     opts:["17/2","19/2","9","9 + 1/√2"], correct:1},
+
+    {en:"An aeroplane flying horizontally 1 km above the ground and going away from the observer is observed at an angle of elevation 60°. After 10 seconds, its angle of elevation is changed to 30°, then the uniform speed of the aeroplane in km per hour is ____ (√3 = 1.732)",
+     te:"భూమి నుండి 1 కి.మీ. ఎత్తులో క్షితిజ సమాంతరంగా ఎగురుతున్న ఒక విమానాన్ని ఒక పరిశీలకుడు 60° ఊర్ధ్వకోణంతో పరిశీలించాడు. 10 సెకన్ల తరువాత దాని ఊర్ధ్వకోణం 30° గా మారినది. అయితే ఆ విమానం యొక్క సమవేగం (కి.మీ./ గంటలలో) ____ (√3 = 1.732)",
+     opts:["415.68","240","236.67","346.4"], correct:0},
+
+    {en:"In a G.P. 3rd term is 24 and 6th term is 192. Then 10th term is",
+     te:"ఒక గుణశ్రేఢిలో 3వ పదము 24 మరియు 6వ పదము 192 అయిన 10వ పదము",
+     opts:["3024","3048","3052","3072"], correct:3},
+
+    {en:"If (2x − 1) is a factor of f(x) = 2x² + ax − 2 then the other factor of f(x) is",
+     te:"f(x) = 2x² + ax − 2 యొక్క ఒక కారణాంకం (2x − 1) అయితే f(x) యొక్క మరొక కారణాంకం",
+     opts:["x − 2","x − 1","x + 1","x + 2"], correct:3},
+
+    {en:"If 2x + 3y = 13 and xy = 6 then the value of 8x³ + 27y³ is",
+     te:"2x + 3y = 13 మరియు xy = 6 అయిన 8x³ + 27y³ విలువ",
+     opts:["763","743","793","773"], correct:2},
+
+    {en:"The angle between a tangent to a circle and the radius drawn at the point of contact is",
+     te:"ఒక వృత్త స్పర్శరేఖకు మరియు స్పర్శ బిందువు వద్ద గీచిన వ్యాసార్థమునకు మధ్యగల కోణము",
+     opts:["45°","90°","30°","60°"], correct:1},
+
+    {en:"BD is a line segment. AB and CD are perpendiculars drawn at B and D respectively on the same side of BD. B,C and A,D are joined to intersect at P; another perpendicular PQ from P to BD is drawn. If AB = p, PQ = q and CD = r then the relation among p, q and r is",
+     te:"BD ఒక రేఖాఖండము. AB మరియు CD లు వరుసగా B మరియు D ల వద్ద BD కు ఒకే వైపున గీయబడిన లంబములు. B,C లు మరియు A,D లు కలుపగా అవి P వద్ద ఖండించుకొనుచున్నవి. P నుండి BD పైకి లంబము గీయబడినది. AB = p, PQ = q మరియు CD = r అయిన p, q, r ల మధ్య సంబంధము.",
+     opts:["1/p + 1/q = 1/r","1/q + 1/r = 1/p","1/p − 1/r = 1/q","1/p + 1/r = 1/q"], correct:3},
+
+    {en:"Choose the correct matching — (i) (a+b)² = a²+2ab+b², (ii) a²+b²=c², (iii) sin²x+cos²x=1 with (a) Varahamihira, (b) Bhaskaracharya, (c) Aryabhatta, (d) Brahmagupta",
+     te:"సరిగా జతపరిచిన దానిని గుర్తించండి — (i) (a+b)² = a²+2ab+b², (ii) a²+b²=c², (iii) sin²x+cos²x=1 దానికి (a) వరాహమిహిరుడు, (b) భాస్కరాచార్య, (c) ఆర్యభట్టు, (d) బ్రహ్మగుప్తుడు",
+     opts:["i - b, ii - a, iii - c","i - c, ii - d, iii - a","i - d, ii - b, iii - a","i - a, ii - c, iii - d"], correct:1},
+
+    {en:"Identify the item that does not belong to Inductive method",
+     te:"ఆగమన పద్ధతికి చెందని అంశాన్ని గుర్తించుము.",
+     opts:["Students need not get byheart the formulae.","This is dependent on observation, thinking and experiments.","Students cannot become active learners.","Logical method"], correct:2},
+
+    {en:"The correct order of Herbartian steps is — (a) Presentation, (b) Preparation, (c) Association, (d) Recapitulation, (e) Application, (f) Generalization",
+     te:"హెర్బార్ట్ సోపానాల సరియైన క్రమం — (a) సమర్పణ, (b) సన్నాహం, (c) సంసర్గం, (d) పునర్విమర్శ, (e) వినియోగం, (f) సాధారణీకరణ",
+     opts:["b, a, c, e, f, d","b, a, c, f, e, d","b, a, f, c, e, d","b, c, a, f, e, d"], correct:1},
+
+    {en:"Appropriate assessment to find the causes of learning disabilities in students.",
+     te:"విద్యార్థులలో అభ్యసన ప్రతిబంధకాలకు కారణాలు కనుగొనుటకు తగిన మూల్యాంకనం",
+     opts:["Summative evaluation","Prognostic evaluation","Formative evaluation","Diagnostic evaluation"], correct:3}
+  ];
+
+  var LETTERS = ["A","B","C","D"];
+  var quizQuestions = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = [];
+  var timerInterval = null;
+  var seconds = 0;
+  var studentName = "";
+
+  var lockArea = document.getElementById("crbq-lock-area");
+  var startArea = document.getElementById("crbq-start-area");
+  var quizArea = document.getElementById("crbq-quiz-area");
+  var resultArea = document.getElementById("crbq-result-area");
+  var reviewArea = document.getElementById("crbq-review-area");
+
+  var topbar = document.getElementById("crbq-topbar");
+  var progressBar = document.getElementById("crbq-progress-bar");
+  var scoreEl = document.getElementById("crbq-score");
+  var totalEl = document.getElementById("crbq-total");
+  var qCounterEl = document.getElementById("crbq-qcounter");
+  var progressEl = document.getElementById("crbq-progress");
+  var timerEl = document.getElementById("crbq-timer");
+  var userDisplay = document.getElementById("crbq-user-display");
+
+  function initApp(){
+    var now = new Date().getTime();
+    if(now < OPEN_TIME){
+      lockArea.style.display = "block";
+    } else {
+      startArea.style.display = "block";
+    }
+  }
+
+  document.getElementById("crbq-start-btn").addEventListener("click", function(){
+    var nameInput = document.getElementById("crbq-student-name").value.trim();
+    var errEl = document.getElementById("crbq-name-error");
+    if(!nameInput){
+      errEl.style.display = "block";
+      return;
+    }
+    errEl.style.display = "none";
+    studentName = nameInput;
+    userDisplay.textContent = studentName;
+
+    startArea.style.display = "none";
+    topbar.style.display = "flex";
+    progressBar.style.display = "block";
+    buildQuiz();
+  });
+
+  function shuffle(arr){
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = arr[i]; arr[i]=arr[j]; arr[j]=t;
+    }
+    return arr;
+  }
+
+  function buildQuiz(){
+    var pool = shuffle(QUESTION_BANK.slice());
+    var picked = pool.slice(0, Math.min(20, pool.length));
+    quizQuestions = picked.map(function(q){
+      var idxs = [0,1,2,3];
+      shuffle(idxs);
+      var newOpts = idxs.map(function(i){ return q.opts[i]; });
+      var newCorrect = idxs.indexOf(q.correct);
+      return {en:q.en, te:q.te, opts:newOpts, correct:newCorrect};
+    });
+    answered = new Array(quizQuestions.length).fill(null);
+    currentIndex = 0;
+    score = 0;
+    seconds = 0;
+    totalEl.textContent = quizQuestions.length;
+    scoreEl.textContent = 0;
+    resultArea.style.display = "none";
+    reviewArea.style.display = "none";
+    quizArea.style.display = "block";
+    startTimer();
+    renderQuestion();
+  }
+
+  function startTimer(){
+    clearInterval(timerInterval);
+    timerEl.textContent = "00:00";
+    timerInterval = setInterval(function(){
+      seconds++;
+      var m = Math.floor(seconds/60).toString().padStart(2,"0");
+      var s = (seconds%60).toString().padStart(2,"0");
+      timerEl.textContent = m+":"+s;
+    },1000);
+  }
+
+  function stopTimer(){
+    clearInterval(timerInterval);
+  }
+
+  function renderQuestion(){
+    var q = quizQuestions[currentIndex];
+    var userAns = answered[currentIndex];
+
+    qCounterEl.textContent = "Q " + (currentIndex+1) + " / " + quizQuestions.length;
+    progressEl.style.width = (((currentIndex + (userAns!==null?1:0)) / quizQuestions.length)*100) + "%";
+
+    var html = '';
+    html += '<div class="crbq-qcard">';
+    html += '<div class="crbq-qnum">Question ' + (currentIndex+1) + ' of ' + quizQuestions.length + '</div>';
+    html += '<div class="crbq-qtext-en">' + q.en + '</div>';
+    html += '<div class="crbq-qtext-te">' + q.te + '</div>';
+    html += '<div class="crbq-options">';
+    q.opts.forEach(function(optText, i){
+      var cls = "crbq-opt";
+      if(userAns !== null){
+        cls += " crbq-disabled";
+        if(i === q.correct) cls += " crbq-correct";
+        else if(i === userAns) cls += " crbq-wrong";
+      }
+      html += '<div class="' + cls + '" data-idx="' + i + '">' +
+                '<span class="crbq-optletter">' + LETTERS[i] + '</span>' +
+                '<span>' + optText + '</span>' +
+              '</div>';
+    });
+    html += '</div>';
+
+    if(userAns !== null){
+      if(userAns === q.correct){
+        html += '<div class="crbq-feedback crbq-fb-correct">✅ Correct! Well done.</div>';
+      } else {
+        html += '<div class="crbq-feedback crbq-fb-wrong">❌ Incorrect. Correct answer: ' + LETTERS[q.correct] + '. ' + q.opts[q.correct] + '</div>';
+      }
+    } else {
+      html += '<div class="crbq-feedback">&nbsp;</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="crbq-nav">' +
+      '<button class="crbq-btn crbq-btn-prev" id="crbq-prevBtn"' + (currentIndex===0 ? ' disabled' : '') + '>⬅ Previous</button>' +
+      (currentIndex === quizQuestions.length-1 ?
+        '<button class="crbq-btn crbq-btn-submit" id="crbq-nextBtn"' + (userAns===null ? ' disabled' : '') + '>Submit ✔</button>' :
+        '<button class="crbq-btn crbq-btn-next" id="crbq-nextBtn"' + (userAns===null ? ' disabled' : '') + '>Next ➡</button>') +
+      '</div>';
+
+    quizArea.innerHTML = html;
+
+    var optEls = quizArea.querySelectorAll(".crbq-opt");
+    optEls.forEach(function(el){
+      el.addEventListener("click", function(){
+        if(answered[currentIndex] !== null) return;
+        var idx = parseInt(el.getAttribute("data-idx"),10);
+        answered[currentIndex] = idx;
+        if(idx === quizQuestions[currentIndex].correct){
+          score++;
+          scoreEl.textContent = score;
+        }
+        renderQuestion();
+      });
+    });
+
+    var prevBtn = document.getElementById("crbq-prevBtn");
+    var nextBtn = document.getElementById("crbq-nextBtn");
+    if(prevBtn){
+      prevBtn.addEventListener("click", function(){
+        if(currentIndex>0){ currentIndex--; renderQuestion(); }
+      });
+    }
+    if(nextBtn){
+      nextBtn.addEventListener("click", function(){
+        if(currentIndex === quizQuestions.length-1){
+          showResult();
+        } else {
+          currentIndex++;
+          renderQuestion();
+        }
+      });
+    }
+  }
+
+  function sendDataToSheet(timeStr){
+    if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") return;
+
+    var payload = {
+      quizTitle: "APTET Maths 19Dec2025 Shift1",
+      name: studentName,
+      score: score + "/" + quizQuestions.length,
+      time: timeStr,
+      timestamp: new Date().toLocaleString("en-IN", {timeZone: "Asia/Kolkata"})
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function(e){ console.error("Error sending score:", e); });
+  }
+
+  function showResult(){
+    stopTimer();
+    quizArea.style.display = "none";
+    resultArea.style.display = "block";
+    progressEl.style.width = "100%";
+
+    var pct = Math.round((score/quizQuestions.length)*100);
+    var m = Math.floor(seconds/60).toString().padStart(2,"0");
+    var s = (seconds%60).toString().padStart(2,"0");
+    var timeStr = m+":"+s;
+
+    sendDataToSheet(timeStr);
+
+    var remark = "Keep practicing!";
+    if(pct>=90) remark = "Outstanding! 🌟";
+    else if(pct>=75) remark = "Excellent work! 👏";
+    else if(pct>=50) remark = "Good effort! 👍";
+
+    var html = '<div class="crbq-result">' +
+      '<h2>🎉 Quiz Completed!</h2>' +
+      '<p style="color:#475569; font-size:15px; margin-bottom:10px;">Great job, <b>' + studentName + '</b>!</p>' +
+      '<div class="crbq-score-circle" style="--crbq-pct:' + pct + '">' +
+        '<div class="crbq-score-num">' + pct + '%</div>' +
+        '<div class="crbq-score-sub">' + remark + '</div>' +
+      '</div>' +
+      '<div class="crbq-result-stats">' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + score + '/' + quizQuestions.length + '</div><div class="crbq-stat-label">Correct Answers</div></div>' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + (quizQuestions.length-score) + '</div><div class="crbq-stat-label">Wrong Answers</div></div>' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + timeStr + '</div><div class="crbq-stat-label">Time Taken</div></div>' +
+      '</div>' +
+      '<div class="crbq-result-actions">' +
+        '<button class="crbq-btn crbq-btn-review" id="crbq-reviewBtn">🔍 View Responses</button>' +
+        '<a class="crbq-btn crbq-btn-leaderboard" href="' + LEADERBOARD_SHEET_URL + '" target="_blank">📊 Leaderboard</a>' +
+        '<button class="crbq-btn crbq-btn-restart" id="crbq-restartBtn">🔄 Restart Quiz</button>' +
+      '</div>' +
+      '</div>';
+
+    resultArea.innerHTML = html;
+
+    document.getElementById("crbq-restartBtn").addEventListener("click", buildQuiz);
+    document.getElementById("crbq-reviewBtn").addEventListener("click", showReview);
+  }
+
+  function showReview(){
+    resultArea.style.display = "none";
+    reviewArea.style.display = "block";
+
+    var html = '<h2 style="color:#1e3a8a; text-align:center; margin-bottom:16px;">📝 Answer Key & Review</h2>';
+    quizQuestions.forEach(function(q, i){
+      var userAns = answered[i];
+      var isCorrect = (userAns === q.correct);
+
+      html += '<div class="crbq-review-item">';
+      html += '<div class="crbq-review-qnum">Question ' + (i+1) + '</div>';
+      html += '<div style="font-weight:600; font-size:15px; color:#0f172a;">' + q.en + '</div>';
+      html += '<div style="font-size:14px; color:#334155; margin-bottom:10px;">' + q.te + '</div>';
+
+      if(userAns !== null){
+        html += '<div class="crbq-review-ans ' + (isCorrect ? 'correct' : 'wrong') + '">';
+        html += '<b>Your Answer:</b> ' + LETTERS[userAns] + '. ' + q.opts[userAns] + ' ' + (isCorrect ? '✅' : '❌');
+        html += '</div>';
+      } else {
+        html += '<div class="crbq-review-ans wrong"><b>Your Answer:</b> Not Answered ❌</div>';
+      }
+
+      if(!isCorrect){
+        html += '<div class="crbq-review-ans correct" style="margin-top:6px;">';
+        html += '<b>Correct Answer:</b> ' + LETTERS[q.correct] + '. ' + q.opts[q.correct];
+        html += '</div>';
+      }
+
+      html += '</div>';
+    });
+
+    html += '<div style="text-align:center; margin-top:18px;">' +
+      '<button class="crbq-btn crbq-btn-next" id="crbq-back-result-btn" style="min-width:200px;">⬅ Back to Summary</button>' +
+      '</div>';
+
+    reviewArea.innerHTML = html;
+
+    document.getElementById("crbq-back-result-btn").addEventListener("click", function(){
+      reviewArea.style.display = "none";
+      resultArea.style.display = "block";
+    });
+  }
+
+  initApp();
+})();
+</script>
