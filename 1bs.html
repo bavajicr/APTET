@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>APTET Biological Sciences Quiz</title>
+<title>APTET Biological Sciences test</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -245,15 +245,15 @@ body {
     <!-- Timing Blocked Screen -->
     <div id="aptetbio_blocked" class="aptetbio_screen" style="display:none;">
       <div class="aptetbio_msgBox">
-        <h3> Quiz Not Available Yet</h3>
-        <p>This quiz will open at <strong>7:00 PM IST Today (17-09-2026)</strong>.</p>
+        <h3> Quiz is Scheduled</h3>
+        <p>This quiz will open at <strong>7:00 PM IST Today (17-09-2025)</strong>.</p>
       </div>
     </div>
 
     <!-- Start Screen -->
     <div id="aptetbio_start" class="aptetbio_screen">
       <h2 class="aptetbio_title">BIOLOGICAL SCIENCES</h2>
-      <p class="aptetbio_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (First Shift)</p>
+      <p class="aptetbio_subtitle">APTET Question Paper for Practice</p>
       
       <div class="aptetbio_inputGroup">
         <label for="aptetbio_candidateName">Enter Your Full Name *</label>
@@ -281,7 +281,7 @@ body {
       <p class="aptetbio_qcount">Question <span id="aptetbio_qnum">1</span> / <span id="aptetbio_qtotal">20</span></p>
 
       <div class="aptetbio_qbox">
-        <p class="aptetbio_paperHead">APTET Previous Question Paper &#8211; 19 December 2025 (First Shift) &#8211; Biological Sciences</p>
+        <p class="aptetbio_paperHead">APTET Practice Question Paper : Biological Sciences</p>
         <p id="aptetbio_qEn" class="aptetbio_qtext"></p>
         <div id="aptetbio_qEnLines" class="aptetbio_qlines"></div>
         <p id="aptetbio_qTe" class="aptetbio_qtextTe"></p>
@@ -323,7 +323,7 @@ body {
 <script>
 (function(){
   // --- GOOGLE SHEETS LEADERBOARD SCRIPT URL ---
-  var SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzy24lGhvzrQU6qAjxf-KKbI31f1I8cgPFXh_xrCleCQXqzsdggoyAJ1aStoGZQ1-WMg/exec";
 
   var QUESTIONS = [
     {
@@ -692,7 +692,7 @@ body {
     doc.text('BIOLOGICAL SCIENCES - APTET Quiz Result',15,y); y+=8;
     doc.setFontSize(10);
     doc.text('Candidate Name: '+state.candidateName,15,y); y+=6;
-    doc.text('Paper: APTET Previous Question Paper - 19 December 2025 (First Shift)',15,y); y+=6;
+    doc.text('Paper: APTET Praactice Question Paper',15,y); y+=6;
     doc.text('Score: '+state.score+' / '+QUESTIONS.length+'  |  Time: '+$('aptetbio_timerText').textContent,15,y); y+=10;
     state.order.forEach(function(qi, idx){
       var q = QUESTIONS[qi];
