@@ -1,0 +1,740 @@
+<!-- APTET Biological Sciences Quiz - 19 Dec 2025 Shift 1 - C. RASOOL BAVAJI -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>APTET Biological Sciences Quiz</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: #f4f7fb;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+  padding: 10px;
+}
+.aptetbio_wrap {
+  max-width: 640px;
+  margin: 10px auto;
+  width: 100%;
+}
+.aptetbio_card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid #e1e8ed;
+}
+.aptetbio_screen { animation: aptetbio_fade .3s ease; }
+@keyframes aptetbio_fade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.aptetbio_title {
+  text-align: center;
+  margin: 4px 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+.aptetbio_subtitle {
+  text-align: center;
+  color: #475569;
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.aptetbio_info {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.aptetbio_infoBox {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-align: center;
+  flex: 1;
+  min-width: 80px;
+  font-size: 12px;
+  color: #334155;
+}
+.aptetbio_infoBox span {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0284c7;
+}
+.aptetbio_note {
+  text-align: center;
+  font-size: 12px;
+  color: #64748b;
+  margin: 6px 0 16px;
+}
+
+.aptetbio_inputGroup {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.aptetbio_inputGroup label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+.aptetbio_inputGroup input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #0f172a;
+  outline: none;
+  background: #f8fafc;
+}
+.aptetbio_inputGroup input:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+.aptetbio_btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.aptetbio_btn:active { transform: scale(0.98); }
+.aptetbio_btnPrimary { background: #2563eb; color: #ffffff; }
+.aptetbio_btnSuccess { background: #16a34a; color: #ffffff; }
+.aptetbio_btnGhost { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+
+.aptetbio_topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0369a1;
+}
+.aptetbio_scoreTop { color: #15803d; }
+.aptetbio_progressOuter {
+  background: #e2e8f0;
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.aptetbio_progressInner {
+  background: #2563eb;
+  height: 100%;
+  width: 5%;
+  transition: width .3s ease;
+}
+.aptetbio_qcount {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.aptetbio_qbox {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.aptetbio_paperHead {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1e40af;
+  background: #dbeafe;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 12px;
+  text-align: center;
+  line-height: 1.3;
+}
+.aptetbio_qtext {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.aptetbio_qtextTe {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 10px 0 6px;
+  line-height: 1.5;
+}
+.aptetbio_qlines, .aptetbio_qlinesTe { margin-bottom: 10px; }
+.aptetbio_qline { display: block; font-size: 13.5px; color: #334155; line-height: 1.4; margin-bottom: 4px; }
+.aptetbio_qlineTe { display: block; font-size: 13.5px; color: #334155; line-height: 1.5; margin-bottom: 4px; }
+
+.aptetbio_options { display: flex; flex-direction: column; gap: 8px; }
+.aptetbio_opt {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1e293b;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.aptetbio_opt:hover { border-color: #3b82f6; background: #eff6ff; }
+.aptetbio_opt.aptetbio_selected { border-color: #2563eb; background: #dbeafe; }
+.aptetbio_opt.aptetbio_correct { background: #dcfce7 !important; border-color: #16a34a !important; color: #14532d !important; }
+.aptetbio_opt.aptetbio_wrong { background: #fee2e2 !important; border-color: #ef4444 !important; color: #7f1d1d !important; }
+.aptetbio_opt.aptetbio_disabled { cursor: default; }
+
+.aptetbio_feedback { min-height: 20px; font-size: 13px; font-weight: 700; margin-top: 8px; }
+.aptetbio_feedback.aptetbio_right { color: #15803d; }
+.aptetbio_feedback.aptetbio_wrongTxt { color: #b91c1c; }
+
+.aptetbio_nav { display: flex; gap: 8px; }
+.aptetbio_nav .aptetbio_btn { flex: 1; }
+
+.aptetbio_resultCircle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #f0f9ff;
+  border: 4px solid #0284c7;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 12px auto 8px;
+}
+#aptetbio_finalScore { font-size: 38px; font-weight: 800; color: #0369a1; }
+.aptetbio_resultCircle small { font-size: 15px; color: #64748b; margin-left: 2px; }
+
+.aptetbio_resultBtns { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+
+.aptetbio_reviewBox { margin-top: 16px; border-top: 1px solid #e2e8f0; padding-top: 12px; }
+.aptetbio_reviewItem { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 13px; }
+.aptetbio_reviewItem b { color: #1e40af; }
+.aptetbio_reviewLine { display: block; margin: 2px 0; }
+.aptetbio_reviewCorrect { color: #15803d; font-weight: 600; }
+.aptetbio_reviewWrong { color: #b91c1c; font-weight: 600; }
+
+.aptetbio_credit { text-align: center; margin-top: 16px; font-size: 11px; color: #64748b; font-weight: 600; }
+.aptetbio_msgBox { text-align: center; padding: 20px 10px; }
+.aptetbio_msgBox h3 { color: #b91c1c; font-size: 18px; margin-bottom: 8px; }
+.aptetbio_msgBox p { font-size: 14px; color: #475569; }
+</style>
+</head>
+<body>
+
+<div class="aptetbio_wrap">
+  <div class="aptetbio_card">
+
+    <!-- Timing Blocked Screen -->
+    <div id="aptetbio_blocked" class="aptetbio_screen" style="display:none;">
+      <div class="aptetbio_msgBox">
+        <h3> Quiz Not Available Yet</h3>
+        <p>This quiz will open at <strong>7:00 PM IST Today (17-09-2026)</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="aptetbio_start" class="aptetbio_screen">
+      <h2 class="aptetbio_title">BIOLOGICAL SCIENCES</h2>
+      <p class="aptetbio_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (First Shift)</p>
+      
+      <div class="aptetbio_inputGroup">
+        <label for="aptetbio_candidateName">Enter Your Full Name *</label>
+        <input type="text" id="aptetbio_candidateName" placeholder="e.g. John Doe" required>
+      </div>
+
+      <div class="aptetbio_info">
+        <div class="aptetbio_infoBox"><span>20</span>Questions</div>
+        <div class="aptetbio_infoBox"><span>&#8734;</span>No Limit</div>
+        <div class="aptetbio_infoBox"><span>EN/TE</span>Bilingual</div>
+      </div>
+      <p class="aptetbio_note">*Options shuffle every attempt. Name entry is required to attempt.</p>
+      <button id="aptetbio_startBtn" class="aptetbio_btn aptetbio_btnPrimary">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="aptetbio_quiz" class="aptetbio_screen" style="display:none;">
+      <div class="aptetbio_topbar">
+        <div class="aptetbio_timer">&#9201; <span id="aptetbio_timerText">00:00</span></div>
+        <div class="aptetbio_scoreTop">Score: <span id="aptetbio_liveScore">0</span></div>
+      </div>
+      <div class="aptetbio_progressOuter">
+        <div id="aptetbio_progressBar" class="aptetbio_progressInner"></div>
+      </div>
+      <p class="aptetbio_qcount">Question <span id="aptetbio_qnum">1</span> / <span id="aptetbio_qtotal">20</span></p>
+
+      <div class="aptetbio_qbox">
+        <p class="aptetbio_paperHead">APTET Previous Question Paper &#8211; 19 December 2025 (First Shift) &#8211; Biological Sciences</p>
+        <p id="aptetbio_qEn" class="aptetbio_qtext"></p>
+        <div id="aptetbio_qEnLines" class="aptetbio_qlines"></div>
+        <p id="aptetbio_qTe" class="aptetbio_qtextTe"></p>
+        <div id="aptetbio_qTeLines" class="aptetbio_qlinesTe"></div>
+        <div id="aptetbio_options" class="aptetbio_options"></div>
+        <p id="aptetbio_feedback" class="aptetbio_feedback"></p>
+      </div>
+
+      <div class="aptetbio_nav">
+        <button id="aptetbio_prevBtn" class="aptetbio_btn aptetbio_btnGhost">&#8592; Prev</button>
+        <button id="aptetbio_nextBtn" class="aptetbio_btn aptetbio_btnPrimary">Next &#8594;</button>
+        <button id="aptetbio_submitBtn" class="aptetbio_btn aptetbio_btnSuccess" style="display:none;">Submit</button>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="aptetbio_result" class="aptetbio_screen" style="display:none;">
+      <h2 class="aptetbio_title">Quiz Completed!</h2>
+      <div class="aptetbio_resultCircle">
+        <span id="aptetbio_finalScore">0</span><small>/ 20</small>
+      </div>
+      <p id="aptetbio_finalPercent" class="aptetbio_subtitle"></p>
+      <p id="aptetbio_finalTime" class="aptetbio_note"></p>
+      <p id="aptetbio_leaderboardStatus" class="aptetbio_note" style="color:#0284c7;font-weight:600;"></p>
+      
+      <div class="aptetbio_resultBtns">
+        <button id="aptetbio_reviewBtn" class="aptetbio_btn aptetbio_btnGhost">Review Answers</button>
+        <button id="aptetbio_pdfBtn" class="aptetbio_btn aptetbio_btnSuccess">&#11015; Download PDF</button>
+        <button id="aptetbio_restartBtn" class="aptetbio_btn aptetbio_btnPrimary">Restart Quiz</button>
+      </div>
+      <div id="aptetbio_reviewBox" class="aptetbio_reviewBox" style="display:none;"></div>
+    </div>
+
+    <div class="aptetbio_credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE.</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  // --- GOOGLE SHEETS LEADERBOARD SCRIPT URL ---
+  var SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  var QUESTIONS = [
+    {
+      enMain:"Correct statements regarding muscles",
+      enLines:["A) Muscle pulls the bone when it is expanded.","B) Two muscles work together while moving a bone.","C) A muscle can push as well as pull the bone.","D) The muscle bulges when it contracts."],
+      teMain:"కండరాలను గూర్చి సరి అయిన వాక్యములు",
+      teLines:["A) కండరం వ్యాకోచం చెందినప్పుడు, అది ఎముకను లాగుతుంది.","B) ఒక ఎముకను కదల్చటం కోసం రెండు కండరాలు కలిసికట్టుగా పనిచేస్తాయి.","C) ఒకే కండరం ఎముకను లాగగలదు, అలాగే తోయగలదు.","D) కండరం సంకోచించినప్పుడు లావుగా ఉబ్బుతుంది."],
+      options:["B & C","B & D","A, C & D","B, C & D"],
+      answer:1
+    },
+    {
+      enMain:"Read the following statements and choose the correct option.",
+      enLines:["Assertion (A): The clearly undefined nuclear membrane in viruses is called nucleoid.","Reason (R): In prokaryotic cells, the nuclear region contain nucleic acids and poorly developed nuclear membrane."],
+      teMain:"కింది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.",
+      teLines:["ప్రకటన (A): వైరస్‌లలో కేంద్రకత్వచం సరిగా ఏర్పడని భాగాన్ని న్యూక్లియాయిడ్ అంటారు.","కారణం (R): కేంద్రక పూర్వకణాలలో, కేంద్రక ప్రాంతం కేంద్రకామ్లాలను మరియు సరిగా ఏర్పడని కేంద్రక త్వచం కలిగి ఉంటాయి."],
+      options:["A is true, R is false","A is false, R is true","A, R both are true, R is correct explanation for A","A, R both are true, R is not correct explanation for A"],
+      answer:1
+    },
+    {
+      enMain:"Match the following.",
+      enLines:["a) Thermal insulator &rarr; i) areolar tissue","b) Long, cylindrical and unbranched cells &rarr; ii) cartilage","c) Elastic collagen fibers &rarr; iii) adipose tissue","d) Packaging &rarr; iv) skeletal muscle"],
+      teMain:"కింది వాటిని జతపరచండి.",
+      teLines:["a) ఉష్ణ నిరోధకము &rarr; i) ఏరియోలార్ కణజాలం","b) పొడవైన, స్థూపాకారపు, శాఖలు లేని కణజాలం &rarr; ii) మృదులాస్థి","c) స్థితిస్థాపక కొల్లాజన్ తంతువులు &rarr; iii) అడిపోస్ కణజాలం","d) ప్యాకేజింగ్ &rarr; iv) అస్థికండర కణజాలం"],
+      options:["a-iii, b-iv, c-i, d-ii","a-iii, b-iv, c-ii, d-i","a-ii, b-iv, c-iii, d-i","a-i, b-iii, c-ii, d-iv"],
+      answer:1
+    },
+    {
+      enMain:"Identify the correct group of only macronutrients",
+      enLines:[],
+      teMain:"కింది వానిలో స్థూల పోషకాలు మాత్రమే గల సరియైన సమూహాన్ని గుర్తించండి.",
+      teLines:[],
+      options:["Chlorine, zinc, copper, phosphorus","Calcium, boron, zinc, copper","Potassium, boron, copper, chlorine","Nitrogen, calcium, phosphorus, potassium"],
+      answer:3
+    },
+    {
+      enMain:"The correct statements about viruses.",
+      enLines:["A) Viruses have no specific machinery for multiplication of their own.","B) Viruses live as parasites only.","C) Viruses have a specific cell structure.","D) Viruses can cause diseases in bacteria."],
+      teMain:"వైరస్‌లను గూర్చిన సరి అయిన వాక్యాలు",
+      teLines:["A) వైరస్‌లు స్వయంగా అభివృద్ధి చెందడానికి అవసరమైన నిర్దిష్ట కణయంత్రాంగాన్ని కలిగి లేవు.","B) వైరస్‌లు పరాన్నజీవులుగా మాత్రమే జీవిస్తాయి.","C) వైరస్‌లకు నిర్దిష్టమైన కణనిర్మాణం కలదు.","D) వైరస్‌లు బాక్టీరియాలలో వ్యాధులను కలిగించగలవు."],
+      options:["A & D only","A, B, C & D","B, C & D only","A, B & D only"],
+      answer:3
+    },
+    {
+      enMain:"Read the following statements and choose the correct option.",
+      enLines:["A: Food in stomach is acidic due to the presence of HCl.","R: Pancreatic juice turns the food alkaline."],
+      teMain:"కింది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.",
+      teLines:["A: హైడ్రోక్లోరిక్ ఆమ్లం ఉండడం వల్ల జీర్ణాశయంలో ఆహారం ఆమ్లత్వాన్ని కలిగి ఉంటుంది.","B: క్లోమరసము ఆహారాన్ని క్షారయుతంగా మారుస్తుంది."],
+      options:["A and B are correct","A and B are incorrect","A correct, B incorrect","A incorrect, B correct"],
+      answer:0
+    },
+    {
+      enMain:"Identify the incorrect statement regarding lymph.",
+      enLines:[],
+      teMain:"శోషరసానికి సబంధించి సరికాని వాక్యాన్ని గుర్తించండి.",
+      teLines:[],
+      options:["It carries digested and absorbed fat from intestine.","It is similar to plasma of blood but colourless.","It formed due to escape of plasma, proteins and blood cells through the walls of arteries into inter cellular spaces.","It drain into lymphatic capillaries from the inter cellular space."],
+      answer:2
+    },
+    {
+      enMain:"Observe the following equation and substitute P, with suitable alternatives given below.",
+      enLines:["Glucose &rarr; Glyceraldehyde 3-phosphate &rarr; P &rarr; Phosphoenol Pyruvic acid"],
+      teMain:"కింది సమీకరణాన్ని పరిశీలించండి. ఆ సమీకరణంలో P కు సరైన సమాధానం గుర్తించండి.",
+      teLines:["గ్లూకోజ్ &rarr; గ్లిజరాల్డిహైడ్ 3-ఫాస్ఫేట్ &rarr; P &rarr; ఫాస్ఫోఈనాల్ పైరువిక్ ఆమ్లం"],
+      options:["P : 3-Phosphoglyceric acid","P : Pyruvic acid","P : 6-Phosphoglyceric acid","P : Phosphoglyceric acid"],
+      answer:0
+    },
+    {
+      enMain:"The correct pattern/sequence of below components, from largest to the smallest biological function unit.",
+      enLines:[],
+      teMain:"అతి పెద్ద భాగం నుంచి అతి చిన్న జీవ క్రియాత్మక యూనిట్ వరకు కింది భాగాల సరైన వరుస క్రమాన్ని గుర్తించండి.",
+      teLines:[],
+      options:["Nucleus &rarr; Chromosome &rarr; DNA &rarr; Genes","Chromosome &rarr; Nucleus &rarr; Gene &rarr; DNA","DNA &rarr; Gene &rarr; Nucleus &rarr; Chromosome","Nucleus &rarr; Chromosome &rarr; Gene &rarr; DNA"],
+      answer:0
+    },
+    {
+      enMain:"Identify the mismatched one",
+      enLines:[],
+      teMain:"సరిగా జతపరచబడని వాటిని గుర్తించండి.",
+      teLines:[],
+      options:["Placenta : Provide nutrition to embryo","Uterus : Opens into vagina","Oviducts : Site of implantation","Embryo : Later becomes foetus"],
+      answer:2
+    },
+    {
+      enMain:"Read the following statements and choose the correct option.",
+      enLines:["Assertion (A): Cellular DNA is the information source for making proteins in this cell.","Reason (R): A section of DNA that provides information for one protein is called the gene for that protein."],
+      teMain:"కింది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.",
+      teLines:["ప్రకటన(A): కణంలో ప్రోటీన్లు తయారు చేయడానికి సెల్యులార్ DNA ఒక సమాచార వనరు.","కారణం (R): ఒక ప్రోటీన్ తయారీకి చెందిన సమాచారం అందించే DNA భాగాన్ని ఆ ప్రోటీన్ యొక్క జన్యువు అంటారు."],
+      options:["Both A & R are correct and R is the correct explanation of A.","Both A & R are correct but R doesn&#8217;t explain A.","Both A & R are incorrect.","Only A is correct but R is incorrect."],
+      answer:0
+    },
+    {
+      enMain:"A teacher deshelled an egg and placed it in a beaker containing pure water for some time. The result and the reason are",
+      enLines:[],
+      teMain:"ఒక ఉపాధ్యాయుడు పెంకును తొలగించిన కోడిగుడ్డును ఒక బీకరులోని స్వచ్ఛమైన నీటిలో కొంత సమయం ఉంచాడు. దాని ఫలితము మరియు కారణము.",
+      teLines:[],
+      options:["The egg will shrink due to exosmosis","The egg will swell due to endosmosis","No change in egg will be observed","The egg will shrink due to endosmosis"],
+      answer:1
+    },
+    {
+      enMain:"The correct statement about smog.",
+      enLines:[],
+      teMain:"పొగ మంచు గురించిన సరైన ప్రకటన.",
+      teLines:[],
+      options:["It is a mixture of smoke, fog, pollutants causing asthma & wheezing in children","It is only smoke causing asthma in children","It is a mixture of smoke and fog causing no harm","It is smoke and snow, causing no harm"],
+      answer:0
+    },
+    {
+      enMain:"Identify environmental friendly practices from the following.",
+      enLines:["A) Using public transport system.","B) Carrying cloth bags while shopping.","C) Switching off unnecessary lights and fans.","D) Using private transport vehicles very frequently."],
+      teMain:"కింది వాటిలో 'పర్యావరణహిత పనులు' గుర్తించండి.",
+      teLines:["A) ప్రజారవాణా వ్యవస్థను ఉపయోగించుకోవడం.","B) కొన్న వస్తువులను తెచ్చుకొనుటకు, గుడ్డ సంచిని ఉపయోగించడం.","C) అవసరం లేని లైట్లు, ఫ్యాన్లను ఆపివేయడం.","D) వ్యక్తిగత రవాణా సాధనాలను చాలా తరచుగా వినియోగిస్తుండటం."],
+      options:["A, B, D","B, C, D","A, B, C","A, C, D"],
+      answer:2
+    },
+    {
+      enMain:"The accumulation of harmful and poisonous chemical through the food chain is maximum in",
+      enLines:[],
+      teMain:"ఆహారపు గొలుసులోకి ప్రవేశించిన హానికర, విషపూరిత రసాయనాలు వీనిలో గరిష్టంగా నిక్షిప్తమౌతాయి.",
+      teLines:[],
+      options:["Cows","Plants","Humans","Goats"],
+      answer:2
+    },
+    {
+      enMain:"The correct sequence in levels of organization in Ecology from smallest to biggest.",
+      enLines:["a) Population","b) Ecosystem","c) Landscape","d) Community","e) Ecosphere (Biosphere)","f) Biome"],
+      teMain:"జీవావరణ శాస్త్రంలోని వ్యవస్థీకరణలో అతి చిన్నస్థాయి నుంచి అతి పెద్ద స్థాయిల సరైన క్రమం",
+      teLines:["a) జనాభా","b) జీవావరణ వ్యవస్థ","c) భూతల ప్రకృతి","d) సమాజం","e) జీవగోళం","f) జీవమండలం"],
+      options:["c, b, a, f, d, e","b, c, a, d, e, f","a, d, b, c, f, e","a, b, d, e, f, c"],
+      answer:2
+    },
+    {
+      enMain:"The author of the book &#8220;The nervous mechanism of plants&#8221; is",
+      enLines:[],
+      teMain:"&#8220;The nervous mechanism of plants&#8221; గ్రంథ రచయిత",
+      teLines:[],
+      options:["Charles Darwin","Birbal Sahni","M.S. Swaminathan","Jagadeesh Chandra Bose"],
+      answer:3
+    },
+    {
+      enMain:"Which of the following are activities that can be given to make &#8220;Good use of leisure time&#8221;.",
+      enLines:["A. Collection of items","B. Silk worm breeding","C. Herbarium preparation","D. Reading scientific journals"],
+      teMain:"కింది వానిలో 'విరామకాల సద్వినియోగం' కోసం ఇవ్వదగిన కృత్యాలు",
+      teLines:["A. వస్తువుల సేకరణ","B. పట్టు సంవర్ధనం","C. హెర్బేరియం తయారి","D. శాస్త్రీయ పత్రికలు చదవడం"],
+      options:["A, B, C, D","A, C, D","B, C, D","A, B, D"],
+      answer:1
+    },
+    {
+      enMain:"Identify correct matching from the below.",
+      enLines:["a. To observe and examine something closely and precisely - Project method.","b. Teaching the subject matter briefly and clearly - Lecture method","c. Creates concrete concepts - Lecture demonstration method"],
+      teMain:"కింది వానిలో సరిగా జతచేయబడిన వానిని గుర్తించండి.",
+      teLines:["a. ఒక విషయాన్ని నిశితంగాను, నిక్కచ్చిగాను గమనించడం, పరిశీలించడం - ప్రాజెక్టు పద్ధతి.","b. క్లుప్తంగాను, విశదంగా పాఠ్యాంశాన్ని బోధించడం - ఉపన్యాస పద్ధతి","c. మూర్తభావనలు కలిగించడం - ఉపన్యాస ప్రదర్శన పద్ధతి"],
+      options:["a, b only","b, c only","a, c only","a, b, c"],
+      answer:3
+    },
+    {
+      enMain:"According to Goods flash cards, maps are this types of visual teaching aids",
+      enLines:[],
+      teMain:"గూడ్స్ ప్రకారం మెరుపు అట్టలు, మ్యాపులు ఈ రకపు దృశ్య బోధనోపకరణాలు",
+      teLines:[],
+      options:["Three-dimensional teaching aids","Graphical teaching aids","Hardware teaching aids","Display boards"],
+      answer:1
+    }
+  ];
+
+  var state = {candidateName:'', order:[], optOrder:[], current:0, answers:[], score:0, timerId:null, seconds:0, finished:false};
+
+  function $(id){ return document.getElementById(id); }
+
+  function checkOpeningTime(){
+    var now = new Date();
+    // 17 Sep 2026, 19:00:00 IST (13:30:00 UTC)
+    var openTime = new Date(Date.UTC(2026, 8, 17, 13, 30, 0));
+    if(now < openTime){
+      $('aptetbio_start').style.display = 'none';
+      $('aptetbio_blocked').style.display = 'block';
+      return false;
+    }
+    return true;
+  }
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t=a[i]; a[i]=a[j]; a[j]=t;
+    }
+    return a;
+  }
+
+  function startQuiz(){
+    var nameInput = $('aptetbio_candidateName').value.trim();
+    if(!nameInput){
+      alert('Please enter your full name to start the quiz.');
+      $('aptetbio_candidateName').focus();
+      return;
+    }
+    state.candidateName = nameInput;
+    state.order = shuffleArray(QUESTIONS.map(function(_,i){return i;}));
+    state.optOrder = state.order.map(function(qi){
+      var opts = QUESTIONS[qi].options.map(function(_,i){return i;});
+      return shuffleArray(opts);
+    });
+    state.current = 0;
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    state.score = 0;
+    state.seconds = 0;
+    state.finished = false;
+    $('aptetbio_start').style.display='none';
+    $('aptetbio_result').style.display='none';
+    $('aptetbio_quiz').style.display='block';
+    $('aptetbio_qtotal').textContent = QUESTIONS.length;
+    $('aptetbio_liveScore').textContent = 0;
+    clearInterval(state.timerId);
+    state.timerId = setInterval(tick,1000);
+    updateTimerText();
+    renderQuestion();
+  }
+
+  function tick(){
+    state.seconds++;
+    updateTimerText();
+  }
+  function updateTimerText(){
+    var m = Math.floor(state.seconds/60);
+    var s = state.seconds%60;
+    $('aptetbio_timerText').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+
+  function renderLines(container, lines, cls){
+    container.innerHTML = '';
+    lines.forEach(function(line){
+      var span = document.createElement('span');
+      span.className = cls;
+      span.innerHTML = line;
+      container.appendChild(span);
+    });
+  }
+
+  function renderQuestion(){
+    var qi = state.order[state.current];
+    var q = QUESTIONS[qi];
+    $('aptetbio_qnum').textContent = state.current+1;
+    $('aptetbio_progressBar').style.width = (((state.current+1)/QUESTIONS.length)*100)+'%';
+    $('aptetbio_qEn').innerHTML = (state.current+1)+'. '+q.enMain;
+    renderLines($('aptetbio_qEnLines'), q.enLines, 'aptetbio_qline');
+    $('aptetbio_qTe').innerHTML = q.teMain;
+    renderLines($('aptetbio_qTeLines'), q.teLines, 'aptetbio_qlineTe');
+
+    var optDiv = $('aptetbio_options');
+    optDiv.innerHTML = '';
+    var order = state.optOrder[state.current];
+    var prevAns = state.answers[state.current];
+
+    order.forEach(function(origIdx){
+      var div = document.createElement('div');
+      div.className = 'aptetbio_opt';
+      div.innerHTML = q.options[origIdx];
+      div.setAttribute('data-orig', origIdx);
+      if(prevAns !== null){
+        div.classList.add('aptetbio_disabled');
+        if(origIdx === q.answer){ div.classList.add('aptetbio_correct'); }
+        else if(origIdx === prevAns.selected){ div.classList.add('aptetbio_wrong'); }
+      } else {
+        div.onclick = function(){ selectOption(origIdx); };
+      }
+      optDiv.appendChild(div);
+    });
+
+    var fb = $('aptetbio_feedback');
+    if(prevAns !== null){
+      if(prevAns.selected === q.answer){
+        fb.textContent = '\u2713 Correct!';
+        fb.className = 'aptetbio_feedback aptetbio_right';
+      } else {
+        fb.textContent = '\u2717 Incorrect.';
+        fb.className = 'aptetbio_feedback aptetbio_wrongTxt';
+      }
+    } else {
+      fb.textContent = '';
+      fb.className = 'aptetbio_feedback';
+    }
+
+    $('aptetbio_prevBtn').disabled = state.current===0;
+    $('aptetbio_prevBtn').style.opacity = state.current===0? '.4':'1';
+    if(state.current === QUESTIONS.length-1){
+      $('aptetbio_nextBtn').style.display='none';
+      $('aptetbio_submitBtn').style.display='block';
+    } else {
+      $('aptetbio_nextBtn').style.display='block';
+      $('aptetbio_submitBtn').style.display='none';
+    }
+  }
+
+  function selectOption(origIdx){
+    var qi = state.order[state.current];
+    var q = QUESTIONS[qi];
+    if(state.answers[state.current] !== null) return;
+    var correct = origIdx === q.answer;
+    state.answers[state.current] = {selected: origIdx, correct: correct, qi: qi};
+    if(correct){ state.score++; $('aptetbio_liveScore').textContent = state.score; }
+    renderQuestion();
+  }
+
+  function submitScoreToLeaderboard(){
+    if(!SCRIPT_URL || SCRIPT_URL.indexOf("YOUR_GOOGLE") !== -1) return;
+    $('aptetbio_leaderboardStatus').textContent = "Submitting score to leaderboard...";
+    var payload = {
+      name: state.candidateName,
+      score: state.score,
+      total: QUESTIONS.length,
+      timeTaken: $('aptetbio_timerText').textContent
+    };
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(){
+      $('aptetbio_leaderboardStatus').textContent = "Score submitted to leaderboard!";
+    }).catch(function(){
+      $('aptetbio_leaderboardStatus').textContent = "Could not record score to leaderboard.";
+    });
+  }
+
+  function finishQuiz(){
+    state.finished = true;
+    clearInterval(state.timerId);
+    $('aptetbio_quiz').style.display='none';
+    $('aptetbio_result').style.display='block';
+    $('aptetbio_finalScore').textContent = state.score;
+    var pct = Math.round((state.score/QUESTIONS.length)*100);
+    $('aptetbio_finalPercent').textContent = 'You scored '+pct+'%';
+    $('aptetbio_finalTime').textContent = 'Time taken: '+$('aptetbio_timerText').textContent;
+    $('aptetbio_reviewBox').style.display='none';
+    $('aptetbio_reviewBox').innerHTML='';
+    submitScoreToLeaderboard();
+  }
+
+  function buildReview(){
+    var box = $('aptetbio_reviewBox');
+    box.innerHTML = '';
+    state.order.forEach(function(qi, idx){
+      var q = QUESTIONS[qi];
+      var ans = state.answers[idx];
+      var div = document.createElement('div');
+      div.className = 'aptetbio_reviewItem';
+      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
+      var correctAns = q.options[q.answer];
+      var cls = ans && ans.correct ? 'aptetbio_reviewCorrect':'aptetbio_reviewWrong';
+      var html = '<b>Q'+(idx+1)+'.</b> '+q.enMain;
+      q.enLines.forEach(function(line){ html += '<span class="aptetbio_reviewLine">'+line+'</span>'; });
+      html += '<span class="aptetbio_reviewLine '+cls+'">Your answer: '+yourAns+'</span>';
+      html += '<span class="aptetbio_reviewLine aptetbio_reviewCorrect">Correct answer: '+correctAns+'</span>';
+      div.innerHTML = html;
+      box.appendChild(div);
+    });
+    box.style.display='block';
+  }
+
+  function downloadPDF(){
+    if(!window.jspdf){ alert('PDF library failed to load. Please check your internet connection.'); return; }
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF();
+    var y = 15;
+    doc.setFontSize(14);
+    doc.text('BIOLOGICAL SCIENCES - APTET Quiz Result',15,y); y+=8;
+    doc.setFontSize(10);
+    doc.text('Candidate Name: '+state.candidateName,15,y); y+=6;
+    doc.text('Paper: APTET Previous Question Paper - 19 December 2025 (First Shift)',15,y); y+=6;
+    doc.text('Score: '+state.score+' / '+QUESTIONS.length+'  |  Time: '+$('aptetbio_timerText').textContent,15,y); y+=10;
+    state.order.forEach(function(qi, idx){
+      var q = QUESTIONS[qi];
+      var ans = state.answers[idx];
+      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
+      var correctAns = q.options[q.answer];
+      var plainMain = q.enMain.replace(/<[^>]*>/g,'');
+      var lines = doc.splitTextToSize((idx+1)+'. '+plainMain, 180);
+      if(y + lines.length*6 + 14 > 280){ doc.addPage(); y=15; }
+      doc.setFontSize(10);
+      doc.text(lines, 15, y); y += lines.length*6;
+      q.enLines.forEach(function(sub){
+        var subLines = doc.splitTextToSize(sub.replace(/<[^>]*>/g,''), 175);
+        if(y + subLines.length*5 > 280){ doc.addPage(); y=15; }
+        doc.setFontSize(9);
+        doc.text(subLines, 18, y); y += subLines.length*5;
+      });
+      doc.setFontSize(9);
+      doc.text('Your answer: '+yourAns.replace(/<[^>]*>/g,''), 18, y); y+=5;
+      doc.text('Correct answer: '+correctAns.replace(/<[^>]*>/g,''), 18, y); y+=8;
+    });
+    doc.setFontSize(9);
+    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE.',15,290);
+    doc.save('APTET_Biological_Sciences_Result.pdf');
+  }
+
+  if(checkOpeningTime()){
+    $('aptetbio_startBtn').onclick = startQuiz;
+    $('aptetbio_prevBtn').onclick = function(){ if(state.current>0){ state.current--; renderQuestion(); } };
+    $('aptetbio_nextBtn').onclick = function(){ if(state.current < QUESTIONS.length-1){ state.current++; renderQuestion(); } };
+    $('aptetbio_submitBtn').onclick = finishQuiz;
+    $('aptetbio_restartBtn').onclick = startQuiz;
+    $('aptetbio_reviewBtn').onclick = function(){
+      if($('aptetbio_reviewBox').style.display === 'block'){
+        $('aptetbio_reviewBox').style.display='none';
+      } else {
+        buildReview();
+      }
+    };
+    $('aptetbio_pdfBtn').onclick = downloadPDF;
+  }
+})();
+</script>
+</body>
+</html>
