@@ -267,18 +267,18 @@
 
 <div class="crbps-header">
   <h1>APTET Previous Question Paper</h1>
-  <h2>Physical Sciences</h2>
+  <h2>Physical Sciences &mdash; 19th December 2025 (First Shift)</h2>
   <div class="crbps-sub">Content &amp; Methodology | 20 Questions</div>
 </div>
 
 <!-- TIME GATE SCREEN -->
 <div id="crbps-gate-screen" class="crbps-gate-screen">
   <div class="crbps-gate-card">
-    <h3 style="margin-top:0; color:var(--crbps-blue);">Candidate Verification</h3>
+    <h3 style="margin-top:0; color:var(--crbps-blue);">Student Verification</h3>
     <div id="crbps-time-msg" style="margin-bottom: 12px; font-weight: 600; font-size:14px; color: var(--crbps-accent);"></div>
     <div id="crbps-gate-content">
-      <label for="crbps-Candidate-name" style="display:block; text-align:left; font-size:13px; font-weight:600; color:var(--crbps-text-muted);">Enter Your Full Name <span style="color:red;">*</span></label>
-      <input type="text" id="crbps-Candidate-name" class="crbps-input" placeholder="e.g., M. Ramesh" autocomplete="off" />
+      <label for="crbps-student-name" style="display:block; text-align:left; font-size:13px; font-weight:600; color:var(--crbps-text-muted);">Enter Your Full Name <span style="color:red;">*</span></label>
+      <input type="text" id="crbps-student-name" class="crbps-input" placeholder="e.g., M. Ramesh" autocomplete="off" />
       <div id="crbps-name-error" class="crbps-error crbps-hidden">Please enter your full name to start the test.</div>
       <button class="crbps-btn crbps-btn-start" id="crbps-start-btn">Start Quiz 🚀</button>
     </div>
@@ -341,7 +341,7 @@
   var LEADERBOARD_SHEET_URL = "YOUR_GOOGLE_SHEET_LEADERBOARD_URL_HERE";
 
   // Date Controls (17-09-2026)
-  var OPEN_TIME = new Date("2026-09-17T18:00:00+05:30").getTime();
+  var OPEN_TIME = new Date("2026-09-17T19:00:00+05:30").getTime();
   var EARLY_NOTICE_TIME = new Date("2026-09-17T18:00:00+05:30").getTime();
 
   var crbpsBank = [
@@ -611,7 +611,7 @@
       gateContent.classList.add('crbps-hidden');
       return false;
     } else if (now >= EARLY_NOTICE_TIME && now < OPEN_TIME) {
-      timeMsgEl.textContent = "⏳ Notice: This test will open at 6:00 PM IST on 17-09-2026. Please check back at 6:00 PM.";
+      timeMsgEl.textContent = "⏳ Notice: This test will open at 7:00 PM IST on 17-09-2026. Please check back at 7:00 PM.";
       gateContent.classList.add('crbps-hidden');
       return false;
     } else {
@@ -744,7 +744,7 @@
   }
 
   function submitToLeaderboard(name, finalScore, total, timeTaken) {
-    if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") return;
+    if (GOOGLE_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwzy24lGhvzrQU6qAjxf-KKbI31f1I8cgPFXh_xrCleCQXqzsdggoyAJ1aStoGZQ1-WMg/exec") return;
     
     var data = {
       name: name,
@@ -808,8 +808,8 @@
     var s = seconds % 60;
     var pct = Math.round((score / quizData.length) * 100);
 
-    var html = '<h2 style="text-align:center;color:#1e3a8a;">APTET Physical Sciences Test Result</h2>';
-    html += '<p style="text-align:center;">PS PREVIOUS PAPER</p>';
+    var html = '<h2 style="text-align:center;color:#1e3a8a;">APTET Physical Sciences Quiz Result</h2>';
+    html += '<p style="text-align:center;">19th December 2025 - First Shift</p>';
     html += '<hr>';
     html += '<p><strong>Student Name:</strong> ' + studentName + '</p>';
     html += '<p><strong>Score:</strong> ' + score + ' / ' + quizData.length + ' (' + pct + '%)</p>';
@@ -838,7 +838,7 @@
       alert('Please allow pop-ups for this site to download the PDF result.');
       return;
     }
-    w.document.write('<html><head><title>APTET MOCK TEST Physical Science Result</title></head><body>' + html + '</body></html>');
+    w.document.write('<html><head><title>APTET Physical Science Result</title></head><body>' + html + '</body></html>');
     w.document.close();
     w.focus();
     setTimeout(function(){ w.print(); }, 300);
