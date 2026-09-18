@@ -198,7 +198,40 @@
   <div class="aeq-credit">Credit: C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
 </div>
 </div>
+<script>
+  // 1. Block right-click context menu
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
+  // 2. Prevent key combinations (Copy, Print, Save, DevTools)
+  document.addEventListener('keydown', e => {
+    if (
+      (e.ctrlKey || e.metaKey) && 
+      (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')
+    ) {
+      e.preventDefault();
+    }
+    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+
+  // 3. Detect when student switches tabs or minimizes the browser
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      alert("Warning: Switching tabs during the test is monitored!");
+    }
+  });
+</script>
+
+<style>
+  /* Prevent text selection across the page */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
 <script>
 (function(){
   // --- GOOGLE SHEETS SCRIPT URL FOR LEADERBOARD ---
