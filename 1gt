@@ -1,0 +1,1059 @@
+previous question paper 19th December 2025:First shift
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>APTET Paper-II (Maths &amp; Science) Grand Full Test —  Questions from Previous Question Papers| C. Rasool Bavaji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-950:#060b18;
+  --navy-900:#0a1226;
+  --navy-800:#101d38;
+  --navy-700:#152548;
+  --navy-600:#1c3159;
+  --navy-500:#28417a;
+  --line:#25355e;
+  --ink:#eaf0fb;
+  --ink-dim:#a9b8d8;
+  --ink-faint:#7386ac;
+  --gold:#f0b940;
+  --gold-dim:#c99a3b;
+  --blue:#3b7dff;
+  --blue-dim:#2e5fc4;
+  --green:#22c774;
+  --green-dim:#12693e;
+  --red:#ff5468;
+  --red-dim:#7a1f2b;
+  --yellow:#f0c33e;
+  --yellow-dim:#7a5f11;
+  --radius:14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font-display:'Poppins',sans-serif;
+  --font-body:'Poppins','Noto Sans Telugu',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #12224a 0%, transparent 60%),
+    radial-gradient(1000px 700px at 110% 10%, #0e1c3c 0%, transparent 55%),
+    var(--navy-950);
+  color:var(--ink);
+  font-family:var(--font-body);
+  min-height:100vh;
+  line-height:1.5;
+}
+::selection{background:var(--blue-dim);color:#fff;}
+.te{font-family:'Noto Sans Telugu','Poppins',sans-serif;}
+a{color:var(--gold);}
+button{font-family:inherit;}
+.hidden{display:none !important;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px;}
+
+/* ---------- Top brand strip ---------- */
+.brandbar{
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(16,29,56,.9), rgba(10,18,38,.6));
+  padding:10px 0;
+}
+.brandbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-badge{
+  width:38px;height:38px;border-radius:10px;
+  background:conic-gradient(from 210deg, var(--gold), #ffe6a8, var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#1a1200;font-size:15px;font-family:var(--font-display);
+  box-shadow:0 4px 14px rgba(240,185,64,.35);
+}
+.brand-text .t1{font-weight:700;font-size:14.5px;letter-spacing:.2px;}
+.brand-text .t2{font-size:11.5px;color:var(--ink-faint);}
+.brandbar .credit{font-size:11.5px;color:var(--ink-faint);text-align:right;}
+.brandbar .credit b{color:var(--ink-dim);}
+
+/* ============ START SCREEN ============ */
+#startScreen{padding:34px 0 60px;}
+.hero{
+  text-align:center;padding:28px 18px 8px;
+}
+.hero .eyebrow{
+  display:inline-block;font-family:var(--font-mono);font-size:11.5px;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;border:1px solid var(--gold-dim);
+  padding:5px 12px;border-radius:100px;margin-bottom:16px;background:rgba(240,185,64,.06);
+}
+.hero h1{font-family:var(--font-display);font-size:clamp(24px,4vw,38px);margin:0 0 10px;font-weight:800;letter-spacing:-.3px;}
+.hero p.sub{color:var(--ink-dim);font-size:15px;max-width:640px;margin:0 auto;}
+
+.stat-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:760px;margin:26px auto 0;
+}
+.stat-card{background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:14px 10px;text-align:center;}
+.stat-card .num{font-family:var(--font-mono);font-size:22px;font-weight:700;color:var(--gold);}
+.stat-card .lbl{font-size:11px;color:var(--ink-faint);margin-top:2px;}
+
+.subject-strip{max-width:900px;margin:30px auto 0;padding:0 12px;}
+.subject-strip h3{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-faint);margin-bottom:14px;font-weight:600;}
+.subject-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.subject-chip{
+  background:var(--navy-800);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;
+}
+.subject-chip .dot{width:9px;height:9px;border-radius:50%;margin:0 auto 8px;}
+.subject-chip .nm{font-size:12px;font-weight:600;}
+.subject-chip .cnt{font-size:11px;color:var(--ink-faint);margin-top:2px;}
+
+.start-form{
+  max-width:460px;margin:34px auto 0;background:var(--navy-800);border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow);
+}
+.start-form label{display:block;font-size:12.5px;color:var(--ink-dim);margin-bottom:7px;font-weight:600;}
+.start-form input[type=text]{
+  width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);
+  background:var(--navy-900);color:var(--ink);font-size:15px;outline:none;
+}
+.start-form input[type=text]:focus{border-color:var(--blue);}
+.start-form .hint{font-size:11.5px;color:var(--ink-faint);margin-top:6px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;border-radius:11px;padding:13px 22px;font-weight:700;font-size:14.5px;
+  cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{transform:scale(.98);}
+.btn-primary{background:linear-gradient(135deg,var(--gold),#d69a26);color:#1a1200;box-shadow:0 8px 20px rgba(240,185,64,.25);}
+.btn-primary:hover{box-shadow:0 10px 24px rgba(240,185,64,.4);}
+.btn-block{width:100%;margin-top:18px;}
+.btn-outline{background:transparent;border:1px solid var(--line);color:var(--ink);}
+.btn-outline:hover{border-color:var(--blue);}
+.btn-ghost{background:var(--navy-700);color:var(--ink-dim);}
+.err-msg{color:var(--red);font-size:12px;margin-top:8px;display:none;}
+
+.rules{max-width:700px;margin:36px auto 0;background:rgba(59,125,255,.06);border:1px solid var(--blue-dim);border-radius:var(--radius);padding:18px 22px;}
+.rules h4{margin:0 0 10px;font-size:13px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;}
+.rules ul{margin:0;padding-left:18px;color:var(--ink-dim);font-size:13px;line-height:1.7;}
+
+/* ============ TEST SCREEN ============ */
+#testScreen{display:none;}
+.testbar{
+  position:sticky;top:0;z-index:40;background:rgba(10,18,38,.96);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.testbar-inner{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.timer-box{
+  font-family:var(--font-mono);background:var(--navy-800);border:1px solid var(--line);
+  padding:7px 12px;border-radius:9px;font-size:14px;color:var(--gold);display:flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.score-box{
+  font-family:var(--font-mono);background:var(--navy-800);border:1px solid var(--line);
+  padding:7px 12px;border-radius:9px;font-size:14px;white-space:nowrap;
+}
+.score-box b{color:var(--green);}
+.subject-nav{display:flex;gap:6px;flex-wrap:wrap;flex:1;justify-content:center;}
+.subject-nav button{
+  background:var(--navy-800);border:1px solid var(--line);color:var(--ink-dim);
+  padding:7px 11px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;
+}
+.subject-nav button.active{background:var(--blue-dim);border-color:var(--blue);color:#fff;}
+.palette-toggle{
+  display:none;background:var(--navy-800);border:1px solid var(--line);color:var(--ink);
+  padding:7px 12px;border-radius:9px;font-size:12px;cursor:pointer;font-weight:600;
+}
+
+.test-body{max-width:1180px;margin:0 auto;padding:20px 18px 60px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;}
+.qcard{background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px 20px;box-shadow:var(--shadow);}
+.qcard-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--line);}
+.qcard-head .paperline{font-size:11.5px;color:var(--ink-faint);}
+.qcard-head .qno{font-family:var(--font-mono);font-weight:700;color:var(--gold);font-size:14px;}
+.subject-pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:3px 9px;border-radius:100px;text-transform:uppercase;}
+
+.qtext{font-size:16.5px;font-weight:600;margin-bottom:4px;line-height:1.6;}
+.qtext.te{font-size:16px;font-weight:500;color:var(--ink-dim);margin-bottom:16px;}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;background:var(--navy-700);
+  border:1.5px solid var(--line);border-radius:11px;padding:12px 14px;cursor:pointer;
+  transition:border-color .12s, background .12s;
+}
+.opt:hover{border-color:var(--blue);}
+.opt .tag{
+  flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy-600);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink-dim);
+}
+.opt .otext{flex:1;font-size:14.5px;}
+.opt .otext .te{display:block;font-size:13.5px;color:var(--ink-faint);margin-top:2px;}
+.opt.correct{border-color:var(--green);background:rgba(34,199,116,.12);}
+.opt.correct .tag{background:var(--green);color:#04220f;}
+.opt.wrong{border-color:var(--red);background:rgba(255,84,104,.12);}
+.opt.wrong .tag{background:var(--red);color:#2a0006;}
+.opt.locked{cursor:default;}
+.opt.locked:hover{border-color:var(--line);}
+.opt.correct:hover, .opt.wrong:hover{border-color:var(--green);}
+.opt.wrong:hover{border-color:var(--red);}
+
+.qcard-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:10px;}
+.qcard-nav .right-btns{display:flex;gap:10px;}
+
+/* palette sidebar */
+.palette{background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:sticky;top:76px;max-height:calc(100vh - 96px);overflow-y:auto;}
+.palette h4{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--ink-faint);}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:10.5px;color:var(--ink-faint);margin-bottom:14px;}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.pal-group{margin-bottom:14px;}
+.pal-group .glabel{font-size:11px;font-weight:700;color:var(--ink-dim);margin-bottom:7px;}
+.pal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+.pal-btn{
+  aspect-ratio:1/1;border-radius:7px;border:1.5px solid var(--line);background:var(--navy-700);
+  color:var(--ink-dim);font-size:11px;font-family:var(--font-mono);font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.pal-btn.answered{background:var(--blue-dim);border-color:var(--blue);color:#fff;}
+.pal-btn.skipped{background:var(--yellow-dim);border-color:var(--yellow);color:#fff;}
+.pal-btn.current{outline:2px solid var(--gold);outline-offset:1px;}
+.submit-final{width:100%;margin-top:6px;}
+
+.palette-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:60;display:none;}
+.palette-overlay .palette{position:absolute;right:0;top:0;bottom:0;width:300px;max-height:none;border-radius:0;}
+
+/* ============ RESULT SCREEN ============ */
+#resultScreen{display:none;padding:34px 0 70px;}
+.result-hero{text-align:center;padding:10px 18px 6px;}
+.result-hero .eyebrow{color:var(--green);}
+.score-ring{
+  width:150px;height:150px;border-radius:50%;margin:20px auto 8px;display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--gold) calc(var(--pct)*1%), var(--navy-700) 0);
+  position:relative;
+}
+.score-ring::before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--navy-900);}
+.score-ring .val{position:relative;font-family:var(--font-mono);font-size:26px;font-weight:800;color:var(--ink);}
+.score-ring .sub{position:relative;font-size:11px;color:var(--ink-faint);margin-top:2px;}
+
+.result-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:760px;margin:22px auto 0;}
+.result-stats .rc{background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:14px 8px;text-align:center;}
+.result-stats .rc .num{font-family:var(--font-mono);font-size:21px;font-weight:700;}
+.result-stats .rc .lbl{font-size:11px;color:var(--ink-faint);margin-top:3px;}
+.result-stats .rc.correct .num{color:var(--green);}
+.result-stats .rc.wrong .num{color:var(--red);}
+.result-stats .rc.skip .num{color:var(--yellow);}
+
+.subject-breakdown{max-width:760px;margin:26px auto 0;background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;}
+.subject-breakdown h4{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--ink-faint);}
+.sb-row{display:grid;grid-template-columns:1.4fr .6fr 2fr;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px;}
+.sb-row:last-child{border-bottom:none;}
+.sb-bar-track{background:var(--navy-700);border-radius:100px;height:8px;overflow:hidden;}
+.sb-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--blue),var(--green));}
+
+.action-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:28px auto 0;}
+
+.section-block{max-width:900px;margin:34px auto 0;}
+.section-block h3{font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-faint);margin-bottom:14px;text-align:center;}
+
+/* leaderboard */
+.lb-table{width:100%;border-collapse:collapse;background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.lb-table th{background:var(--navy-700);text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-faint);}
+.lb-table td{padding:9px 12px;font-size:13.5px;border-top:1px solid var(--line);}
+.lb-table tr.me{background:rgba(240,185,64,.1);}
+.lb-rank{font-family:var(--font-mono);color:var(--gold);font-weight:700;}
+.lb-status{text-align:center;color:var(--ink-faint);font-size:13px;padding:22px 10px;}
+
+/* answer key */
+.key-card{background:var(--navy-800);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;}
+.key-card .khead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;}
+.key-card .kq{font-size:14.5px;font-weight:600;margin-bottom:2px;}
+.key-card .kq.te{font-size:13.5px;color:var(--ink-dim);font-weight:500;margin-bottom:10px;}
+.key-opts{display:flex;flex-direction:column;gap:6px;}
+.key-opt{padding:8px 12px;border-radius:8px;background:var(--navy-700);border:1.5px solid var(--line);font-size:13.5px;display:flex;gap:8px;}
+.key-opt .otext .te{display:block;color:var(--ink-faint);font-size:12.5px;}
+.key-opt.correct{border-color:var(--green);background:rgba(34,199,116,.12);}
+.key-opt.userwrong{border-color:var(--red);background:rgba(255,84,104,.12);}
+.key-badge{font-size:10.5px;padding:2px 8px;border-radius:100px;font-weight:700;}
+.key-badge.ok{background:var(--green-dim);color:#bdf7d8;}
+.key-badge.no{background:var(--red-dim);color:#ffd6db;}
+.key-badge.na{background:var(--navy-700);color:var(--ink-faint);}
+
+.footer-credit{text-align:center;color:var(--ink-faint);font-size:12px;margin-top:40px;padding:20px 0;border-top:1px solid var(--line);}
+.footer-credit b{color:var(--ink-dim);}
+.footer-credit a{color:var(--gold);text-decoration:none;}
+
+/* modal */
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:80;padding:20px;}
+.modal-box{background:var(--navy-800);border:1px solid var(--line);border-radius:var(--radius);padding:24px;max-width:400px;width:100%;text-align:center;}
+.modal-box h4{margin:0 0 10px;font-size:16px;}
+.modal-box p{color:var(--ink-dim);font-size:13.5px;margin-bottom:18px;}
+.modal-btns{display:flex;gap:10px;justify-content:center;}
+
+@media(max-width:900px){
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+  .subject-grid{grid-template-columns:repeat(3,1fr);}
+  .test-body{grid-template-columns:1fr;}
+  .palette{display:none;}
+  .palette-toggle{display:inline-flex;}
+  .palette-overlay.show{display:block;}
+  .palette-overlay .palette{display:block;}
+  .result-stats{grid-template-columns:repeat(2,1fr);}
+  .sb-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="brandbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-badge">CB</div>
+      <div class="brand-text">
+        <div class="t1">APTET Paper-II Grand Full Test : Practice Mode</div>
+        <div class="t2">Mathematics &amp; Science Method</div>
+      </div>
+    </div>
+    <div class="credit">by <b>C. RASOOL BAVAJI</b>, S.A.(P.S.), ZPHS Madanapalle<br>tenthquiz.blogspot.com</div>
+  </div>
+</div>
+
+<!-- ============ START SCREEN ============ -->
+<div id="startScreen">
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow">Free Practice Test</span>
+      <h1>APTET Paper&#8209;II Full Practice Test</h1>
+      <p class="sub">Based on the actual APTET Questions from Previous Question Papers, Mathematics &amp; Science : Content and method. All 150 questions, bilingual (English + Telugu), exactly as they appeared as in the exam.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="num">150</div><div class="lbl">Total Questions</div></div>
+      <div class="stat-card"><div class="num">6</div><div class="lbl">Subjects</div></div>
+      <div class="stat-card"><div class="num">150</div><div class="lbl">Marks</div></div>
+      <div class="stat-card"><div class="num">Live</div><div class="lbl">Instant Feedback</div></div>
+    </div>
+
+    <div class="subject-strip">
+      <h3>Subjects covered</h3>
+      <div class="subject-grid" id="subjectStripGrid"></div>
+    </div>
+
+    <div class="start-form">
+      <label for="nameInput">Enter your name (for certificate &amp; leaderboard)</label>
+      <input type="text" id="nameInput" placeholder="e.g. K. Suresh Kumar" maxlength="60" autocomplete="off">
+      <div class="err-msg" id="nameErr">Please enter your name to start the test.</div>
+      <button class="btn btn-primary btn-block" id="startBtn">Start Mock Test &rarr;</button>
+      <div class="hint" style="text-align:center;margin-top:12px;">Your responses stay in this browser. Only your name &amp; final score are sent to the live leaderboard.</div>
+    </div>
+
+    <div class="rules">
+      <h4>How this mock test works</h4>
+      <ul>
+        <li>All 150 questions are shown one at a time, in exam order: Child Development &amp; Pedagogy (30) &rarr; Telugu (30) &rarr; English (30) &rarr; Mathematics (20) &rarr; Physical Science (20) &rarr; Biological Science (20).</li>
+        <li>Use the subject buttons at the top, or the question palette on the right, to jump to any question or subject at any time.</li>
+        <li>As soon as you choose an option, you'll instantly see if it's correct (green) or wrong (red) &mdash; the correct answer is always revealed. Once answered, that question is locked.</li>
+        <li>Your live score updates on top as you go. Answered questions turn <b style="color:var(--blue)">blue</b> and skipped questions turn <b style="color:var(--yellow)">yellow</b> on the palette.</li>
+        <li>At the end, you'll get your full score report, subject-wise breakdown, a downloadable Certificate of Appreciation, the complete answer key with your responses, and the live leaderboard.</li>
+      </ul>
+    </div>
+
+    <div class="footer-credit">
+      Prepared by <b>C. RASOOL BAVAJI</b>, S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT &middot; <a href="https://tenthquiz.blogspot.com" target="_blank" rel="noopener">tenthquiz.blogspot.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TEST SCREEN ============ -->
+<div id="testScreen">
+  <div class="testbar">
+    <div class="testbar-inner">
+      <div class="timer-box">&#9201; <span id="timerDisplay">00:00</span></div>
+      <div class="subject-nav" id="subjectNav"></div>
+      <div class="score-box">Score: <b id="liveScore">0</b> / <span id="liveAttempted">0</span> attempted</div>
+      <button class="palette-toggle" id="paletteToggleBtn">&#9776; Questions</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="qcard" id="qcard"></div>
+
+    <div class="palette" id="paletteDesktop"></div>
+  </div>
+</div>
+
+<div class="palette-overlay" id="paletteOverlay">
+  <div class="palette" id="paletteMobileWrap" style="padding-top:50px;position:relative;">
+    <button id="closePaletteBtn" style="position:absolute;top:10px;right:12px;background:var(--navy-700);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;">&times; Close</button>
+    <div id="paletteMobile"></div>
+  </div>
+</div>
+
+<!-- ============ RESULT SCREEN ============ -->
+<div id="resultScreen">
+  <div class="wrap">
+    <div class="result-hero">
+      <span class="eyebrow">&#10003; Test Completed</span>
+      <h1 id="resultName" style="font-family:var(--font-display);font-size:26px;margin:12px 0 0;">Well done!</h1>
+      <div class="score-ring" id="scoreRing" style="--pct:0;">
+        <div class="val" id="scoreRingVal">0/150</div>
+      </div>
+    </div>
+
+    <div class="result-stats">
+      <div class="rc correct"><div class="num" id="rCorrect">0</div><div class="lbl">Correct</div></div>
+      <div class="rc wrong"><div class="num" id="rWrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="rc skip"><div class="num" id="rSkip">0</div><div class="lbl">Unattempted</div></div>
+      <div class="rc"><div class="num" id="rTime">00:00</div><div class="lbl">Time Taken</div></div>
+    </div>
+
+    <div class="subject-breakdown">
+      <h4>Subject-wise score</h4>
+      <div id="subjectBreakdownList"></div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-primary" id="downloadCertBtn">&#127942; Download Certificate</button>
+      <button class="btn btn-outline" id="viewKeyBtn">View Answer Key</button>
+      <button class="btn btn-outline" id="viewLbBtn">View Leaderboard</button>
+      <button class="btn btn-ghost" id="restartBtn">Restart Test</button>
+    </div>
+
+    <div class="section-block hidden" id="lbSection">
+      <h3>&#127942; Live Leaderboard</h3>
+      <table class="lb-table">
+        <thead><tr><th>#</th><th>Name</th><th>Score</th><th>Time</th></tr></thead>
+        <tbody id="lbBody"></tbody>
+      </table>
+      <div class="lb-status hidden" id="lbStatus"></div>
+    </div>
+
+    <div class="section-block hidden" id="keySection">
+      <h3>Answer Key &amp; Your Responses</h3>
+      <div id="keyList"></div>
+    </div>
+
+    <div class="footer-credit">
+      C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT &middot; <a href="https://tenthquiz.blogspot.com" target="_blank" rel="noopener">tenthquiz.blogspot.com</a>
+    </div>
+  </div>
+</div>
+
+<!-- Submit confirmation modal -->
+<div class="modal-back" id="submitModal">
+  <div class="modal-box">
+    <h4>Are you sure you want to submit?</h4>
+    <p id="submitModalText">You still have some unanswered questions.</p>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" id="cancelSubmitBtn">No</button>
+      <button class="btn btn-primary" id="confirmSubmitBtn">Yes</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="certCanvas" width="1600" height="1131" style="display:none;"></canvas>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= CONFIGURATION ================= */
+// Paste your deployed Google Apps Script Web App URL below (see accompanying
+// "Apps Script" file for the backend code + deployment steps). Leave as-is
+// to run the test fully offline (leaderboard panel will just show a setup note).
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRoi_uBCdWGMSCg8Rl4NoDrzXz8PUsOF9XYFIMu_ZNikAtKJw08oLbO4RhIKZ6xUMh/exec";
+
+var PAPER_LABEL = "APTET Practice Test : Questions form Previous Question Papers";
+
+var SUBJECTS = {
+  CDP:  {label:"Child Development &amp; Pedagogy", short:"CDP",  color:"#3b7dff"},
+  TEL:  {label:"Telugu",                            short:"TEL",  color:"#22c774"},
+  ENG:  {label:"English",                           short:"ENG",  color:"#f0b940"},
+  MATH: {label:"Mathematics",                       short:"MATH", color:"#ff8a3b"},
+  PSCI: {label:"Physical Science",                  short:"PSCI", color:"#c477ff"},
+  BIO:  {label:"Biological Science",                short:"BIO",  color:"#ff5468"}
+};
+var SUBJECT_ORDER = ["CDP","TEL","ENG","MATH","PSCI","BIO"];
+
+/* ================= QUESTION DATA ================= */
+var QUESTION_BANK = [{"subject": "CDP", "en": "Development of 'Conscience' is the characteristic of this stage.", "te": "'అంతరాత్మ వికాసం' ఈ దశ లక్షణం", "opts": [{"en": "Infancy stage", "te": "శైశవ దశ"}, {"en": "Early childhood stage", "te": "పూర్వ బాల్యదశ"}, {"en": "Late childhood stage", "te": "ఉత్తర బాల్యదశ"}, {"en": "Adolescence stage", "te": "కౌమార దశ"}], "correct": [2]}, {"subject": "CDP", "en": "A baby initially calls all men as 'father', but later used that word only for his own father. The developmental principle involved here is", "te": "శిశువు మొదట్లో మనవాళ్లందరినీ 'నాన్న'గా సంబోధించి తరువాత దశలో ఆ పదాన్ని తన తండ్రికి మాత్రమే ఉపయోగించడం. ఇందులో ఉన్న వికాసనియమం.", "opts": [{"en": "Development proceeds in an interrelated manner.", "te": "వికాసం పరస్పర సంబంధంగా సాగును."}, {"en": "Development can be predicted.", "te": "వికాసాన్ని ప్రాగుక్తీకరించవచ్చు."}, {"en": "Development is a continuous process.", "te": "వికాసం ఒక నిర్విరామ చర్య."}, {"en": "Development proceeds from general to specific.", "te": "వికాసం సాధారణ దిశ నుండి నిర్దిష్ట దిశగా సాగును."}], "correct": [3]}, {"subject": "CDP", "en": "According to Elizabeth Hurlock, one of the following is not correct.", "te": "ఎలిజబెత్ హార్లక్ (ప్రకారం కింది వానిలో సరికానిది", "opts": [{"en": "Late childhood – 6 to 10/ 12 years of age", "te": "ఉత్తర బాల్యదశ – 6 సం. నుండి 10 లేదా 12 సం. వరకు"}, {"en": "Adulthood – 13 or 14 to 18 years age", "te": "యౌవనారంభదశ – 13 లేదా 14 సం. నుండి 18 సం. వరకు"}, {"en": "Puberty – From 10 - 12 years to 13-14 years", "te": "యుక్తవయస్సు – 10-12 సం.ల నుండి 13-14 సం.ల వరకు"}, {"en": "Early childhood – 2 years to 6 years of age", "te": "పూర్వ బాల్యదశ – 2 సం. నుండి 6 సం. వరకు"}], "correct": [1]}, {"subject": "CDP", "en": "According to Erickson's Psycho Social Development Theory, the characteristic of the development stage between 12 and 20 years of age", "te": "ఎరిక్సన్ మనోసాంఘిక వికాససిద్ధాంతం ప్రకారం 12-20 సం. వయస్సు దశ లక్షణం.", "opts": [{"en": "Initiative vs. Guilt", "te": "చొరవచూపడం vs తప్పుచేశానన్న భావన"}, {"en": "Intimacy vs. Isolation", "te": "సన్నిహితం vs ఏకాంతం"}, {"en": "Industry vs. Inferiority", "te": "శ్రమించడం vs న్యూనతాభావం"}, {"en": "Role Identity vs. Role confusion", "te": "పాత్ర గుర్తింపు vs పాత్ర సందిగ్ధం"}], "correct": [3]}, {"subject": "CDP", "en": "One of the following does not belong to early childhood.", "te": "కింది వానిలో పూర్వ బాల్యదశకు చెందనిది.", "opts": [{"en": "Preschool age", "te": "పూర్వపాఠశాల వయస్సు"}, {"en": "Gang age", "te": "ముఠా వయస్సు"}, {"en": "Exploration stage", "te": "అన్వేషణ దశ"}, {"en": "Accident Prone age", "te": "ప్రమాద వయస్సు"}], "correct": [0, 1]}, {"subject": "CDP", "en": "This leadership is called participative leadership.", "te": "ఈ నాయకత్వం సహభాగ నాయకత్వంగా పిలువబడుతుంది.", "opts": [{"en": "Democratic leadership", "te": "ప్రజాస్వామ్య నాయకత్వం"}, {"en": "Laissez faire leadership", "te": "జోక్యరహిత నాయకత్వం"}, {"en": "Autocratic leadership", "te": "నిరంకుశ నాయకత్వం"}, {"en": "Directive leadership", "te": "నిర్దేశిత నాయకత్వం"}], "correct": [0]}, {"subject": "CDP", "en": "A student who is afraid of failing in examinations satisfies himself by frequently criticizing that his classmates are also scared of the exams. The defense mechanism here is", "te": "పరీక్షలలో ఫెయిల్ అవుతానేి భయం పున్న విద్యార్థి, తన తోటి విద్యార్థులు పరీక్షలంటే భయపడుతున్నారని తరచూ విమర్శిస్తూ తృప్తి చెందడం, ఈ రక్షక తంత్రం", "opts": [{"en": "Projection", "te": "ప్రక్షేపణం"}, {"en": "Withdrawal", "te": "ఉపసంహరణ"}, {"en": "Sublimation", "te": "ఉదాత్తీకరణ"}, {"en": "Compensation", "te": "పరిహారం"}], "correct": [0]}, {"subject": "CDP", "en": "To explain Emotional Intelligence, John Mayer and Peter Salovey used this model.", "te": "జాన్‌మేయర్ మరియు పీటర్ సలోవే ఉద్వేగ ప్రజ్ఞను వివరించేందుకు ఈ నమూనాను ఉపయోగించారు.", "opts": [{"en": "Mixed model", "te": "మిశ్రమ నమూనా"}, {"en": "Trait model", "te": "లక్షణ నమూనా"}, {"en": "Intelligence model", "te": "ప్రజ్ఞా నమూనా"}, {"en": "Ability model", "te": "సామర్థ్య నమూనా"}], "correct": [3]}, {"subject": "CDP", "en": "This characteristic is considered as 'Lack of social maturity'", "te": "'సాంఘిక పరిపక్వత లోపం'గా పరిగణించబడే లక్షణం", "opts": [{"en": "Having emotional stability", "te": "భావోద్వేగ స్థిరత్వం కలిగి ఉండడం"}, {"en": "Unhealthy self-concept", "te": "ఆరోగ్యకరంకాని స్వీయభావన"}, {"en": "Participation in social responsibilities", "te": "సామాజిక బాధ్యతలలో పాలుపంచుకోవడం"}, {"en": "Being free from caste, religion / regional prejudices", "te": "కుల, మత, ప్రాంత వర్ణ వైషమ్యాలకు అతీతంగా ఉండడం"}], "correct": [1]}, {"subject": "CDP", "en": "\"I am in this state today because I thought yesterday how to be tomorrow\" is an example for", "te": "\"ఈనాడు నేను ఈ స్థాయిలో ఉండటానికి కారణం రేపు ఏ స్థాయిలో ఉండాలో నేను నిన్నే ఆలోచించుకొని ఉండడమే.\" - అన్నది దీనికి ఉదాహరణ", "opts": [{"en": "Self- actualization", "te": "ఆత్మ ప్రస్తావన"}, {"en": "Self - esteem", "te": "ఆత్మ గౌరవం"}, {"en": "Motivation", "te": "ప్రేరణ"}, {"en": "Achievement Motivation", "te": "సాధన ప్రేరణ"}], "correct": [3]}, {"subject": "CDP", "en": "Internal solution to a problem through cognitive / mental symbols, concepts and imaginary forms is", "te": "స్పృహ చిహ్నాలు, భావనలు, ఊహా రూపాల ద్వారా జరిగే అంతర్గత సమస్యా పరిష్కారమే", "opts": [{"en": "Thinking", "te": "ఆలోచన"}, {"en": "Creativity", "te": "సృజనాత్మకత"}, {"en": "Attitude", "te": "వైఖరి"}, {"en": "Intelligence", "te": "ప్రజ్ఞ"}], "correct": [0]}, {"subject": "CDP", "en": "Identify the mismatched pair related to the Psychologists and their books.", "te": "మనోవిజ్ఞాన శాస్త్రవేత్తలు మరియు వారి రచించిన గ్రంథాల జతలలో సరికానిది గుర్తించండి.", "opts": [{"en": "Vygotsky – Frames of Mind: The Theory of Multiple Intelligence", "te": "వైగాట్స్కీ – (ఫ్రేమ్స్ ఆఫ్ మైండ్ : ది థియరీ ఆఫ్ మల్టిపుల్ ఇంటెలిజెన్స్)"}, {"en": "Spearman – Abilities of Man", "te": "స్పియర్‌మెన్ – ఎబిలిటీస్ ఆఫ్ మ్యాన్"}, {"en": "E.L. Thorndike – Measurement of Intelligence", "te": "ఇ.ఎల్.థార్న్‌డైక్ – మెజర్‌మెంట్ ఆఫ్ ఇంటెలిజెన్స్"}, {"en": "L. Thurston – Primary Mental Abilities.", "te": "ఎల్.థర్స్టన్ – (ప్రైమరీ మెంటల్ ఎబిలిటీస్)"}], "correct": [0]}, {"subject": "CDP", "en": "'Emotions arise from instincts', according to", "te": "వీరి ప్రకారం, 'ఉద్వేగాలు సహజాతాల (instincts) నుండి ఉద్భవిస్తాయి'.", "opts": [{"en": "L.D. Crow and A Crow", "te": "L.D. క్రో మరియు A క్రో"}, {"en": "Mc. Dougall", "te": "మెక్‌డుగల్"}, {"en": "Gardner", "te": "గార్డనర్"}, {"en": "Elizabeth B. Hurlock", "te": "ఎలిజబెత్. బి. హార్లక్"}], "correct": [1]}, {"subject": "CDP", "en": "Headache and Paralysis that are not related to physical factors are the symptoms of", "te": "శారీరక సంబంధం కాని శిరోభారం, పక్షవాతం", "opts": [{"en": "Depression", "te": "నిరుత్సాహం"}, {"en": "Psychasthenia", "te": "సైకోస్తీనియా"}, {"en": "Hysteria", "te": "హిస్టీరియా"}, {"en": "Schizophrenia", "te": "స్కిజోఫ్రీనియా"}], "correct": [2]}, {"subject": "CDP", "en": "This is NOT the sub test in Paul Torrense Test of Creative Thinking Test.", "te": "పాల్ టోరెన్స్ సృజనాత్మక ఆలోచన (Test of creative thinking) పరీక్షలో ఉన పరీక్ష కానిది", "opts": [{"en": "Figure / Picture Completion Test", "te": "బొమ్మ / చిత్రపూరణ పరీక్ష"}, {"en": "Product Improvement Test", "te": "ఉత్పత్తి మెరుగుదల పరీక్ష"}, {"en": "Picture / Figural Construction Test", "te": "బొమ్మ / ఆకృతి నిర్మాణ పరీక్ష"}, {"en": "Parallel Lines Test", "te": "సమాంతర రేఖల పరీక్ష"}], "correct": [1]}, {"subject": "CDP", "en": "A key characteristic of Piaget's Pre-operational stage.", "te": "పియాజే మౌక్క పూర్వ ప్రచాలక దశ యందు ఉండు ప్రధాన లక్షణం", "opts": [{"en": "Logical reasoning", "te": "తార్కిక వివేచన"}, {"en": "Ego centrism", "te": "అహం కేంద్రవాదం"}, {"en": "Concept of Conservation", "te": "పదిలపరచుకునే భావన"}, {"en": "Abstract thinking", "te": "అమూర్త ఆలోచన"}], "correct": [1]}, {"subject": "CDP", "en": "Incorrect statement/s related to 'Learning' as per Crow and Crow.\na) Motivation shown to overcome obstacles\nb) Adjustment shown to overcome obstacles\nc) Behavioural change to rise interest for the attainment of goals.", "te": "క్రో & క్రో ప్రకారం, అభ్యసనకు సంబంధించి సరికాని వాక్యము/లు\na) అవరోధాలను అధిగమించే క్రమంలో చూపే ప్రేరణ\nb) అవరోధాలను అధిగమించే క్రమంలో చూపే సర్దుబాటు\nc) లక్ష్యసాధన కొరకు అభిరుచిని పెంచే ప్రవర్తనా మార్పు", "opts": [{"en": "a", "te": "a"}, {"en": "b", "te": "b"}, {"en": "a, c", "te": "a, c"}, {"en": "b, c", "te": "b, c"}], "correct": [0]}, {"subject": "CDP", "en": "Action Research spiral was designed by", "te": "చర్యాత్మక పరిశోధనా సర్పిలంను రూపొందించినవారు.", "opts": [{"en": "Stephen M. Corey", "te": "స్టీఫెన్ కోరె"}, {"en": "Stiffen Kemmis", "te": "స్టిఫెన్ కెమ్మిస్"}, {"en": "M.B. Buch", "te": "M.B. బుచ్"}, {"en": "International Dictionary of Education", "te": "ఇంటర్నేషనల్ డిక్షనరీ ఆఫ్ ఎడ్యుకేషన్"}], "correct": [1]}, {"subject": "CDP", "en": "As per NEP 2020, the National Testing Agency (NTA) conduct a high quality common aptitude test and specialized common subject exams for university entrance at least these many times a year.", "te": "NEP 2020 ప్రకారం, విశ్వ విద్యాలయాలలో ప్రవేశం కొరకు నేషనల్ టెస్టింగ్ ఏజెన్సీ, సంవత్సరంలో కనీసం ఇన్ని సార్లు అత్యంత న్యాయమైన కామన్ ఆప్టిట్యూడ్ టెస్ట్ మరియు సాధారణ సబ్జెక్టులలో ప్రత్యేకించబడిన పరీక్షను నిర్వహిస్తుంది.", "opts": [{"en": "4 times", "te": "4 సార్లు"}, {"en": "5 times", "te": "5 సార్లు"}, {"en": "3 times", "te": "3 సార్లు"}, {"en": "2 times", "te": "2 సార్లు"}], "correct": [3]}, {"subject": "CDP", "en": "'Andragogy' means", "te": "'ఆంద్రగాగీ' అనగా", "opts": [{"en": "A method of how children learn", "te": "పిల్లలు ఎలా నేర్చుకుంటారో తెలిపే పద్ధతి"}, {"en": "Adult learning Method", "te": "ప్రయోజన విద్యా పద్ధతి"}, {"en": "Study of values", "te": "విలువల అధ్యయన శాస్త్రం"}, {"en": "Special Education Programme", "te": "ప్రత్యేక విద్య కార్యక్రమం"}], "correct": [1]}, {"subject": "CDP", "en": "Formula of the Spearman Coefficient of co-relation is", "te": "స్పియర్‌మన్ కోటి సహసంబంధ గుణకం గణించే సూత్రం", "opts": [{"en": "1 - [6ΣD² / N(N²+1)]", "te": "1 - [6ΣD² / N(N²+1)]"}, {"en": "1 + [6ΣD² / N(N²-1)]", "te": "1 + [6ΣD² / N(N²-1)]"}, {"en": "1 - [6ΣD² / (N²-1)]", "te": "1 - [6ΣD² / (N²-1)]"}, {"en": "1 - [6ΣD² / N(N²-1)]", "te": "1 - [6ΣD² / N(N²-1)]"}], "correct": [3]}, {"subject": "CDP", "en": "Choose the correct answer regarding graphs.\na) X-axis of Histogram represents class intervals\nb) X-axis of frequency polygon contains mid points of class intervals.\nc) Frequency curve is symmetric.\nd) Cumulative frequency curve is in 's' shape.", "te": "రేఖాపటాలకు సంబంధించి సరైన సమాధానం గుర్తించండి.\na) సోపాన చిత్రంలో X-అక్షం మీద తరగతి అంతరాలను సూచిస్తుంది.\nb) పౌనఃపున్య బహుభుజిలో X-అక్షం మీద తరగతి అంతరాల మధ్య బిందువులు ఉంటాయి.\nc) పౌనఃపున్య వక్రేఖ సౌష్టవాకారంలో ఉంటుంది.\nd) సంచిత పౌనఃపున్య రేఖాపటం 's' ఆకారంలో ఉంటుంది.", "opts": [{"en": "a, b, c", "te": "a, b, c"}, {"en": "b, c, d", "te": "b, c, d"}, {"en": "a, b, c, d", "te": "a, b, c, d"}, {"en": "a, c, d", "te": "a, c, d"}], "correct": [2]}, {"subject": "CDP", "en": "Four revolutions in Education were identified by", "te": "విద్యలో నాలుగు విప్లవాలను గుర్తించినది.", "opts": [{"en": "Hillard Jasan", "te": "హిల్లార్డ్ జాసన్"}, {"en": "Mekenzie", "te": "మెకంజీ"}, {"en": "Eric Ebiby", "te": "ఎరిక్ ఎబ్బీ"}, {"en": "John Holt", "te": "జాన్ హాల్ట్"}], "correct": [2]}, {"subject": "CDP", "en": "Choose the incorrect sentence regarding Flander's Interaction Analysis.", "te": "ఫ్లాండర్స్ పరస్పర చర్య విశ్లేషణకి సంబంధించి సరికాని వాక్యాన్ని గుర్తించండి.", "opts": [{"en": "Not an evaluation method", "te": "మూల్యాంకన పద్ధతికాదు."}, {"en": "Observe and record for every 3 seconds", "te": "ప్రతి 3 సెకన్లకు ఒకసారి పరిశీలించి, నమోదు చేయాలి."}, {"en": "Matrix contains 10 rows and 10 columns", "te": "మాత్రికలో 10 అడ్డు, 10 నిలువు వరుసలుంటాయి."}, {"en": "Code represented for quiet or confused - 5", "te": "నిశ్శబ్దం, గందరగోళం సూచించే కోడ్ - 5"}], "correct": [3]}, {"subject": "CDP", "en": "With regard to e-mail, B.C.C. stands for", "te": "ఈ మెయిల్‌కు సంబంధించి B.C.C. అనగా", "opts": [{"en": "Beginning Class Copy", "te": "Beginning Class Copy"}, {"en": "Blind Carbon Copy", "te": "Blind Carbon Copy"}, {"en": "Boosting Capacity Cell", "te": "Boosting Capacity Cell"}, {"en": "Beginners Class in Computer Course", "te": "Beginners Class in Computer Course"}], "correct": [1]}, {"subject": "CDP", "en": "Choose the correct statement regarding 'Tactic Knowledge Acquisition'.", "te": "నిశ్శబ్ద జ్ఞాన సముపార్జనకు సంబంధించి సరైన వాక్యాన్ని గుర్తించండి.", "opts": [{"en": "It is easy to define.", "te": "దీనిని సులభంగా నిర్వచించవచ్చు."}, {"en": "It is common for all.", "te": "ఇది అందరిలోనూ ఒకే విధంగా ఉంటుంది."}, {"en": "Walking, running are best examples for this.", "te": "నడవడం, పరిగెత్తడం దీనికి సరైన ఉదాహరణలు."}, {"en": "It is acquired by personal experiences.", "te": "ఇది వ్యక్తిగత అనుభవం ద్వారా ఆర్జించునది."}], "correct": [3]}, {"subject": "CDP", "en": "The type of information seen when villagers plea the Mandal Revenue Officer for the establishment of a school in their village is", "te": "తమ గ్రామంలో పాఠశాలను నిర్వించమని గ్రామ ప్రజలు సంబంధిత మండల రెవిన్యూ అధికారిని విన్నపం చేసుకోవడం అనేది ఈ రకమైన సమాచార ప్రసారం.", "opts": [{"en": "Star communication", "te": "నక్షత్రభాన ప్రసారం"}, {"en": "Horizontal communication", "te": "సమాంతర సమాచార ప్రసారం"}, {"en": "Downward communication", "te": "అధోముఖ సమాచార ప్రసారం"}, {"en": "Upward communication", "te": "ఊర్ధ్వముఖ సమాచార ప్రసారం"}], "correct": [3]}, {"subject": "CDP", "en": "Identify the characteristics that are not related to Mathatics Programmed Learning.\na) It is formulated based on the theory of reinforcement.\nb) There is a limitation on the scope of conceptual framework.\nc) Learning concepts are formed in chain model systematically.\nd) Retroactive chain method is not applied in it.", "te": "మాథెటిక్స్ కార్యక్రమయుత అభ్యసన లక్షణం కానిది గుర్తించండి.\na) పునర్బలన సిద్ధాంతం ఆధారంగా దీనిని రూపొందిస్తారు.\nb) పాఠ్యాంశ చట్ర పరిమాణంపై పరిమితి ఉంటుంది.\nc) అభ్యసన అంశాలను క్రమబద్ధీకరించిన శృంఖలం మాదిరిగా విద్యార్థులు చేస్తారు.\nd) ఇందులో తిరోగామి గొలుసు పద్ధతిని వినియోగించరు.", "opts": [{"en": "a, c", "te": "a, c"}, {"en": "b, d", "te": "b, d"}, {"en": "c, d", "te": "c, d"}, {"en": "a, d", "te": "a, d"}], "correct": [1]}, {"subject": "CDP", "en": "This is not related to Linear Programmed Learning.\na) It is tailored to the learning ability of students.\nb) Learners received negative reinforcement.\nc) It is very easy to teach complex subjects in this way.\nd) This is also called as the Skinner method.", "te": "రేఖీయ కార్యక్రమయుత అభ్యసనానికి సంబంధించి సరికానిది.\na) ఇది విద్యార్థుల అభ్యసన సామర్థ్యానికి అనుగుణంగా ఉంటుంది.\nb) అభ్యాసకులు రుణాత్మక పునర్బలనం పొందుతారు.\nc) క్లిష్టమైన పాఠ్యాంశాలను ఈ పద్ధతిలో బోధించడం చాలా సులభం.\nd) దీనిని స్కిన్నర్ పద్ధతి అని కూడా అంటారు.", "opts": [{"en": "a, c", "te": "a, c"}, {"en": "b, c", "te": "b, c"}, {"en": "b, d", "te": "b, d"}, {"en": "a, b, c", "te": "a, b, c"}], "correct": [1]}, {"subject": "CDP", "en": "Identify Virtual Class room Tools from the following.\na) Peer Deck\nb) Padlet\nc) TED Tax\nd) Thinglink", "te": "కింది వాటిలో మిథ్యా తరగతి గది సాధనాలను గుర్తించండి.\na) పియర్‌డెక్\nb) ప్యాడ్లెట్\nc) టెడ్‌ట్యాక్స్\nd) థింగ్‌లింక్", "opts": [{"en": "a, b", "te": "a, b"}, {"en": "b, d", "te": "b, d"}, {"en": "a, b, c", "te": "a, b, c"}, {"en": "a, b, c, d", "te": "a, b, c, d"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "ఒక ప్రత్యేక అభినివేశంతో కవిత్వం రాస్తున్న కవి శేషేంద్ర. కవిత్వంలో వస్తువుతోపాటు రీతి కూడా మారాలని, కవిత్వం రాజకీయ నినాదాల్లో బందీకారాదని శేషేంద్ర అభిప్రాయపడ్డాడు. ఈయన కవిత్వంలో సౌందర్యానికి ప్రత్యేక ప్రాధాన్యమిచ్చాడు. 'కవిసేన'కు స్థాపన నాయకులై అకవిత్వానికి వ్యతిరేకంగా ధ్వజమెత్తాడు.\n\nపై గద్యం ఆధారంగా అసత్యం.", "opts": [{"en": "", "te": "కవిత్వం రాజకీయ నినాదాల్లో బందీకారాదు."}, {"en": "", "te": "శేషేంద్ర సుకవిత్వానికి వ్యతిరేకంగా ధ్వజమెత్తాడు."}, {"en": "", "te": "కవిత్వంలో వస్తువుతో పాటు రీతి కూడా మారాలని శేషేంద్ర అభిప్రాయపడ్డాడు."}, {"en": "", "te": "శేషేంద్ర కవిత్వంలో సౌందర్యానికి ప్రత్యేక ప్రాధాన్యత నిచ్చాడు."}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "పురుష ప్రపంచంలో స్త్రీ బానిస బతుకును చిత్రిస్తూ స్త్రీ తన వ్యక్తిత్వం కొరకు పోరాడాలని ప్రబోధించే రచయిత్రి రంగనాయకమ్మ. వీరి పేకమేడలు, స్వీట్‌హోమ్, జానకి విముక్తి మొదలైన రచనలు ప్రసిద్ధి కెక్కాయి. సామాజిక సమస్యలను వస్తువుగా తీసుకొని వాసిరెడ్డి సీతాదేవి రచించిన 'మట్టిమనిషి', 'అడవి మల్లి', ఇల్లిందల సరస్వతీ దేవి 'భవతీ భిక్షాందేహి', దరిజేరిన ప్రాణాలు - నిర్దిష్ట ప్రయోజనంతో రాసిన నవలలు.\n\nపై గద్యం ఆధారంగా సీతాదేవికి చెందిన రచనలు", "opts": [{"en": "", "te": "దరిజేరిన ప్రాణాలు, భవతీ భిక్షాందేహి"}, {"en": "", "te": "పేకమేడలు, మట్టి మనిషి"}, {"en": "", "te": "భవతీ భిక్షాందేహి, స్వీట్‌హోమ్"}, {"en": "", "te": "అడవి మల్లి, మట్టి మనిషి"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "తిరుగకు దుర్మార్గులతో\nనరుగకు గహనాంతర స్థలాదుల కొంటన్\nజరుగకు శత్రుల మేల\nన్‌రువకు మేల్ హితుల యెడల కుమారా!\n\nపై పద్యం ఆధారంగా ఒంటరిగా వెళ్ళకూడని ప్రదేశం", "opts": [{"en": "", "te": "శత్రువుల రాజ్యం"}, {"en": "", "te": "అప్పులు ఎవరూ లేని పురానికి"}, {"en": "", "te": "భయంకరమైన కొండ గుహలలోకి"}, {"en": "", "te": "దట్టమైన అరణ్యములలోకి"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "దివిజేంద్ర సుతుని జంపియు\nరవిసుతు రక్షించినావు రఘురాముడవై\nదివిజేంద్ర సుతుని గాచియు\nరవి సుతు బరి మార్చితౌర రణమున కృష్ణా!\n\nపై పద్యంలో చెప్పిన దివిజేంద్ర సుతులు", "opts": [{"en": "", "te": "కర్ణుడు, వాలి"}, {"en": "", "te": "వాలి, అర్జునుడు"}, {"en": "", "te": "సుగ్రీవుడు, కర్ణుడు"}, {"en": "", "te": "సుగ్రీవుడు, అర్జునుడు"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "\"పిల్లల పేల్ల మీద నెలనెలా తినితినకా వొందొంద రూపాయలు చాన్నాల్లుగా కడతావుంటి\". బతుకు గంప పాఠంలో ఈ మాటలు అన్నది.", "opts": [{"en": "", "te": "రచయిత్రి"}, {"en": "", "te": "మల్లమ్మ"}, {"en": "", "te": "ఎల్లమ్మ"}, {"en": "", "te": "లలిత"}], "correct": [2]}, {"subject": "TEL", "en": "", "te": "జీవితంలో ఆత్మవిశ్వాసంతో ముందడుగు వేయాలని గొప్ప ప్రయత్నాల చేత ఒడిదుడుకులను అధిగమిస్తూ మనల్ని మనం తీర్చిదిద్దుకోవాలని తెలియజేయడం ఉద్దేశంగా గల పాఠం.", "opts": [{"en": "", "te": "మాతృభూమి"}, {"en": "", "te": "శతక సారథం"}, {"en": "", "te": "మేలిమలుపు"}, {"en": "", "te": "సందేశం"}], "correct": [2]}, {"subject": "TEL", "en": "", "te": "ఉపోద్ఘాతం, విషయవిస్తరణ, ముగింపు వంటి ప్రధానాంగాలు గల ప్రక్రియ", "opts": [{"en": "", "te": "కథానిక"}, {"en": "", "te": "నాటిక"}, {"en": "", "te": "నవల"}, {"en": "", "te": "వ్యాసం"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "రావూరి భరద్వాజ రచించిన 'జలప్రళయం'", "opts": [{"en": "", "te": "నాటకం"}, {"en": "", "te": "నవల"}, {"en": "", "te": "కథానిక"}, {"en": "", "te": "వ్యాసం"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "'ప్రియమైన నాన్నకు' పాఠం", "opts": [{"en": "", "te": "పి. సత్యవతి గారి 'రాగ భూపాలం' లోనిది."}, {"en": "", "te": "పింగళి బాలదేవి గారి తెలుగు కథా పారిజాతాలు లోనిది."}, {"en": "", "te": "పి. సత్యవతిగారి మెలకువ లోనిది."}, {"en": "", "te": "పింగళి బాలదేవి గారి \"నాన్నకు రాయని ఉత్తరం' లోనిది."}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "'గడ్డపార'ను కళింగ ప్రాంతంలో ఇలా పిలుస్తారు.", "opts": [{"en": "", "te": "గడ్డ పలుగు"}, {"en": "", "te": "గుడారు"}, {"en": "", "te": "గునపం"}, {"en": "", "te": "గడారు"}], "correct": [2]}, {"subject": "TEL", "en": "", "te": "కింది వానిలో 'తద్భవం'.", "opts": [{"en": "", "te": "సంద్రం"}, {"en": "", "te": "గృహం"}, {"en": "", "te": "ఉత్తరీయం"}, {"en": "", "te": "దీపం"}], "correct": [0]}, {"subject": "TEL", "en": "", "te": "'సుంత' - అర్థం", "opts": [{"en": "", "te": "సున్నితం"}, {"en": "", "te": "అధికం"}, {"en": "", "te": "కొంచెం"}, {"en": "", "te": "కఠినం"}], "correct": [2]}, {"subject": "TEL", "en": "", "te": "'వాహిని' - నానార్థాలు", "opts": [{"en": "", "te": "నది, ప్రవంతి"}, {"en": "", "te": "నది, సైన్యం"}, {"en": "", "te": "నది, నిర్ధరి"}, {"en": "", "te": "ఝురీ, ప్రవంతి"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "'అగస్త్యభ్రాత' అనే జాతీయం ఈ సందర్భంలో వాడతారు.", "opts": [{"en": "", "te": "అగస్త్యుని గురించి చెప్పే సందర్భంలో"}, {"en": "", "te": "పురాణాల ప్రస్తావన సందర్భంలో"}, {"en": "", "te": "యుద్ధంలో వీరుల గురించి తెలిపే సందర్భంలో"}, {"en": "", "te": "పేరు తెలియని వారిని గురించి తెలిపే సందర్భంలో"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "రొట్లో తలదూర్చి రోకటి పోటుకు వెరచినట్లు - అనేది", "opts": [{"en": "", "te": "సామెత"}, {"en": "", "te": "శబ్దపల్లవం"}, {"en": "", "te": "జాతీయం"}, {"en": "", "te": "పొడుపు కథ"}], "correct": [0]}, {"subject": "TEL", "en": "", "te": "నాలుగు పాదాల్లో కలిపి 8 సగణాలు 8 తగణాలు గలిగిన వృత్త పద్యం", "opts": [{"en": "", "te": "మత్తేభం"}, {"en": "", "te": "చంపకమాల"}, {"en": "", "te": "ఉత్పలమాల"}, {"en": "", "te": "శార్దూలం"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "సమాసంలోని రెండు పదాలు విశేషణాలు అయితే అది", "opts": [{"en": "", "te": "ఉపమాన పూర్వపద కర్మధారయ సమాసం"}, {"en": "", "te": "విశేషణ ఉత్తరపద కర్మధారయ సమాసం"}, {"en": "", "te": "ఉపమాన ఉభయపద కర్మధారయ సమాసం"}, {"en": "", "te": "విశేషణ ఉభయపద కర్మధారయ సమాసం"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "\"ఇంక దైవంబకాని యెొందు శరణంబులేదు.\" ఈ వాక్యానికి ఆధునిక వచనం.", "opts": [{"en": "", "te": "ఇక దైవమే నాకు శరణం కాదు."}, {"en": "", "te": "దైవంబు కానిదే శరణంబు నాకు."}, {"en": "", "te": "ఇంకా దైవ శరణమే నాకు దిక్కు."}, {"en": "", "te": "ఇక దైవం తప్ప వేరే శరణం లేదు."}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "వడ్డాది పాపయ్యగారి 'బొమ్మలకే ప్రాణం వస్తే' శీర్షిక ఈ పత్రికలో వెలువడేది.", "opts": [{"en": "", "te": "చందమామ"}, {"en": "", "te": "బాలమిత్ర"}, {"en": "", "te": "యువ"}, {"en": "", "te": "స్వాతి"}], "correct": [2]}, {"subject": "TEL", "en": "", "te": "కింది వాటిని జతపరచండి.\n(అ) సభాసదులు      (య) వృద్ధిసంధి\n(ఆ) పరమేశ్వరుడు     (ర) ద్విరుక్తటకారసంధి\n(ఇ) కట్టకడ         (ల) సవర్ణదీర్ఘ సంధి\n(ఈ) రసౌచిత్యం      (వ) గుణసంధి", "opts": [{"en": "", "te": "అ-ల, ఆ-య, ఇ-ర, ఈ-వ"}, {"en": "", "te": "అ-య, ఆ-ల, ఇ-వ, ఈ-ర"}, {"en": "", "te": "అ-య, ఆ-ర, ఇ-ల, ఈ-వ"}, {"en": "", "te": "అ-ల, ఆ-వ, ఇ-ర, ఈ-య"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "సంధి పదాలను సంబంధిత పదాలతో జతపరచండి.\n(అ) ఒకానొక          (య) నిత్యం\n(ఆ) రామయ్య          (ర) నిషేధం\n(ఇ) మేనల్లుడు, మేనయల్లుడు (ల) అన్యవిధం\n(ఈ) దూతయితడు        (వ) వైకల్పికం", "opts": [{"en": "", "te": "అ-యు, ఆ-ల, ఇ-ర, ఈ-వ"}, {"en": "", "te": "అ-ల, ఆ-యు, ఇ-వ, ఈ-ర"}, {"en": "", "te": "అ-ర, ఆ-వ, ఇ-ల, ఈ-యు"}, {"en": "", "te": "అ-ల, ఆ-వ, ఇ-ర, ఈ-యు"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "కర్మణి వాక్యాల్లో కర్తకు, కర్మకు వచ్చే విభక్తులు", "opts": [{"en": "", "te": "ద్వితీయా; ప్రథమా"}, {"en": "", "te": "ప్రథమా; తృతీయా"}, {"en": "", "te": "చతుర్థీ; ద్వితీయా"}, {"en": "", "te": "తృతీయా; ప్రథమా"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "\"కడవంత గుమ్మడికాయ కత్తిపీటకు లోకువన్నట్లు\" దీనికి సంబంధించిన న్యాయం", "opts": [{"en": "", "te": "పంక ప్రక్షాళన న్యాయం"}, {"en": "", "te": "ఘటిక కూష్మాండ న్యాయం"}, {"en": "", "te": "కరకపిత్త న్యాయం"}, {"en": "", "te": "దగ్ధపద మార్జాల న్యాయం"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "తొలి తెలుగు పురాణం", "opts": [{"en": "", "te": "మార్కండేయ పురాణం"}, {"en": "", "te": "మత్స్య పురాణం"}, {"en": "", "te": "వరాహ పురాణం"}, {"en": "", "te": "గరుడ పురాణం"}], "correct": [0]}, {"subject": "TEL", "en": "", "te": "'హరివిల్లు' పాఠంలోని కింది పద్యాలను సంబంధిత కవులతో జతపరచండి.\n(అ) తారా సస్యము పండినస్....   (య) వీపూరి వేంకటాచార్యుడు\n(ఆ) శమనుని దుంతం బట్టుకొనె.... (ర) మొల్ల\n(ఇ) అల్లన కాలవర్తకుడు.......  (ల) రామరాజ భూషణుడు\n(ఈ) నారదులైరి సన్మనులు.....   (వ) కూచిమంచి తిమ్మకవి", "opts": [{"en": "", "te": "అ-య, ఆ-ల, ఇ-వ, ఈ-ర"}, {"en": "", "te": "అ-ల, ఆ-వ, ఇ-య, ఈ-ర"}, {"en": "", "te": "అ-ర, ఆ-య, ఇ-ల, ఈ-వ"}, {"en": "", "te": "అ-వ, ఆ-ర, ఇ-య, ఈ-ల"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "'నవ్యాంధ్రం నా జీవిత కథ' రచయిత", "opts": [{"en": "", "te": "న్యాపతి సుబ్బారావు"}, {"en": "", "te": "కాశీనాథుని నాగేశ్వరరావు"}, {"en": "", "te": "కొండ వెంకటప్పయ్య"}, {"en": "", "te": "అయ్యదేవర కాళేశ్వరరావు"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "కింది వాటిలో సరైనవి.\nఅ. సింహిక - నాగమాత\nఆ. సురస - రాక్షసి\nఇ. సంపాతి - జటాయువు అన్న\nఈ. స్వయంప్రభ - యోగిని", "opts": [{"en": "", "te": "అ, ఆ"}, {"en": "", "te": "ఆ, ఇ"}, {"en": "", "te": "ఆ, ఈ"}, {"en": "", "te": "ఇ, ఈ"}], "correct": [3]}, {"subject": "TEL", "en": "", "te": "\"ఇప్పుడు తమాషాలు కాదమ్మా! రేపు పట్నం వెళ్ళి సైన్యంలో చేరుతాను\". ఈ వాక్యంలో క్త్వార్థకం.", "opts": [{"en": "", "te": "తమాషాలు"}, {"en": "", "te": "వెళ్ళి"}, {"en": "", "te": "చేరుతాను"}, {"en": "", "te": "కాదమ్మా!"}], "correct": [1]}, {"subject": "TEL", "en": "", "te": "'ఆమెకి ఇద్దరు పిల్లలు' వాక్యంలో 'కి'", "opts": [{"en": "", "te": "సంబంధార్థం"}, {"en": "", "te": "సంప్రదానార్థం"}, {"en": "", "te": "అపాదానార్థం"}, {"en": "", "te": "దేహ మనఃస్థితి బోధకం"}], "correct": [0]}, {"subject": "TEL", "en": "", "te": "తాను జీవితంలో ఎన్నో కష్టాలనెదుర్కొని ఈ స్థితికి చేరానని కలాం అన్నారు. ఈ వాక్యానికి ప్రత్యక్ష కథనం.", "opts": [{"en": "", "te": "\"జీవితంలో ఎన్నో కష్టాలను ఎదుర్కొని ఈ స్థితికి చేరతారు\" అన్నారు కలాం."}, {"en": "", "te": "'నేను జీవితంలో ఎన్నో కష్టాలు ఎదుర్కొని ఈ స్థితికి చేరాను\". అని అన్నారు కలాం."}, {"en": "", "te": "\"నా జీవితంలో ఎన్నో కష్టాలు నాచే ఎదుర్కొబడ్డాయి\". అన్నారు కలాం."}, {"en": "", "te": "'అతను జీవితంలో ఎన్నో కష్టాలు ఎదుర్కొని ఈ స్థితికి చేరాడు' అన్నారు కలాం."}], "correct": [1]}, {"subject": "ENG", "en": "The little girl's eyes <u>glinted</u> with rare happiness as she listened to the good news.<br>Choose the synonym of the underlined word.", "te": "", "opts": [{"en": "smeare", "te": ""}, {"en": "shone", "te": ""}, {"en": "concealed", "te": ""}, {"en": "moved", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "The fawn was <u>sleek</u> and had a sweet scent.<br>Pick out the antonym for the underlined word.", "te": "", "opts": [{"en": "daring", "te": ""}, {"en": "dull", "te": ""}, {"en": "wobbling", "te": ""}, {"en": "starting", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Naseema________yet.<br>Choose the option that fits the blank.", "te": "", "opts": [{"en": "did not turn up", "te": ""}, {"en": "is not turning up", "te": ""}, {"en": "has not turned up", "te": ""}, {"en": "was not turning up", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Which of the following has the meaning 'away'?", "te": "", "opts": [{"en": "convert", "te": ""}, {"en": "revert", "te": ""}, {"en": "avert", "te": ""}, {"en": "subvert", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Don't ask me for any help now. Now my <u>hands are full</u>.<br>What does the underlined part mean?", "te": "", "opts": [{"en": "The speaker is very busy at that time.", "te": ""}, {"en": "The speaker has something in his hands.", "te": ""}, {"en": "The speaker is already helping others.", "te": ""}, {"en": "The speaker won't help anyone anytime.", "te": ""}], "correct": [0]}, {"subject": "ENG", "en": "The new director wanted to <u>discard</u> the age-old practices in the office.<br>Replace the underlined word with a suitable phrasal verb.", "te": "", "opts": [{"en": "break down", "te": ""}, {"en": "break open", "te": ""}, {"en": "break up", "te": ""}, {"en": "break away", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "Which of the following is the correct order as per dictionary arrangement?", "te": "", "opts": [{"en": "applaud, appalling, appraise, approach", "te": ""}, {"en": "appalling, applaud, appraise, approach", "te": ""}, {"en": "appalling, applaud, approach, appraise", "te": ""}, {"en": "appalling, applaud, appraise, approach", "te": ""}], "correct": [1, 3]}, {"subject": "ENG", "en": "The boy / is my neighbour / with long hair<br>Identify the correctly punctuated sentence.", "te": "", "opts": [{"en": "The boy is my neighbour, with long hair.", "te": ""}, {"en": "The boy with, long hair, is my neighbour.", "te": ""}, {"en": "The boy, is my neighbour with long hair.", "te": ""}, {"en": "The boy, with long hair, is my neighbour.", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "On seeing the boss, he ran away.<br>Choose the complex sentence of the above sentence.", "te": "", "opts": [{"en": "He saw the boss and he ran away.", "te": ""}, {"en": "Having seen the boss, he ran away.", "te": ""}, {"en": "When he saw the boss, he ran away.", "te": ""}, {"en": "He saw the boss so he ran away.", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Choose the grammatically correct sentence from the following.", "te": "", "opts": [{"en": "He have two brother-in-laws.", "te": ""}, {"en": "He has two brothers - in-law.", "te": ""}, {"en": "He has two brother - inlaws.", "te": ""}, {"en": "he has two brothers - inlaws.", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "&ldquo;Let me take the spade and work in your place.&rdquo;<br>Identify the language function of the above sentence.", "te": "", "opts": [{"en": "request", "te": ""}, {"en": "order", "te": ""}, {"en": "offering help", "te": ""}, {"en": "seeking help", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Identify the correct spelling of the word.", "te": "", "opts": [{"en": "melifluous", "te": ""}, {"en": "mallifluous", "te": ""}, {"en": "meliflous", "te": ""}, {"en": "mellifluous", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "The boy said stubbornly, &ldquo;I like him and I'm going to try and be his friend.&rdquo;<br>Identify the correct reported speech of the above sentence.", "te": "", "opts": [{"en": "The boy said stubbornly why he liked him and he was going to try and be his friend.", "te": ""}, {"en": "The boy said stubbornly that he liked him and he was going to try and be his friend.", "te": ""}, {"en": "The boy says stubbornly that he likes him and he was going to try and be his friend.", "te": ""}, {"en": "The boy told to like him and he was going to try and be his friend.", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Choose the correct example of a noun clause as an object.", "te": "", "opts": [{"en": "I don't understand you.", "te": ""}, {"en": "What he said was true.", "te": ""}, {"en": "What did he say?", "te": ""}, {"en": "I understand what you want.", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "One of the following words describes a female rule over a small community.", "te": "", "opts": [{"en": "monarchy", "te": ""}, {"en": "matriarch", "te": ""}, {"en": "democracy", "te": ""}, {"en": "oligarchy", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Identify the sentence in which the verb agrees with the subject.", "te": "", "opts": [{"en": "Neither the servants nor the master shall found in the house.", "te": ""}, {"en": "Neither the servants nor the master were founded in the house.", "te": ""}, {"en": "Neither the servants nor the master was found in the house.", "te": ""}, {"en": "Neither the servant nor the master have found in the house.", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Ramu has seen the movie.<br>Choose the interrogative form of the above statement from the options given.", "te": "", "opts": [{"en": "Did Ramu saw the movie?", "te": ""}, {"en": "Ramu hasn't seen the movie, has he?", "te": ""}, {"en": "Has Ramu seen the movie?", "te": ""}, {"en": "Ramu has seen the movie, hasn't he?", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "He was obstinate; ______, he was punished.<br>Choose the linker that fits the blank.", "te": "", "opts": [{"en": "while", "te": ""}, {"en": "where as", "te": ""}, {"en": "therefore", "te": ""}, {"en": "still", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Identify the sentence with the correct use of articles or no article.", "te": "", "opts": [{"en": "Dinner is ready.", "te": ""}, {"en": "Copper is useful metal.", "te": ""}, {"en": "He was elected chairman of the Board.", "te": ""}, {"en": "I learnt the French at school.", "te": ""}], "correct": [0]}, {"subject": "ENG", "en": "______you please let me use your phone?<br>Choose the appropriate modal verb to make it a request.", "te": "", "opts": [{"en": "Should", "te": ""}, {"en": "Might", "te": ""}, {"en": "Could", "te": ""}, {"en": "Must", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Identify the pair that shows possessive pronouns.", "te": "", "opts": [{"en": "My and her", "te": ""}, {"en": "Yours and hers", "te": ""}, {"en": "Your's and hers", "te": ""}, {"en": "You and her", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Choose the word with odd sound. Pay attention only to the underlined letters (Sound).", "te": "", "opts": [{"en": "Fa<u>x</u>", "te": ""}, {"en": "Wa<u>x</u>", "te": ""}, {"en": "Rela<u>x</u>", "te": ""}, {"en": "<u>X</u>erox", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "Here is an entry from Raju's personal records: &ldquo;I woke up very late today and promptly got a scolding from mum. I can't help it - how can I miss the FIFA World Cup matches?&rdquo;<br>Choose a right word that describes it the best.", "te": "", "opts": [{"en": "a diary", "te": ""}, {"en": "a journal", "te": ""}, {"en": "a log", "te": ""}, {"en": "a memoir", "te": ""}], "correct": [0]}, {"subject": "ENG", "en": "A/an _______ is the history of the life of a person written by someone else.", "te": "", "opts": [{"en": "autobiography", "te": ""}, {"en": "biography", "te": ""}, {"en": "paragraph", "te": ""}, {"en": "autograph", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Which of the following options is in present perfect tense?", "te": "", "opts": [{"en": "I have known him for a longtime.", "te": ""}, {"en": "I have been knowing him for a long time.", "te": ""}, {"en": "I have knew him for a long time.", "te": ""}, {"en": "I had known him for a long time.", "te": ""}], "correct": [0]}, {"subject": "ENG", "en": "Where_______? Which hair dresser did you go to?<br>Choose the correct option to fill in the blank.", "te": "", "opts": [{"en": "do you cut your hair", "te": ""}, {"en": "have you cut your hair", "te": ""}, {"en": "did you have cut your hair", "te": ""}, {"en": "did you have your hair cut", "te": ""}], "correct": [3]}, {"subject": "ENG", "en": "A cloud of_________.<br>Choose the correct word to complete the phrase.", "te": "", "opts": [{"en": "wind", "te": ""}, {"en": "cotton", "te": ""}, {"en": "dust", "te": ""}, {"en": "gold", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "We travelled_____6.45 train, which arrived at 8.30.<br>Choose the correct preposition.", "te": "", "opts": [{"en": "over the", "te": ""}, {"en": "on the", "te": ""}, {"en": "for the", "te": ""}, {"en": "with the", "te": ""}], "correct": [1]}, {"subject": "ENG", "en": "Read the following: Honeybees are very sophisticated at position, location, and navigation. It is known that they use the sun as a guide. They also appear to have a good memory. They convey the information of a new find of food to the hive through an amazingly clever dance language. The dance indicates the direction and distance of the food source with respect to the direction of the sun in the sky!<br><br>The amazingly clever dance of honey bees indicates____.", "te": "", "opts": [{"en": "their good memory", "te": ""}, {"en": "direction of the sun", "te": ""}, {"en": "direction and distance of the food source", "te": ""}, {"en": "direction and distance of the hive", "te": ""}], "correct": [2]}, {"subject": "ENG", "en": "Read the following: Stamp collecting is limitless and endless. Countries are always issuing stamps to celebrate important events. It is fascinating to receive letters from distant countries and to discover stamps in old books. Stamps show us geographical and historical pictures, famous people and incidents. These small things contain vast knowledge.<br><br>The expression &ldquo;these small things&rdquo; refers to________.", "te": "", "opts": [{"en": "distant countries", "te": ""}, {"en": "old books", "te": ""}, {"en": "historical pictures", "te": ""}, {"en": "stamps", "te": ""}], "correct": [3]}, {"subject": "MATH", "en": "Certain amount becomes twice through compound interest in 4 years. In how many years the amount will be 8 times with the same rate of compound interest.", "te": "కొంత సొమ్ము 4 సం॥లలో చక్రవడ్డీ ప్రకారం రెట్టింపైతే, అదే సొమ్ము 8 రెట్లు అగుటకు అదే రేటుతో ఎన్ని సంవత్సరాల కాలం పడుతుంది.", "opts": [{"en": "8", "te": "8"}, {"en": "6", "te": "6"}, {"en": "14", "te": "14"}, {"en": "12", "te": "12"}], "correct": [3]}, {"subject": "MATH", "en": "A water Melon is in a spherical shape. Its diameter is 28 cms and if layer of thickness 1 cm is peeled out, then the volume of the pulp in the water melon is (in cm³)", "te": "ఒక పుచ్చకాయ గోళాకారంలో ఉన్నది. దాని వ్యాసం 28 సెం.మీ. మరియు 1 సెం.మీ. మందము గల దాని పై పొరను తొలగించగా దానిలో ఉండే పదార్థము ఘనపరిమాణం (ఘ.సెం.మీలలో)", "opts": [{"en": "2128⁄3 π", "te": "2128⁄3 π"}, {"en": "988⁄3 π", "te": "988⁄3 π"}, {"en": "8788⁄3 π", "te": "8788⁄3 π"}, {"en": "1094⁄3 π", "te": "1094⁄3 π"}], "correct": [2]}, {"subject": "MATH", "en": "If x = 2 + √3 then the value of x² + 1/x² =", "te": "x = 2 + √3 అయితే x² + 1/x² విలువ =", "opts": [{"en": "4", "te": "4"}, {"en": "8", "te": "8"}, {"en": "10", "te": "10"}, {"en": "14", "te": "14"}], "correct": [3]}, {"subject": "MATH", "en": "(1296)^0.2 × (1296)^0.02 × (1296)^0.03 =", "te": "(1296)^0.2 × (1296)^0.02 × (1296)^0.03 =", "opts": [{"en": "(1/2 − 1/3)⁻¹", "te": "(1/2 − 1/3)⁻¹"}, {"en": "2³", "te": "2³"}, {"en": "3²", "te": "3²"}, {"en": "36", "te": "36"}], "correct": [0]}, {"subject": "MATH", "en": "Which of the following is not a perfect square?", "te": "ఈ క్రింది వానిలో పరిపూర్ణ వర్గము కానిది ఏది?", "opts": [{"en": "5776", "te": "5776"}, {"en": "2209", "te": "2209"}, {"en": "4456", "te": "4456"}, {"en": "7744", "te": "7744"}], "correct": [2]}, {"subject": "MATH", "en": "Which of the following can not be the probability of an event?", "te": "క్రింది వానిలో ఏది ఒక ఘటన యొక్క సంభావ్యతను సూచించదు?", "opts": [{"en": "2/3", "te": "2/3"}, {"en": "−1.5", "te": "−1.5"}, {"en": "15%", "te": "15%"}, {"en": "0.7", "te": "0.7"}], "correct": [1]}, {"subject": "MATH", "en": "The average value of the median of 2, 8, 3, 7, 4, 6, 7 and mode of 2, 9, 3, 4, 9, 6, 9 is", "te": "2, 8, 3, 7, 4, 6, 7 అంశముల మధ్యగతము మరియు 2, 9, 3, 4, 9, 6, 9 అంశముల బాహుళకముల సగటు", "opts": [{"en": "9", "te": "9"}, {"en": "8", "te": "8"}, {"en": "7.5", "te": "7.5"}, {"en": "6", "te": "6"}], "correct": [2]}, {"subject": "MATH", "en": "The ratio in which the line segment joining (3, 4) and (−1, 2) is divided by y-axis is ______", "te": "(3, 4) మరియు (−1, 2) లను కలుపు రేఖాఖండాన్ని y-అక్షం విభజించు నిష్పత్తి ______", "opts": [{"en": "1 : 2", "te": "1 : 2"}, {"en": "1 : 3", "te": "1 : 3"}, {"en": "3 : 2", "te": "3 : 2"}, {"en": "3 : 1", "te": "3 : 1"}], "correct": [3]}, {"subject": "MATH", "en": "The equation of the line passing through (1, 2) and having slope 3 is", "te": "(1, 2) బిందువు గుండా పోతూ 3 వాలుగా గల సరళరేఖ సమీకరణము", "opts": [{"en": "y − 3x + 1 = 0", "te": "y − 3x + 1 = 0"}, {"en": "y + 3x + 1 = 0", "te": "y + 3x + 1 = 0"}, {"en": "y − 3x − 1 = 0", "te": "y − 3x − 1 = 0"}, {"en": "y + 3x − 1 = 0", "te": "y + 3x − 1 = 0"}], "correct": [0]}, {"subject": "MATH", "en": "sin²5° + sin²10° + sin²15° + …………….. + sin²90° = ____", "te": "sin²5° + sin²10° + sin²15° + …………….. + sin²90° = ____", "opts": [{"en": "17/2", "te": "17/2"}, {"en": "19/2", "te": "19/2"}, {"en": "9", "te": "9"}, {"en": "9 + 1/√2", "te": "9 + 1/√2"}], "correct": [1]}, {"subject": "MATH", "en": "An aeroplane flying horizontally 1 km above the ground and going away from the observer is observed at an angle of elevation 60°. After 10 seconds, its angle of elevation is changed to 30°, then the uniform speed of the aeroplane in km per hour is ____ (√3 = 1.732)", "te": "భూమి నుండి 1 కి.మీ. ఎత్తులో క్షితిజ సమాంతరంగా ఎగురుతున్న ఒక విమానాన్ని ఒక పరిశీలకుడు 60° ఊర్ధ్వకోణంతో పరిశీలించాడు. 10 సెకన్ల తరువాత దాని ఊర్ధ్వకోణం 30° గా మారినది. అయితే ఆ విమానం యొక్క సమవేగం (కి.మీ./ గంటలలో) ____ (√3 = 1.732)", "opts": [{"en": "415.68", "te": "415.68"}, {"en": "240", "te": "240"}, {"en": "236.67", "te": "236.67"}, {"en": "346.4", "te": "346.4"}], "correct": [0]}, {"subject": "MATH", "en": "In a G.P. 3rd term is 24 and 6th term is 192. Then 10th term is", "te": "ఒక గుణశ్రేఢిలో 3వ పదము 24 మరియు 6వ పదము 192 అయిన 10వ పదము", "opts": [{"en": "3024", "te": "3024"}, {"en": "3048", "te": "3048"}, {"en": "3052", "te": "3052"}, {"en": "3072", "te": "3072"}], "correct": [3]}, {"subject": "MATH", "en": "If (2x − 1) is a factor of f(x) = 2x² + ax − 2 then the other factor of f(x) is", "te": "f(x) = 2x² + ax − 2 యొక్క ఒక కారణాంకం (2x − 1) అయితే f(x) యొక్క మరొక కారణాంకం", "opts": [{"en": "x − 2", "te": "x − 2"}, {"en": "x − 1", "te": "x − 1"}, {"en": "x + 1", "te": "x + 1"}, {"en": "x + 2", "te": "x + 2"}], "correct": [3]}, {"subject": "MATH", "en": "If 2x + 3y = 13 and xy = 6 then the value of 8x³ + 27y³ is", "te": "2x + 3y = 13 మరియు xy = 6 అయిన 8x³ + 27y³ విలువ", "opts": [{"en": "763", "te": "763"}, {"en": "743", "te": "743"}, {"en": "793", "te": "793"}, {"en": "773", "te": "773"}], "correct": [2]}, {"subject": "MATH", "en": "The angle between a tangent to a circle and the radius drawn at the point of contact is", "te": "ఒక వృత్త స్పర్శరేఖకు మరియు స్పర్శ బిందువు వద్ద గీచిన వ్యాసార్థమునకు మధ్యగల కోణము", "opts": [{"en": "45°", "te": "45°"}, {"en": "90°", "te": "90°"}, {"en": "30°", "te": "30°"}, {"en": "60°", "te": "60°"}], "correct": [1]}, {"subject": "MATH", "en": "BD is a line segment. AB and CD are perpendiculars drawn at B and D respectively on the same side of BD. B,C and A,D are joined to intersect at P; another perpendicular PQ from P to BD is drawn. If AB = p, PQ = q and CD = r then the relation among p, q and r is", "te": "BD ఒక రేఖాఖండము. AB మరియు CD లు వరుసగా B మరియు D ల వద్ద BD కు ఒకే వైపున గీయబడిన లంబములు. B,C లు మరియు A,D లు కలుపగా అవి P వద్ద ఖండించుకొనుచున్నవి. P నుండి BD పైకి లంబము గీయబడినది. AB = p, PQ = q మరియు CD = r అయిన p, q, r ల మధ్య సంబంధము.", "opts": [{"en": "1/p + 1/q = 1/r", "te": "1/p + 1/q = 1/r"}, {"en": "1/q + 1/r = 1/p", "te": "1/q + 1/r = 1/p"}, {"en": "1/p − 1/r = 1/q", "te": "1/p − 1/r = 1/q"}, {"en": "1/p + 1/r = 1/q", "te": "1/p + 1/r = 1/q"}], "correct": [3]}, {"subject": "MATH", "en": "Choose the correct matching — (i) (a+b)² = a²+2ab+b², (ii) a²+b²=c², (iii) sin²x+cos²x=1 with (a) Varahamihira, (b) Bhaskaracharya, (c) Aryabhatta, (d) Brahmagupta", "te": "సరిగా జతపరిచిన దానిని గుర్తించండి — (i) (a+b)² = a²+2ab+b², (ii) a²+b²=c², (iii) sin²x+cos²x=1 దానికి (a) వరాహమిహిరుడు, (b) భాస్కరాచార్య, (c) ఆర్యభట్టు, (d) బ్రహ్మగుప్తుడు", "opts": [{"en": "i - b, ii - a, iii - c", "te": "i - b, ii - a, iii - c"}, {"en": "i - c, ii - d, iii - a", "te": "i - c, ii - d, iii - a"}, {"en": "i - d, ii - b, iii - a", "te": "i - d, ii - b, iii - a"}, {"en": "i - a, ii - c, iii - d", "te": "i - a, ii - c, iii - d"}], "correct": [1]}, {"subject": "MATH", "en": "Identify the item that does not belong to Inductive method", "te": "ఆగమన పద్ధతికి చెందని అంశాన్ని గుర్తించుము.", "opts": [{"en": "Students need not get byheart the formulae.", "te": "Students need not get byheart the formulae."}, {"en": "This is dependent on observation, thinking and experiments.", "te": "This is dependent on observation, thinking and experiments."}, {"en": "Students cannot become active learners.", "te": "Students cannot become active learners."}, {"en": "Logical method", "te": "Logical method"}], "correct": [2]}, {"subject": "MATH", "en": "The correct order of Herbartian steps is — (a) Presentation, (b) Preparation, (c) Association, (d) Recapitulation, (e) Application, (f) Generalization", "te": "హెర్బార్ట్ సోపానాల సరియైన క్రమం — (a) సమర్పణ, (b) సన్నాహం, (c) సంసర్గం, (d) పునర్విమర్శ, (e) వినియోగం, (f) సాధారణీకరణ", "opts": [{"en": "b, a, c, e, f, d", "te": "b, a, c, e, f, d"}, {"en": "b, a, c, f, e, d", "te": "b, a, c, f, e, d"}, {"en": "b, a, f, c, e, d", "te": "b, a, f, c, e, d"}, {"en": "b, c, a, f, e, d", "te": "b, c, a, f, e, d"}], "correct": [1]}, {"subject": "MATH", "en": "Appropriate assessment to find the causes of learning disabilities in students.", "te": "విద్యార్థులలో అభ్యసన ప్రతిబంధకాలకు కారణాలు కనుగొనుటకు తగిన మూల్యాంకనం", "opts": [{"en": "Summative evaluation", "te": "Summative evaluation"}, {"en": "Prognostic evaluation", "te": "Prognostic evaluation"}, {"en": "Formative evaluation", "te": "Formative evaluation"}, {"en": "Diagnostic evaluation", "te": "Diagnostic evaluation"}], "correct": [3]}, {"subject": "PSCI", "en": "A measure of the extent of the plane surface occupied by an object is", "te": "ఒక వస్తువుచే ఆక్రమించబడిన సమతల విస్తృతి యొక్క కొలత", "opts": [{"en": "Length", "te": "పొడవు"}, {"en": "Area", "te": "వైశాల్యము"}, {"en": "Volume", "te": "ఘనపరిమాణము"}, {"en": "Density", "te": "సాంద్రత"}], "correct": [1]}, {"subject": "PSCI", "en": "The brakes applied to a car produce an acceleration of 5 m.s⁻² in the opposite direction to the motion. If the car takes 2s to stop after the application of brakes, the distance travelled by the car during this time is", "te": "కారు చలనానికి వ్యతిరేక దిశలో బ్రేకులు చేసిన తరువాత కారు 5 మీ.సె⁻² ఋణ త్వరణంతో ప్రయాణించి ఆగిపోవుటకు 2 సెకన్లు సమయం తీసుకుంటే, ఈ సమయంలో కారు ప్రయాణించిన దూరం", "opts": [{"en": "5 m", "te": "5 m"}, {"en": "10 m", "te": "10 m"}, {"en": "15 m", "te": "15 m"}, {"en": "20 m", "te": "20 m"}], "correct": [1]}, {"subject": "PSCI", "en": "A boy of mass 40 kg climbing a hill with the help of a rope of tension 400 N. The maximum acceleration required to climb safely is", "te": "40 కి.గ్రా ద్రవ్యరాశి గల ఒక అబ్బాయి 400 న్యూ. బలాన్ని భరించగల త్రాడు సహాయంతో కొండ ఎక్కుతున్నాడు. అతను సురక్షితంగా ఎక్కడానికి కావలసిన గరిష్ఠ త్వరణం", "opts": [{"en": "10 cm.s⁻²", "te": "10 cm.s⁻²"}, {"en": "100 cm.s⁻²", "te": "100 cm.s⁻²"}, {"en": "1000 cm.s⁻²", "te": "1000 cm.s⁻²"}, {"en": "1/10 cm.s⁻²", "te": "1/10 cm.s⁻²"}], "correct": [2]}, {"subject": "PSCI", "en": "If a lamp consumes 1000 J of electrical energy in 10s, its power is", "te": "ఒక బల్బు 10 సెకనులలో 1000 జౌళ్ల విద్యుత్ శక్తిని వినియోగించుకుంటే, దాని సామర్థ్యం", "opts": [{"en": "10 kW", "te": "10 kW"}, {"en": "16.6 kW", "te": "16.6 kW"}, {"en": "1 kW", "te": "1 kW"}, {"en": "0.1 kW", "te": "0.1 kW"}], "correct": [3]}, {"subject": "PSCI", "en": "Natural convection : Smoke from a fire : : forced convection : ________", "te": "సహజ సంవహనం : నిప్పు నుండి వచ్చే పొగ :: బలాకృత సంవహనం : .............", "opts": [{"en": "Hair drier", "te": "హేర్ డ్రయర్"}, {"en": "Sea breeze", "te": "సముద్ర పవనం"}, {"en": "Land breeze", "te": "భూ పవనం"}, {"en": "Boiling of water", "te": "నీటిని మరగించుట"}], "correct": [0]}, {"subject": "PSCI", "en": "Far point of a person is 5 m. The kind of lens he has to use to correct his vision", "te": "ఒక వ్యక్తి గరిష్ఠ దూర బిందువు 5 మీ. ఈ దృష్టి దోషాన్ని సవరించుటకు ఆ వ్యక్తి ఈ కటకాన్ని ఉపయోగించాలి", "opts": [{"en": "Concave lens with focal length 5 m", "te": "5 మీ. నాభ్యంతరం గల పుటాకార కటకం"}, {"en": "Concave lens with focal length 10 m", "te": "10 మీ. నాభ్యంతరం గల పుటాకార కటకం"}, {"en": "Convex lens with focal length 5 m", "te": "5 మీ. నాభ్యంతరం గల కుంభాకార కటకం"}, {"en": "Convex lens with focal length 10 m", "te": "10 మీ. నాభ్యంతరం గల కుంభాకార కటకం"}], "correct": [0]}, {"subject": "PSCI", "en": "If two equal resistors are connected in series the equivalent resistance is x, when they are connected in parallel, the equivalent resistance is y. The value x/y is", "te": "రెండు సమాన నిరోధాలను శ్రేణిలో కలిపినపుడు దాని ఫలిత నిరోధం విలువ x, వాటిని సమాంతరంగా కలిపినపుడు ఫలిత నిరోధం విలువ y. అయిన x/y విలువ", "opts": [{"en": "1 : 1", "te": "1 : 1"}, {"en": "2 : 1", "te": "2 : 1"}, {"en": "3 : 1", "te": "3 : 1"}, {"en": "4 : 1", "te": "4 : 1"}], "correct": [3]}, {"subject": "PSCI", "en": "A positively charged particle projected towards East is deflected towards South by a magnetic field. The direction of magnetic field is", "te": "తూర్పు వైపు ప్రక్షేపించిన ధనావేశకణం అయస్కాంత క్షేత్రంచే దక్షిణం వైపుకి మళ్ళించబడినది. ఆ అయస్కాంత క్షేత్ర దిశ", "opts": [{"en": "towards South", "te": "దక్షిణం వైపు"}, {"en": "upward", "te": "పైకి"}, {"en": "towards East", "te": "తూర్పు వైపు"}, {"en": "downward", "te": "క్రిందికి"}], "correct": [1]}, {"subject": "PSCI", "en": "The product commonly formed by reaction between a carboxylic acid and alcohol is", "te": "కార్బాక్సిలిక్ ఆమ్లము, ఆల్కహాల్ మధ్య జరిగే చర్యలో సాధారణంగా ఏర్పడే ఉత్పన్నము", "opts": [{"en": "Ether", "te": "ఈథర్"}, {"en": "Ketone", "te": "కీటోన్"}, {"en": "Aldehyde", "te": "ఆల్డిహైడ్"}, {"en": "Ester", "te": "ఎస్టర్"}], "correct": [3]}, {"subject": "PSCI", "en": "Movement of the earth's plates causes", "te": "భూ పలకల కదలిక వల్ల సంభవించేవి", "opts": [{"en": "Cyclones", "te": "తుఫానులు"}, {"en": "Earthquakes", "te": "భూకంపాలు"}, {"en": "Lightning", "te": "మెరుపులు"}, {"en": "Thunderstorm", "te": "పిడుగులు"}], "correct": [1]}, {"subject": "PSCI", "en": "A pair of metals with very low melting point is", "te": "అత్యల్ప ద్రవీభవన ఉష్ణోగ్రత గల లోహాల జత", "opts": [{"en": "Mercury & Lead", "te": "పాదరసం & సీసం"}, {"en": "Gallium & Cesium", "te": "గాలియం & సీసియం"}, {"en": "Iron & Mercury", "te": "ఇనుము & పాదరసం"}, {"en": "Silver & Gold", "te": "వెండి & బంగారం"}], "correct": [1]}, {"subject": "PSCI", "en": "The concept \"stationary orbits\" was proposed by", "te": "\"స్థిరకక్ష్య\" అనే భావనను ప్రతిపాదించినవారు", "opts": [{"en": "Irwin Schrowdinger", "te": "ఇర్విన్ ష్రోడింగర్"}, {"en": "Werner Heisenberg", "te": "వెర్నర్ హైసన్‌బర్గ్"}, {"en": "Ernst Rutherford", "te": "ఎర్నెస్ట్ రూథర్ఫర్డ్"}, {"en": "Neils Bohr", "te": "నీల్స్ బోర్"}], "correct": [3]}, {"subject": "PSCI", "en": "The incorrect statement about ionic compounds is", "te": "అయానిక సమ్మేళనాలకు సంబంధించి సరికాని వాక్యం", "opts": [{"en": "Ionic compounds are good conductors in fused state", "te": "గలన స్థితిలో అయానిక సమ్మేళనాలు మంచి విద్యుద్వాహకాలు"}, {"en": "Ionic compounds dissolve in non-polar solvents", "te": "అయానిక సమ్మేళనాలు అధృవ ద్రావణుల్లో కరుగుతాయి"}, {"en": "Ionic compounds are hard and possess high melting points", "te": "అయానిక సమ్మేళనాలు దృఢమైనవి మరియు వీటి ద్రవీభవన స్థానం అధికం"}, {"en": "Ionic compounds do not exhibit isomerism", "te": "అయానిక సమ్మేళనాలు అణుసాదృశ్యాన్ని ప్రదర్శించవు"}], "correct": [1]}, {"subject": "PSCI", "en": "The oxide on dissolving in water gives 'Alkali' is", "te": "నీటిలో కరిగినపుడు 'ఆల్కలీ' ను ఏర్పరచే ఆక్సైడ్", "opts": [{"en": "N₂O₅", "te": "N₂O₅"}, {"en": "SO₃", "te": "SO₃"}, {"en": "Na₂O", "te": "Na₂O"}, {"en": "P₂O₃", "te": "P₂O₃"}], "correct": [2]}, {"subject": "PSCI", "en": "The constituent of petroleum used as a solvent for dry cleaning is ________", "te": "డ్రైక్లీనింగ్ నందు ద్రావణిగా ఉపయోగించే పెట్రోలియం యొక్క అంశీభూతము ...........", "opts": [{"en": "LPG", "te": "LPG"}, {"en": "Petrol", "te": "పెట్రోలు"}, {"en": "Kerosene", "te": "కిరోసిన్"}, {"en": "Diesel", "te": "డీజిల్"}], "correct": [1]}, {"subject": "PSCI", "en": "The compound used to de-greasing metals ________", "te": "లోహాల నుండి గ్రీజును తొలగించుటకు ఉపయోగించు సమ్మేళనం ......", "opts": [{"en": "CaOCl₂", "te": "CaOCl₂"}, {"en": "NaHCO₃", "te": "NaHCO₃"}, {"en": "Na₂CO₃ · 10H₂O", "te": "Na₂CO₃ · 10H₂O"}, {"en": "Brine containing NaOH", "te": "బ్రైన్ కలిగిన NaOH"}], "correct": [3]}, {"subject": "PSCI", "en": "A student developed hobbies like participating in science club activities, reading the magazines of science, visiting science fairs during his leisure time. Which objective is achieved by him?", "te": "ఒక విద్యార్థి తన తీరిక సమయములలో సైన్స్‌క్లబ్ కార్యక్రమముల యందు పాల్గొనుట, శాస్త్రసంబంధమైన మ్యాగజైనులు చదువుట, విజ్ఞానశాస్త్ర సంతలను చూచుట లాంటి కృత్యములు చేయుట తన “హాబీ”గా అలవాటు చేసుకున్నాడు, ఈ విద్యార్థి సాధించిన లక్ష్యము ఏది?", "opts": [{"en": "Understanding", "te": "అవగాహన"}, {"en": "Skill", "te": "నైపుణ్యము"}, {"en": "Appreciation", "te": "అభినందన"}, {"en": "Interest", "te": "అభిరుచి"}], "correct": [3]}, {"subject": "PSCI", "en": "\"A unit is a large chunk or block of subject method as can be over viewed by the learner\" who said this?", "te": "“విద్యార్థి చూడగల, పరస్పర సంబంధంకల, పాఠ్యవిషయం కల, ఒక సమైక్యమైన భాగమే యూనిట్” ఈ నిర్వచనము చెప్పినది.", "opts": [{"en": "L.B. Stands", "te": "L.B. స్టాండ్స్"}, {"en": "Thorndike", "te": "థారన్‌డైక్"}, {"en": "Preston", "te": "ప్రిస్టన్"}, {"en": "Bossing", "te": "బాసింగ్"}], "correct": [2]}, {"subject": "PSCI", "en": "A student while learning science, \"Collected data, classified the data collected, entered it in tables, analysed the data. He prepared a report and submitted it to the teacher.\" To which \"Academic standard\" does it belong?", "te": "విద్యార్థి నేర్చుకునే క్రమములో “సమాచారమును సేకరించి, సమాచారాన్ని వర్గీకరించి, పట్టికలు రూపొందించి, విశ్లేషించి, స్వంతముగా నివేదిక రాసి ఉపాధ్యాయునికి సమర్పించాడు.” ఇది ఏ విద్యా ప్రమాణము క్రింద చెప్పగలము?", "opts": [{"en": "Conceptual understanding", "te": "విషయావగాహన"}, {"en": "Asking questions and making hypothesis", "te": "ప్రశ్నలు అడుగుట, పరికల్పనలు చేయుట"}, {"en": "Information skills and projects", "te": "సమాచార నైపుణ్యము, ప్రాజెక్టులు"}, {"en": "Appreciation and aesthetic sense", "te": "అభినందించుట, సౌందర్యాత్మక స్పృహ"}], "correct": [2]}, {"subject": "PSCI", "en": "At Secondary School level, students need to study \"Science subject\" as a whole, comprising Physics, Chemistry and Biological science instead of dividing as separate subjects — stated by", "te": "‘సెకండరీ పాఠశాలస్థాయిలో, విద్యార్థులు విజ్ఞానశాస్త్రాన్ని, భౌతిక, రసాయనిక, జీవశాస్త్రాలుగా విడివిడిగా కాకుండా, సంయుక్తంగా కలిపి, ఒకే శాస్త్రంగా అధ్యయనం చేయాలి’ అని తెలిపినది.", "opts": [{"en": "APSCF - 2011", "te": "APSCF - 2011"}, {"en": "NCF SE - 2022", "te": "NCF SE - 2022"}, {"en": "NCF - 2005", "te": "NCF - 2005"}, {"en": "NCF - 2020", "te": "NCF - 2020"}], "correct": [2]}, {"subject": "BIO", "en": "Correct statements regarding muscles<br>A) Muscle pulls the bone when it is expanded.<br>B) Two muscles work together while moving a bone.<br>C) A muscle can push as well as pull the bone.<br>D) The muscle bulges when it contracts.", "te": "క&#3074;డరాలను గూర్చి సరి అయిన వాక్యములు<br>A) క&#3074;డరం వ్యాకోచం చెందినప్పుడు, అది ఎముకను లాగుతుంది.<br>B) ఒక ఎముకను కదల్చటం కోసం రెండు క&#3074;డరాలు కలిసికట్టుగా పనిచేస్తాయి.<br>C) ఒకే క&#3074;డరం ఎముకను లాగగలదు, అలాగే తోయగలదు.<br>D) క&#3074;డరం సంకోచించినప్పుడు లావుగా ఉబ్బుతుంది.", "opts": [{"en": "B & C", "te": ""}, {"en": "B & D", "te": ""}, {"en": "A, C & D", "te": ""}, {"en": "B, C & D", "te": ""}], "correct": [1]}, {"subject": "BIO", "en": "Read the following statements and choose the correct option.<br>Assertion (A): The clearly undefined nuclear membrane in viruses is called nucleoid.<br>Reason (R): In prokaryotic cells, the nuclear region contain nucleic acids and poorly developed nuclear membrane.", "te": "క&#3105;ంది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.<br>ప్రకటన (A): వైరస్‌లలో కేంద్రకత్వచం సరిగా ఏర్పడని భాగాన్ని న్యూక్లియాయిడ్ అంటారు.<br>కారణం (R): కేంద్రక పూర్వకణాలలో, కేంద్రక ప్రాంతం కేంద్రకామ్లాలను మరియు సరిగా ఏర్పడని కేంద్రక త్వచం కలిగి ఉంటాయి.", "opts": [{"en": "A is true, R is false", "te": ""}, {"en": "A is false, R is true", "te": ""}, {"en": "A, R both are true, R is correct explanation for A", "te": ""}, {"en": "A, R both are true, R is not correct explanation for A", "te": ""}], "correct": [1]}, {"subject": "BIO", "en": "Match the following.<br>a) Thermal insulator &rarr; i) areolar tissue<br>b) Long, cylindrical and unbranched cells &rarr; ii) cartilage<br>c) Elastic collagen fibers &rarr; iii) adipose tissue<br>d) Packaging &rarr; iv) skeletal muscle", "te": "క&#3105;ంది వాటిని జతపరచండి.<br>a) ఉష్ణ నిరోధకము &rarr; i) ఏరియోలార్ కణజాలం<br>b) పొడవైన, స్థూపాకారపు, శాఖలు లేని కణజాలం &rarr; ii) మృదులాస్థి<br>c) స్థితిస్థాపక కొల్లాజన్ తంతువులు &rarr; iii) అడిపోస్ కణజాలం<br>d) ప్యాకేజింగ్ &rarr; iv) అస్థికండర కణజాలం", "opts": [{"en": "a-iii, b-iv, c-i, d-ii", "te": ""}, {"en": "a-iii, b-iv, c-ii, d-i", "te": ""}, {"en": "a-ii, b-iv, c-iii, d-i", "te": ""}, {"en": "a-i, b-iii, c-ii, d-iv", "te": ""}], "correct": [1]}, {"subject": "BIO", "en": "Identify the correct group of only macronutrients", "te": "క&#3105;ంది వానిలో స్థూల పోషకాలు మాత్రమే గల సరియైన సమూహాన్ని గుర్తించండి.", "opts": [{"en": "Chlorine, zinc, copper, phosphorus", "te": ""}, {"en": "Calcium, boron, zinc, copper", "te": ""}, {"en": "Potassium, boron, copper, chlorine", "te": ""}, {"en": "Nitrogen, calcium, phosphorus, potassium", "te": ""}], "correct": [3]}, {"subject": "BIO", "en": "The correct statements about viruses.<br>A) Viruses have no specific machinery for multiplication of their own.<br>B) Viruses live as parasites only.<br>C) Viruses have a specific cell structure.<br>D) Viruses can cause diseases in bacteria.", "te": "వైరస్‌లను గూర్చిన సరి అయిన వాక్యాలు<br>A) వైరస్‌లు స్వయంగా అభివృద్ధి చెందడానికి అవసరమైన నిర్దిష్ట కణయంత్రాంగాన్ని కలిగి లేవు.<br>B) వైరస్‌లు పరాన్నజీవులుగా మాత్రమే జీవిస్తాయి.<br>C) వైరస్‌లకు నిర్దిష్టమైన కణనిర్మాణం కలదు.<br>D) వైరస్‌లు బాక్టీరియాలలో వ్యాధులను కలిగించగలవు.", "opts": [{"en": "A & D only", "te": ""}, {"en": "A, B, C & D", "te": ""}, {"en": "B, C & D only", "te": ""}, {"en": "A, B & D only", "te": ""}], "correct": [3]}, {"subject": "BIO", "en": "Read the following statements and choose the correct option.<br>A: Food in stomach is acidic due to the presence of HCl.<br>R: Pancreatic juice turns the food alkaline.", "te": "క&#3105;ంది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.<br>A: హైడ్రోక్లోరిక్ ఆమ్లం ఉండడం వల్ల జీర్ణాశయంలో ఆహారం ఆమ్లత్వాన్ని కలిగి ఉంటుంది.<br>B: క్లోమరసము ఆహారాన్ని క్షారయుతంగా మారుస్తుంది.", "opts": [{"en": "A and B are correct", "te": ""}, {"en": "A and B are incorrect", "te": ""}, {"en": "A correct, B incorrect", "te": ""}, {"en": "A incorrect, B correct", "te": ""}], "correct": [0]}, {"subject": "BIO", "en": "Identify the incorrect statement regarding lymph.", "te": "శోషరసానికి సబంధించి సరికాని వాక్యాన్ని గుర్తించండి.", "opts": [{"en": "It carries digested and absorbed fat from intestine.", "te": ""}, {"en": "It is similar to plasma of blood but colourless.", "te": ""}, {"en": "It formed due to escape of plasma, proteins and blood cells through the walls of arteries into inter cellular spaces.", "te": ""}, {"en": "It drain into lymphatic capillaries from the inter cellular space.", "te": ""}], "correct": [2]}, {"subject": "BIO", "en": "Observe the following equation and substitute P, with suitable alternatives given below.<br>Glucose &rarr; Glyceraldehyde 3-phosphate &rarr; P &rarr; Phosphoenol Pyruvic acid", "te": "క&#3105;ంది సమీకరణాన్ని పరిశీలించండి. ఆ సమీకరణంలో P కు సరైన సమాధానం గుర్తించండి.<br>గ్లూకోజ్ &rarr; గ్లిజరాల్డిహైడ్ 3-ఫాస్ఫేట్ &rarr; P &rarr; ఫాస్ఫోఈనాల్ పైరువిక్ ఆమ్లం", "opts": [{"en": "P : 3-Phosphoglyceric acid", "te": ""}, {"en": "P : Pyruvic acid", "te": ""}, {"en": "P : 6-Phosphoglyceric acid", "te": ""}, {"en": "P : Phosphoglyceric acid", "te": ""}], "correct": [0]}, {"subject": "BIO", "en": "The correct pattern/sequence of below components, from largest to the smallest biological function unit.", "te": "అతి పెద్ద భాగం నుంచి అతి చిన్న జీవ క్రియాత్మక యూనిట్ వరకు క&#3105;ంది భాగాల సరైన వరుస క్రమాన్ని గుర్తించండి.", "opts": [{"en": "Nucleus &rarr; Chromosome &rarr; DNA &rarr; Genes", "te": ""}, {"en": "Chromosome &rarr; Nucleus &rarr; Gene &rarr; DNA", "te": ""}, {"en": "DNA &rarr; Gene &rarr; Nucleus &rarr; Chromosome", "te": ""}, {"en": "Nucleus &rarr; Chromosome &rarr; Gene &rarr; DNA", "te": ""}], "correct": [0]}, {"subject": "BIO", "en": "Identify the mismatched one", "te": "సరిగా జతపరచబడని వాటిని గుర్తించండి.", "opts": [{"en": "Placenta : Provide nutrition to embryo", "te": ""}, {"en": "Uterus : Opens into vagina", "te": ""}, {"en": "Oviducts : Site of implantation", "te": ""}, {"en": "Embryo : Later becomes foetus", "te": ""}], "correct": [2]}, {"subject": "BIO", "en": "Read the following statements and choose the correct option.<br>Assertion (A): Cellular DNA is the information source for making proteins in this cell.<br>Reason (R): A section of DNA that provides information for one protein is called the gene for that protein.", "te": "క&#3105;ంది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.<br>ప్రకటన(A): కణంలో ప్రోటీన్లు తయారు చేయడానికి సెల్యులార్ DNA ఒక సమాచార వనరు.<br>కారణం (R): ఒక ప్రోటీన్ తయారీకి చెందిన సమాచారం అందించే DNA భాగాన్ని ఆ ప్రోటీన్ యొక్క జన్యువు అంటారు.", "opts": [{"en": "Both A & R are correct and R is the correct explanation of A.", "te": ""}, {"en": "Both A & R are correct but R doesn&#8217;t explain A.", "te": ""}, {"en": "Both A & R are incorrect.", "te": ""}, {"en": "Only A is correct but R is incorrect.", "te": ""}], "correct": [0]}, {"subject": "BIO", "en": "A teacher deshelled an egg and placed it in a beaker containing pure water for some time. The result and the reason are", "te": "ఒక ఉపాధ్యాయుడు పెంకును తొలగించిన కోడిగుడ్డును ఒక బీకరులోని స్వచ్ఛమైన నీటిలో కొంత సమయం ఉంచాడు. దాని ఫలితము మరియు కారణము.", "opts": [{"en": "The egg will shrink due to exosmosis", "te": ""}, {"en": "The egg will swell due to endosmosis", "te": ""}, {"en": "No change in egg will be observed", "te": ""}, {"en": "The egg will shrink due to endosmosis", "te": ""}], "correct": [1]}, {"subject": "BIO", "en": "The correct statement about smog.", "te": "పొగ మంచు గురించిన సరైన ప్రకటన.", "opts": [{"en": "It is a mixture of smoke, fog, pollutants causing asthma & wheezing in children", "te": ""}, {"en": "It is only smoke causing asthma in children", "te": ""}, {"en": "It is a mixture of smoke and fog causing no harm", "te": ""}, {"en": "It is smoke and snow, causing no harm", "te": ""}], "correct": [0]}, {"subject": "BIO", "en": "Identify environmental friendly practices from the following.<br>A) Using public transport system.<br>B) Carrying cloth bags while shopping.<br>C) Switching off unnecessary lights and fans.<br>D) Using private transport vehicles very frequently.", "te": "క&#3105;ంది వాటిలో 'పర్యావరణహిత పనులు' గుర్తించండి.<br>A) ప్రజారవాణా వ్యవస్థను ఉపయోగించుకోవడం.<br>B) కొన్న వస్తువులను తెచ్చుకొనుటకు, గుడ్డ సంచిని ఉపయోగించడం.<br>C) అవసరం లేని లైట్లు, ఫ్యాన్లను ఆపివేయడం.<br>D) వ్యక్తిగత రవాణా సాధనాలను చాలా తరచుగా వినియోగిస్తుండటం.", "opts": [{"en": "A, B, D", "te": ""}, {"en": "B, C, D", "te": ""}, {"en": "A, B, C", "te": ""}, {"en": "A, C, D", "te": ""}], "correct": [2]}, {"subject": "BIO", "en": "The accumulation of harmful and poisonous chemical through the food chain is maximum in", "te": "ఆహారపు గొలుసులోకి ప్రవేశించిన హానికర, విషపూరిత రసాయనాలు వీనిలో గరిష్టంగా నిక్షిప్తమౌతాయి.", "opts": [{"en": "Cows", "te": ""}, {"en": "Plants", "te": ""}, {"en": "Humans", "te": ""}, {"en": "Goats", "te": ""}], "correct": [2]}, {"subject": "BIO", "en": "The correct sequence in levels of organization in Ecology from smallest to biggest.<br>a) Population<br>b) Ecosystem<br>c) Landscape<br>d) Community<br>e) Ecosphere (Biosphere)<br>f) Biome", "te": "జీవావరణ శాస్త్రంలోని వ్యవస్థీకరణలో అతి చిన్నస్థాయి నుంచి అతి పెద్ద స్థాయిల సరైన క్రమం<br>a) జనాభా<br>b) జీవావరణ వ్యవస్థ<br>c) భూతల ప్రకృతి<br>d) సమాజం<br>e) జీవగోళం<br>f) జీవమండలం", "opts": [{"en": "c, b, a, f, d, e", "te": ""}, {"en": "b, c, a, d, e, f", "te": ""}, {"en": "a, d, b, c, f, e", "te": ""}, {"en": "a, b, d, e, f, c", "te": ""}], "correct": [2]}, {"subject": "BIO", "en": "The author of the book &#8220;The nervous mechanism of plants&#8221; is", "te": "&#8220;The nervous mechanism of plants&#8221; గ్రంథ రచయిత", "opts": [{"en": "Charles Darwin", "te": ""}, {"en": "Birbal Sahni", "te": ""}, {"en": "M.S. Swaminathan", "te": ""}, {"en": "Jagadeesh Chandra Bose", "te": ""}], "correct": [3]}, {"subject": "BIO", "en": "Which of the following are activities that can be given to make &#8220;Good use of leisure time&#8221;.<br>A. Collection of items<br>B. Silk worm breeding<br>C. Herbarium preparation<br>D. Reading scientific journals", "te": "క&#3105;ంది వానిలో 'విరామకాల సద్వినియోగం' కోసం ఇవ్వదగిన కృత్యాలు<br>A. వస్తువుల సేకరణ<br>B. పట్టు సంవర్ధనం<br>C. హెర్బేరియం తయారి<br>D. శాస్త్రీయ పత్రికలు చదవడం", "opts": [{"en": "A, B, C, D", "te": ""}, {"en": "A, C, D", "te": ""}, {"en": "B, C, D", "te": ""}, {"en": "A, B, D", "te": ""}], "correct": [1]}, {"subject": "BIO", "en": "Identify correct matching from the below.<br>a. To observe and examine something closely and precisely - Project method.<br>b. Teaching the subject matter briefly and clearly - Lecture method<br>c. Creates concrete concepts - Lecture demonstration method", "te": "క&#3105;ంది వానిలో సరిగా జతచేయబడిన వానిని గుర్తించండి.<br>a. ఒక విషయాన్ని నిశితంగాను, నిక్కచ్చిగాను గమనించడం, పరిశీలించడం - ప్రాజెక్టు పద్ధతి.<br>b. క్లుప్తంగాను, విశదంగా పాఠ్యాంశాన్ని బోధించడం - ఉపన్యాస పద్ధతి<br>c. మూర్తభావనలు కలిగించడం - ఉపన్యాస ప్రదర్శన పద్ధతి", "opts": [{"en": "a, b only", "te": ""}, {"en": "b, c only", "te": ""}, {"en": "a, c only", "te": ""}, {"en": "a, b, c", "te": ""}], "correct": [3]}, {"subject": "BIO", "en": "According to Goods flash cards, maps are this types of visual teaching aids", "te": "గూడ్స్ ప్రకారం మెరుపు అట్టలు, మ్యాపులు ఈ రకపు దృశ్య బోధనోపకరణాలు", "opts": [{"en": "Three-dimensional teaching aids", "te": ""}, {"en": "Graphical teaching aids", "te": ""}, {"en": "Hardware teaching aids", "te": ""}, {"en": "Display boards", "te": ""}], "correct": [1]}];   // fixed original bank, never mutated
+var QUESTION_DATA = QUESTION_BANK.slice();    // live working order for the current attempt
+
+/* ================= SHUFFLE HELPERS ================= */
+function shuffleArray(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp = a[i]; a[i]=a[j]; a[j]=tmp;
+  }
+  return a;
+}
+
+// Builds a fresh quiz order: subject blocks stay in exam order (CDP, TEL,
+// ENG, MATH, PSCI, BIO), but the questions WITHIN each subject are shuffled,
+// and each question's own options are shuffled too (with the correct-answer
+// indices remapped to match). Called once per attempt.
+function buildShuffledQuiz(){
+  var quiz = [];
+  SUBJECT_ORDER.forEach(function(code){
+    var subjQuestions = QUESTION_BANK.filter(function(q){ return q.subject===code; });
+    var shuffledQuestions = shuffleArray(subjQuestions);
+    shuffledQuestions.forEach(function(q){
+      var optOrder = shuffleArray(q.opts.map(function(_,idx){ return idx; }));
+      var newOpts = optOrder.map(function(oi){ return q.opts[oi]; });
+      var newCorrect = q.correct.map(function(ci){ return optOrder.indexOf(ci); });
+      quiz.push({ subject:q.subject, en:q.en, te:q.te, opts:newOpts, correct:newCorrect });
+    });
+  });
+  return quiz;
+}
+
+/* ================= STATE ================= */
+var state = {
+  name:"",
+  current:0,
+  responses:new Array(QUESTION_DATA.length).fill(null),
+  visited:new Array(QUESTION_DATA.length).fill(false),
+  seconds:0,
+  timerId:null,
+  submitted:false,
+  lbPollId:null
+};
+
+/* ================= HELPERS ================= */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return (s===undefined||s===null) ? "" : s; }
+function pad2(n){ return n<10 ? "0"+n : ""+n; }
+function fmtTime(sec){ var m=Math.floor(sec/60); var s=sec%60; return pad2(m)+":"+pad2(s); }
+
+function subjectIndices(code){
+  var arr=[];
+  for(var i=0;i<QUESTION_DATA.length;i++){ if(QUESTION_DATA[i].subject===code) arr.push(i); }
+  return arr;
+}
+var SUBJECT_INDEX_MAP = {};
+SUBJECT_ORDER.forEach(function(c){ SUBJECT_INDEX_MAP[c]=subjectIndices(c); });
+
+// Rebuilds everything that depends on question order/answers for a brand
+// new attempt: reshuffles questions+options, resets responses/visited, and
+// refreshes the subject->index lookup used by navigation & the palette.
+function startNewAttempt(){
+  QUESTION_DATA = buildShuffledQuiz();
+  state.current = 0;
+  state.responses = new Array(QUESTION_DATA.length).fill(null);
+  state.visited = new Array(QUESTION_DATA.length).fill(false);
+  state.seconds = 0;
+  state.submitted = false;
+  SUBJECT_ORDER.forEach(function(c){ SUBJECT_INDEX_MAP[c] = subjectIndices(c); });
+}
+
+function computeScore(){
+  var correct=0, wrong=0, attempted=0;
+  for(var i=0;i<QUESTION_DATA.length;i++){
+    var r = state.responses[i];
+    if(r!==null){
+      attempted++;
+      if(QUESTION_DATA[i].correct.indexOf(r)!==-1) correct++; else wrong++;
+    }
+  }
+  return {correct:correct, wrong:wrong, attempted:attempted, unattempted:QUESTION_DATA.length-attempted};
+}
+
+function subjectScore(code){
+  var idxs = SUBJECT_INDEX_MAP[code];
+  var correct=0, attempted=0;
+  idxs.forEach(function(i){
+    var r=state.responses[i];
+    if(r!==null){ attempted++; if(QUESTION_DATA[i].correct.indexOf(r)!==-1) correct++; }
+  });
+  return {correct:correct, total:idxs.length, attempted:attempted};
+}
+
+/* ================= START SCREEN ================= */
+function buildSubjectStrip(){
+  var grid = $('subjectStripGrid');
+  grid.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(code){
+    var s = SUBJECTS[code];
+    var cnt = SUBJECT_INDEX_MAP[code].length;
+    var div = document.createElement('div');
+    div.className = 'subject-chip';
+    div.innerHTML = '<div class="dot" style="background:'+s.color+'"></div>' +
+      '<div class="nm">'+s.short+'</div><div class="cnt">'+cnt+' Qs</div>';
+    grid.appendChild(div);
+  });
+}
+
+function buildSubjectNav(){
+  var nav = $('subjectNav');
+  nav.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(code){
+    var s = SUBJECTS[code];
+    var btn = document.createElement('button');
+    btn.textContent = s.short;
+    btn.dataset.subject = code;
+    btn.addEventListener('click', function(){
+      var idxs = SUBJECT_INDEX_MAP[code];
+      // jump to first unanswered question in this subject, else its first question
+      var target = idxs[0];
+      for(var k=0;k<idxs.length;k++){ if(state.responses[idxs[k]]===null){ target=idxs[k]; break; } }
+      goTo(target);
+    });
+    nav.appendChild(btn);
+  });
+}
+
+$('startBtn').addEventListener('click', function(){
+  var val = $('nameInput').value.trim();
+  if(!val){ $('nameErr').style.display='block'; return; }
+  $('nameErr').style.display='none';
+  state.name = val;
+  startNewAttempt();
+  $('startScreen').style.display='none';
+  $('testScreen').style.display='block';
+  startTimer();
+  goTo(0);
+});
+$('nameInput').addEventListener('keydown', function(e){ if(e.key==='Enter'){ $('startBtn').click(); } });
+
+/* ================= TIMER ================= */
+function startTimer(){
+  state.timerId = setInterval(function(){
+    state.seconds++;
+    $('timerDisplay').textContent = fmtTime(state.seconds);
+  }, 1000);
+}
+function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+
+/* ================= RENDER QUESTION ================= */
+function goTo(i){
+  state.current = i;
+  state.visited[i] = true;
+  renderQuestion();
+  renderPalette();
+  closeMobilePalette();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function optionLine(opt){
+  var hasEn = opt.en && opt.en.length;
+  var hasTe = opt.te && opt.te.length;
+  if(hasEn && hasTe && opt.en!==opt.te){
+    return '<span class="oen">'+esc(opt.en)+'</span><span class="te">'+esc(opt.te)+'</span>';
+  }
+  return '<span>'+esc(hasEn?opt.en:opt.te)+'</span>';
+}
+
+function renderQuestion(){
+  var i = state.current;
+  var q = QUESTION_DATA[i];
+  var s = SUBJECTS[q.subject];
+  var idxs = SUBJECT_INDEX_MAP[q.subject];
+  var localNo = idxs.indexOf(i)+1;
+  var response = state.responses[i];
+
+  var head = '<div class="qcard-head">' +
+      '<div><span class="subject-pill" style="background:'+s.color+'22;color:'+s.color+';border:1px solid '+s.color+'55;">'+s.short+'</span> ' +
+      '<span class="qno">Question '+(i+1)+' of '+QUESTION_DATA.length+'</span></div>' +
+      '<div class="paperline">'+PAPER_LABEL+' &mdash; '+s.label+' (Q'+localNo+' of '+idxs.length+')</div>' +
+    '</div>';
+
+  var qHtml = '';
+  if(q.en) qHtml += '<div class="qtext">'+q.en+'</div>';
+  if(q.te) qHtml += '<div class="qtext te">'+q.te+'</div>';
+
+  var optsHtml = '<div class="opts">';
+  var tagLetters = ['A','B','C','D','E','F'];
+  q.opts.forEach(function(opt, j){
+    var cls = 'opt';
+    if(response!==null){
+      cls += ' locked';
+      if(q.correct.indexOf(j)!==-1) cls += ' correct';
+      else if(j===response) cls += ' wrong';
+    }
+    optsHtml += '<div class="'+cls+'" data-idx="'+j+'">' +
+      '<div class="tag">'+tagLetters[j]+'</div>' +
+      '<div class="otext">'+optionLine(opt)+'</div>' +
+    '</div>';
+  });
+  optsHtml += '</div>';
+
+  var nav = '<div class="qcard-nav">' +
+      '<button class="btn btn-ghost" id="prevBtn" '+(i===0?'disabled':'')+'>&larr; Previous</button>' +
+      '<div class="right-btns">' +
+        '<button class="btn btn-outline" id="submitInlineBtn">Submit Test</button>' +
+        (i===QUESTION_DATA.length-1
+          ? ''
+          : '<button class="btn btn-primary" id="nextBtn">Next &rarr;</button>') +
+      '</div>' +
+    '</div>';
+
+  $('qcard').innerHTML = head + qHtml + optsHtml + nav;
+
+  if(response===null){
+    Array.prototype.forEach.call($('qcard').querySelectorAll('.opt'), function(el){
+      el.addEventListener('click', function(){
+        selectOption(i, parseInt(el.dataset.idx,10));
+      });
+    });
+  }
+  $('prevBtn').addEventListener('click', function(){ if(i>0) goTo(i-1); });
+  $('submitInlineBtn').addEventListener('click', tryFinalSubmit);
+  var nextBtnEl = $('nextBtn');
+  if(nextBtnEl){
+    nextBtnEl.addEventListener('click', function(){ goTo(i+1); });
+  }
+
+  updateSubjectNavActive(q.subject);
+  updateScoreDisplay();
+}
+
+function selectOption(i, j){
+  if(state.responses[i]!==null) return;
+  state.responses[i] = j;
+  renderQuestion();
+  renderPalette();
+}
+
+function updateSubjectNavActive(code){
+  Array.prototype.forEach.call(document.querySelectorAll('#subjectNav button'), function(b){
+    b.classList.toggle('active', b.dataset.subject===code);
+  });
+}
+
+function updateScoreDisplay(){
+  var sc = computeScore();
+  $('liveScore').textContent = sc.correct;
+  $('liveAttempted').textContent = sc.attempted;
+}
+
+/* ================= PALETTE ================= */
+function buildPaletteHtml(){
+  var html = '<h4>Question Palette</h4>' +
+    '<div class="legend">' +
+      '<span><i style="background:var(--navy-700);border:1px solid var(--line);"></i>Not visited</span>' +
+      '<span><i style="background:var(--blue-dim);"></i>Answered</span>' +
+      '<span><i style="background:var(--yellow-dim);"></i>Skipped</span>' +
+    '</div>';
+  SUBJECT_ORDER.forEach(function(code){
+    var s = SUBJECTS[code];
+    var idxs = SUBJECT_INDEX_MAP[code];
+    html += '<div class="pal-group"><div class="glabel">'+s.short+' ('+(idxs[0]+1)+'\u2013'+(idxs[idxs.length-1]+1)+')</div><div class="pal-grid">';
+    idxs.forEach(function(i){
+      var cls = 'pal-btn';
+      if(state.responses[i]!==null) cls += ' answered';
+      else if(state.visited[i]) cls += ' skipped';
+      if(i===state.current) cls += ' current';
+      html += '<button class="'+cls+'" data-i="'+i+'">'+(i+1)+'</button>';
+    });
+    html += '</div></div>';
+  });
+  html += '<button class="btn btn-primary submit-final submitFinalBtn">Submit Test</button>';
+  return html;
+}
+
+function renderPalette(){
+  var html = buildPaletteHtml();
+  $('paletteDesktop').innerHTML = html;
+  $('paletteMobile').innerHTML = html;
+  bindPaletteEvents($('paletteDesktop'));
+  bindPaletteEvents($('paletteMobile'));
+}
+
+function bindPaletteEvents(container){
+  Array.prototype.forEach.call(container.querySelectorAll('.pal-btn'), function(btn){
+    btn.addEventListener('click', function(){ goTo(parseInt(btn.dataset.i,10)); });
+  });
+  var sb = container.querySelector('.submitFinalBtn');
+  if(sb) sb.addEventListener('click', tryFinalSubmit);
+}
+
+$('paletteToggleBtn').addEventListener('click', function(){
+  $('paletteOverlay').classList.add('show');
+});
+$('paletteOverlay').addEventListener('click', function(e){
+  if(e.target.id==='paletteOverlay') closeMobilePalette();
+});
+$('closePaletteBtn').addEventListener('click', closeMobilePalette);
+function closeMobilePalette(){ $('paletteOverlay').classList.remove('show'); }
+
+/* ================= SUBMIT FLOW ================= */
+function tryFinalSubmit(){
+  var sc = computeScore();
+  if(sc.unattempted>0){
+    $('submitModalText').textContent = 'You still have '+sc.unattempted+' unanswered question(s) out of '+QUESTION_DATA.length+'.';
+  } else {
+    $('submitModalText').textContent = 'You have answered all '+QUESTION_DATA.length+' questions.';
+  }
+  $('submitModal').style.display='flex';
+}
+$('cancelSubmitBtn').addEventListener('click', function(){ $('submitModal').style.display='none'; });
+$('confirmSubmitBtn').addEventListener('click', function(){
+  $('submitModal').style.display='none';
+  finalizeSubmit();
+});
+
+function finalizeSubmit(){
+  state.submitted = true;
+  stopTimer();
+  $('testScreen').style.display='none';
+  $('resultScreen').style.display='block';
+  renderResult();
+  submitScoreToBackend();
+}
+
+/* ================= RESULT SCREEN ================= */
+function renderResult(){
+  var sc = computeScore();
+  var pct = Math.round((sc.correct/QUESTION_DATA.length)*100);
+  $('resultName').textContent = state.name + ', here is your result';
+  $('scoreRing').style.setProperty('--pct', pct);
+  $('scoreRingVal').textContent = sc.correct+'/'+QUESTION_DATA.length;
+  $('rCorrect').textContent = sc.correct;
+  $('rWrong').textContent = sc.wrong;
+  $('rSkip').textContent = sc.unattempted;
+  $('rTime').textContent = fmtTime(state.seconds);
+
+  var bd = $('subjectBreakdownList');
+  bd.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(code){
+    var s = SUBJECTS[code];
+    var ss = subjectScore(code);
+    var pctS = ss.total ? Math.round((ss.correct/ss.total)*100) : 0;
+    var row = document.createElement('div');
+    row.className = 'sb-row';
+    row.innerHTML = '<div>'+s.label+'</div>' +
+      '<div style="font-family:var(--font-mono);color:'+s.color+';font-weight:700;">'+ss.correct+'/'+ss.total+'</div>' +
+      '<div class="sb-bar-track"><div class="sb-bar-fill" style="width:'+pctS+'%;background:'+s.color+';"></div></div>';
+    bd.appendChild(row);
+  });
+}
+
+$('viewKeyBtn').addEventListener('click', function(){
+  $('keySection').classList.toggle('hidden');
+  if(!$('keySection').classList.contains('hidden')){
+    renderAnswerKey();
+    $('keySection').scrollIntoView({behavior:'smooth'});
+  }
+});
+
+$('viewLbBtn').addEventListener('click', function(){
+  $('lbSection').classList.toggle('hidden');
+  if(!$('lbSection').classList.contains('hidden')){
+    fetchLeaderboard();
+    startLbPolling();
+    $('lbSection').scrollIntoView({behavior:'smooth'});
+  } else {
+    stopLbPolling();
+  }
+});
+
+$('restartBtn').addEventListener('click', function(){
+  if(!confirm('This will clear all your current answers and restart the test. Continue?')) return;
+  location.reload();
+});
+
+/* ---------- Answer key ---------- */
+function renderAnswerKey(){
+  var list = $('keyList');
+  list.innerHTML = "";
+  var tagLetters = ['A','B','C','D','E','F'];
+  QUESTION_DATA.forEach(function(q, i){
+    var s = SUBJECTS[q.subject];
+    var response = state.responses[i];
+    var card = document.createElement('div');
+    card.className = 'key-card';
+    var badge = response===null ? '<span class="key-badge na">Unattempted</span>' :
+      (q.correct.indexOf(response)!==-1 ? '<span class="key-badge ok">Your answer correct</span>' : '<span class="key-badge no">Your answer wrong</span>');
+    var headHtml = '<div class="khead"><span class="subject-pill" style="background:'+s.color+'22;color:'+s.color+';border:1px solid '+s.color+'55;">'+s.short+'</span>' +
+      '<span class="qno" style="font-family:var(--font-mono);color:var(--gold);font-size:12.5px;">Q'+(i+1)+'</span>' + badge + '</div>';
+    var qHtml = '';
+    if(q.en) qHtml += '<div class="kq">'+q.en+'</div>';
+    if(q.te) qHtml += '<div class="kq te">'+q.te+'</div>';
+    var optsHtml = '<div class="key-opts">';
+    q.opts.forEach(function(opt, j){
+      var cls = 'key-opt';
+      if(q.correct.indexOf(j)!==-1) cls += ' correct';
+      else if(j===response) cls += ' userwrong';
+      optsHtml += '<div class="'+cls+'"><div class="tag" style="flex:0 0 auto;color:var(--ink-faint);font-weight:700;">'+tagLetters[j]+'.</div><div class="otext">'+optionLine(opt)+'</div></div>';
+    });
+    optsHtml += '</div>';
+    card.innerHTML = headHtml + qHtml + optsHtml;
+    list.appendChild(card);
+  });
+}
+
+/* ================= CERTIFICATE ================= */
+$('downloadCertBtn').addEventListener('click', function(){
+  var sc = computeScore();
+  generateCertificate(state.name, sc.correct, QUESTION_DATA.length);
+});
+
+function generateCertificate(name, score, total){
+  var canvas = $('certCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+
+  // background
+  var grad = ctx.createLinearGradient(0,0,W,H);
+  grad.addColorStop(0,'#0a1226');
+  grad.addColorStop(1,'#101d38');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,W,H);
+
+  // outer gold border
+  ctx.strokeStyle = '#f0b940';
+  ctx.lineWidth = 10;
+  ctx.strokeRect(30,30,W-60,H-60);
+  ctx.strokeStyle = 'rgba(240,185,64,.5)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(48,48,W-96,H-96);
+
+  // corner motifs
+  ctx.fillStyle = '#f0b940';
+  [[70,70],[W-70,70],[70,H-70],[W-70,H-70]].forEach(function(p){
+    ctx.beginPath(); ctx.arc(p[0],p[1],7,0,Math.PI*2); ctx.fill();
+  });
+
+  ctx.textAlign = 'center';
+
+  ctx.fillStyle = '#f0b940';
+  ctx.font = '600 22px Poppins, sans-serif';
+  ctx.fillText('C E R T I F I C A T E   O F   A P P R E C I A T I O N', W/2, 175);
+
+  ctx.fillStyle = '#eaf0fb';
+  ctx.font = '400 20px Poppins, sans-serif';
+  ctx.fillText('This certificate is proudly presented to', W/2, 235);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '700 54px Georgia, "Times New Roman", serif';
+  ctx.fillText(name, W/2, 320);
+
+  // underline
+  ctx.strokeStyle = '#f0b940';
+  ctx.lineWidth = 2;
+  var lw = Math.max(280, ctx.measureText(name).width + 60);
+  ctx.beginPath();
+  ctx.moveTo(W/2-lw/2, 340);
+  ctx.lineTo(W/2+lw/2, 340);
+  ctx.stroke();
+
+  ctx.fillStyle = '#c7d3ec';
+  ctx.font = '400 19px Poppins, sans-serif';
+  wrapCenteredText(ctx, 'for successfully completing the APTET Paper-II (Mathematics & Science) Practice Test', W/2, 390, 900, 26);
+  wrapCenteredText(ctx, 'based on the Previous Question Papers)', W/2, 420, 900, 26);
+
+  ctx.fillStyle = '#f0b940';
+  ctx.font = '700 40px "JetBrains Mono", monospace';
+  ctx.fillText(score + ' / ' + total, W/2, 500);
+  ctx.fillStyle = '#8ea0c6';
+  ctx.font = '400 15px Poppins, sans-serif';
+  ctx.fillText('SCORE', W/2, 525);
+
+  var d = new Date();
+  var dateStr = d.toLocaleDateString('en-IN', {day:'2-digit', month:'long', year:'numeric'});
+  ctx.fillStyle = '#8ea0c6';
+  ctx.font = '400 16px Poppins, sans-serif';
+  ctx.fillText('Date of completion: ' + dateStr, W/2, 570);
+
+  // credit block
+  ctx.fillStyle = '#eaf0fb';
+  ctx.font = '700 17px Poppins, sans-serif';
+  ctx.fillText('C. RASOOL BAVAJI', W/2, 990);
+  ctx.fillStyle = '#8ea0c6';
+  ctx.font = '400 14px Poppins, sans-serif';
+  ctx.fillText('S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT', W/2, 1012);
+  ctx.fillStyle = '#f0b940';
+  ctx.font = '400 14px Poppins, sans-serif';
+  ctx.fillText('https://tenthquiz.blogspot.com', W/2, 1032);
+
+  var link = document.createElement('a');
+  link.download = 'Certificate_' + name.replace(/[^a-z0-9]+/gi,'_') + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function wrapCenteredText(ctx, text, x, y, maxWidth, lineHeight){
+  var words = text.split(' ');
+  var line = '';
+  var lines = [];
+  for(var n=0;n<words.length;n++){
+    var testLine = line + words[n] + ' ';
+    if(ctx.measureText(testLine).width > maxWidth && n>0){
+      lines.push(line);
+      line = words[n] + ' ';
+    } else {
+      line = testLine;
+    }
+  }
+  lines.push(line);
+  var startY = y - ((lines.length-1)*lineHeight)/2;
+  lines.forEach(function(l, i){ ctx.fillText(l.trim(), x, startY + i*lineHeight); });
+}
+
+/* ================= BACKEND: LEADERBOARD ================= */
+function isBackendConfigured(){
+  return APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('REPLACE_WITH')!==0;
+}
+
+function submitScoreToBackend(){
+  if(!isBackendConfigured()) return;
+  var sc = computeScore();
+  var payload = {
+    name: state.name,
+    score: sc.correct,
+    correct: sc.correct,
+    wrong: sc.wrong,
+    unattempted: sc.unattempted,
+    timeTaken: state.seconds
+  };
+  fetch(APPS_SCRIPT_URL, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  }).catch(function(){ /* fail silently, offline-safe */ });
+}
+
+function fetchLeaderboard(){
+  if(!isBackendConfigured()){
+    $('lbBody').innerHTML = "";
+    $('lbStatus').classList.remove('hidden');
+    $('lbStatus').textContent = 'Live leaderboard is not set up yet. See the accompanying Apps Script guide to connect a free Google Sheet backend.';
+    return;
+  }
+  fetch(APPS_SCRIPT_URL + '?action=leaderboard&t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){ renderLeaderboard(data); })
+    .catch(function(){
+      $('lbStatus').classList.remove('hidden');
+      $('lbStatus').textContent = 'Could not load the leaderboard right now. It will retry automatically.';
+    });
+}
+
+function renderLeaderboard(data){
+  $('lbStatus').classList.add('hidden');
+  var body = $('lbBody');
+  body.innerHTML = "";
+  if(!data || !data.length){
+    $('lbStatus').classList.remove('hidden');
+    $('lbStatus').textContent = 'No entries yet \u2014 be the first on the leaderboard!';
+    return;
+  }
+  data.forEach(function(row, i){
+    var isMe = row.name === state.name && Number(row.score) === computeScore().correct;
+    var tr = document.createElement('tr');
+    if(isMe) tr.className = 'me';
+    tr.innerHTML = '<td class="lb-rank">'+(i+1)+'</td><td>'+esc(row.name)+'</td><td>'+esc(row.score)+' / '+QUESTION_DATA.length+'</td><td>'+fmtTime(Number(row.timeTaken)||0)+'</td>';
+    body.appendChild(tr);
+  });
+}
+
+function startLbPolling(){
+  stopLbPolling();
+  state.lbPollId = setInterval(fetchLeaderboard, 20000);
+}
+function stopLbPolling(){ if(state.lbPollId){ clearInterval(state.lbPollId); state.lbPollId=null; } }
+
+/* ================= INIT ================= */
+buildSubjectStrip();
+buildSubjectNav();
+renderPalette();
+
+})();
+</script>
+</body>
+</html>
