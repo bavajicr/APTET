@@ -1,0 +1,465 @@
+
+<div id="cdpq-root" class="cdpq-wrap">
+<style>
+.cdpq-wrap{max-width:720px;margin:0 auto;font-family:'Segoe UI',Arial,sans-serif;background:linear-gradient(180deg,#0b1a3a,#0d2354);border-radius:18px;padding:18px;color:#eaf0ff;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.cdpq-wrap *{box-sizing:border-box}
+.cdpq-header{text-align:center;padding:6px 4px 14px}
+.cdpq-header h1{font-size:19px;margin:0 0 4px;color:#ffd166;letter-spacing:.3px}
+.cdpq-header p{margin:2px 0;font-size:13px;color:#bcd0ff}
+.cdpq-topbar{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border-radius:12px;padding:8px 12px;margin-bottom:10px;font-size:13px;flex-wrap:wrap;gap:6px}
+.cdpq-pill{background:rgba(255,255,255,.1);padding:5px 10px;border-radius:20px;font-weight:600}
+.cdpq-timer{color:#7CFC9A;font-weight:700}
+.cdpq-progress-outer{width:100%;background:rgba(255,255,255,.12);border-radius:10px;height:9px;overflow:hidden;margin-bottom:14px}
+.cdpq-progress-inner{height:100%;background:linear-gradient(90deg,#4facfe,#00f2fe);width:0%;transition:width .35s ease}
+.cdpq-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px}
+.cdpq-qcount{font-size:12px;color:#9fb3e8;margin-bottom:6px;font-weight:600}
+.cdpq-qtext-en{font-size:16px;font-weight:600;line-height:1.5;margin:0 0 6px}
+.cdpq-qtext-te{font-size:15.5px;line-height:1.6;margin:0 0 14px;color:#dce7ff}
+.cdpq-options{display:flex;flex-direction:column;gap:9px}
+.cdpq-opt{display:block;text-align:left;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#eaf0ff;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:14.5px;line-height:1.45;transition:.15s}
+.cdpq-opt .cdpq-opt-en{display:block}
+.cdpq-opt .cdpq-opt-te{display:block;color:#c9d7ff;font-size:14px;margin-top:2px}
+.cdpq-opt:hover{background:rgba(255,255,255,.13)}
+.cdpq-opt.correct{background:#1f8f4e;border-color:#2fd16b}
+.cdpq-opt.wrong{background:#a32b3a;border-color:#ff5f6d}
+.cdpq-opt.disabled{cursor:default;pointer-events:none;opacity:.85}
+.cdpq-feedback{margin-top:10px;font-size:13.5px;font-weight:700;min-height:18px}
+.cdpq-feedback.ok{color:#7CFC9A}
+.cdpq-feedback.no{color:#ff8b96}
+.cdpq-nav{display:flex;justify-content:space-between;margin-top:16px;gap:10px}
+.cdpq-btn{flex:1;padding:11px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:#2a4faa;color:#fff}
+.cdpq-btn:disabled{opacity:.4;cursor:not-allowed}
+.cdpq-btn.secondary{background:rgba(255,255,255,.12)}
+.cdpq-btn.submit{background:#e0a800;color:#20240a}
+.cdpq-result{text-align:center;padding:10px 4px}
+.cdpq-score-ring{width:140px;height:140px;border-radius:50%;margin:10px auto 14px;display:flex;align-items:center;justify-content:center;background:conic-gradient(#2fd16b calc(var(--pct)*1%),rgba(255,255,255,.12) 0);position:relative}
+.cdpq-score-ring::before{content:"";position:absolute;width:110px;height:110px;border-radius:50%;background:#0d2354}
+.cdpq-score-ring span{position:relative;font-size:26px;font-weight:800;color:#ffd166}
+.cdpq-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:10px 0 16px}
+.cdpq-stat{background:rgba(255,255,255,.07);border-radius:10px;padding:8px 14px;font-size:13px;min-width:80px}
+.cdpq-stat b{display:block;font-size:17px}
+.cdpq-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.cdpq-credit{margin-top:18px;text-align:center;font-size:12px;color:#9fb3e8;border-top:1px dashed rgba(255,255,255,.2);padding-top:10px;line-height:1.6}
+.cdpq-credit b{color:#ffd166}
+.cdpq-review{margin-top:16px;text-align:left}
+.cdpq-review h3{font-size:15px;color:#ffd166;margin:14px 0 8px}
+.cdpq-review-item{background:rgba(255,255,255,.05);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:13px;line-height:1.5}
+.cdpq-review-item .rq{font-weight:700;margin-bottom:4px}
+.cdpq-review-item .ra{color:#7CFC9A}
+.cdpq-review-item .rw{color:#ff8b96}
+.cdpq-hide{display:none!important}
+@media(max-width:480px){.cdpq-score-ring{width:120px;height:120px}.cdpq-score-ring::before{width:92px;height:92px}.cdpq-score-ring span{font-size:22px}}
+</style>
+
+<div class="cdpq-header">
+<h1>CHILD DEVELOPMENT AND PEDAGOGY</h1>
+<p>APTET Previous Question Paper – 14 October 2024 (Second Shift)</p>
+<p>30 Questions | Bilingual (English &amp; Telugu)</p>
+</div>
+
+<div id="cdpq-quizArea">
+<div class="cdpq-topbar">
+<span class="cdpq-pill">Score: <span id="cdpq-score">0</span>/30</span>
+<span class="cdpq-pill cdpq-timer">⏱ <span id="cdpq-timer">00:00</span></span>
+<span class="cdpq-pill" id="cdpq-qno">Q 1/30</span>
+</div>
+<div class="cdpq-progress-outer"><div class="cdpq-progress-inner" id="cdpq-progress"></div></div>
+
+<div class="cdpq-card">
+<div class="cdpq-qcount" id="cdpq-qlabel">Question 1 of 30</div>
+<p class="cdpq-qtext-en" id="cdpq-qtexten"></p>
+<p class="cdpq-qtext-te" id="cdpq-qtextte"></p>
+<div class="cdpq-options" id="cdpq-options"></div>
+<div class="cdpq-feedback" id="cdpq-feedback"></div>
+</div>
+
+<div class="cdpq-nav">
+<button class="cdpq-btn secondary" id="cdpq-prevBtn">◀ Previous</button>
+<button class="cdpq-btn" id="cdpq-nextBtn">Next ▶</button>
+<button class="cdpq-btn submit cdpq-hide" id="cdpq-submitBtn">Submit Quiz</button>
+</div>
+</div>
+
+<div id="cdpq-resultArea" class="cdpq-result cdpq-hide">
+<h1 style="color:#ffd166;margin-bottom:4px;">Quiz Completed!</h1>
+<div class="cdpq-score-ring" id="cdpq-ring" style="--pct:0"><span id="cdpq-pct">0%</span></div>
+<div class="cdpq-stats">
+<div class="cdpq-stat">✅ Correct<b id="cdpq-correctCount">0</b></div>
+<div class="cdpq-stat">❌ Wrong<b id="cdpq-wrongCount">0</b></div>
+<div class="cdpq-stat">⏱ Time<b id="cdpq-timeTaken">00:00</b></div>
+</div>
+<div class="cdpq-actions">
+<button class="cdpq-btn" id="cdpq-reviewBtn">View Answer Key &amp; Responses</button>
+<button class="cdpq-btn secondary" id="cdpq-retryBtn">Retake Quiz</button>
+</div>
+<div class="cdpq-review cdpq-hide" id="cdpq-reviewBox"></div>
+</div>
+
+<div class="cdpq-credit">
+<b>C. RASOOL BAVAJI</b>, S.A.(P.S.), ZPHS, MADANAPALLE<br>
+Annamayya District &nbsp;|&nbsp; tenthquiz.blogspot.com
+</div>
+</div>
+
+<script>
+(function(){
+var CDPQ_DATA=[
+{en:"The role of intelligence in overall growth and development of a child is",te:"శిశువు యొక్క సమగ్ర పెరుగుదల, వికాసంలలో ప్రజ్ఞ యొక్క పాత్ర",
+opts:[
+{en:"to learn, adjust and take right decision at the right time",te:"నేర్చుకోవటానికి, సర్దుబాటుకి, సరైన సమయంలో సరైన నిర్ణయం తీసుకోగలగటానికి"},
+{en:"to achieve academic goals for a bright future",te:"మంచి భవిష్యత్ కోసం విద్యాపరమైన లక్ష్యాల సాధనకు"},
+{en:"to gain useful technological skills",te:"ఉపయోగకరమైన సాంకేతిక నైపుణ్యాలను పొందేందుకు"},
+{en:"to develop proficiency in productive sectors",te:"ఉత్పాదక రంగాలలో నైపుణ్యాన్ని పెంపొందించుకోవటం కోసం"}
+],ans:0},
+{en:"Among the factors that influence growth and development the parental and family care received by child comes under",te:"పెరుగుదల, వికాసాన్ని ప్రభావితం చేసే కారకాలలో, తల్లిదండ్రుల మరియు కుటుంబం నుండి పొందే శ్రద్ధ/రక్షణ ఈ రకానికి చెందిన కారకం",
+opts:[
+{en:"Biological",te:"జీవసంబంధ"},
+{en:"External",te:"బాహ్య"},
+{en:"Hereditary",te:"వంశపారంపర్య"},
+{en:"Social nature",te:"సామాజిక స్వభావ"}
+],ans:1},
+{en:"Every child is unique with respect to the various dimensions of development. This applies to the following principle of development.",te:"అనేకమైన వికాస పరిమాణాలకు సంబంధించి, ప్రతి శిశువు ప్రత్యేకమైనది. ఇది ఈ వికాస నియమానికి వర్తిస్తుంది.",
+opts:[
+{en:"Inter-relationships",te:"పరస్పర సంబంధాలు"},
+{en:"Individual differences",te:"వైయక్తిక భేదాలు"},
+{en:"Predictability",te:"ప్రాగుక్తీకరణ"},
+{en:"Integration",te:"ఏకీకరణము"}
+],ans:1},
+{en:"One of the following is not correct with respect to the growth and development.",te:"పెరుగుల, అభివృద్ధికి సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.",
+opts:[
+{en:"Growth refers to physical change and development for overall change",te:"పెరుగుదల శారీరక మార్పుని సూచిస్తుంది, అభివృద్ధి మొత్తం మార్పుని సూచిస్తుంది."},
+{en:"Growth is a part of development and development addresses changes in total.",te:"పెరుగుదల అభివృద్ధిలో ఒక భాగం మరియు అభివృద్ధి పూర్తి మార్పులని సూచిస్తుంది."},
+{en:"The changes of both growth and development are totally measurable and observable",te:"పెరుగుదల, అభివృద్ధికి సంబంధించిన మార్పులు పూర్తిగా కొలవదగినవి మరియు పరిశీలింపదగినవి."},
+{en:"Physical change may not result in functional change",te:"భౌతిక మార్పు క్రియాత్మక మార్పుకి దారితీయకపోవచ్చును."}
+],ans:2},
+{en:"With regard to the structural development during Pre-natal period, embryonic period is between",te:"జనన పూర్వదశలోని శిశువు నిర్మాణాత్మక అభివృద్ధికి సంబంధించి అపరిణత పిండోత్పత్తి దశ (ఎంబ్రియోనిక్) ఈ మధ్య కాలం లోనిది",
+opts:[
+{en:"3rd week to 8th week",te:"3వ వారం నుండి 8వ వారం"},
+{en:"First two weeks",te:"మొదటి రెండు వారాలు"},
+{en:"8th week to birth",te:"8వ వారం నుండి జననం వరకు"},
+{en:"5th week to 8th week",te:"5వ వారం నుండి 8వ వారం"}
+],ans:0},
+{en:"In the early childhood stage, the thinking and reasoning develops in relation to",te:"పూర్వ బాల్య దశలో, ఆలోచన మరియు తార్కికత వీటి ఆధారంగా అభివృద్ధి చెందుతుంది.",
+opts:[
+{en:"Abstract materials",te:"అమూర్త వస్తువులు"},
+{en:"Concrete materials",te:"మూర్త వస్తువులు"},
+{en:"Moving pictures",te:"కదిలే చిత్రాలు"},
+{en:"Unavailable materials",te:"లభ్యం కాని వస్తువులు"}
+],ans:1},
+{en:"When a baby below 1 year old is playing with a toy, if the toy is replaced with a pillow, she forgets the toy and starts playing with pillow. According to piaget, this is because of",te:"ఒక సం॥ లోపు వయసున్న పాప ఆడుకొంటున్న బొమ్మని మార్చి, దిండు ఉంచినట్లయితే ఆమె బొమ్మని మరచి, దిండుతోనే ఆడుకొంటుంది. పియాజే ప్రకారం దీనికి కారణం",
+opts:[
+{en:"The concept of object permanence",te:"వస్తుశాశ్వత భావన వలన"},
+{en:"Lack of concept of irreversibility",te:"అనిపర్యాత్మక భావనాలోపం"},
+{en:"The absence of object permanence concept",te:"వస్తు శాశ్వత భావన లేకపోవటం వలన"},
+{en:"ego centrism",te:"అహంకేంద్రవాదం"}
+],ans:2},
+{en:"The major focus of 'behavioristic theory' of development is on",te:"అభివృద్ధికి సంబంధించి 'ప్రవర్తనా సిద్ధాంతం' యొక్క ప్రధాన దృష్టి దీని గురించి",
+opts:[
+{en:"Cognitive abilities and perception",te:"ప్రజ్ఞాసామర్థ్యాలు మరియు ప్రత్యక్షం"},
+{en:"Learning of stimulus-response associations",te:"ఉద్దీపన-ప్రతిస్పందనల సాహచర్యం గురించి తెలుసుకోవటం"},
+{en:"Importance of early childhood experiences on later development of child",te:"పిల్లవాని తరువాత వికాసం పై పూర్వప్రాథమిక దశలోని అనుభవాల ప్రాముఖ్యత"},
+{en:"The ability to construct mental images involving reasoning.",te:"తార్కికతతో కూడిన మానసిక చిత్రాలను నిర్మించుకోగల సామర్థ్యం"}
+],ans:1},
+{en:"One of the following is not true with respect to 'Self-concept'",te:"'ఆత్మభావన' కు సంబంధించి, ఈ క్రింది వానిలో ఒకటి నిజం కాదు.",
+opts:[
+{en:"'Self-concept' is what the individual thinks about himself",te:"'ఆత్మభావన' అనేది వ్యక్తికి తన గురించి తనకు గల ఒక ఆలోచన"},
+{en:"'Self-concept' is knowing one's strengths and weaknesses",te:"'ఆత్మభావన' అంటే తన బలాలు, బలహీనతలు తెలుసుకొని ఉండటం"},
+{en:"'Self-concept' develops self-respect and self confidence",te:"'ఆత్మభావన' ఆత్మ గౌరవం మరియు ఆత్మ విశ్వాసాన్ని పెంచుతుంది."},
+{en:"'Self-concept' does not influence the individual differences",te:"'ఆత్మభావన' వ్యక్తుల్లో వైవిధ్యతను ప్రభావితం చేయదు."}
+],ans:3},
+{en:"The important tool of thinking is",te:"ఆలోచన యొక్క ముఖ్యమైన సాధనం",
+opts:[
+{en:"Motivation",te:"ప్రేరణ"},
+{en:"Intelligence",te:"ప్రజ్ఞ"},
+{en:"Personality",te:"మూర్తిమత్వం"},
+{en:"Language",te:"భాష"}
+],ans:3},
+{en:"One of the following is not the innate individual difference",te:"క్రింది వానిలో ఒకటి జన్మత: వచ్చిన వైయక్తిక భేదము కానిది",
+opts:[
+{en:"Physical",te:"శారీరక"},
+{en:"Mental",te:"మానసిక"},
+{en:"Emotional",te:"ఉద్వేగ"},
+{en:"Educational",te:"విద్యాపరమైన"}
+],ans:3},
+{en:"One of the following is not correct with respect to Intelligence",te:"ప్రజ్ఞకు సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు",
+opts:[
+{en:"Intelligence is the ability to carry out abstract thinking",te:"అమూర్త ఆలోచన చేయగల సామర్థ్యమే ప్రజ్ఞ"},
+{en:"Knowledge comes through learning and intelligence occurs naturally",te:"జ్ఞానం అభ్యసన ద్వారా వస్తుంది, ప్రజ్ఞ సహజసిద్ధంగా ఏర్పడుతుంది."},
+{en:"Intelligence pertains to all fields. Aptitude belongs to a particular field",te:"ప్రజ్ఞ అన్ని రంగాలకు సంబంధించినది. సహజ సామర్థ్యం ఒక ప్రత్యేక రంగానికి సంబంధించినది."},
+{en:"All the persons who have intelligence have creativity but not all creative have intelligence",te:"ప్రజ్ఞ ఉన్న అందరికీ సృజనాత్మకత ఉంటుంది. కానీ సృజనాత్మకత ఉన్న అందరికీ ప్రజ్ఞ ఉండదు."}
+],ans:3},
+{en:"One of the following is not a subtest of Differential Aptitude Test (DAT)",te:"క్రింది వానిలో భేదాత్మక సహజ సామర్థ్య పరీక్ష (DAT) లోని ఉపపరీక్ష కానిది",
+opts:[
+{en:"Verbal ability",te:"శాబ్దిక సామర్థ్యం"},
+{en:"Numerical ability",te:"సంఖ్య సామర్థ్యం"},
+{en:"Object assembly test",te:"వస్తు సమాఖ్య పరీక్ష"},
+{en:"Spatial ability",te:"ప్రాదేశిక సామర్థ్యం"}
+],ans:2},
+{en:"Among the blocks of creativity, \"Excessive reliance on authority\" comes under this category",te:"సృజనాత్మకతను నిరోధించే వాటిలో \"అధికారం పై అధికంగా ఆధార పడటం\" ఈ తరహాకు చెందినది",
+opts:[
+{en:"Perceptional blocks",te:"అవగాహనా అవరోధాలు"},
+{en:"Emotional blocks",te:"ఉద్వేగ అవరోధాలు"},
+{en:"Intellectual blocks",te:"ప్రజ్ఞా అవరోధాలు"},
+{en:"Cultural blocks",te:"సాంస్కృతిక అవరోధాలు"}
+],ans:3},
+{en:"Interest is formed in this way — a. Naturally, due to person's nature b. Due to reaction with surroundings c. Because of the experiences gained over time",te:"అభిరుచి ఇలా ఏర్పడుతుంది. a. సహజసిద్ధంగా, వ్యక్తి స్వభావం వలన b. పరిసరాలతో ప్రతిచర్యల వలన c. కాలంతో పాటు పొందే అనుభవాల వలన",
+opts:[
+{en:"a only",te:"a మాత్రమే"},
+{en:"a, b",te:"a, b"},
+{en:"b, c",te:"b, c"},
+{en:"a, b, c",te:"a, b, c"}
+],ans:3},
+{en:"The projective test of personality among the following",te:"ఈ క్రింది వానిలో ప్రక్షేపక పరీక్ష",
+opts:[
+{en:"Personality inventories",te:"మూర్తిమత్వశోధికలు"},
+{en:"Rating scales",te:"నిర్ధారణ మాపనులు"},
+{en:"Sentence completion test",te:"వాక్య పూరణ పరీక్ష"},
+{en:"Anecdotal record",te:"సంఘటన రచన పద్ధతి / పత్రావళి"}
+],ans:2},
+{en:"According to Hippocrates 'type approach' to personality, the dominant fluid in the \"choleric\" personality type is",te:"మూర్తిమత్వానికి సంబంధించి హిప్పోక్రెటిస్ 'రూప సిద్ధాంతం' ప్రకారం \"పైత్యప్రవృత్తి\" గల వారిలో ఉండే ఆధిపత్య ద్రవం",
+opts:[
+{en:"Blood",te:"రక్తము"},
+{en:"phlegm (mucus)",te:"శ్లేష్మము"},
+{en:"Black bile",te:"నల్లని పైత్యరసం"},
+{en:"yellow bile",te:"పసుపు పైత్యరసం"}
+],ans:3},
+{en:"One of the following is not the part of central processing unit",te:"క్రింది వానిలో సెంట్రల్ ప్రొసెసింగ్ యూనిట్‌లో భాగం కానిది",
+opts:[
+{en:"Control unit",te:"కంట్రోల్ యూనిట్"},
+{en:"Memory unit",te:"మెమొరీ యూనిట్"},
+{en:"Arithmetic & logical unit",te:"అర్ధమెటిక్ & లాజికల్ విభాగం"},
+{en:"Printer",te:"ప్రింటర్"}
+],ans:3},
+{en:"Behavioristic theories of development was proposed by",te:"వికాసం యొక్క ప్రవర్తనా వాద సిద్ధాంతాలు ప్రతిపాదించినది",
+opts:[
+{en:"Sigmund Freud and Erik Erikson",te:"సిగ్మండ్ ఫ్రాయిడ్ మరియు ఎరిక్ ఎరిక్సన్"},
+{en:"Ivan Pavlov and B.F. Skinner",te:"ఐవాన్ పావ్‌లోవ్ మరియు బి.ఎఫ్. స్కిన్నర్"},
+{en:"Jean Piaget and Bandura",te:"జీన్ పియాజె మరియు బండూరా"},
+{en:"Kohlberg and Goldstein",te:"కోల్బర్గ్ మరియు గోల్డ్‌స్టీన్"}
+],ans:1},
+{en:"\"Adjustment means the modification to compensate for or meet special conditions\". This definition is given by",te:"\"ప్రత్యేక పరిస్థితులకు అనుగుణంగా లేదా వాటిని భర్తీ చేయటం కోసం సవరణ చేసుకోవటమే సర్దుబాటు\" ఈ నిర్వచనం ఇచ్చినది",
+opts:[
+{en:"Webster",te:"వెబ్‌స్టర్"},
+{en:"Carter V. Good",te:"కార్టర్ వి. గుడ్"},
+{en:"Warren",te:"వారెన్"},
+{en:"James Drever",te:"జేమ్స్ డ్రివెర్"}
+],ans:2},
+{en:"\"Conflict is a painful emotional state which results from a tension between two opposed and contradictory wishes\". This definition is given by",te:"\"రెండు విరుద్ధ కోర్కెల మధ్య ఏర్పడే తన్యత వల్ల కలిగే బాధాకరమైన ఉద్వేగ స్థితే సంఘర్షణ\" ఈ నిర్వచనం ఇచ్చినది.",
+opts:[
+{en:"Kurt Lewin",te:"కర్ట్ లెవిన్"},
+{en:"Douglass and Holland",te:"డగ్లస్, హాలెండ్"},
+{en:"Murray",te:"మురై"},
+{en:"Jacob.L. Moreno",te:"జాకబ్.ఎల్. మొరినో"}
+],ans:1},
+{en:"When requirements are not met during developmental stages, some people though they are elders behave like children. This defense mechanism is",te:"అభివృద్ధి దశలలో అవసరాలు తీరనపుడు, కొందరు పెద్దవారైనప్పటికీ చిన్నపిల్లల్లా ప్రవర్తిస్తారు. ఇది ఈ రక్షణ తంత్రం",
+opts:[
+{en:"Repression",te:"దమనం"},
+{en:"Regression",te:"ప్రతిగమనం"},
+{en:"Compensation",te:"పరిహారం"},
+{en:"Rationalization",te:"హేతుకీకరణ"}
+],ans:1},
+{en:"\"Measuring without instruments\" is also the name of the following method of psychology",te:"\"పరికరం లేకుండా కొలవటం\" ఇది ఈ క్రింది మనోవిజ్ఞానశాస్త్ర పద్ధతికి ఇంకో పేరు",
+opts:[
+{en:"Projective tests",te:"ప్రక్షేపక పరీక్షలు"},
+{en:"Observation method",te:"పరిశీలన పద్ధతి"},
+{en:"Experimental method",te:"ప్రయోగ పద్ధతి"},
+{en:"Case study method",te:"వ్యక్తి అధ్యయన పద్ధతి"}
+],ans:1},
+{en:"One of the following is correct with respect to learning",te:"క్రింది వానిలో అభ్యసనకు సంబంధించి సరైనది",
+opts:[
+{en:"Learning involves making sense of the presented material",te:"అభ్యసన అనేది హాజరుపరచిన విషయాలు అర్థవంతం అవడాన్ని కలిగి ఉంటుంది."},
+{en:"Learning is a relatively temporary change in behaviour",te:"అభ్యసన అనేది సాపేక్షంగా ప్రవర్తనలో తాత్కాలిక మార్పు"},
+{en:"No relation between learning and adjustment",te:"అభ్యసనకు, సర్దుబాటుకు సంబంధం లేదు"},
+{en:"Learning is a product",te:"అభ్యసన అనేది ఒక ఉత్పత్తి"}
+],ans:0},
+{en:"Correctly matched pair is",te:"సరిగ్గా జతపరచబడిన జత",
+opts:[
+{en:"Pavlov – Operant conditioning",te:"పావ్‌లోవ్ – కార్యసాధక నిబంధనం"},
+{en:"Kohlberg – Language development theory",te:"కోల్బర్గ్ – భాషావికాస సిద్ధాంతం"},
+{en:"Bandura – Social learning theory",te:"బండూర – సాంఘిక అభ్యసనా సిద్ధాంతం"},
+{en:"Rogers – Social constructivism",te:"రోజర్స్ – సామాజిక నిర్మాణాత్మకవాదం"}
+],ans:2},
+{en:"'Attention Concentration' is",te:"'అవధాన ఏకాగ్రత' అనేది",
+opts:[
+{en:"An indicator of attention 'depth'",te:"అవధానం యొక్క 'లోతు / పరిపూర్ణత' యొక్క సూచిక"},
+{en:"An indicator of attention width and narrowness",te:"అవధానం యొక్క విశాలత మరియు సంకుచితత్వం యొక్క సూచిక"},
+{en:"Attention is the speed of transition from one object to another",te:"ఒక వస్తువు నుండి మరొక విషయానికి మారే అవధాన వేగం"},
+{en:"The duration of voluntary attention",te:"సంకల్పిత అవధానం యొక్క వ్యవధి"}
+],ans:0},
+{en:"One of the following is not the part of planning phase of teaching.",te:"ఈ క్రింది వానిలో ఒకటి బోధన యొక్క ప్రణాళికా దశకు చెందినది కాదు",
+opts:[
+{en:"Selection of content to be taught",te:"నేర్పవలసిన విషయాన్ని ఎంపిక చేసుకోవడం"},
+{en:"Organization of the content",te:"విషయాన్ని వ్యవస్థీకరించటం"},
+{en:"Selection and presentation of stimuli",te:"ఉద్దీపనల ఎంపిక మరియు హాజరుపరచుట"},
+{en:"Sequencing the elements of content for presentation",te:"హాజరుపరచాల్సిన విషయాంశాలను క్రమపరచుట"}
+],ans:2},
+{en:"One of the following is not correct regarding the use of knowledge of group dynamics to the teacher.",te:"సమూహ గతి శాస్త్రజ్ఞానము ఉపాధ్యాయునికి ఉపయోగపడే విషయంలో ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.",
+opts:[
+{en:"He can improve social and emotional climate of the group",te:"సమూహం యొక్క సామాజిక మరియు భావోద్వేగ పరిస్థితులను మెరుగుపరచుకుంటాడు."},
+{en:"He finds out the causes that work against conducive environment of the class",te:"తరగతి యొక్క అనుకూల వాతావరణానికి వ్యతిరేకంగా పని చేసే కారణాలు తెలుసుకొంటాడు."},
+{en:"He can improve intra group relations",te:"అంతర్ సమూహ సంబంధాలను మెరుగుపరచుకుంటాడు."},
+{en:"He can understand the relationship patterns which are same for all activities.",te:"అన్ని కార్యకలాపాలకు ఒకేవిధంగా ఉండే సంబంధాల నమూనాలను అర్థం చేసుకోగలడు."}
+],ans:3},
+{en:"The creator of project method",te:"ప్రాజెక్టు / ప్రకల్పనా పద్ధతి రూపకర్త",
+opts:[
+{en:"John Dewey",te:"జాన్ డ్యూయి"},
+{en:"Kil Patrik",te:"కిల్‌పాట్రిక్"},
+{en:"Froebel",te:"ఫ్రోబెల్"},
+{en:"Morrison",te:"మోరిసన్"}
+],ans:1},
+{en:"One of the following is not correct with regard to the 'instruction' and 'teaching'",te:"ఈ క్రింది వానిలో ఒకటి 'సూచన' మరియు 'బోధన'ల గురించి సరైనది కాదు.",
+opts:[
+{en:"Instruction is suggesting directions in teaching learning Process",te:"సూచన అనేది బోధనాభ్యసన ప్రక్రియలో దిశలను సూచించేది."},
+{en:"Teaching is based on individual differences on learning",te:"బోధన, అభ్యసనలో ఉండే వ్యక్తిగత వ్యత్యాసాల మీద ఆధారపడి ఉంటుంది."},
+{en:"Instruction may not be possible in informal Education",te:"అనియత విద్యలో సూచనలు ఇచ్చుటకు అవకాశం లేదు."},
+{en:"Teaching takes place only in formal education",te:"నియత విద్యలో మాత్రమే బోధన జరుగుతుంది."}
+],ans:3}
+];
+
+function cdpq_shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+var order=cdpq_shuffle(CDPQ_DATA.map(function(_,i){return i;}));
+var perQ=order.map(function(idx){
+  var q=CDPQ_DATA[idx];
+  var optOrder=cdpq_shuffle(q.opts.map(function(_,i){return i;}));
+  return {qi:idx, optOrder:optOrder, selected:null, correct:false, answered:false};
+});
+
+var cur=0, score=0, seconds=0, timerHandle=null, finished=false;
+
+var $=function(id){return document.getElementById(id);};
+
+function fmtTime(s){var m=Math.floor(s/60);var sec=s%60;return (m<10?'0':'')+m+':'+(sec<10?'0':'')+sec;}
+
+function startTimer(){
+  timerHandle=setInterval(function(){
+    if(finished){clearInterval(timerHandle);return;}
+    seconds++;
+    $('cdpq-timer').textContent=fmtTime(seconds);
+  },1000);
+}
+
+function renderQuestion(){
+  var st=perQ[cur];
+  var q=CDPQ_DATA[st.qi];
+  $('cdpq-qlabel').textContent='Question '+(cur+1)+' of '+CDPQ_DATA.length;
+  $('cdpq-qno').textContent='Q '+(cur+1)+'/'+CDPQ_DATA.length;
+  $('cdpq-qtexten').textContent=(cur+1)+'. '+q.en;
+  $('cdpq-qtextte').textContent=q.te;
+  $('cdpq-progress').style.width=((cur)/CDPQ_DATA.length*100)+'%';
+
+  var optsDiv=$('cdpq-options');
+  optsDiv.innerHTML='';
+  st.optOrder.forEach(function(oi,pos){
+    var opt=q.opts[oi];
+    var btn=document.createElement('button');
+    btn.className='cdpq-opt';
+    btn.setAttribute('data-oi',oi);
+    var enSpan=document.createElement('span');
+    enSpan.className='cdpq-opt-en';
+    enSpan.textContent=String.fromCharCode(65+pos)+'. '+opt.en;
+    var teSpan=document.createElement('span');
+    teSpan.className='cdpq-opt-te';
+    teSpan.textContent=opt.te;
+    btn.appendChild(enSpan);
+    btn.appendChild(teSpan);
+    if(st.answered){
+      btn.classList.add('disabled');
+      if(oi===q.ans)btn.classList.add('correct');
+      else if(oi===st.selected)btn.classList.add('wrong');
+    }
+    btn.onclick=function(){selectOption(oi);};
+    optsDiv.appendChild(btn);
+  });
+
+  var fb=$('cdpq-feedback');
+  if(st.answered){
+    if(st.correct){fb.textContent='✅ Correct!';fb.className='cdpq-feedback ok';}
+    else{fb.textContent='❌ Incorrect. Correct answer highlighted in green.';fb.className='cdpq-feedback no';}
+  } else {
+    fb.textContent='';fb.className='cdpq-feedback';
+  }
+
+  $('cdpq-prevBtn').disabled=(cur===0);
+  if(cur===CDPQ_DATA.length-1){
+    $('cdpq-nextBtn').classList.add('cdpq-hide');
+    $('cdpq-submitBtn').classList.remove('cdpq-hide');
+  } else {
+    $('cdpq-nextBtn').classList.remove('cdpq-hide');
+    $('cdpq-submitBtn').classList.add('cdpq-hide');
+  }
+  $('cdpq-score').textContent=score;
+}
+
+function selectOption(oi){
+  var st=perQ[cur];
+  if(st.answered)return;
+  var q=CDPQ_DATA[st.qi];
+  st.selected=oi;
+  st.answered=true;
+  st.correct=(oi===q.ans);
+  if(st.correct)score++;
+  renderQuestion();
+}
+
+function goNext(){
+  if(cur<CDPQ_DATA.length-1){cur++;renderQuestion();}
+}
+function goPrev(){
+  if(cur>0){cur--;renderQuestion();}
+}
+
+function submitQuiz(){
+  finished=true;
+  clearInterval(timerHandle);
+  $('cdpq-quizArea').classList.add('cdpq-hide');
+  $('cdpq-resultArea').classList.remove('cdpq-hide');
+  var wrong=perQ.filter(function(s){return s.answered && !s.correct;}).length;
+  var unattempted=perQ.filter(function(s){return !s.answered;}).length;
+  var pct=Math.round((score/CDPQ_DATA.length)*100);
+  $('cdpq-pct').textContent=pct+'%';
+  $('cdpq-ring').style.setProperty('--pct',pct);
+  $('cdpq-correctCount').textContent=score;
+  $('cdpq-wrongCount').textContent=(wrong+unattempted);
+  $('cdpq-timeTaken').textContent=fmtTime(seconds);
+
+  var reviewHtml='<h3>Answer Key &amp; Your Responses</h3>';
+  perQ.forEach(function(st,pos){
+    var q=CDPQ_DATA[st.qi];
+    var yourAns=st.answered?q.opts[st.selected].en:'Not answered';
+    var correctAns=q.opts[q.ans].en;
+    var cls=st.answered && st.correct?'ra':'rw';
+    reviewHtml+='<div class="cdpq-review-item"><div class="rq">'+(pos+1)+'. '+q.en+'</div>'+
+      '<div class="'+cls+'">Your answer: '+yourAns+'</div>'+
+      '<div class="ra">Correct answer: '+correctAns+'</div></div>';
+  });
+  $('cdpq-reviewBox').innerHTML=reviewHtml;
+}
+
+function retakeQuiz(){
+  order=cdpq_shuffle(CDPQ_DATA.map(function(_,i){return i;}));
+  perQ=order.map(function(idx){
+    var q=CDPQ_DATA[idx];
+    var optOrder=cdpq_shuffle(q.opts.map(function(_,i){return i;}));
+    return {qi:idx, optOrder:optOrder, selected:null, correct:false, answered:false};
+  });
+  cur=0;score=0;seconds=0;finished=false;
+  $('cdpq-timer').textContent='00:00';
+  $('cdpq-resultArea').classList.add('cdpq-hide');
+  $('cdpq-reviewBox').classList.add('cdpq-hide');
+  $('cdpq-quizArea').classList.remove('cdpq-hide');
+  renderQuestion();
+  startTimer();
+}
+
+$('cdpq-nextBtn').onclick=goNext;
+$('cdpq-prevBtn').onclick=goPrev;
+$('cdpq-submitBtn').onclick=submitQuiz;
+$('cdpq-retryBtn').onclick=retakeQuiz;
+$('cdpq-reviewBtn').onclick=function(){$('cdpq-reviewBox').classList.toggle('cdpq-hide');};
+
+renderQuestion();
+startTimer();
+})();
+</script>
+</div>
