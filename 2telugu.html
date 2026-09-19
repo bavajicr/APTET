@@ -189,6 +189,134 @@
     <p>PRACTICING TEST</p>
   </div>
   <div class="crb-credit">✍️ Prepared by: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE</div>
+     
+<!-- Container 1: Registration Form -->
+<div id="registration-container" style="max-width: 500px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; rounded-corner: 8px;">
+  <h2>Student Registration</h2>
+  <form id="regForm" onsubmit="startQuiz(event)">
+    <div style="margin-bottom: 15px;">
+      <label for="studentName">Full Name *</label><br>
+      <input type="text" id="studentName" required style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label for="studentDistrict">District *</label><br>
+      <input type="text" id="studentDistrict" required style="width: 100%; padding: 8px; margin-top: 5px;">
+    </div>
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer;">Start Test</button>
+  </form>
+</div>
+
+<!-- Container 2: Your Existing Quiz (Initially Hidden) -->
+<div id="quiz-container" style="display: none; max-width: 600px; margin: 20px auto;">
+  <!-- Place your quiz questions/html here -->
+  <h2>Quiz Session</h2>
+  <p>Question 1: ...</p>
+  
+  <!-- Example submission trigger -->
+  <button onclick="submitQuiz(10, 10, 'TEST_01')" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">Submit Quiz</button>
+</div>
+
+<!-- Container 3: Leaderboard (Initially Hidden) -->
+<div id="leaderboard-container" style="display: none; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc;">
+  <h2>Leaderboard & Results</h2>
+  <div id="user-score" style="margin-bottom: 20px; font-weight: bold; font-size: 1.2em;"></div>
+  
+  <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; text-align: left; border-collapse: collapse;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th>Rank</th>
+        <th>Name</th>
+        <th>District</th>
+        <th>Score</th>
+        <th>Percent</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboard-body">
+      <!-- Data injected via JavaScript -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Paste your deployed Google Apps Script Web App URL here:
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw8GoBX2X-EpT5ali6HqKSAU5C8t2FXnepg4lV4NUXlYJIn49qiEE10AFJOBiVnzvKYPw/exec";
+
+  let userInfo = { name: "", district: "" };
+
+  function startQuiz(event) {
+    event.preventDefault();
+    const name = document.getElementById("studentName").value.trim();
+    const district = document.getElementById("studentDistrict").value.trim();
+
+    if (!name || !district) {
+      alert("Both Name and District are mandatory to start the test.");
+      return;
+    }
+
+    userInfo.name = name;
+    userInfo.district = district;
+
+    // Hide Registration, Show Quiz
+    document.getElementById("registration-container").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+  }
+
+  async function submitQuiz(obtainedScore, totalScore, testId) {
+    const percent = ((obtainedScore / totalScore) * 100).toFixed(2);
+    const scoreFormatted = `${obtainedScore}/${totalScore}`;
+
+    const payload = {
+      name: userInfo.name,
+      district: userInfo.district,
+      testId: testId,
+      score: scoreFormatted,
+      percent: percent
+    };
+
+    // Hide Quiz container
+    document.getElementById("quiz-container").style.display = "none";
+
+    try {
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        displayLeaderboard(result.leaderboard, scoreFormatted, percent);
+      } else {
+        alert("Submission failed. Please contact administrator.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting results.");
+    }
+  }
+
+  function displayLeaderboard(data, userScore, userPercent) {
+    const tbody = document.getElementById("leaderboard-body");
+    const scoreDiv = document.getElementById("user-score");
+
+    scoreDiv.innerHTML = `Your Score: ${userScore} (${userPercent}%)`;
+    tbody.innerHTML = "";
+
+    data.forEach((entry, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${entry.name}</td>
+        <td>${entry.district}</td>
+        <td>${entry.score}</td>
+        <td>${entry.percent}%</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    document.getElementById("leaderboard-container").style.display = "block";
+  }
+</script>
 
   <!-- START SCREEN -->
   <div id="crb-start-screen" class="crb-start-screen">
