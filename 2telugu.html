@@ -203,70 +203,6 @@
     <button class="crb-big-btn" id="crb-start-btn">🚀 Start Quiz</button>
   </div>
 
-  <!-- QUIZ SCREEN -->
-  <div id="crb-quiz-screen" class="crb-hidden">
-    <div class="crb-progress-wrap">
-      <div class="crb-progress-bar" id="crb-progress-bar"></div>
-    </div>
-    <div class="crb-meta-row">
-      <span class="crb-pill" id="crb-q-counter">Q 1 / 30</span>
-      <span class="crb-pill" id="crb-score-pill">Score: 0</span>
-      <span class="crb-pill crb-timer" id="crb-timer">⏱ 15:00</span>
-    </div>
-    <div class="crb-qtext" id="crb-qtext"></div>
-    <div class="crb-options" id="crb-options"></div>
-    <div class="crb-feedback" id="crb-feedback"></div>
-    <div class="crb-nav-row">
-      <button class="crb-btn secondary" id="crb-prev-btn">⬅ Previous</button>
-      <button class="crb-btn" id="crb-next-btn">Next ➡</button>
-    </div>
-  </div>
-
-  <!-- RESULT SCREEN -->
-  <div id="crb-result-screen" class="crb-result-screen crb-hidden">
-    <h3>🎉 Quiz Completed!</h3>
-    <div class="crb-score-circle">
-      <div class="num" id="crb-final-score">0/30</div>
-      <div class="lbl">SCORE</div>
-    </div>
-    <p id="crb-result-msg" style="font-size:15px; font-weight:600;"></p>
-    <button class="crb-big-btn" id="crb-restart-btn">🔄 Retry Quiz</button>
-    <button class="crb-big-btn" id="crb-review-btn" style="background:linear-gradient(135deg,#607d8b,#78909c);">📋 View Answer Key</button>
-    <div id="crb-review-container" class="crb-review-list crb-hidden"></div>
-  </div>
-
-  <div class="crb-footer-credit">
-    © Quiz by C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE | APTET Telugu previous paper )
-  </div>
-</div>
-<script>
-  // 1. Block right-click context menu
-  document.addEventListener('contextmenu', e => e.preventDefault());
-
-  // 2. Prevent key combinations (Copy, Print, Save, DevTools)
-  document.addEventListener('keydown', e => {
-    if (
-      (e.ctrlKey || e.metaKey) && 
-      (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')
-    ) {
-      e.preventDefault();
-    }
-    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I')) {
-      e.preventDefault();
-    }
-  });
-</script>
-
-<style>
-  /* Prevent text selection across the page */
-  body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-</style>
-
 <!-- Leaderboard Container -->
 <!-- Container for User Input Form & Leaderboard -->
 <div style="max-width: 500px; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
@@ -401,6 +337,70 @@
   // Fetch initial leaderboard on page load
   fetchLeaderboard();
 </script>
+     
+  <!-- QUIZ SCREEN -->
+  <div id="crb-quiz-screen" class="crb-hidden">
+    <div class="crb-progress-wrap">
+      <div class="crb-progress-bar" id="crb-progress-bar"></div>
+    </div>
+    <div class="crb-meta-row">
+      <span class="crb-pill" id="crb-q-counter">Q 1 / 30</span>
+      <span class="crb-pill" id="crb-score-pill">Score: 0</span>
+      <span class="crb-pill crb-timer" id="crb-timer">⏱ 15:00</span>
+    </div>
+    <div class="crb-qtext" id="crb-qtext"></div>
+    <div class="crb-options" id="crb-options"></div>
+    <div class="crb-feedback" id="crb-feedback"></div>
+    <div class="crb-nav-row">
+      <button class="crb-btn secondary" id="crb-prev-btn">⬅ Previous</button>
+      <button class="crb-btn" id="crb-next-btn">Next ➡</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="crb-result-screen" class="crb-result-screen crb-hidden">
+    <h3>🎉 Quiz Completed!</h3>
+    <div class="crb-score-circle">
+      <div class="num" id="crb-final-score">0/30</div>
+      <div class="lbl">SCORE</div>
+    </div>
+    <p id="crb-result-msg" style="font-size:15px; font-weight:600;"></p>
+    <button class="crb-big-btn" id="crb-restart-btn">🔄 Retry Quiz</button>
+    <button class="crb-big-btn" id="crb-review-btn" style="background:linear-gradient(135deg,#607d8b,#78909c);">📋 View Answer Key</button>
+    <div id="crb-review-container" class="crb-review-list crb-hidden"></div>
+  </div>
+
+  <div class="crb-footer-credit">
+    © Quiz by C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE | APTET Telugu previous paper )
+  </div>
+</div>
+<script>
+  // 1. Block right-click context menu
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 2. Prevent key combinations (Copy, Print, Save, DevTools)
+  document.addEventListener('keydown', e => {
+    if (
+      (e.ctrlKey || e.metaKey) && 
+      (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')
+    ) {
+      e.preventDefault();
+    }
+    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<style>
+  /* Prevent text selection across the page */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
 
 <script>
 (function(){
