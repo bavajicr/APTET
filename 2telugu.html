@@ -1,7 +1,7 @@
 
 <!-- ==========================================================
-     APTET JULY 2024 - TELUGU Previous Question Paper Quiz
-     14th October 2024 - Second Shift
+     APTET TELUGU Previous Question Paper 
+            PRACTIE TEST
      Credits: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE
      Blogger Compatible Single File Quiz
 =========================================================== -->
@@ -186,7 +186,7 @@
   <div class="crb-header">
     <h2>📘 తెలుగు (TELUGU)</h2>
     <p>APTET Previous Question Paper</p>
-    <p>14th October 2024 – Second Shift (Session-2)</p>
+    <p>PRACTICING TEST</p>
   </div>
   <div class="crb-credit">✍️ Prepared by: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE</div>
 
@@ -242,6 +242,99 @@
 </div>
 
 <script>
+  // 1. Block right-click context menu
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 2. Prevent key combinations (Copy, Print, Save, DevTools)
+  document.addEventListener('keydown', e => {
+    if (
+      (e.ctrlKey || e.metaKey) && 
+      (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')
+    ) {
+      e.preventDefault();
+    }
+    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<style>
+  /* Prevent text selection across the page */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+
+<!-- Leaderboard Container -->
+<div id="leaderboard-section" style="max-width: 500px; margin: 20px auto; font-family: sans-serif;">
+  <h3>Leaderboard (<span id="display-test-id"></span>)</h3>
+  
+  <table style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+      <tr style="border-bottom: 2px solid #ccc; background-color: #f4f4f4;">
+        <th style="padding: 8px;">Rank</th>
+        <th style="padding: 8px;">Name</th>
+        <th style="padding: 8px;">Score</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboard-body">
+      <tr>
+        <td colspan="3" style="padding: 8px; text-align: center;">Loading results...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // ==================== CONFIGURATION ====================
+  // 1. Paste your deployed Google Apps Script Web App URL here:
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtLe-OMqFDFlB6aSJYUwdmk99wR5wBRFPgMpHqipH1-dIMFNvpGh8dqoZvTyQR4i5lxQ/exec";
+
+  // 2. Change this ID for each test (or populate dynamically from your test runner)
+  const CURRENT_TEST_ID = "2TELUGU"; 
+  // ==================================================2=====
+
+  document.getElementById("display-test-id").innerText = CURRENT_TEST_ID;
+
+  async function fetchLeaderboard(testId) {
+    const tbody = document.getElementById("leaderboard-body");
+    
+    try {
+      const response = await fetch(`${GOOGLE_SCRIPT_URL}?testId=${encodeURIComponent(testId)}`);
+      const leaderboardData = await response.json();
+
+      if (leaderboardData.error) {
+        tbody.innerHTML = `<tr><td colspan="3" style="padding: 8px; text-align: center; color: red;">Error: ${leaderboardData.error}</td></tr>`;
+        return;
+      }
+
+      if (leaderboardData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="padding: 8px; text-align: center;">No scores recorded yet for this test.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = leaderboardData.map((entry, index) => `
+        <tr style="border-bottom: 1px solid #ddd;">
+          <td style="padding: 8px; font-weight: bold;">${index + 1}</td>
+          <td style="padding: 8px;">${entry.name}</td>
+          <td style="padding: 8px;">${entry.score}</td>
+        </tr>
+      `).join("");
+
+    } catch (err) {
+      console.error(err);
+      tbody.innerHTML = `<tr><td colspan="3" style="padding: 8px; text-align: center; color: red;">Failed to load leaderboard.</td></tr>`;
+    }
+  }
+
+  // Auto-fetch on page load
+  fetchLeaderboard(CURRENT_TEST_ID);
+</script>
+
 (function(){
   var QUESTION_BANK = [
   {
