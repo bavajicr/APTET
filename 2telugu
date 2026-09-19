@@ -1,0 +1,631 @@
+
+<!-- ==========================================================
+     APTET JULY 2024 - TELUGU Previous Question Paper Quiz
+     14th October 2024 - Second Shift
+     Credits: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE
+     Blogger Compatible Single File Quiz
+=========================================================== -->
+<div id="crb-telugu-quiz-root">
+<style>
+#crb-telugu-quiz-root, #crb-telugu-quiz-root * { box-sizing: border-box; }
+#crb-telugu-quiz-root {
+  font-family: 'Segoe UI', 'Noto Sans Telugu', Tahoma, sans-serif;
+  max-width: 640px;
+  margin: 20px auto;
+  color: #222;
+}
+.crb-card {
+  background: linear-gradient(135deg,#ffffff,#f4f8ff);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(30,60,120,0.18);
+  padding: 20px;
+  border: 1px solid #dbe6f7;
+}
+.crb-header {
+  text-align: center;
+  background: linear-gradient(135deg,#1a4fb4,#2f7fe0);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 12px;
+  margin-bottom: 16px;
+}
+.crb-header h2 { margin: 0 0 4px 0; font-size: 20px; }
+.crb-header p { margin: 2px 0; font-size: 13px; opacity: 0.95; }
+.crb-credit {
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: bold;
+  color: #124a12;
+  background: #eaffea;
+  border: 1px dashed #4caf50;
+  border-radius: 10px;
+  padding: 6px;
+  margin-bottom: 14px;
+}
+.crb-progress-wrap {
+  background: #e3ecfa;
+  border-radius: 20px;
+  height: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid #c7d8f5;
+}
+.crb-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#42a5f5,#1565c0);
+  transition: width 0.35s ease;
+}
+.crb-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.crb-pill {
+  background: #eef3ff;
+  border: 1px solid #c9d9f7;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-weight: 600;
+  color: #1a4fb4;
+}
+.crb-timer.crb-warn { color: #c0392b; background:#fdecea; border-color:#f5b7b1; }
+.crb-qtext {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 10px 0 16px 0;
+  white-space: pre-line;
+}
+.crb-options { display: flex; flex-direction: column; gap: 10px; }
+.crb-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid #d7e0f0;
+  background: #fbfcff;
+  font-size: 15.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+.crb-option:hover { border-color: #6fa3e8; background: #f0f6ff; }
+.crb-option.correct { background: #e3f8e3; border-color: #2e9e2e; color:#1c5e1c; font-weight:700; }
+.crb-option.wrong { background: #fde5e5; border-color: #c0392b; color:#8c1c1c; font-weight:700; }
+.crb-option.disabled { pointer-events: none; opacity: 0.85; }
+.crb-feedback {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  display: none;
+}
+.crb-feedback.show { display: block; }
+.crb-feedback.ok { background:#e3f8e3; color:#1c5e1c; }
+.crb-feedback.no { background:#fde5e5; color:#8c1c1c; }
+.crb-nav-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  gap: 10px;
+}
+.crb-btn {
+  flex: 1;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg,#1a4fb4,#2f7fe0);
+  transition: transform 0.1s ease;
+}
+.crb-btn:disabled { background: #b7c4dc; cursor: not-allowed; }
+.crb-btn:active:not(:disabled) { transform: scale(0.97); }
+.crb-btn.secondary { background: linear-gradient(135deg,#607d8b,#78909c); }
+.crb-start-screen, .crb-result-screen { text-align: center; }
+.crb-start-screen h3, .crb-result-screen h3 { color: #1a4fb4; }
+.crb-big-btn {
+  padding: 14px 26px;
+  font-size: 17px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg,#1a4fb4,#2f7fe0);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 14px;
+  box-shadow: 0 6px 16px rgba(26,79,180,0.35);
+}
+.crb-score-circle {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  border: 8px solid #1a4fb4;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  margin: 16px auto;
+  background: #f0f6ff;
+}
+.crb-score-circle .num { font-size: 30px; font-weight: 800; color: #1a4fb4; }
+.crb-score-circle .lbl { font-size: 12px; color: #555; }
+.crb-review-list { text-align: left; margin-top: 18px; }
+.crb-review-item {
+  border: 1px solid #e0e6f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  white-space: pre-line;
+}
+.crb-review-item .qh { font-weight: 700; margin-bottom: 6px; }
+.crb-review-item .ans-ok { color: #1c5e1c; font-weight: 700; }
+.crb-review-item .ans-no { color: #8c1c1c; font-weight: 700; }
+.crb-footer-credit {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #666;
+}
+.crb-hidden { display: none !important; }
+@media (max-width: 480px) {
+  .crb-header h2 { font-size: 17px; }
+  .crb-qtext { font-size: 15.5px; }
+  .crb-option { font-size: 14.5px; padding: 10px 12px; }
+}
+</style>
+
+<div class="crb-card">
+  <div class="crb-header">
+    <h2>📘 తెలుగు (TELUGU)</h2>
+    <p>APTET Previous Question Paper</p>
+    <p>14th October 2024 – Second Shift (Session-2)</p>
+  </div>
+  <div class="crb-credit">✍️ Prepared by: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE</div>
+
+  <!-- START SCREEN -->
+  <div id="crb-start-screen" class="crb-start-screen">
+    <h3>Quiz Instructions</h3>
+    <p style="font-size:14px; line-height:1.6;">
+      🔹 30 Questions from APTET JULY-2024 Telugu Paper (Q.31–Q.60)<br>
+      🔹 Questions & Options will be shuffled every attempt<br>
+      🔹 Immediate answer feedback after each question<br>
+      🔹 Total Time: 15 minutes<br>
+      🔹 Use Previous/Next buttons to navigate
+    </p>
+    <button class="crb-big-btn" id="crb-start-btn">🚀 Start Quiz</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="crb-quiz-screen" class="crb-hidden">
+    <div class="crb-progress-wrap">
+      <div class="crb-progress-bar" id="crb-progress-bar"></div>
+    </div>
+    <div class="crb-meta-row">
+      <span class="crb-pill" id="crb-q-counter">Q 1 / 30</span>
+      <span class="crb-pill" id="crb-score-pill">Score: 0</span>
+      <span class="crb-pill crb-timer" id="crb-timer">⏱ 15:00</span>
+    </div>
+    <div class="crb-qtext" id="crb-qtext"></div>
+    <div class="crb-options" id="crb-options"></div>
+    <div class="crb-feedback" id="crb-feedback"></div>
+    <div class="crb-nav-row">
+      <button class="crb-btn secondary" id="crb-prev-btn">⬅ Previous</button>
+      <button class="crb-btn" id="crb-next-btn">Next ➡</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="crb-result-screen" class="crb-result-screen crb-hidden">
+    <h3>🎉 Quiz Completed!</h3>
+    <div class="crb-score-circle">
+      <div class="num" id="crb-final-score">0/30</div>
+      <div class="lbl">SCORE</div>
+    </div>
+    <p id="crb-result-msg" style="font-size:15px; font-weight:600;"></p>
+    <button class="crb-big-btn" id="crb-restart-btn">🔄 Retry Quiz</button>
+    <button class="crb-big-btn" id="crb-review-btn" style="background:linear-gradient(135deg,#607d8b,#78909c);">📋 View Answer Key</button>
+    <div id="crb-review-container" class="crb-review-list crb-hidden"></div>
+  </div>
+
+  <div class="crb-footer-credit">
+    © Quiz by C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE | APTET JULY 2024 Telugu (14-10-2024, Afternoon Session-2)
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var QUESTION_BANK = [
+  {
+    q: "'తెనుగు' దేశ్యపదమని, దిగ్వాచి అని గంటి జోగి సోమయాజి గారి అభిప్రాయం 'తెన్' శబ్దం దక్షిణ దిక్కు అనే అర్థం ఉన్న ద్రావిడ పదాంశం. సాధారణంగా ఒక సమాజంలో ఒక భాష రూపొందే ప్రాథమిక దశలో ఆ భాషకు నామకరణం జరుగదు. ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వాళ్ళని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి తూర్పు వాళ్ళని, ఉత్తరాది వాళ్ళని వ్యవహరించడం సాధారణం.\n\nపై గద్యం ఆధారంగా సరికానిది.",
+    options: [
+      "'తెన్' శబ్దం ద్రావిడపదాంశం",
+      "గంటి జోగి సోమయాజి గారి అభిప్రాయంలో 'తెనుగు' దేశ్యపదం",
+      "ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వారిని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి వ్యవహరించడం సాధారణం.",
+      "భాషకు నామకరణం భాష రూపొందే ప్రాథమికదశలోనే జరుగుతుంది."
+    ],
+    answer: 3
+  },
+  {
+    q: "సాధారణంగా తెలుగుపై సంస్కృత భాషా ప్రభావాన్ని గురించి చర్చిస్తూ ఉంటారు. కాని మొదట ఆర్యులు భారతదేశానికి వచ్చి ద్రావిడులతో సంబంధం ఏర్పరచుకున్నప్పుడు ఆదాన, ప్రదానాల వల్ల ద్రావిడ భాషా పదాలు ఆర్య భాషలలో ప్రవేశించాయి. అవి ఆర్యులకు తెలియని వృక్ష, ఫల, జంతు వాచక పదాలు అయి ఉండడం విశేషం. మొదటగా ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన కాల్డ్వెల్, కిటెల్, ఎమ్.బి ఎమెనో వంటి వారు సుమారు 700 కు పైగా ఆర్యభాషలలో చేరిన ద్రావిడ పదాలను గుర్తించారు.\n\nపై గద్యం ఆధారంగా కింది వాటిలో సరైనది",
+    options: [
+      "ఏడువందలకు పైగా పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో చేరాయి.",
+      "ఆర్య, ద్రావిడ సంబంధాల వలన ఆదాన ప్రదానాలు జరగలేదు.",
+      "ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన వారిలో కాల్డ్వెల్, ఎమెనో ప్రముఖులు",
+      "వృక్ష, ఫల, జంతు వాచక పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో ప్రవేశించాయి."
+    ],
+    answer: 2
+  },
+  {
+    q: "అంతరంగమందు నపరాధములు చేసి\nమంచివాని వలెను మనుజుండుండు\nఇతరు లెఱుగ కున్న నీశ్వరుడెఱుగడా?\nవిశ్వదాభిరామ వినురవేమ\n\n'అంతరంగము' అనగా",
+    options: ["మనసు", "తప్పు", "భగవంతుడు", "రహస్యం"],
+    answer: 0
+  },
+  {
+    q: "ఉత్తమ గుణములు నీచున\nకెత్తెఱుగన గలుగనేర్చు నెయ్యెడలన్ దా\nనెత్తిచ్చి కఱుగ బోసిన\nనిత్తడి బంగార మగునె యెల్లో సుమతీ!\n\nపై పద్యంలో నీచగుణాలు గల వాడిని దీనితో పోల్చారు.",
+    options: ["బంగారం", "ఇత్తడి", "రాగి", "పుత్తడి"],
+    answer: 1
+  },
+  {
+    q: "\"ఏ స్త్రీయైనా కుటుంబం లోంచి రాకుండా ఎక్కడ నుంచి వస్తుంది\" - అన్న పావలా శ్యామల మాటలు ఈ పాఠం లోనివి",
+    options: ["మాణిక్యవీణ", "గోరంతదీపాలు", "మా ప్రయత్నం", "జానపదుని జాబు"],
+    answer: 2
+  },
+  {
+    q: "'కథానిక' ప్రక్రియకు చెందిన పాఠం",
+    options: ["నా యాత్ర", "మాతృభూమి", "భువనవిజయం", "నాటి చదువు"],
+    answer: 1
+  },
+  {
+    q: "ఉన్నాడు లెస్స రాఘవుడు\nదున్నా విడిదె కపుల గూడి, యురుగతి రానై\nయున్నాడు ......\n\nమొల్ల రామాయణంలో సీతాదేవితో ఈ మాటలు అన్నవారు.",
+    options: ["హనుమంతుడు", "త్రిజట", "విభీషణుడు", "జటాయువు"],
+    answer: 0
+  },
+  {
+    q: "కవి కలం నుండి జాలువారిన భావ పరంపరను ఆస్వాదించడంతో బాటు 'ప్రకృతి నుండి పాఠాలు నేర్చుస్తూ, విద్యార్థుల్లో మానవీయత మేల్కొల్పడం'. ఈ పాఠం ఉద్దేశం.",
+    options: ["తీర్పు", "ఏదేశమేగినా", "ఆకుపచ్చశోకం", "హరివిల్లు"],
+    answer: 3
+  },
+  {
+    q: "\"గూడుకోసం గువ్వలు\" - రచించినది",
+    options: ["కొలకలూరి స్వరూపరాణి", "పులికంటి కృష్ణారెడ్డి", "గరిమెళ్ళ సత్యనారాయణ", "రావినూతల ప్రేమకిషోర్"],
+    answer: 1
+  },
+  {
+    q: "\"ఆశావహదృక్పథం\" ఇతివృత్తంగా గల పాఠం",
+    options: ["ఎద", "హితోక్తులు", "మట్టిచెట్టు", "మాయాకంబళి"],
+    answer: 0
+  },
+  {
+    q: "పింగళి బాలాదేవి రచనలలో కథాసంపుటి",
+    options: ["ఒక చీకటి - ఒక వెన్నెల", "కుసుమ కోమలి", "నాన్నకు రాయని ఉత్తరం", "గాజు బొమ్మలు"],
+    answer: 2
+  },
+  {
+    q: "'కొత్త గబ్బిలం' - వీరి రచన",
+    options: ["కొలకలూరి ఇనాక్", "గుర్రం జాషువా", "ఊటుకూరి లక్ష్మీకాంతమ్మ", "ఎండ్లూరి సుధాకర్"],
+    answer: 3
+  },
+  {
+    q: "\"వృక్షశాఖాదులను విరగ్గొట్టేది\" అనే వ్యుత్పత్యర్థం గల పదం",
+    options: ["కరేణువు", "జలధరం", "ప్రభంజనం", "పారావారం"],
+    answer: 2
+  },
+  {
+    q: "\"భావన\" ఈ పదానికి పర్యాయపదాలు",
+    options: ["స్త్రీ, ఉవిద", "తలంపు, విధము", "తలపు, ఆలోచన", "ఆలోచన, నెమరు"],
+    answer: 2
+  },
+  {
+    q: "\"మేఘము\" - ఈ పదానికి వికృతి",
+    options: ["మొయిలు", "మొగము", "మేగము", "మెకము"],
+    answer: 0
+  },
+  {
+    q: "\"తగువుకు సిద్ధపడు\" అనే అర్థంలో ఈ జాతీయాన్ని ఉపయోగిస్తారు.",
+    options: ["రంగులు మార్పు", "రంకెవేయు", "సిద్ధమవ్వు", "కాలుదువ్వు"],
+    answer: 3
+  },
+  {
+    q: "కింది పదాలను వాటి నానార్థాలతో జతపరచండి.\n\nఅ. చైతన్యం\nఆ. మదనం\nఇ. సుఖం\nఈ. క్రతువు\n\ny. సంతోషం, స్వర్గం\nర. యజ్ఞం, విష్ణువు\nల. తెలివి, ప్రాణం\nవ. ఉమ్మెత్త, వసంతం",
+    options: [
+      "అ-ల, ఆ-వ, ఇ-య, ఈ-ర",
+      "అ-ల, ఆ-వ, ఇ-ర, ఈ-య",
+      "అ-ల, ఆ-ర, ఇ-వ, ఈ-య",
+      "అ-ల, ఆ-య, ఇ-ర, ఈ-వ"
+    ],
+    answer: 0
+  },
+  {
+    q: "\"చెయ్యనికుండ, పోయ్యని నీళ్ళు, వెయ్యని సున్నం, తియ్యగనుండు\" ఈ పొడుపుకు విడుపు",
+    options: ["నాలుక", "కొబ్బరికాయ", "మేఘం", "కొండ"],
+    answer: 1
+  },
+  {
+    q: "\"తెరువు\" పదానికి అర్థం",
+    options: ["నౌక", "పడవ", "స్థిరం", "దారి"],
+    answer: 3
+  },
+  {
+    q: "\"ఇక నాకిక్కడ వసింపదగదు. ఇప్పుడు నా వృత్తాంతము పరులతో చెప్పికొలును యుక్తము గాదు\" ఈ వాక్యం ఏ పురుషలో ఉంది",
+    options: ["ద్వితీయపురుష", "మధ్యమపురుష", "ప్రథమపురుష", "ఉత్తమపురుష"],
+    answer: 3
+  },
+  {
+    q: "కింది ఇచ్చిన వాక్యాలలో సరికానిది",
+    options: [
+      "హోలునికి కవివత్సలుడు అనే బిరుదు ఉంది.",
+      "హోలుడు సంస్కృతంలో 'గాథాసప్తశతి' ని సంకలనం చేశారు.",
+      "హోలుడు శాలివాహన చక్రవర్తి",
+      "'గాథాసప్తశతి'లో ఏడువందల గాథలు ఉన్నాయి."
+    ],
+    answer: 1
+  },
+  {
+    q: "నేటి విద్యార్థులకు వినయ విధేయతలు పెరిగాయి. ఈ వాక్యానికి వ్యతిరేకార్థక వాక్యం",
+    options: [
+      "నేటి విద్యార్థులకు వినయ విధేయతలు అనవసరం",
+      "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగలేదు",
+      "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగవు",
+      "నేటి విద్యార్థులకు వినయ విధేయతలు కొంచెం అవసరం"
+    ],
+    answer: 1
+  },
+  {
+    q: "ఆ, ఈ, ఏ అనే సర్వనామాలు",
+    options: ["త్రికము", "ద్రుతము", "ఆమ్రేడితము", "ఔపవిభక్తికము"],
+    answer: 0
+  },
+  {
+    q: "కుఱు, చిఱు, కడు, నిడు, నడు శబ్దముల అ, డ లకు అచ్చుపరమైతే వచ్చే సంధి",
+    options: ["గసడదవాదేశసంధి", "సరళాదేశసంధి", "ద్విరుక్తటకారసంధి", "ఆమ్రేడిత సంధి"],
+    answer: 2
+  },
+  {
+    q: "'నీవు + టక్కరివి' సంధి జరిగిన రూపం",
+    options: ["నీవాక్కరివి", "నీవుదక్కరివి", "నీవుతక్కరివి", "నీవుడక్కరివి"],
+    answer: 3
+  },
+  {
+    q: "\"మేలిముసుగు తెరలో దట్టమైన నీలిమేఘం మాటున మెరుపుతీగ వలె ఉన్న స్త్రీని చూశాడు\". ఈ వాక్యంలోని అలంకారం",
+    options: ["అతిశయోక్తి", "స్వభావోక్తి", "ఉపమ", "రూపకం"],
+    answer: 2
+  },
+  {
+    q: "\"సిరిగలవాని కెయ్యెడల జేసిన మేలది నిష్ఫలంబగున్\" పద్య పాదం ఈ వృత్తానికి చెందినది",
+    options: ["చంపకమాల", "ఉత్పలమాల", "మత్తేభం", "శార్దూలం"],
+    answer: 0
+  },
+  {
+    q: "కింది వాక్యాలలో సత్యాలు\n\nఅ. జటాయువు నేల కూలాడు - అకర్మకం\nఆ. జటాయువుని రావణుడు నేలకూల్చాడు - అకర్మకం\nఇ. సంపాతి ఎగురుతున్నాడు - సకర్మకం\nఈ. సంపాతి ఆకాశంలో ఎగురుతున్నాడు - సకర్మకం",
+    options: ["ఆ, ఇ", "అ, ఆ", "అ, ఈ", "ఇ, ఈ"],
+    answer: 2
+  },
+  {
+    q: "'వర్షం' పడితే పంటలు పండుతాయి ఈ వాక్యంలో 'పడితే' అన్నది",
+    options: ["శత్రర్థకం", "చేదర్థకం", "అప్యర్థకం", "క్త్వార్థకం"],
+    answer: 1
+  },
+  {
+    q: "\"మృగనేత్రి\" సమాసం",
+    options: ["రూపకం", "అవ్యయీభావం", "బహువ్రీహి", "విశేషణపూర్వపద కర్మధారయం"],
+    answer: 2
+  }
+  ];
+
+  var TOTAL_QUESTIONS = 30;
+  var TIME_LIMIT = 15 * 60; // seconds
+
+  var quiz = [];
+  var current = 0;
+  var score = 0;
+  var userAnswers = [];
+  var timerInterval = null;
+  var timeLeft = TIME_LIMIT;
+
+  var startScreen = document.getElementById('crb-start-screen');
+  var quizScreen = document.getElementById('crb-quiz-screen');
+  var resultScreen = document.getElementById('crb-result-screen');
+  var qtextEl = document.getElementById('crb-qtext');
+  var optionsEl = document.getElementById('crb-options');
+  var feedbackEl = document.getElementById('crb-feedback');
+  var progressBar = document.getElementById('crb-progress-bar');
+  var qCounter = document.getElementById('crb-q-counter');
+  var scorePill = document.getElementById('crb-score-pill');
+  var timerEl = document.getElementById('crb-timer');
+  var prevBtn = document.getElementById('crb-prev-btn');
+  var nextBtn = document.getElementById('crb-next-btn');
+
+  function shuffleArray(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildQuiz() {
+    var picked = shuffleArray(QUESTION_BANK).slice(0, TOTAL_QUESTIONS);
+    quiz = picked.map(function(item) {
+      var optIdx = item.options.map(function(_, i){ return i; });
+      var shuffledIdx = shuffleArray(optIdx);
+      var newOptions = shuffledIdx.map(function(i){ return item.options[i]; });
+      var newAnswer = shuffledIdx.indexOf(item.answer);
+      return { q: item.q, options: newOptions, answer: newAnswer };
+    });
+    userAnswers = new Array(quiz.length).fill(null);
+  }
+
+  function startQuiz() {
+    buildQuiz();
+    current = 0;
+    score = 0;
+    timeLeft = TIME_LIMIT;
+    startScreen.classList.add('crb-hidden');
+    resultScreen.classList.add('crb-hidden');
+    quizScreen.classList.remove('crb-hidden');
+    renderQuestion();
+    startTimer();
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    updateTimerDisplay();
+    timerInterval = setInterval(function() {
+      timeLeft--;
+      updateTimerDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        finishQuiz();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    var m = Math.floor(timeLeft / 60);
+    var s = timeLeft % 60;
+    timerEl.textContent = '⏱ ' + (m < 10 ? '0'+m : m) + ':' + (s < 10 ? '0'+s : s);
+    if (timeLeft <= 60) {
+      timerEl.classList.add('crb-warn');
+    } else {
+      timerEl.classList.remove('crb-warn');
+    }
+  }
+
+  function renderQuestion() {
+    var item = quiz[current];
+    qtextEl.textContent = (current + 1) + ". " + item.q;
+    optionsEl.innerHTML = '';
+    feedbackEl.classList.remove('show', 'ok', 'no');
+    feedbackEl.textContent = '';
+
+    item.options.forEach(function(optText, idx) {
+      var btn = document.createElement('button');
+      btn.className = 'crb-option';
+      btn.textContent = String.fromCharCode(65 + idx) + ') ' + optText;
+      btn.setAttribute('data-idx', idx);
+      btn.addEventListener('click', function() { handleAnswer(idx); });
+      optionsEl.appendChild(btn);
+    });
+
+    if (userAnswers[current] !== null) {
+      lockOptions(userAnswers[current]);
+    }
+
+    qCounter.textContent = 'Q ' + (current + 1) + ' / ' + quiz.length;
+    scorePill.textContent = 'Score: ' + score;
+    progressBar.style.width = (((current) / quiz.length) * 100) + '%';
+    prevBtn.disabled = (current === 0);
+    nextBtn.textContent = (current === quiz.length - 1) ? 'Finish ✔' : 'Next ➡';
+  }
+
+  function handleAnswer(idx) {
+    if (userAnswers[current] !== null) return; // already answered
+    userAnswers[current] = idx;
+    var item = quiz[current];
+    if (idx === item.answer) {
+      score++;
+      feedbackEl.textContent = '✅ సరైన సమాధానం! (Correct Answer)';
+      feedbackEl.classList.add('show', 'ok');
+    } else {
+      feedbackEl.textContent = '❌ తప్పు సమాధానం. సరైనది: ' + String.fromCharCode(65 + item.answer) + ') ' + item.options[item.answer];
+      feedbackEl.classList.add('show', 'no');
+    }
+    lockOptions(idx);
+    scorePill.textContent = 'Score: ' + score;
+  }
+
+  function lockOptions(selectedIdx) {
+    var item = quiz[current];
+    var opts = optionsEl.querySelectorAll('.crb-option');
+    opts.forEach(function(btn) {
+      var idx = parseInt(btn.getAttribute('data-idx'), 10);
+      btn.classList.add('disabled');
+      if (idx === item.answer) {
+        btn.classList.add('correct');
+      } else if (idx === selectedIdx) {
+        btn.classList.add('wrong');
+      }
+    });
+    if (userAnswers[current] !== null) {
+      var item2 = quiz[current];
+      if (userAnswers[current] === item2.answer) {
+        feedbackEl.textContent = '✅ సరైన సమాధానం! (Correct Answer)';
+        feedbackEl.classList.add('show', 'ok');
+      } else {
+        feedbackEl.textContent = '❌ తప్పు సమాధానం. సరైనది: ' + String.fromCharCode(65 + item2.answer) + ') ' + item2.options[item2.answer];
+        feedbackEl.classList.add('show', 'no');
+      }
+    }
+  }
+
+  function goNext() {
+    if (current === quiz.length - 1) {
+      finishQuiz();
+      return;
+    }
+    current++;
+    renderQuestion();
+  }
+
+  function goPrev() {
+    if (current === 0) return;
+    current--;
+    renderQuestion();
+  }
+
+  function finishQuiz() {
+    clearInterval(timerInterval);
+    quizScreen.classList.add('crb-hidden');
+    resultScreen.classList.remove('crb-hidden');
+    progressBar.style.width = '100%';
+    document.getElementById('crb-final-score').textContent = score + '/' + quiz.length;
+
+    var pct = Math.round((score / quiz.length) * 100);
+    var msg = '';
+    if (pct >= 90) msg = '🌟 అద్భుతం! అత్యుత్తమ ప్రతిభ!';
+    else if (pct >= 75) msg = '👏 చాలా బాగుంది!';
+    else if (pct >= 50) msg = '👍 బాగుంది, మరింత సాధన చేయండి!';
+    else msg = '💪 మరింత సాధన అవసరం. మళ్ళీ ప్రయత్నించండి!';
+    document.getElementById('crb-result-msg').textContent = msg + ' (' + pct + '%)';
+
+    document.getElementById('crb-review-container').classList.add('crb-hidden');
+    document.getElementById('crb-review-container').innerHTML = '';
+  }
+
+  function buildReview() {
+    var container = document.getElementById('crb-review-container');
+    container.innerHTML = '';
+    quiz.forEach(function(item, i) {
+      var userIdx = userAnswers[i];
+      var div = document.createElement('div');
+      div.className = 'crb-review-item';
+      var userText = (userIdx === null) ? 'సమాధానం ఇవ్వలేదు (Not Answered)' : String.fromCharCode(65+userIdx) + ') ' + item.options[userIdx];
+      var correctText = String.fromCharCode(65 + item.answer) + ') ' + item.options[item.answer];
+      var cls = (userIdx === item.answer) ? 'ans-ok' : 'ans-no';
+      div.innerHTML =
+        '<div class="qh">' + (i + 1) + '. ' + item.q + '</div>' +
+        '<div>మీ సమాధానం: <span class="' + cls + '">' + userText + '</span></div>' +
+        '<div>సరైన సమాధానం: <span class="ans-ok">' + correctText + '</span></div>';
+      container.appendChild(div);
+    });
+    container.classList.remove('crb-hidden');
+  }
+
+  document.getElementById('crb-start-btn').addEventListener('click', startQuiz);
+  document.getElementById('crb-restart-btn').addEventListener('click', startQuiz);
+  document.getElementById('crb-review-btn').addEventListener('click', buildReview);
+  nextBtn.addEventListener('click', goNext);
+  prevBtn.addEventListener('click', goPrev);
+
+})();
+</script>
