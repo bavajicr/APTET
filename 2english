@@ -1,0 +1,941 @@
+/* APTET-ENGLISH-14OCT2024-S28 */
+<!-- ================================================================
+     APTET PRACTICE QUESTION PAPER QUIZ
+     Subject: ENGLISH 
+     Credits: C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE
+     Paste this entire block into a Blogger POST (HTML view)
+     ================================================================ -->
+<div id="crb-eng-quiz-root">
+<style>
+  #crb-eng-quiz-root, #crb-eng-quiz-root * { box-sizing: border-box; }
+  #crb-eng-quiz-root {
+    max-width: 640px;
+    margin: 18px auto;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #202124;
+    background: linear-gradient(160deg,#eaf6ff 0%,#f1faf5 55%,#fff9ee 100%);
+    padding: 14px;
+    border-radius: 24px;
+  }
+  .crb-card {
+    background: linear-gradient(180deg,#ffffff 0%, #f2f8ff 100%);
+    border-radius: 18px;
+    box-shadow: 0 6px 22px rgba(60,110,170,0.13);
+    padding: 20px 18px 24px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #dbe8f7;
+  }
+  .crb-card::before {
+    content: "";
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(99,102,241,0.18), transparent 70%);
+    border-radius: 50%;
+  }
+  .crb-header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .crb-header h2 {
+    margin: 0 0 2px;
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(90deg,#4f46e5,#0891b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .crb-header p {
+    margin: 2px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .crb-credit {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg,#f59e0b,#ef4444);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: .3px;
+  }
+  .crb-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 14px 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+  }
+  .crb-timer {
+    background: #111827;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .crb-progress-wrap {
+    width: 100%;
+    background: #e5e9f5;
+    border-radius: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .crb-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#6366f1,#06b6d4);
+    transition: width .35s ease;
+  }
+  .crb-qbox {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 14px;
+    border: 1px solid #eceef8;
+    min-height: 60px;
+  }
+  .crb-qnum {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #6366f1;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+  }
+  .crb-qtext {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 4px;
+    white-space: pre-line;
+  }
+  .crb-options {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .crb-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 2px solid #e3e6f2;
+    background: #fbfcff;
+    font-size: 14.5px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: all .15s ease;
+    white-space: pre-line;
+  }
+  .crb-option:active { transform: scale(0.98); }
+  .crb-option.correct {
+    border-color: #22c55e;
+    background: #ecfdf3;
+    color: #14532d;
+    font-weight: 700;
+  }
+  .crb-option.wrong {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #7f1d1d;
+    font-weight: 700;
+  }
+  .crb-option.disabled { cursor: default; }
+  .crb-option .crb-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    margin-left: 8px;
+    padding: 1px 8px;
+    border-radius: 8px;
+  }
+  .crb-option.correct .crb-tag { background:#22c55e; color:#fff; }
+  .crb-option.wrong .crb-tag { background:#ef4444; color:#fff; }
+
+  .crb-feedback {
+    margin-top: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 10px;
+    display: none;
+  }
+  .crb-feedback.show { display: block; }
+  .crb-feedback.ok { background:#ecfdf3; color:#166534; }
+  .crb-feedback.no { background:#fef2f2; color:#991b1b; }
+
+  .crb-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .crb-btn {
+    flex: 1;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .1s ease, opacity .15s ease;
+  }
+  .crb-btn:active { transform: scale(0.97); }
+  .crb-btn:disabled { opacity: .45; cursor: not-allowed; }
+  .crb-btn-prev { background:#e5e7eb; color:#111827; }
+  .crb-btn-next { background: linear-gradient(90deg,#4f46e5,#0891b2); color:#fff; }
+  .crb-btn-submit { background: linear-gradient(90deg,#f59e0b,#ef4444); color:#fff; }
+
+  .crb-score-strip {
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-top: 10px;
+  }
+
+  /* Start screen */
+  .crb-start { text-align: center; padding: 10px 4px 4px; }
+  .crb-start p { font-size: 13.5px; color: #444; margin: 8px 0 18px; line-height: 1.5; }
+  .crb-start .crb-btn-next { padding: 14px 18px; font-size: 16px; }
+
+  /* Result screen */
+  .crb-result { text-align: center; }
+  .crb-result .crb-ring {
+    width: 130px; height: 130px;
+    margin: 6px auto 14px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: conic-gradient(#22c55e calc(var(--pct)*1%), #e5e7eb 0);
+  }
+  .crb-result .crb-ring-inner {
+    width: 104px; height: 104px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .crb-result .crb-ring-inner b { font-size: 24px; color:#111827; }
+  .crb-result .crb-ring-inner span { font-size: 11px; color:#666; }
+  .crb-result h3 { margin: 4px 0; font-size: 18px; }
+  .crb-result-stats {
+    display: flex; justify-content: center; gap: 14px;
+    margin: 12px 0 6px; flex-wrap: wrap;
+  }
+  .crb-stat {
+    background: #f3f4f9;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    min-width: 80px;
+  }
+  .crb-stat.green { color: #16a34a; }
+  .crb-stat.red { color: #dc2626; }
+  .crb-stat.blue { color: #4f46e5; }
+
+  .crb-review {
+    text-align: left;
+    margin-top: 20px;
+    border-top: 2px dashed #e3e6f2;
+    padding-top: 14px;
+  }
+  .crb-review h4 {
+    font-size: 15px; margin-bottom: 10px; color:#111827;
+  }
+  .crb-review-item {
+    background: #fff;
+    border: 1px solid #eceef8;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+  }
+  .crb-review-item .rq { font-weight: 700; margin-bottom: 6px; white-space: pre-line; }
+  .crb-review-item .ra { margin: 2px 0; white-space: pre-line; }
+  .crb-review-item .ra.your-correct { color:#16a34a; font-weight:700; }
+  .crb-review-item .ra.your-wrong { color:#dc2626; font-weight:700; }
+  .crb-review-item .ra.correct-ans { color:#16a34a; font-weight:700; }
+
+  .crb-retry-wrap { text-align:center; margin-top: 18px; }
+  .crb-footer-credit {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 11.5px;
+    color: #6b7280;
+  }
+  .crb-footer-credit b { color:#4f46e5; }
+
+
+  /* Name gate */
+  .crb-name-wrap { text-align: left; margin: 4px 0 16px; }
+  .crb-name-wrap label { display:block; font-size: 13px; font-weight: 700; color:#374151; margin-bottom: 6px; }
+  .crb-name-input {
+    width: 100%; padding: 12px 14px; font-size: 15px;
+    border: 2px solid #d5def0; border-radius: 12px; background:#fff; color:#202124;
+    outline: none; font-family: inherit;
+  }
+  .crb-name-input:focus { border-color:#6366f1; }
+  .crb-name-input.err { border-color:#ef4444; background:#fef2f2; }
+  .crb-name-err { display:none; color:#b91c1c; font-size:12.5px; font-weight:700; margin-top:6px; }
+  .crb-name-err.show { display:block; }
+
+  /* Lock screen */
+  .crb-lock { text-align:center; padding: 18px 6px 10px; }
+  .crb-lock .crb-lock-icon { font-size: 44px; line-height:1; }
+  .crb-lock h3 { margin: 10px 0 6px; font-size: 18px; color:#b45309; }
+  .crb-lock .crb-countdown {
+    display:inline-block; margin-top: 10px; background:#111827; color:#fff;
+    padding: 8px 16px; border-radius: 10px; font-size: 18px; font-weight:700;
+    font-variant-numeric: tabular-nums; letter-spacing:.5px;
+  }
+  .crb-lock p { font-size: 13px; color:#555; margin: 10px 0 0; }
+
+  /* Leaderboard */
+  .crb-lb { margin-top: 20px; border-top: 2px dashed #d5def0; padding-top: 14px; text-align:left; }
+  .crb-lb-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .crb-lb-head h4 { margin:0; font-size:15px; color:#111827; }
+  .crb-lb-refresh { border:none; background:#e0e7ff; color:#3730a3; font-weight:700; font-size:12px; padding:6px 12px; border-radius:10px; cursor:pointer; }
+  .crb-lb-note { font-size:13px; color:#6b7280; padding:10px 4px; text-align:center; }
+  .crb-lb-scroll { max-height: 420px; overflow-y:auto; border:1px solid #e3e8f7; border-radius:12px; background:#fff; }
+  .crb-lb-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .crb-lb-table th { position:sticky; top:0; background:#eef2ff; color:#3730a3; text-align:left; padding:8px 8px; font-size:12px; }
+  .crb-lb-table td { padding:8px 8px; border-top:1px solid #f0f2f9; color:#202124; }
+  .crb-lb-table tr.me td { background:#fff7d6; font-weight:700; }
+  .crb-lb-table td.rk { width:36px; font-weight:700; color:#4f46e5; }
+
+  @media (max-width:420px){
+    .crb-header h2 { font-size: 17px; }
+    .crb-qtext { font-size: 15px; }
+    .crb-option { font-size: 13.5px; }
+  }
+</style>
+
+<div class="crb-card">
+  <div class="crb-header">
+    <h2>📘 ENGLISH Quiz</h2>
+    <p>APTET Previous Question Paper</p>
+    <span class="crb-credit">C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE</span>
+  </div>
+
+  <!-- LOCK SCREEN (shown before opening time) -->
+  <div id="crbLockScreen" class="crb-lock" style="display:none;">
+    <div class="crb-lock-icon">🔒</div>
+    <h3>This quiz will open at 6.00 PM IST TODAY</h3>
+    <div class="crb-countdown" id="crbCountdown">--:--:--</div>
+    <p>Please come back at 6.00 PM IST. This page unlocks automatically.</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div id="crbStartScreen" class="crb-start" style="display:none;">
+    <p>30 questions randomly picked &amp; shuffled every attempt.<br>
+    One question at a time &middot; Instant feedback &middot; Timer &middot; Score tracker.</p>
+    <div class="crb-name-wrap">
+      <label for="crbNameInput">Enter your name (mandatory) *</label>
+      <input type="text" id="crbNameInput" class="crb-name-input" maxlength="40" placeholder="Your full name" autocomplete="name">
+      <div class="crb-name-err" id="crbNameErr">⚠ Name is required. Without entering your name you cannot start the quiz.</div>
+    </div>
+    <button class="crb-btn crb-btn-next" id="crbStartBtn" style="width:100%;">🚀 Start Quiz</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="crbQuizScreen" style="display:none;">
+    <div class="crb-meta-row">
+      <span id="crbQCounter">Question 1 / 30</span>
+      <span class="crb-timer" id="crbTimer">00:00</span>
+    </div>
+    <div class="crb-progress-wrap">
+      <div class="crb-progress-bar" id="crbProgressBar"></div>
+    </div>
+
+    <div class="crb-qbox">
+      <div class="crb-qnum" id="crbQNumLabel">QUESTION</div>
+      <div class="crb-qtext" id="crbQText"></div>
+      <div class="crb-options" id="crbOptions"></div>
+      <div class="crb-feedback" id="crbFeedback"></div>
+    </div>
+
+    <div class="crb-nav">
+      <button class="crb-btn crb-btn-prev" id="crbPrevBtn">⬅ Previous</button>
+      <button class="crb-btn crb-btn-next" id="crbNextBtn">Next ➡</button>
+    </div>
+    <div class="crb-nav" id="crbSubmitWrap" style="display:none;">
+      <button class="crb-btn crb-btn-submit" id="crbSubmitBtn" style="width:100%;">✅ Submit Quiz</button>
+    </div>
+    <div class="crb-score-strip" id="crbScoreStrip">Score: 0 / 0 answered</div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="crbResultScreen" class="crb-result" style="display:none;">
+    <div class="crb-ring" id="crbRing" style="--pct:0;">
+      <div class="crb-ring-inner">
+        <b id="crbPctText">0%</b>
+        <span>SCORE</span>
+      </div>
+    </div>
+    <h3 id="crbResultMsg">Quiz Completed!</h3>
+    <div class="crb-result-stats">
+      <div class="crb-stat green">✅ Correct<br><span id="crbCorrectCount">0</span></div>
+      <div class="crb-stat red">❌ Wrong<br><span id="crbWrongCount">0</span></div>
+      <div class="crb-stat blue">⏱ Time<br><span id="crbTimeTaken">00:00</span></div>
+    </div>
+
+    <div class="crb-retry-wrap">
+      <button class="crb-btn crb-btn-next" id="crbRetryBtn" style="width:100%;">🔁 Retry Quiz (New Shuffle)</button>
+    </div>
+
+    <div class="crb-lb">
+      <div class="crb-lb-head">
+        <h4>🏅 Leaderboard &ndash; Top 50</h4>
+        <button class="crb-lb-refresh" id="crbLbRefresh" type="button">↻ Refresh</button>
+      </div>
+      <div id="crbLbBody"><div class="crb-lb-note">Loading…</div></div>
+    </div>
+
+    <div class="crb-review">
+      <h4>📋 Answer Key &amp; Your Responses</h4>
+      <div id="crbReviewList"></div>
+    </div>
+
+    <div class="crb-footer-credit">
+      Quiz crafted by <b>C.RASOOL BAVAJI, S.A.(P.S.), MADANAPALLE</b>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  // 1. Block right-click context menu
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // 2. Prevent key combinations (Copy, Print, Save, DevTools)
+  document.addEventListener('keydown', e => {
+    if (
+      (e.ctrlKey || e.metaKey) && 
+      (e.key === 'c' || e.key === 'u' || e.key === 'p' || e.key === 's')
+    ) {
+      e.preventDefault();
+    }
+    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I')) {
+      e.preventDefault();
+    }
+  });
+ 
+<style>
+  /* Prevent text selection across the page */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+
+<script>
+(function(){
+  // ---------------- QUESTION BANK ----------------
+  // Full 30 English questions (Q.61 - Q.90) from APTET 14-10-2024, 2nd Shift
+  // Correct answer index refers to the ORIGINAL options array below (0-based),
+  // matching the official key: 61-C,62-A,63-A,64-D,65-A,66-D,67-B,68-B,69-B,
+  // 70-B,71-B,72-B,73-A,74-C,75-A,76-D,77-B,78-A,79-A,80-D,81-B,82-C,83-C,
+  // 84-B,85-B,86-C,87-A,88-B,89-D,90-B
+  var BANK = [
+    {
+      q: "By the time she was eleven her marks had deteriorated and her headmistress urged her parents to take her to a specialist.\nWhen something 'deteriorated' it:",
+      options: ["improved","enhanced","declined","strengthened"],
+      answer: 2
+    },
+    {
+      q: "Actually, the overall pattern for her progress is quite satisfactory.\nIdentify the antonym of 'progress' in the context of the sentence:",
+      options: ["regress","enhance","strengthen","improvement"],
+      answer: 0
+    },
+    {
+      q: "Your life __________ by this book.\nIdentify the option that best fits the blank.",
+      options: ["will be changed","will change","will changed","will be changing"],
+      answer: 0
+    },
+    {
+      q: "Choose the correct suffix to mean 'without' in 'fearless'.",
+      options: ["-ty","-ness","-ment","-less"],
+      answer: 3
+    },
+    {
+      q: "Even though it was hard to bite the bullet, Tom finally told about the mistake.\nIn the above sentence, \"bite the bullet\" is used in the following sense:",
+      options: ["to endure a painful experience","to take a dangerous risk","to argue with someone","to finish a difficult task"],
+      answer: 0
+    },
+    {
+      q: "She decided to bring up the issue during the meeting.\nIdentify what 'bring up' means in the sentence:",
+      options: ["to ignore","to remove","to finish","to start discussing"],
+      answer: 3
+    },
+    {
+      q: "In a dictionary, words with the same prefix, such as 'uncle' and 'uncleared' should be ordered:",
+      options: ["by the length of the word.","alphabetically by the characters following the prefix.","by their semantic meaning.","alphabetically by their prefixes."],
+      answer: 1
+    },
+    {
+      q: "Choose the sentence that correctly uses commas with a quotation:",
+      options: ["He said \u201cI\u2019ll be, back soon\u201d.","He said, \u201cI\u2019ll be back soon.\u201d","He, said \u201cI\u2019ll be back soon.\u201d","He said I\u2019ll be back, soon.\u201d"],
+      answer: 1
+    },
+    {
+      q: "To finish your project in time, you should start now.\nChoose the sentence that correctly converts the simple sentence into a complex sentence:",
+      options: ["You should start now, so you finish your project in time.","You should start now if you want to finish your project in time.","You need to start now because you want to finish your project in time.","Start working now to complete your project in time"],
+      answer: 1
+    },
+    {
+      q: "Identify the grammatically correct sentence:",
+      options: ["It is a old television set.","It is an old television set.","It is old television set.","It is an old television sets."],
+      answer: 1
+    },
+    {
+      q: "Choose the sentence that describes a feeling:",
+      options: ["She walks to school every day.","I feel very happy today.","Can you open the window?","Please shut the computer."],
+      answer: 1
+    },
+    {
+      q: "Identify the correct spelling of the word.",
+      options: ["encyclipedea","encyclopedia","encylopidia","encyclopaedia"],
+      answer: 1
+    },
+    {
+      q: "John said to Mary, \u201cYou are innocent\u201d.\nChoose the correct indirect speech.",
+      options: ["John told Mary that she was innocent.","John told Mary that she has innocent.","John told Mary that you were innocent.","John told Mary that you are innocent."],
+      answer: 0
+    },
+    {
+      q: "Whether we will go to the beach this weekend depends on the weather.\nIdentify the noun clause:",
+      options: ["we will go","to the beach","Whether we will go to the beach this weekend.","depends on the weather."],
+      answer: 2
+    },
+    {
+      q: "Identify the term for a person who is a bootlicker or flatterer:",
+      options: ["Sychophant","Patriot","Misanthropist","Philanthropist"],
+      answer: 0
+    },
+    {
+      q: "The news __________ the entire nation.\nChoose the option that fits the blank.",
+      options: ["shock","is shocked","shocking","shocks"],
+      answer: 3
+    },
+    {
+      q: "Choose the correct example of an imperative sentence.",
+      options: ["Where is the nearest Pharmacy?","Please take out the trash.","Wow, that was amazing!","Are you coming to the party?"],
+      answer: 1
+    },
+    {
+      q: "The chef prepared a delicious meal. _______, the guests were impressed with his culinary skills.\nChoose the linker that fits the blank.",
+      options: ["Consequently","Yet","For example","Similarly"],
+      answer: 0
+    },
+    {
+      q: "Identify the example where the definite article is used before trades and professions following a proper noun:",
+      options: ["Newton, the scientist","The lion is the king of a forest.","The Hindus in India","The goat was all skin and bones."],
+      answer: 0
+    },
+    {
+      q: "I __________ finish the report tomorrow.\nIdentify the modal verb used to express a future intention.",
+      options: ["would","should","could","will"],
+      answer: 3
+    },
+    {
+      q: "Choose the sentence that correctly uses 'because' as a subordinating conjunction.",
+      options: ["Because he went to bed, he was tired.","She was late because the traffic was bad.","Because it was raining, but they went outside.","I will go because of home."],
+      answer: 1
+    },
+    {
+      q: "Choose the sentence that uses a subordinating conjunction to show contrast.",
+      options: ["We will go to beach when the sun comes out.","She finished her homework before she watched TV.","Although he was tired, he kept working.","He went to the store because he needed milk."],
+      answer: 2
+    },
+    {
+      q: "The first part of a diary entry typically includes:",
+      options: ["A summary of the day\u2019s events","A personal reflection","The date and time","A closing line."],
+      answer: 2
+    },
+    {
+      q: "The purpose of an invitation is to __________.\nChoose the best option.",
+      options: ["Provide a summary of the event.","request someone to attend an event.","detail the organization\u2019s history.","outline the event\u2019s budget."],
+      answer: 1
+    },
+    {
+      q: "Choose the negative form of the Present Perfect tense:",
+      options: ["Subject + do not + base form of the verb.","Subject + has / have + not + Past Participle.","Subject + was / were + not + verb + ing","Subject + will not + base form of the verb."],
+      answer: 1
+    },
+    {
+      q: "One of the following is NOT an example of the Present Perfect Continuous tense. Identify it.",
+      options: ["She has been reading a book for two hours.","They have been travelling since last week.","He has finished his work.","I have been working on this project for a month."],
+      answer: 2
+    },
+    {
+      q: "The keys are __________ the drawer.\nChoose the correct preposition to fill the blank.",
+      options: ["inside of","in charge of","in place of","in back of"],
+      answer: 0
+    },
+    {
+      q: "__________ the rain, they went for a walk.\nIdentify the option that fits the blank.",
+      options: ["Instead of","Inspite of","In exchange of","In case of"],
+      answer: 1
+    },
+    {
+      q: "Read the following passage.\nChild labour remains a significant issue in India, with many children working in hazardous conditions instead of attending school. Efforts to combat child labour include legislation and social programmes aimed at improving education and economic opportunities for families. However, enforcement and implementation challenges persist, making it a complex problem to resolve.\n\nIdentify the main focus of efforts to combat child labour in India:",
+      options: ["Increasing industrial jobs","Promoting child entertainment","Expanding child labour laws only","Improving education and economic opportunities"],
+      answer: 3
+    },
+    {
+      q: "Read the following passage.\nChild labour remains a significant issue in India, with many children working in hazardous conditions instead of attending school. Efforts to combat child labour include legislation and social programmes aimed at improving education and economic opportunities for families. However, enforcement and implementation challenges persist, making it a complex problem to resolve.\n\nEfforts to address child labour face challenges related to ____.\nChoose the option that fits the blank.",
+      options: ["public awareness","enforcement and implementation","media coverage","technological advancement."],
+      answer: 1
+    }
+  ];
+
+  // ---------------- SETTINGS ----------------
+  // Quiz opens at 6:00 PM IST on 20-09-2025 (IST = UTC+05:30). Change the date here if needed.
+  var OPEN_AT = new Date('2025-09-20T18:00:00+05:30').getTime();
+  // Paste your Google Apps Script Web App URL here (see setup steps). Leave '' to hide scores.
+  var SHEET_URL = '';
+  var QUIZ_ID = 'APTET-ENGLISH-14OCT2024-S2';
+
+  // ---------------- STATE ----------------
+  var studentName = '';
+  var countdownInterval = null;
+  var quizQuestions = [];   // shuffled subset with shuffled options
+  var currentIndex = 0;
+  var answers = [];         // {selectedIdx, correctIdx, isAnswered}
+  var timerInterval = null;
+  var seconds = 0;
+
+  // ---------------- ELEMENTS ----------------
+  var startScreen = document.getElementById('crbStartScreen');
+  var quizScreen = document.getElementById('crbQuizScreen');
+  var resultScreen = document.getElementById('crbResultScreen');
+  var startBtn = document.getElementById('crbStartBtn');
+  var qCounter = document.getElementById('crbQCounter');
+  var timerEl = document.getElementById('crbTimer');
+  var progressBar = document.getElementById('crbProgressBar');
+  var qNumLabel = document.getElementById('crbQNumLabel');
+  var qText = document.getElementById('crbQText');
+  var optionsWrap = document.getElementById('crbOptions');
+  var feedbackEl = document.getElementById('crbFeedback');
+  var prevBtn = document.getElementById('crbPrevBtn');
+  var nextBtn = document.getElementById('crbNextBtn');
+  var submitWrap = document.getElementById('crbSubmitWrap');
+  var submitBtn = document.getElementById('crbSubmitBtn');
+  var scoreStrip = document.getElementBy('crbScoreStrip');
+  var retryBtn = document.getElementBy('crbRetryBtn');
+  var lockScreen = document.getElementById('crbLockScreen');
+  var countdownEl = document.getElementById('crbCountdown');
+  var nameInput = document.getElementById('crbNameInput');
+  var nameErr = document.getElementById('crbNameErr');
+  var lbBody = document.getElementById('crbLbBody');
+  var lbRefresh = document.getElementById('crbLbRefresh');
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildQuiz(){
+    var pool = shuffleArray(BANK);
+    var picked = pool.slice(0, 30); // all 30 available
+    quizQuestions = picked.map(function(item){
+      var optIdx = item.options.map(function(o, i){ return i; });
+      var shuffledIdx = shuffleArray(optIdx);
+      var newOptions = shuffledIdx.map(function(i){ return item.options[i]; });
+      var newAnswer = shuffledIdx.indexOf(item.answer);
+      return { q: item.q, options: newOptions, answer: newAnswer };
+    });
+    answers = quizQuestions.map(function(){ return { selected: null, isAnswered: false }; });
+    currentIndex = 0;
+  }
+
+  function formatTime(s){
+    var m = Math.floor(s/60); var sec = s%60;
+    return (m<10?'0':'')+m+':'+(sec<10?'0':'')+sec;
+  }
+
+  function startTimer(){
+    seconds = 0;
+    timerEl.textContent = '00:00';
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(function(){
+      seconds++;
+      timerEl.textContent = formatTime(seconds);
+    }, 1000);
+  }
+  function stopTimer(){
+    if (timerInterval) clearInterval(timerInterval);
+  }
+
+  function renderQuestion(){
+    var total = quizQuestions.length;
+    var item = quizQuestions[currentIndex];
+    qCounter.textContent = 'Question ' + (currentIndex+1) + ' / ' + total;
+    qNumLabel.textContent = 'QUESTION ' + (currentIndex+1);
+    qText.textContent = item.q;
+    progressBar.style.width = (((currentIndex+1)/total)*100) + '%';
+
+    optionsWrap.innerHTML = '';
+    var state = answers[currentIndex];
+
+    item.options.forEach(function(optText, idx){
+      var btn = document.createElement('button');
+      btn.className = 'crb-option';
+      btn.textContent = optText;
+      btn.setAttribute('data-idx', idx);
+
+      if (state.isAnswered) {
+        btn.classList.add('disabled');
+        btn.disabled = true;
+        if (idx === item.answer) {
+          btn.classList.add('correct');
+          btn.innerHTML = optText + ' <span class="crb-tag">CORRECT</span>';
+        } else if (idx === state.selected) {
+          btn.classList.add('wrong');
+          btn.innerHTML = optText + ' <span class="crb-tag">YOUR CHOICE</span>';
+        }
+      } else {
+        btn.addEventListener('click', function(){ selectOption(idx); });
+      }
+      optionsWrap.appendChild(btn);
+    });
+
+    feedbackEl.className = 'crb-feedback';
+    if (state.isAnswered) {
+      var correct = state.selected === item.answer;
+      feedbackEl.classList.add('show', correct ? 'ok' : 'no');
+      feedbackEl.textContent = correct ? '✅ Correct! Well done.' : '❌ Incorrect. The correct answer is highlighted above.';
+    } else {
+      feedbackEl.textContent = '';
+    }
+
+    prevBtn.disabled = currentIndex === 0;
+    if (currentIndex === total - 1) {
+      nextBtn.style.display = 'none';
+      submitWrap.style.display = 'flex';
+    } else {
+      nextBtn.style.display = 'block';
+      submitWrap.style.display = 'none';
+    }
+
+    updateScoreStrip();
+  }
+
+  function selectOption(idx){
+    var item = quizQuestions[currentIndex];
+    var state = answers[currentIndex];
+    if (state.isAnswered) return;
+    state.selected = idx;
+    state.isAnswered = true;
+    renderQuestion();
+  }
+
+  function updateScoreStrip(){
+    var answeredCount = answers.filter(function(a){ return a.isAnswered; }).length;
+    var correctCount = answers.filter(function(a,i){ return a.isAnswered && a.selected === quizQuestions[i].answer; }).length;
+    scoreStrip.textContent = 'Score: ' + correctCount + ' / ' + answeredCount + ' answered';
+  }
+
+  function goNext(){
+    if (currentIndex < quizQuestions.length - 1) {
+      currentIndex++;
+      renderQuestion();
+    }
+  }
+  function goPrev(){
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
+    }
+  }
+
+  function finishQuiz(){
+    stopTimer();
+    var total = quizQuestions.length;
+    var correctCount = 0, wrongCount = 0;
+    answers.forEach(function(a, i){
+      if (a.isAnswered && a.selected === quizQuestions[i].answer) correctCount++;
+      else wrongCount++;
+    });
+    var pct = Math.round((correctCount/total)*100);
+
+    document.getElementById('crbRing').style.setProperty('--pct', pct);
+    document.getElementById('crbPctText').textContent = pct + '%';
+    document.getElementById('crbCorrectCount').textContent = correctCount;
+    document.getElementById('crbWrongCount').textContent = wrongCount;
+    document.getElementById('crbTimeTaken').textContent = formatTime(seconds);
+
+    var msg = 'Quiz Completed!';
+    if (pct >= 90) msg = '🏆 Outstanding!';
+    else if (pct >= 70) msg = '🎉 Great Job!';
+    else if (pct >= 50) msg = '👍 Good Effort!';
+    else msg = '📘 Keep Practicing!';
+    document.getElementById('crbResultMsg').textContent = msg;
+
+    var reviewList = document.getElementById('crbReviewList');
+    reviewList.innerHTML = '';
+    quizQuestions.forEach(function(item, i){
+      var a = answers[i];
+      var div = document.createElement('div');
+      div.className = 'crb-review-item';
+      var yourText = a.isAnswered ? item.options[a.selected] : 'Not answered';
+      var correctText = item.options[item.answer];
+      var yourClass = a.isAnswered && a.selected === item.answer ? 'your-correct' : 'your-wrong';
+      div.innerHTML =
+        '<div class="rq">Q' + (i+1) + '. ' + item.q.replace(/\n/g,'<br>') + '</div>' +
+        '<div class="ra ' + yourClass + '">Your Answer: ' + yourText + '</div>' +
+        (a.isAnswered && a.selected === item.answer ? '' : '<div class="ra correct-ans">Correct Answer: ' + correctText + '</div>');
+      reviewList.appendChild(div);
+    });
+
+    quizScreen.style.display = 'none';
+    resultScreen.style.display = 'block';
+
+    submitScore(correctCount, total, pct, seconds);
+  }
+
+  // ---------------- LEADERBOARD (Google Sheet) ----------------
+  function submitScore(correct, total, pct, secs){
+    if (!SHEET_URL) { loadLeaderboard(); return; }
+    lbBody.innerHTML = '<div class="crb-lb-note">Saving your score…</div>';
+    var payload = JSON.stringify({ quiz: QUIZ_ID, name: studentName, correct: correct, total: total, percent: pct, seconds: secs });
+    var done = function(){ setTimeout(loadLeaderboard, 1800); };
+    try {
+      fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: payload })
+        .then(done, done);
+    } catch (err) { done(); }
+  }
+
+  function lbMessage(msg){
+    lbBody.innerHTML = '';
+    var d = document.createElement('div');
+    d.className = 'crb-lb-note';
+    d.textContent = msg;
+    lbBody.appendChild(d);
+  }
+
+  function renderLeaderboard(rows){
+    if (!rows || !rows.length) { lbMessage('No scores yet. Be the first!'); return; }
+    var wrap = document.createElement('div'); wrap.className = 'crb-lb-scroll';
+    var table = document.createElement('table'); table.className = 'crb-lb-table';
+    var thead = document.createElement('thead');
+    thead.innerHTML = '<tr><th>#</th><th>Name</th><th>Score</th><th>%</th><th>Time</th></tr>';
+    table.appendChild(thead);
+    var tbody = document.createElement('tbody');
+    var me = studentName.toLowerCase();
+    rows.slice(0, 50).forEach(function(r, i){
+      var tr = document.createElement('tr');
+      if (String(r.name).toLowerCase() === me) tr.className = 'me';
+      var cells = [i + 1, r.name, r.correct + ' / ' + r.total, r.percent + '%', formatTime(Number(r.seconds) || 0)];
+      cells.forEach(function(c, k){
+        var td = document.createElement('td');
+        if (k === 0) td.className = 'rk';
+        td.textContent = c;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    lbBody.innerHTML = '';
+    lbBody.appendChild(wrap);
+  }
+
+  function loadLeaderboard(){
+    if (!SHEET_URL) { lbMessage('Leaderboard is not connected yet.'); return; }
+    lbMessage('Loading…');
+    var cb = 'crbLbCb' + Date.now();
+    var s = document.createElement('script');
+    var timeout = setTimeout(function(){ cleanup(); lbMessage('Could not load leaderboard. Tap Refresh.'); }, 12000);
+    function cleanup(){
+      clearTimeout(timeout);
+      window[cb] = function(){};
+      if (s.parentNode) s.parentNode.removeChild(s);
+    }
+    window[cb] = function(data){ cleanup(); renderLeaderboard(data); };
+    s.onerror = function(){ cleanup(); lbMessage('Could not load leaderboard. Tap Refresh.'); };
+    s.src = SHEET_URL + (SHEET_URL.indexOf('?') > -1 ? '&' : '?') + 'quiz=' + encodeURIComponent(QUIZ_ID) + '&callback=' + cb + '&_=' + Date.now();
+    document.body.appendChild(s);
+  }
+
+  // ---------------- OPENING-TIME LOCK ----------------
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  function isOpen(){ return Date.now() >= OPEN_AT; }
+
+  function showStart(){
+    if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+    lockScreen.style.display = 'none';
+    startScreen.style.display = 'block';
+  }
+
+  function tickCountdown(){
+    var left = Math.max(0, Math.floor((OPEN_AT - Date.now()) / 1000));
+    if (left <= 0) { showStart(); return; }
+    var h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60), sec = left % 60;
+    countdownEl.textContent = 'Opens in ' + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+  }
+
+  function initGate(){
+    if (isOpen()) { showStart(); return; }
+    startScreen.style.display = 'none';
+    lockScreen.style.display = 'block';
+    tickCountdown();
+    countdownInterval = setInterval(tickCountdown, 1000);
+  }
+
+  startBtn.addEventListener('click', function(){
+    if (!isOpen()) { initGate(); return; }
+    var nm = (nameInput.value || '').replace(/\s+/g, ' ').trim();
+    if (!nm) {
+      nameInput.classList.add('err');
+      nameErr.classList.add('show');
+      nameInput.focus();
+      return;
+    }
+    studentName = nm;
+    nameInput.classList.remove('err');
+    nameErr.classList.remove('show');
+    buildQuiz();
+    startScreen.style.display = 'none';
+    resultScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    startTimer();
+    renderQuestion();
+  });
+
+  nextBtn.addEventListener('click', goNext);
+  prevBtn.addEventListener('click', goPrev);
+  submitBtn.addEventListener('click', finishQuiz);
+  initGate();
+  nameInput.addEventListener('input', function(){
+    if ((nameInput.value || '').trim()) { nameInput.classList.remove('err'); nameErr.classList.remove('show'); }
+  });
+  lbRefresh.addEventListener('click', loadLeaderboard);
+  retryBtn.addEventListener('click', function(){
+    if (!studentName) return;
+    buildQuiz();
+    resultScreen.style.display = 'none';
+    quizScreen.style.display = 'block';
+    startTimer();
+    renderQuestion();
+  });
+
+})();
+</script>
