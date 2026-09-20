@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#134e5e">
+<title>APTET Science (PS & BS) Bilingual Practice test-2</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .quiz-container {
+    background: #fff;
+    max-width: 680px;
+    width: 100%;
+    margin: 15px auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+  .quiz-header {
+    background: linear-gradient(135deg, #134e5e, #71b280);
+    color: #fff;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .quiz-header h1 { margin: 0; font-size: 20px; }
+  .quiz-header p { margin: 5px 0 0; font-size: 13px; opacity: 0.95; }
+  .credits {
+    background: #0f3d3e;
+    color: #fceabb;
+    text-align: center;
+    font-size: 12.5px;
+    padding: 6px;
+    letter-spacing: 0.4px;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f4f7f6;
+    font-size: 14px;
+    font-weight: bold;
+    color: #134e5e;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .progress-bar-container { background: #e0e0e0; height: 10px; width: 100%; }
+  .progress-bar {
+    background: linear-gradient(90deg, #56ab2f, #a8e063);
+    height: 100%; width: 0%; transition: width 0.3s ease;
+  }
+  .quiz-body { padding: 20px; }
+  .question-text {
+    font-size: 16.5px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .question-text-te {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #134e5e;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .assertion-line { display: block; margin: 6px 0; font-size: 14.5px; color: #333; }
+  .assertion-line-te { display: block; margin: 2px 0 8px; font-size: 14px; color: #134e5e; }
+  .options-list { list-style: none; padding: 0; margin: 0; }
+  .option {
+    display: block;
+    background: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14.5px;
+    transition: all 0.2s ease;
+  }
+  .option .opt-en { display: block; color: #222; }
+  .option .opt-te { display: block; color: #555; font-size: 13.5px; margin-top: 3px; }
+  @media (hover: hover) { .option:hover { background: #eef7f0; border-color: #71b280; } }
+  .option.selected { border-color: #134e5e; background: #dcf0e8; }
+  .option.correct { background: #c9f2c9 !important; border-color: #2e7d32 !important; }
+  .option.correct .opt-en, .option.correct .opt-te { color: #1b5e20; font-weight: bold; }
+  .option.incorrect { background: #f9c9c9 !important; border-color: #c62828 !important; }
+  .option.incorrect .opt-en, .option.incorrect .opt-te { color: #b71c1c; font-weight: bold; }
+  .option.disabled { pointer-events: none; }
+  .feedback { margin-top: 10px; font-size: 14px; font-weight: bold; min-height: 20px; }
+  .feedback.correct-text { color: #2e7d32; }
+  .feedback.incorrect-text { color: #c62828; }
+  .explanation-box {
+    margin-top: 12px;
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.6;
+    display: none;
+  }
+  .explanation-box b { color: #134e5e; }
+  .nav-buttons { display: flex; justify-content: space-between; padding: 15px 20px 20px; gap: 10px; }
+  .nav-buttons button {
+    flex: 1; padding: 12px; border: none; border-radius: 10px;
+    font-size: 15px; font-weight: bold; cursor: pointer; transition: opacity 0.2s ease;
+  }
+  #prevBtn { background: #ccc; color: #333; }
+  #nextBtn { background: linear-gradient(135deg, #134e5e, #71b280); color: #fff; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .start-screen, .result-screen { padding: 30px 20px; text-align: center; }
+  .start-screen h2, .result-screen h2 { color: #134e5e; }
+  .start-screen p { color: #444; font-size: 14px; line-height: 1.6; }
+  #startBtn, #restartBtn {
+    background: linear-gradient(135deg, #134e5e, #71b280);
+    color: #fff; border: none; padding: 14px 30px; border-radius: 30px;
+    font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px;
+  }
+  .score-summary { font-size: 18px; margin: 15px 0; color: #222; }
+  .score-big { font-size: 46px; font-weight: bold; color: #134e5e; margin: 10px 0; }
+  .review-section { text-align: left; margin-top: 25px; border-top: 2px solid #eee; padding-top: 15px; }
+  .review-item {
+    background: #f9f9f9; border-radius: 10px; padding: 12px; margin-bottom: 12px;
+    font-size: 13.5px; border-left: 4px solid #ccc;
+  }
+  .review-item.correct-review { border-left-color: #2e7d32; }
+  .review-item.incorrect-review { border-left-color: #c62828; }
+  .review-item .q-num { font-weight: bold; color: #134e5e; }
+  .review-item .line { display: block; margin: 3px 0; }
+  .review-item .your-ans { color: #c62828; }
+  .review-item .correct-ans { color: #2e7d32; }
+  .review-item .expl { color: #7a5c00; margin-top: 4px; font-style: italic; }
+  .timer { font-weight: bold; color: #b71c1c; }
+
+  /* ===== Mobile friendly ===== */
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  * { -webkit-tap-highlight-color: transparent; }
+  body {
+    min-height: 100dvh;
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  .quiz-container { min-width: 0; }
+  .option { min-height: 48px; touch-action: manipulation; overflow-wrap: anywhere; }
+  .question-text, .question-text-te, .review-item, .explanation-box { overflow-wrap: anywhere; }
+  .nav-buttons button, #startBtn, #restartBtn { min-height: 48px; touch-action: manipulation; }
+
+  /* ===== Name + District ===== */
+  .field-wrap { text-align: left; margin: 12px auto 0; max-width: 420px; }
+  .field-wrap label { display: block; font-size: 13px; font-weight: 700; color: #134e5e; margin-bottom: 6px; line-height: 1.4; }
+  .field-input {
+    width: 100%; padding: 12px 14px; font-size: 16px; min-height: 48px;
+    border: 2px solid #cfe0d6; border-radius: 10px; background: #fff; color: #222;
+    outline: none; font-family: inherit;
+  }
+  .field-input:focus { border-color: #134e5e; }
+  .field-input.err { border-color: #c62828; background: #fff1f1; }
+  .form-err { display: none; color: #b71c1c; font-size: 13px; font-weight: 700; margin: 12px auto 0; max-width: 420px; text-align: left; line-height: 1.5; }
+  .form-err.show { display: block; }
+
+  /* ===== Lock screen ===== */
+  .lock-screen { padding: 30px 20px; text-align: center; }
+  .lock-icon { font-size: 44px; line-height: 1; }
+  .lock-screen h2 { color: #b45309; font-size: 19px; margin: 10px 0 4px; }
+  .lock-screen h3 { color: #134e5e; font-size: 15px; margin: 0 0 6px; font-weight: 600; line-height: 1.6; }
+  .countdown {
+    display: inline-block; margin-top: 10px; background: #134e5e; color: #fff;
+    padding: 8px 16px; border-radius: 10px; font-size: 17px; font-weight: 700;
+    font-variant-numeric: tabular-nums; letter-spacing: .5px;
+  }
+  .lock-screen p { color: #555; font-size: 13.5px; margin: 12px 0 0; line-height: 1.6; }
+
+  /* ===== Leaderboard ===== */
+  .lb-section { text-align: left; margin-top: 25px; border-top: 2px solid #eee; padding-top: 15px; }
+  .lb-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .lb-head h3 { margin: 0; font-size: 16px; color: #134e5e; }
+  .lb-refresh {
+    border: none; background: #dcf0e8; color: #134e5e; font-weight: 700; font-size: 13px;
+    padding: 9px 14px; min-height: 40px; border-radius: 10px; cursor: pointer; touch-action: manipulation; flex-shrink: 0;
+  }
+  .lb-note { font-size: 13.5px; color: #666; padding: 10px 4px; text-align: center; }
+  .lb-scroll { max-height: 440px; overflow: auto; -webkit-overflow-scrolling: touch; border: 1px solid #e3eee8; border-radius: 10px; }
+  .lb-table { width: 100%; min-width: 340px; border-collapse: collapse; font-size: 13px; }
+  .lb-table th { position: sticky; top: 0; background: #eef7f0; color: #134e5e; text-align: left; padding: 9px 8px; font-size: 12px; white-space: nowrap; }
+  .lb-table td { padding: 9px 8px; border-top: 1px solid #f0f4f2; color: #222; }
+  .lb-table td.rk { width: 34px; font-weight: 800; color: #134e5e; }
+  .lb-table td.nm { overflow-wrap: anywhere; }
+  .lb-table tr.me td { background: #fff7d6; font-weight: 700; }
+
+  @media (max-width: 480px) {
+    body { padding-top: 6px; }
+    .quiz-container { margin: 8px auto; border-radius: 14px; }
+    .quiz-header { padding: 14px 12px; }
+    .quiz-header h1 { font-size: 18px; }
+    .top-bar { padding: 10px 12px; font-size: 13px; }
+    .quiz-body { padding: 14px 12px; }
+    .nav-buttons { padding: 12px 12px 16px; }
+    .nav-buttons button { font-size: 14px; padding: 12px 6px; }
+    .start-screen, .result-screen, .lock-screen { padding: 22px 14px; }
+    .score-big { font-size: 40px; }
+    .lb-table { font-size: 12.5px; }
+  }
+
+  /* ===== Copy protection (deterrent only) ===== */
+  body {
+    -webkit-user-select: none; user-select: none;
+    -webkit-touch-callout: none;
+  }
+  input, textarea { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+</style>
+<script>
+// ===== Right-click / copy / view-source deterrent =====
+(function () {
+  function isField(t) { return t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA'); }
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  ['copy', 'cut', 'dragstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { if (!isField(e.target)) e.preventDefault(); });
+  });
+  document.addEventListener('selectstart', function (e) { if (!isField(e.target)) e.preventDefault(); });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    var mod = e.ctrlKey || e.metaKey;
+    var block =
+      e.keyCode === 123 || k === 'f12' ||                                   // F12
+      (mod && e.shiftKey && (k === 'i' || k === 'j' || k === 'c' || k === 'k')) || // dev tools
+      (e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'u' || k === 'c')) ||
+      (mod && (k === 'u' || k === 's' || k === 'p')) ||                     // view-source / save / print
+      (mod && !isField(e.target) && (k === 'c' || k === 'x' || k === 'a')); // copy / cut / select all
+    if (block) { e.preventDefault(); e.stopPropagation(); return false; }
+  }, true);
+})();
+</script>
+</head>
+<body>
+
+<div class="quiz-container">
+
+  <div class="quiz-header">
+    <h1>SCIENCE (PS & BS) / సైన్స్</h1>
+    <p>APTET Previous Question Paper Practice test-2<br>ఎపిటిఇటి ప్రశ్నాపత్రం – 14 అక్టోబర్ 2024 (రెండవ సెషన్)</p>
+  </div>
+  <div class="credits">Prepared by: C. RASOOL BAVAJI, S.A. (P.S.), MADANAPALLE</div>
+
+  <!-- LOCK SCREEN (shown before opening time) -->
+  <div class="lock-screen" id="lockScreen" style="display:none;">
+    <div class="lock-icon">🔒</div>
+    <h2 id="lockTitleEn">This quiz will open at 6.00 PM IST TODAY</h2>
+    <h3 id="lockTitleTe">ఈ క్విజ్ ఈరోజు సాయంత్రం 6.00 గంటలకు (IST) ప్రారంభమవుతుంది</h3>
+    <div class="countdown" id="countdown">--:--:--</div>
+    <p>Please come back at 6.00 PM IST. This page unlocks automatically.<br>దయచేసి సాయంత్రం 6.00 గంటలకు (IST) మళ్ళీ రండి. ఈ పేజీ దానంతట అదే తెరుచుకుంటుంది.</p>
+  </div>
+
+  <!-- START SCREEN -->
+  <div class="start-screen" id="startScreen" style="display:none;">
+    <h2>Ready to begin? / సిద్ధంగా ఉన్నారా?</h2>
+    <p>
+      This bilingual quiz has 30 Science questions from the APTET 14 October 2024 (Afternoon Session) question paper, with explanations for every answer.<br>
+      ఈ ద్విభాషా క్విజ్‌లో APTET 14 అక్టోబర్ 2024 (మధ్యాహ్న సెషన్) ప్రశ్నాపత్రం నుండి 30 సైన్స్ ప్రశ్నలు ఉన్నాయి, ప్రతి సమాధానానికి వివరణతో సహా.<br>
+      Questions and options are shuffled each time. / ప్రశ్నలు మరియు ఐచ్చికాలు ప్రతిసారి షఫుల్ చేయబడతాయి.
+    </p>
+    <div class="field-wrap">
+      <label for="studentName">Your Name (mandatory) * / మీ పేరు (తప్పనిసరి) *</label>
+      <input type="text" id="studentName" class="field-input" maxlength="40" placeholder="Full name / మీ పూర్తి పేరు" autocomplete="name">
+    </div>
+    <div class="field-wrap">
+      <label for="studentDistrict">Your District (mandatory) * / మీ జిల్లా (తప్పనిసరి) *</label>
+      <input type="text" id="studentDistrict" class="field-input" maxlength="40" placeholder="District / మీ జిల్లా" autocomplete="address-level2">
+    </div>
+    <div class="form-err" id="formErr">⚠ Name and District are required. You cannot start the quiz without them.<br>పేరు మరియు జిల్లా తప్పనిసరి. అవి నమోదు చేయకుండా క్విజ్ ప్రారంభించలేరు.</div>
+    <button id="startBtn" onclick="startQuiz()">Start Quiz / క్విజ్ ప్రారంభించండి</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" style="display:none;">
+    <div class="top-bar">
+      <span id="qCounter">Question 1 / 30</span>
+      <span class="timer" id="timerDisplay">00:00</span>
+      <span id="scoreDisplay">Score: 0</span>
+    </div>
+    <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="quiz-body">
+      <div class="question-text" id="questionText"></div>
+      <div class="question-text-te" id="questionTextTe"></div>
+      <ul class="options-list" id="optionsList"></ul>
+      <div class="feedback" id="feedback"></div>
+      <div class="explanation-box" id="explanationBox"></div>
+    </div>
+    <div class="nav-buttons">
+      <button id="prevBtn" onclick="prevQuestion()">Previous / వెనుకకు</button>
+      <button id="nextBtn" onclick="nextQuestion()">Next / తర్వాత</button>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="result-screen" id="resultScreen" style="display:none;">
+    <h2>Quiz Completed! / క్విజ్ పూర్తయింది!</h2>
+    <div class="score-big" id="finalScore">0/30</div>
+    <div class="score-summary" id="finalPercent"></div>
+    <div class="score-summary" id="finalTime"></div>
+    <button id="restartBtn" onclick="restartQuiz()">Retake Quiz / మళ్ళీ ప్రయత్నించండి</button>
+    <div class="lb-section">
+      <div class="lb-head">
+        <h3>🏅 Leaderboard – Top 50 / లీడర్‌బోర్డ్</h3>
+        <button class="lb-refresh" type="button" onclick="loadLeaderboard()">↻ Refresh / రిఫ్రెష్</button>
+      </div>
+      <div id="lbBody"><div class="lb-note">Loading… / లోడ్ అవుతోంది…</div></div>
+    </div>
+
+    <div class="review-section">
+      <h3 style="color:#134e5e;">Answer Review & Key / సమాధాన సమీక్ష</h3>
+      <div id="reviewContainer"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ===================== QUESTION BANK (Bilingual) =====================
+const questionBank = [
+{
+  q_en: "A particle moves along a circular path of radius 7m. The magnitude of displacement when it covers 1/4th of revolution is",
+  q_te: "ఒక కణం 7మీ వ్యాసార్థం గల వృత్తాకార మార్గంలో చలించుచున్నది. ఆ కణం పరిభ్రమణంలో 1/4వ వంతు ప్రయాణించిన దాని స్థాన భ్రంశ పరిమాణం",
+  options: [
+    {en:"11 m", te:"11 మీ"},
+    {en:"7√2 m", te:"7√2 మీ"},
+    {en:"0", te:"0"},
+    {en:"2√7 m", te:"2√7 మీ"}
+  ],
+  answerIndex: 1,
+  expl_en: "When the particle covers a quarter revolution, the angle turned is 90°. Displacement = chord length = r√2 = 7√2 m.",
+  expl_te: "కణం పావు భ్రమణం పూర్తిచేసినపుడు తిరిగిన కోణం 90°. స్థాన భ్రంశం = జ్యా పొడవు = r√2 = 7√2 మీ."
+},
+{
+  q_en: "If the distance between the objects is halved, then the gravitational force between them becomes",
+  q_te: "రెండు వస్తువుల మధ్య దూరాన్ని సగానికి తగ్గిస్తే, వాటి మధ్య గురుత్వాకర్షణ బలం",
+  options: [
+    {en:"4 times", te:"4 రెట్లు అగును"},
+    {en:"1/4 times", te:"1/4 వంతు అగును"},
+    {en:"2 times", te:"2 రెట్లు అగును"},
+    {en:"1/2 times", te:"1/2 వంతు అగును"}
+  ],
+  answerIndex: 0,
+  expl_en: "Gravitational force F ∝ 1/r². If r is halved, F becomes 1/(1/2)² = 4 times.",
+  expl_te: "గురుత్వాకర్షణ బలం F ∝ 1/r². దూరం సగానికి తగ్గితే, బలం 4 రెట్లు అవుతుంది."
+},
+{
+  q_en: "Choose the correct option:",
+  q_te: "సరైన ఐచ్చికాన్ని ఎంచుకోండి:",
+  lines: [
+    {en:"A: Ultrasonics are sound waves with very long wave lengths.", te:"A: అతిధ్వనులు అధిక తరంగ దైర్ఘ్యాలు కలిగిన ధ్వని తరంగాలు"},
+    {en:"B: Ultrasonic waves move with the same velocity as sound waves.", te:"B: ధ్వని తరంగ వేగానికి సమాన వేగంతో అతిధ్వనులు చలిస్తాయి"}
+  ],
+  options: [
+    {en:"Both A, B are correct", te:"A మరియు B రెండూ సరైనవి"},
+    {en:"A correct, B incorrect", te:"A సరైనది, B సరైనది కాదు"},
+    {en:"A incorrect, B correct", te:"A సరైనది కాదు, B సరైనది"},
+    {en:"Both A and B are incorrect", te:"A మరియు B రెండూ సరైనవి కావు"}
+  ],
+  answerIndex: 2,
+  expl_en: "Ultrasonics have very SHORT wavelengths (high frequency above 20kHz), so A is wrong. Ultrasonic waves are sound waves and travel at the same speed as audible sound in the same medium, so B is correct.",
+  expl_te: "అతిధ్వనులకు తక్కువ తరంగ దైర్ఘ్యం (అధిక పౌనఃపున్యం, 20kHz కంటే ఎక్కువ) ఉంటుంది, కావున A తప్పు. అతిధ్వనులు ధ్వని తరంగాలే కావున అదే యానకంలో ధ్వని వేగంతో సమానంగా చలిస్తాయి, కావున B సరైనది."
+},
+{
+  q_en: "The temperature of a substance increases by 73K. On the centigrade scale, this increase is equal to",
+  q_te: "ఒక పదార్ధపు ఉష్ణోగ్రతను 73K పెంచారు. సెంటీగ్రేడ్ మానంలో ఈ ఉష్ణోగ్రతలో పెరుగుదల",
+  options: [
+    {en:"−200°C", te:"−200°C"},
+    {en:"200°C", te:"200°C"},
+    {en:"73°C", te:"73°C"},
+    {en:"346°C", te:"346°C"}
+  ],
+  answerIndex: 2,
+  expl_en: "A change (increase) in Kelvin is numerically equal to the change in Celsius, since both scales have the same size degree — only the zero point differs. So 73K increase = 73°C increase.",
+  expl_te: "కెల్విన్ మానంలో మార్పు, సెల్సియస్ మానంలో మార్పుకు సంఖ్యాపరంగా సమానం (ఎందుకంటే రెండు మానాలలో డిగ్రీ పరిమాణం సమానం, శూన్య బిందువు మాత్రమే వేరు). కావున 73K పెరుగుదల = 73°C పెరుగుదల."
+},
+{
+  q_en: "There is a voltage drop of 220V across a wire of resistance 484Ω. The power consumed will be",
+  q_te: "484Ω నిరోధం కలిగిన ఒక తీగ రెండు చివరల మధ్య పొటెన్షియల్ బేధం 220V అయిన, ఆ తీగ వినియోగించిన విద్యుత్",
+  options: [
+    {en:"5/11 W", te:"5/11 W"},
+    {en:"11/5 W", te:"11/5 W"},
+    {en:"1/100 W", te:"1/100 W"},
+    {en:"100 W", te:"100 W"}
+  ],
+  answerIndex: 3,
+  expl_en: "Power P = V²/R = 220² / 484 = 48400 / 484 = 100 W.",
+  expl_te: "విద్యుత్ శక్తి P = V²/R = 220² / 484 = 48400 / 484 = 100 W."
+},
+{
+  q_en: "When a proton is moving perpendicular to magnetic field",
+  q_te: "ఒక ప్రోటాను అయస్కాంత క్షేత్రానికి లంబంగా ప్రయాణించినపుడు",
+  options: [
+    {en:"Magnetic field will not affect the motion of the proton", te:"ప్రోటాను చలనాన్ని అయస్కాంత క్షేత్రం ప్రభావితం చేయదు"},
+    {en:"Proton will bend in an arc of a circle", te:"ప్రోటాను వృత్త చాపం మార్గంలోకి మరలును"},
+    {en:"Proton will continue to move in the same direction with increasing speed", te:"ప్రోటాను అదేదిశలో అధిక వేగంతో పయనించును"},
+    {en:"Proton will continue to move in the opposite direction with decreasing speed", te:"ప్రోటాను వ్యతిరేక దిశలో తగ్గు వేగంతో పయనించును"}
+  ],
+  answerIndex: 1,
+  expl_en: "The magnetic force on a moving charge (F = qv×B) is always perpendicular to its velocity. This constant sideways force makes the proton move in a circular arc without changing its speed.",
+  expl_te: "చలించే ఆవేశంపై అయస్కాంత బలం (F = qv×B) ఎల్లప్పుడూ దాని వేగానికి లంబంగా ఉంటుంది. ఈ నిరంతర పార్శ్వ బలం వేగాన్ని మార్చకుండా ప్రోటానును వృత్తాకార మార్గంలో తిప్పుతుంది."
+},
+{
+  q_en: "The final product in oxidation reaction of ethanol in presence of alkaline KMnO4 is",
+  q_te: "క్షారయుత KMnO4 సమక్షంలో ఇథనాల్ ఆక్సీకరణం చేసే చర్యలో చివరి ఉత్పన్నం",
+  options: [
+    {en:"Ethanal", te:"ఇథనాల్"},
+    {en:"Methanoic acid", te:"మిథనోయికామ్లం"},
+    {en:"Ethanoic acid", te:"ఇథనోయికామ్లం"},
+    {en:"Methanal", te:"మిథనాల్"}
+  ],
+  answerIndex: 2,
+  expl_en: "Alkaline KMnO4 is a strong oxidizing agent; it oxidizes ethanol completely (via the intermediate ethanal) to ethanoic acid (acetic acid).",
+  expl_te: "క్షారయుత KMnO4 బలమైన ఆక్సీకరణ కారకం; ఇది ఇథనాల్‌ను (మధ్యంతర ఉత్పన్నం ఇథనాల్ ద్వారా) పూర్తిగా ఇథనోయికామ్లంగా ఆక్సీకరిస్తుంది."
+},
+{
+  q_en: "The constellation with distorted shape of letter 'M' is",
+  q_te: "వక్రీకరించిన 'M' అక్షర ఆకారంలో గల నక్షత్రరాశి",
+  options: [
+    {en:"Big dipper", te:"బిగ్‌డిప్పర్"},
+    {en:"Cancer", te:"కర్కాటకం"},
+    {en:"Cassiopeia", te:"కాసియోపియా"},
+    {en:"Orion", te:"ఓరియన్"}
+  ],
+  answerIndex: 2,
+  expl_en: "Cassiopeia is a constellation of five bright stars forming a distinctive W (or distorted M) shape in the sky.",
+  expl_te: "కాసియోపియా అనేది ఐదు ప్రకాశవంతమైన నక్షత్రాలతో కూడిన నక్షత్రరాశి, ఇది ఆకాశంలో ఒక ప్రత్యేకమైన W (లేదా వక్రీకరించిన M) ఆకారాన్ని ఏర్పరుస్తుంది."
+},
+{
+  q_en: "Match the scientists in SET-A with their discoveries given in SET-B",
+  q_te: "SET-A లో ఇవ్వబడిన శాస్త్రవేత్తలను SET-B లోని వారి ఆవిష్కరణలతో జతపరచండి",
+  lines: [
+    {en:"SET-A: A) Rutherford  B) Sommerfeld  C) Neils Bohr  D) Thomson", te:"SET-A: A) రూధర్‌ఫర్డ్  B) సోమర్‌ఫీల్డ్  C) నీల్స్‌బోర్  D) థామ్సన్"},
+    {en:"SET-B: P) Stationary orbits  Q) Electrons  R) Elliptical orbits  S) Nucleus", te:"SET-B: P) స్థిరకక్ష్యలు  Q) ఎలక్ట్రాన్లు  R) దీర్ఘవృత్తాకార కక్ష్యలు  S) కేంద్రకం"}
+  ],
+  options: [
+    {en:"A-R, B-S, C-P, D-Q", te:"A-R, B-S, C-P, D-Q"},
+    {en:"A-S, B-R, C-Q, D-P", te:"A-S, B-R, C-Q, D-P"},
+    {en:"A-S, B-R, C-P, D-Q", te:"A-S, B-R, C-P, D-Q"},
+    {en:"A-P, B-Q, C-R, D-S", te:"A-P, B-Q, C-R, D-S"}
+  ],
+  answerIndex: 2,
+  expl_en: "Rutherford discovered the nucleus; Sommerfeld proposed elliptical orbits; Neils Bohr proposed stationary (circular) orbits; Thomson discovered the electron.",
+  expl_te: "రూధర్‌ఫర్డ్ కేంద్రకాన్ని కనుగొన్నాడు; సోమర్‌ఫీల్డ్ దీర్ఘవృత్తాకార కక్ష్యలను ప్రతిపాదించాడు; నీల్స్‌బోర్ స్థిరకక్ష్యలను ప్రతిపాదించాడు; థామ్సన్ ఎలక్ట్రాన్‌ను కనుగొన్నాడు."
+},
+{
+  q_en: "\"The physical and chemical properties of elements are the periodic functions of the electronic configurations of their atoms.\" This is stated by",
+  q_te: "\"మూలకాల భౌతిక రసాయన ధర్మాలు వాటి ఎలక్ట్రాన్ విన్యాసపు ఆవర్తన ప్రమేయాలు\" దీనిని ప్రవచించినది",
+  options: [
+    {en:"Mendleff", te:"మెండలీఫ్"},
+    {en:"Neils Bohr", te:"నీల్స్‌బోర్"},
+    {en:"Moseley", te:"మోస్లే"},
+    {en:"Heisenberg", te:"హైసన్‌బర్గ్"}
+  ],
+  answerIndex: 2,
+  expl_en: "Moseley, through his X-ray studies, established that atomic number (and hence electronic configuration) is the true basis for the periodic classification of elements.",
+  expl_te: "మోస్లే తన X-కిరణాల అధ్యయనం ద్వారా, పరమాణు సంఖ్య (అందువల్ల ఎలక్ట్రాన్ విన్యాసం) మూలకాల ఆవర్తన వర్గీకరణకు నిజమైన ఆధారమని నిరూపించాడు."
+},
+{
+  q_en: "Choose the correct answer.",
+  q_te: "సరైన సమాధానం ఎన్నుకోండి.",
+  lines: [
+    {en:"Assertion (A): The alkali metal, sodium is stored in Kerosene.", te:"ప్రకటన (A): క్షారలోహమైన సోడియంను కిరోసిన్‌లో నిల్వ చేస్తారు."},
+    {en:"Reason (R): Sodium is a highly reactive metal.", te:"కారణం (R): సోడియం చాలా చురుకైన లోహం."}
+  ],
+  options: [
+    {en:"Both 'A' & 'R' correct, but 'R' is not correct explanation of 'A'", te:"'A' మరియు 'R' సరైనవి, కానీ 'R', 'A'కు సరైన వివరణ కాదు"},
+    {en:"Both 'A' & 'R' correct and 'R' is the correct explanation of 'A'", te:"'A' మరియు 'R' సరైనవి మరియు 'R', 'A'కు సరైన వివరణ"},
+    {en:"A is correct and R is incorrect", te:"A సరైనది మరియు R సరైనది కాదు"},
+    {en:"A is incorrect and R is correct", te:"A సరైనది కాదు మరియు R సరైనది"}
+  ],
+  answerIndex: 1,
+  expl_en: "Sodium is highly reactive and reacts violently with air and water, so it is stored in kerosene to keep it away from them. R correctly explains why A is done.",
+  expl_te: "సోడియం చాలా చురుకైనది, గాలి మరియు నీటితో తీవ్రంగా చర్య జరుపుతుంది, కావున దానిని వాటికి దూరంగా ఉంచడానికి కిరోసిన్‌లో నిల్వ చేస్తారు. A ఎందుకు చేస్తారో R సరిగ్గా వివరిస్తుంది."
+},
+{
+  q_en: "Study the statements and choose correct option.",
+  q_te: "క్రింది వాక్యాలను చదివి సరైన ఐచ్చికాన్ని ఎంచుకోండి.",
+  lines: [
+    {en:"Rohan: Most of the thermoplastics can be recycled.", te:"రోహన్: అనేక థర్మోప్లాస్టిక్‌లను రీసైకిల్ చేయవచ్చు"},
+    {en:"Roshan: Plastics are non-biodegradable.", te:"రోషన్: ప్లాస్టిక్‌లు జీవ విచ్ఛిన్నం కానివి"}
+  ],
+  options: [
+    {en:"Rohan correct, Roshan incorrect", te:"రోహన్ ఒప్పు, రోషన్ తప్పు"},
+    {en:"Rohan incorrect, Roshan correct", te:"రోహన్ తప్పు, రోషన్ ఒప్పు"},
+    {en:"Both Rohan and Roshan incorrect", te:"రోహన్ మరియు రోషన్ ఇద్దరూ తప్పు"},
+    {en:"Both Rohan and Roshan correct", te:"రోహన్ మరియు రోషన్ ఇద్దరూ ఒప్పు"}
+  ],
+  answerIndex: 3,
+  expl_en: "Thermoplastics soften on heating and can be remoulded/recycled — Rohan is correct. Plastics resist microbial decomposition and are non-biodegradable — Roshan is correct. Both are true.",
+  expl_te: "థర్మోప్లాస్టిక్‌లు వేడి చేసినపుడు మెత్తబడి, తిరిగి ఆకృతి చేయవచ్చు/రీసైకిల్ చేయవచ్చు — రోహన్ చెప్పింది సరైనది. ప్లాస్టిక్‌లు సూక్ష్మజీవుల ద్వారా విచ్ఛిన్నం కావు — రోషన్ చెప్పింది సరైనది. రెండూ నిజమే."
+},
+{
+  q_en: "Identify the organism(s) that does not have gills:",
+  q_te: "క్రిందివానిలో మొప్పలు లేని జీవులను గుర్తించండి.",
+  lines: [
+    {en:"A) Fish  B) Squid  C) Octopus  D) Whale", te:"A) చేప  B) స్క్విడ్  C) ఆక్టోపస్  D) తిమింగలం"}
+  ],
+  options: [
+    {en:"A only", te:"A మాత్రమే"},
+    {en:"B and C", te:"B మరియు C"},
+    {en:"D only", te:"D మాత్రమే"},
+    {en:"C and D", te:"C మరియు D"}
+  ],
+  answerIndex: 2,
+  expl_en: "Fish, squid and octopus are aquatic animals that respire through gills. Whale is a mammal that breathes air using lungs, so it does not have gills.",
+  expl_te: "చేప, స్క్విడ్, ఆక్టోపస్ మొప్పల ద్వారా శ్వాసించే జలచరాలు. తిమింగలం ఒక క్షీరదం, ఇది ఊపిరితిత్తుల ద్వారా గాలిని పీలుస్తుంది, కావున దానికి మొప్పలు ఉండవు."
+},
+{
+  q_en: "The tissue that is seen in lining of kidney tubule and ducts of salivary glands is",
+  q_te: "మూత్రనాళాల్లో మరియు లాలాజల గ్రంధుల నాళాలలో ఉపరితల పొరగా ఉండే కణజాలం",
+  options: [
+    {en:"Squamous epithelial tissue", te:"శల్క ఉపకళా కణజాలం"},
+    {en:"Stratified epithelial tissue", te:"స్తరిత ఉపకళా కణజాలం"},
+    {en:"Cuboidal epithelial tissue", te:"ఘనాకార ఉపకళా కణజాలం"},
+    {en:"Columnar epithelial tissue", te:"స్తంభాకార ఉపకళా కణజాలం"}
+  ],
+  answerIndex: 2,
+  expl_en: "Cuboidal epithelium (cube-shaped cells) lines the kidney tubules and salivary gland ducts, and is well suited for secretion and absorption.",
+  expl_te: "ఘనాకార ఉపకళా కణజాలం (క్యూబ్ ఆకారపు కణాలు) మూత్రనాళాలు మరియు లాలాజల గ్రంధి నాళాలను కప్పి ఉంచుతుంది, ఇది స్రావం మరియు శోషణకు అనుకూలంగా ఉంటుంది."
+},
+{
+  q_en: "The diseases caused by bacteria are:",
+  q_te: "క్రింది వానిలో బాక్టీరియా కారక వ్యాధులు",
+  lines: [
+    {en:"A) Polio  B) Typhoid  C) Malaria  D) Citrus Canker", te:"A) పోలియో  B) టైఫాయిడ్  C) మలేరియా  D) సిట్రస్ కాంకర్"}
+  ],
+  options: [
+    {en:"A and D", te:"A మరియు D"},
+    {en:"B and D", te:"B మరియు D"},
+    {en:"A and C", te:"A మరియు C"},
+    {en:"B and C", te:"B మరియు C"}
+  ],
+  answerIndex: 1,
+  expl_en: "Typhoid is caused by the bacterium Salmonella typhi; Citrus Canker is caused by Xanthomonas bacteria. Polio is caused by a virus and Malaria by a protozoan parasite.",
+  expl_te: "టైఫాయిడ్‌ను Salmonella typhi అనే బాక్టీరియా కలిగిస్తుంది; సిట్రస్ కాంకర్‌ను Xanthomonas బాక్టీరియా కలిగిస్తుంది. పోలియోను వైరస్ మరియు మలేరియాను ప్రోటోజోవా పరాన్నజీవి కలిగిస్తాయి."
+},
+{
+  q_en: "Choose the correct answer.",
+  q_te: "సరియైన సమాధానాన్ని ఎంచుకోండి.",
+  lines: [
+    {en:"Assertion (A): The Lipase enzyme in bile juice digests the fats.", te:"ప్రకటన (A): పైత్యరసంలోని లైపేజ్ ఎంజైమ్ కొవ్వులను జీర్ణం చేయును"},
+    {en:"Reason (R): The process of converting large fat globules into small ones is called emulsification.", te:"కారణం (R): పెద్ద కొవ్వు అణువులను చిన్న కొవ్వు అణువులుగా మార్చడాన్ని ఎమల్సీకరణ అంటారు."}
+  ],
+  options: [
+    {en:"A is correct; R is incorrect", te:"A సత్యం; R అసత్యం"},
+    {en:"A is incorrect; R is correct", te:"A అసత్యం; R సత్యం"},
+    {en:"Both A and R are correct and R is correct explanation of A", te:"A మరియు R రెండూ సత్యం మరియు R, Aకి సరైన వివరణ"},
+    {en:"Both A and R are correct but R is not a correct explanation of A", te:"A మరియు R రెండూ సత్యం కాని R, Aకి సరైన వివరణ కాదు"}
+  ],
+  answerIndex: 1,
+  expl_en: "Bile juice does NOT contain any enzyme; it only emulsifies fats (breaks large fat globules into smaller ones) to help lipase (from pancreas) act on them. So A is false, but R correctly defines emulsification.",
+  expl_te: "పైత్యరసంలో ఎటువంటి ఎంజైమ్ ఉండదు; ఇది కేవలం కొవ్వులను ఎమల్సీకరణం చేస్తుంది (పెద్ద కొవ్వు బిందువులను చిన్నవిగా మారుస్తుంది), తద్వారా లైపేజ్ (క్లోమం నుండి) పనిచేయడానికి సహాయపడుతుంది. కావున A అసత్యం, కానీ R ఎమల్సీకరణను సరిగ్గా నిర్వచిస్తుంది."
+},
+{
+  q_en: "The correct order of events in respiration is:",
+  q_te: "శ్వాసక్రియలోని అంశాల సరైన క్రమం",
+  lines: [
+    {en:"A) Gaseous exchange at tissue level", te:"A) కణజాలాల్లో వాయు మార్పిడి"},
+    {en:"B) Gaseous exchange at Lung level", te:"B) ఊపిరితిత్తుల్లో వాయు మార్పిడి"},
+    {en:"C) Breathing", te:"C) శ్వాసించడం"},
+    {en:"D) Cellular respiration", te:"D) కణశ్వాసక్రియ"},
+    {en:"E) Gas transport by blood", te:"E) రక్తం ద్వారా వాయు రవాణా"}
+  ],
+  options: [
+    {en:"B, E, A, D, C", te:"B, E, A, D, C"},
+    {en:"C, D, B, A, E", te:"C, D, B, A, E"},
+    {en:"C, B, E, A, D", te:"C, B, E, A, D"},
+    {en:"A, C, D, E, B", te:"A, C, D, E, B"}
+  ],
+  answerIndex: 2,
+  expl_en: "The correct sequence is: Breathing (C) → gaseous exchange at lung level (B) → gas transport by blood (E) → gaseous exchange at tissue level (A) → cellular respiration (D).",
+  expl_te: "సరైన క్రమం: శ్వాసించడం (C) → ఊపిరితిత్తుల్లో వాయు మార్పిడి (B) → రక్తం ద్వారా వాయు రవాణా (E) → కణజాలాల్లో వాయు మార్పిడి (A) → కణశ్వాసక్రియ (D)."
+},
+{
+  q_en: "The Incorrect statement from the following is:",
+  q_te: "క్రింది వానిలో సరికాని వాక్యం",
+  lines: [
+    {en:"A) The tricuspid valve allows blood from Right auricle to ventricle.", te:"A) అగ్రత్రయ కవాటం రక్తాన్ని కుడి కర్ణిక నుండి జఠరికకు పంపును"},
+    {en:"B) The mitral valve allows blood from left ventricle to auricle.", te:"B) మిత్రల్ కవాటం రక్తాన్ని ఎడమ జఠరిక నుండి కర్ణికకు పంపును"},
+    {en:"C) The pulmonary valve allows blood from Right ventricle to pulmonary artery.", te:"C) పుపుస ధమని కవాటం రక్తాన్ని కుడి జఠరిక నుండి పుపుస ధమనికి పంపును"},
+    {en:"D) The aortic valve allows blood from left ventricle to body parts.", te:"D) మహా ధమని కవాటం రక్తాన్ని ఎడమ జఠరిక నుండి శరీర భాగాలకు పంపును"}
+  ],
+  options: [
+    {en:"A only", te:"A మాత్రమే"},
+    {en:"B only", te:"B మాత్రమే"},
+    {en:"A and B", te:"A మరియు B"},
+    {en:"C and D", te:"C మరియు D"}
+  ],
+  answerIndex: 1,
+  expl_en: "The mitral valve actually allows blood flow from the LEFT AURICLE to the LEFT VENTRICLE, not from ventricle to auricle. So statement B (reversed direction) is incorrect; A, C and D are correct.",
+  expl_te: "మిత్రల్ కవాటం వాస్తవానికి రక్తాన్ని ఎడమ కర్ణిక నుండి ఎడమ జఠరికకు పంపుతుంది, జఠరిక నుండి కర్ణికకు కాదు. కావున B (దిశ తారుమారు) తప్పు; A, C, D సరైనవి."
+},
+{
+  q_en: "Match the following:",
+  q_te: "క్రింది వానిని జతపరచండి.",
+  lines: [
+    {en:"i) Caffeine  ii) Nicotine  iii) Reserpine  iv) Quinine", te:"i) కెఫిన్  ii) నికోటిన్  iii) రిసర్పిన్  iv) క్వినైన్"},
+    {en:"a) Antimalarial drug  b) CNS stimulant  c) Insecticide  d) Snake bite", te:"a) మలేరియా నివారణ ఔషధం  b) నాడీవ్యవస్థ ఉత్తేజ కారకం  c) కీటక నాశని  d) పాము కాటు"}
+  ],
+  options: [
+    {en:"i-b, ii-d, iii-a, iv-c", te:"i-b, ii-d, iii-a, iv-c"},
+    {en:"i-d, ii-a, iii-c, iv-b", te:"i-d, ii-a, iii-c, iv-b"},
+    {en:"i-b, ii-c, iii-d, iv-a", te:"i-b, ii-c, iii-d, iv-a"},
+    {en:"i-d, ii-b, iii-c, iv-a", te:"i-d, ii-b, iii-c, iv-a"}
+  ],
+  answerIndex: 2,
+  expl_en: "Caffeine = CNS stimulant; Nicotine = insecticide; Reserpine = used in snake bite treatment (also as tranquilizer); Quinine = antimalarial drug.",
+  expl_te: "కెఫిన్ = నాడీవ్యవస్థ ఉత్తేజ కారకం; నికోటిన్ = కీటక నాశని; రిసర్పిన్ = పాముకాటు చికిత్సలో వాడతారు; క్వినైన్ = మలేరియా నివారణ ఔషధం."
+},
+{
+  q_en: "The correct statement about Diencephalon from the following is",
+  q_te: "క్రింది వానిలో ద్వారగోర్థంనకు సంబంధించి సరైన వాక్యం",
+  options: [
+    {en:"It has centers for Vasomotor activities", te:"వాసోమోటార్ చర్యలకు కేంద్రాలను కలిగి ఉంటుంది"},
+    {en:"It controls voluntary movements initiated by cerebrum", te:"మస్తిష్కం నుండి ప్రారంభమైన నియంత్రిత చలనాలను నియంత్రిస్తుంది"},
+    {en:"It controls coughing and sneezing", te:"తుమ్మడం మరియు దగ్గడంలను నియంత్రించును"},
+    {en:"It controls reflex centres for muscular activities", te:"కండరాల కదలికలకు ప్రతిక్రియ (ప్రతిచర్య) కేంద్రాలను నియంత్రించును"}
+  ],
+  answerIndex: 3,
+  expl_en: "The Diencephalon (which includes the thalamus) relays sensory-motor signals and controls reflex centres related to muscular activity. (Vasomotor centres, coughing/sneezing centres are in the medulla oblongata; voluntary movement coordination is a cerebellum function.)",
+  expl_te: "ద్వారగోర్థం (థాలమస్‌తో సహా) ఇంద్రియ-చాలక సంకేతాలను ప్రసారం చేస్తుంది మరియు కండరాల కదలికలకు సంబంధించిన ప్రతిక్రియా కేంద్రాలను నియంత్రిస్తుంది. (వాసోమోటార్, దగ్గు/తుమ్ము కేంద్రాలు మెడుల్లా అబ్లాంగేటాలో ఉంటాయి; స్వచ్ఛంద చలనాల సమన్వయం సెరిబెల్లం పని.)"
+},
+{
+  q_en: "The incorrect statement from the following is",
+  q_te: "క్రింది వానిలో సరికాని వాక్యం",
+  options: [
+    {en:"The prostate gland secretions supply nutrients to sperms", te:"పౌరుషగ్రంధి స్రావాలు శుక్రకణాలకు పోషకాలను సరఫరా చేస్తాయి"},
+    {en:"Cowper glands secretions activate sperms", te:"కౌపర్‌గ్రంధి స్రావాలు శుక్రకణాలను ఉత్తేజితం చేస్తాయి"},
+    {en:"Seminal fluid gives energy to sperms outside the body", te:"శుక్ర ద్రవం శరీరం బయటకు విడుదలైన శుక్రకణాలకు పోషణ అందిస్తుంది"},
+    {en:"Vasa efferentia carry sperms to epididymis", te:"శుక్రనాళికలు శుక్రకణాలను ఎపిడిడిమిస్ లోనికి తీసుకువెళ్తాయి"}
+  ],
+  answerIndex: 1,
+  expl_en: "Cowper's (bulbourethral) gland secretion mainly lubricates the urethra and neutralizes acidity — it does not activate sperm. So this statement is incorrect; the other three are correct.",
+  expl_te: "కౌపర్ (బల్బోయురిత్రల్) గ్రంధి స్రావం ప్రధానంగా మూత్రనాళాన్ని జారుడుగా చేసి ఆమ్లతను తటస్థీకరిస్తుంది — ఇది శుక్రకణాలను ఉత్తేజితం చేయదు. కావున ఈ వాక్యం తప్పు; మిగతా మూడు సరైనవి."
+},
+{
+  q_en: "The product that is not produced from petroleum is",
+  q_te: "పెట్రోలియం నుండి ఉత్పత్తి చేయలేని పదార్థం",
+  options: [
+    {en:"Nylon", te:"నైలాన్"},
+    {en:"Wax", te:"మైనం"},
+    {en:"Medical devices", te:"వైద్య పరికరాలు"},
+    {en:"Cellulose", te:"సెల్యులోజ్"}
+  ],
+  answerIndex: 3,
+  expl_en: "Cellulose is a natural polymer obtained from plants (plant cell walls), not from petroleum. Nylon, wax, and many medical devices/plastics are petrochemical products.",
+  expl_te: "సెల్యులోజ్ మొక్కల నుండి (మొక్క కణ కుడ్యాల నుండి) లభించే సహజ పాలిమర్, పెట్రోలియం నుండి కాదు. నైలాన్, మైనం, మరియు అనేక వైద్య పరికరాలు/ప్లాస్టిక్‌లు పెట్రో రసాయన ఉత్పత్తులు."
+},
+{
+  q_en: "The first reserve forest of India is",
+  q_te: "భారతదేశంలోని మొట్టమొదటి రిజర్వ్ అటవీ ప్రాంతం",
+  options: [
+    {en:"Satpura National Park", te:"సాత్పురా జాతీయ ఉద్యానవనం"},
+    {en:"Kaziranga National Park", te:"కజిరంగా జాతీయ ఉద్యానవనం"},
+    {en:"Great Nicobar Biosphere Reserve", te:"గ్రేట్ నికోబార్ జీవావరణ రిజర్స్"},
+    {en:"Lockchao Wildlife Sanctuary", te:"లొక్చావో వన్యప్రాణుల అభయారణ్యం"}
+  ],
+  answerIndex: 0,
+  expl_en: "Satpura was declared as India's first reserved forest in 1862, in Madhya Pradesh.",
+  expl_te: "సాత్పురాను 1862లో మధ్యప్రదేశ్‌లో భారతదేశపు మొట్టమొదటి రిజర్వ్ అటవీ ప్రాంతంగా ప్రకటించారు."
+},
+{
+  q_en: "The organic impurities in sewage water are:",
+  q_te: "మురుగు నీటిలోని కర్బన మలినాలు",
+  lines: [
+    {en:"A) Herbicide  B) Phosphate  C) Nitrogen  D) Urine", te:"A) కలుపు సంహారకాలు  B) ఫాస్ఫేట్  C) నైట్రోజన్  D) యూరిన్"}
+  ],
+  options: [
+    {en:"A and C", te:"A మరియు C"},
+    {en:"B and D", te:"B మరియు D"},
+    {en:"B and C", te:"B మరియు C"},
+    {en:"A and D", te:"A మరియు D"}
+  ],
+  answerIndex: 3,
+  expl_en: "Herbicide and Urine are organic substances found as impurities in sewage water. Phosphate and Nitrogen (as inorganic salts/ions here) are classified as inorganic nutrient impurities.",
+  expl_te: "కలుపు సంహారకాలు మరియు యూరిన్ మురుగు నీటిలో కర్బన మలినాలుగా ఉంటాయి. ఫాస్ఫేట్ మరియు నైట్రోజన్ (ఇక్కడ అకర్బన లవణాలు/అయాన్లుగా) అకర్బన పోషక మలినాలుగా వర్గీకరించబడతాయి."
+},
+{
+  q_en: "This does not belong to the academic standard \"Conceptual understanding\":",
+  q_te: "క్రిందివానిలో 'విషయావగాహన' అనే విద్యాప్రమాణానికి చెందనిది",
+  options: [
+    {en:"Classification", te:"వర్గీకరించడం"},
+    {en:"Analysis", te:"విశ్లేషించడం"},
+    {en:"Asking questions", te:"ప్రశ్నించడం"},
+    {en:"Giving reasons", te:"కారణాలు చెప్పడం"}
+  ],
+  answerIndex: 2,
+  expl_en: "As per the academic standards framework, 'Asking Questions' is a separate academic standard on its own; classification, analysis and giving reasons all fall under 'Conceptual Understanding'.",
+  expl_te: "విద్యా ప్రమాణాల చట్రం ప్రకారం, 'ప్రశ్నించడం' అనేది స్వతంత్రంగా ఒక ప్రత్యేక విద్యాప్రమాణం; వర్గీకరించడం, విశ్లేషించడం, కారణాలు చెప్పడం అన్నీ 'విషయావగాహన' కిందకు వస్తాయి."
+},
+{
+  q_en: "The incorrect statement about field trip is",
+  q_te: "క్షేత్ర పర్యటనకు సంబంధించి సరికాని వాక్యము",
+  options: [
+    {en:"Teacher and student representative should visit before the field trip.", te:"క్షేత్ర పర్యటనకు ముందు ఉపాధ్యాయుడు, పిల్లల ప్రతినిధి ఆ ప్రాంతాన్ని సందర్శించాలి."},
+    {en:"We should not discuss with students the experiences and observations of previous trips.", te:"ఇంతకు మునుపు పర్యటన యొక్క అనుభవం, పరిశీలనల గురించి పిల్లలతో చర్చించరాదు."},
+    {en:"Either individual or group wise reports has to be submitted by the students.", te:"పిల్లలు వ్యక్తిగతంగా కానీ, జట్టు పరంగా కానీ నివేదికలు సమర్పించాలి."},
+    {en:"Student reports should be evaluated after completion of the visit.", te:"పర్యటన తర్వాత పిల్లల నివేదికలను మూల్యాంకనం చేయాలి."}
+  ],
+  answerIndex: 1,
+  expl_en: "It is actually good practice to discuss previous trip experiences and observations with students before a new field trip, so this statement (saying we should NOT discuss it) is incorrect.",
+  expl_te: "కొత్త క్షేత్ర పర్యటనకు ముందు గత పర్యటనల అనుభవాలు, పరిశీలనలను పిల్లలతో చర్చించడం మంచి పద్ధతి, కావున 'చర్చించరాదు' అనే ఈ వాక్యం తప్పు."
+},
+{
+  q_en: "This is not a co-curricular programme suggested by NCF-2005 for science curriculum:",
+  q_te: "విజ్ఞానశాస్త్ర పాఠ్యప్రణాళిక కోసం NCF-2005 సూచించిన సహ పాఠ్య కార్యక్రమం కానిది",
+  options: [
+    {en:"Science corners", te:"సైన్స్‌కార్నర్లు"},
+    {en:"Utilization of science kits", te:"సైన్స్ కిట్ల వినియోగం"},
+    {en:"Utilization of ICT in Science teaching", te:"సైన్స్ బోధనలో ICT వినియోగం"},
+    {en:"Conducting exams for content", te:"విషయపరిజ్ఞానానికి పరీక్షల నిర్వహణ"}
+  ],
+  answerIndex: 3,
+  expl_en: "Conducting content-based exams is a formal assessment activity, not a co-curricular programme. NCF-2005 suggests science corners, science kits, and ICT usage as co-curricular activities.",
+  expl_te: "విషయ ఆధారిత పరీక్షలు నిర్వహించడం అనేది ఒక అధికారిక మూల్యాంకన కార్యకలాపం, సహ పాఠ్య కార్యక్రమం కాదు. NCF-2005 సైన్స్‌కార్నర్లు, సైన్స్ కిట్లు, ICT వినియోగాలను సహ పాఠ్య కార్యక్రమాలుగా సూచించింది."
+},
+{
+  q_en: "\"A project is a bit of real-life that has been imported into the school.\" This was stated by",
+  q_te: "\"పాఠశాలలో దిగుమతి అయిన నిజ జీవిత భాగమే ప్రకల్పన\" అని అన్నది",
+  options: [
+    {en:"W.H. Kilpatrick", te:"W.H.కిల్ ప్యాట్రిక్"},
+    {en:"Parker", te:"పార్కర్"},
+    {en:"J.A. Stevenson", te:"J.A. స్టీవెన్సన్"},
+    {en:"Ballard", te:"బల్లార్డ్"}
+  ],
+  answerIndex: 3,
+  expl_en: "This well-known definition of a 'project' as a piece of real life brought into the school was given by Ballard.",
+  expl_te: "పాఠశాలలోకి తీసుకువచ్చిన నిజ జీవిత భాగమే 'ప్రకల్పన' అనే ఈ ప్రసిద్ధ నిర్వచనాన్ని బల్లార్డ్ ఇచ్చాడు."
+},
+{
+  q_en: "According to Edgar Dale's cone of Experience the percentage of learning that occurs in a student through directly attending a demonstration of experiment (to show that sunlight is required for photosynthesis) by a teacher is",
+  q_te: "ఎడ్గర్ డేల్ అనుభవాల శంఖువు ప్రకారం కిరణజన్య సంయోగక్రియకు సూర్యరశ్మి అవసరమన్న ప్రయోగాన్ని ఉపాధ్యాయుడు ప్రదర్శిస్తున్నప్పుడు ప్రత్యక్షంగా పాల్గొనడం ద్వారా విద్యార్థిలో జరిగే అభ్యసన శాతం",
+  options: [
+    {en:"20%", te:"20%"},
+    {en:"50%", te:"50%"},
+    {en:"70%", te:"70%"},
+    {en:"90%", te:"90%"}
+  ],
+  answerIndex: 2,
+  expl_en: "According to Edgar Dale's Cone of Experience, actively taking part in / directly attending a demonstration (a more participatory, 'doing' type of experience) leads to roughly 70% retention of learning.",
+  expl_te: "ఎడ్గర్ డేల్ అనుభవాల శంఖువు ప్రకారం, ప్రదర్శనలో ప్రత్యక్షంగా పాల్గొనడం (భాగస్వామ్యంతో కూడిన 'చేయడం' రకం అనుభవం) వలన సుమారు 70% అభ్యసనం స్థిరపడుతుంది."
+},
+{
+  q_en: "This among the following is NOT a fundamental principle in the formulation of \"A.P. State Curriculum Frame Work – 2011\":",
+  q_te: "క్రింది వానిలో 'ఆంధ్రప్రదేశ్ రాష్ట్ర పాఠ్య ప్రణాళికా చట్రం - 2011' రూపకల్పనలో మౌలిక సూత్రం కానిది",
+  options: [
+    {en:"Connecting knowledge to life outside the school", te:"బడి బయటి జీవితంతో జ్ఞానాన్ని అనుసంధానం చేయడం"},
+    {en:"Medium of instruction shall, as far as possible, be in English", te:"సాధ్యమయినంత వరకూ బోధనా మాధ్యమంగా ఆంగ్లమును ఉంచడం"},
+    {en:"Simplifying examinations and making them an integral part of teaching-learning processes", te:"పరీక్షలను సరళీకరించి బోధనాభ్యసన ప్రక్రియలో అంతర్భాగం చేయడం"},
+    {en:"Prioritizing children's culture, experiences and local context in the classroom.", te:"పిల్లల సంస్కృతి, అనుభవాలు, స్థానిక అంశాలకు తరగతి గదిలో ప్రాధాన్యం కల్పించడం."}
+  ],
+  answerIndex: 1,
+  expl_en: "The A.P. State Curriculum Framework 2011 emphasizes teaching in the mother tongue/local language as far as possible, not English. Hence making English the medium of instruction is NOT one of its fundamental principles.",
+  expl_te: "ఆంధ్రప్రదేశ్ రాష్ట్ర పాఠ్య ప్రణాళికా చట్రం 2011, సాధ్యమైనంత వరకు మాతృభాష/స్థానిక భాషలో బోధనకు ప్రాధాన్యత ఇస్తుంది, ఆంగ్లానికి కాదు. కావున ఆంగ్లాన్ని బోధనా మాధ్యమంగా చేయడం దాని మౌలిక సూత్రాలలో ఒకటి కాదు."
+}
+];
+
+// ===================== QUIZ LOGIC =====================
+let quizQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let userAnswers = [];
+let timerInterval;
+let secondsElapsed = 0;
+
+// ===================== SETTINGS =====================
+// Quiz opens at 6:00 PM IST on 21-09-2026 (IST = UTC+05:30). Change the date here if needed.
+const OPEN_AT = new Date('2026-09-21T18:00:00+05:30').getTime();
+const OPEN_DATE_IST = '2025-09-21';
+const OPEN_DATE_LABEL = '21-09-2025';
+// Paste your Google Apps Script Web App URL here (see setup steps). Leave '' until connected.
+const SHEET_URL = '';
+const QUIZ_ID = 'APTET-SCIENCE-PSBS-14OCT2024-S2';
+let studentName = '';
+let studentDistrict = '';
+let countdownInterval = null;
+
+function shuffleArray(arr) {
+  let a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function prepareQuiz() {
+  let selected = shuffleArray(questionBank).slice(0, 30);
+  quizQuestions = selected.map(q => {
+    const correctOption = q.options[q.answerIndex];
+    let shuffledOptions = shuffleArray(q.options);
+    return {
+      q_en: q.q_en,
+      q_te: q.q_te,
+      lines: q.lines || null,
+      options: shuffledOptions,
+      correct: correctOption,
+      expl_en: q.expl_en,
+      expl_te: q.expl_te
+    };
+  });
+  userAnswers = new Array(quizQuestions.length).fill(null);
+  currentIndex = 0;
+  score = 0;
+  secondsElapsed = 0;
+}
+
+function startQuiz() {
+  // Gate 1: quiz must be open
+  if (Date.now() < OPEN_AT) { initGate(); return; }
+  // Gate 2: name and district are mandatory
+  const nameEl = document.getElementById('studentName');
+  const distEl = document.getElementById('studentDistrict');
+  const nm = (nameEl.value || '').replace(/\s+/g, ' ').trim();
+  const dt = (distEl.value || '').replace(/\s+/g, ' ').trim();
+  nameEl.classList.toggle('err', !nm);
+  distEl.classList.toggle('err', !dt);
+  if (!nm || !dt) {
+    document.getElementById('formErr').classList.add('show');
+    (!nm ? nameEl : distEl).focus();
+    return;
+  }
+  document.getElementById('formErr').classList.remove('show');
+  studentName = nm;
+  studentDistrict = dt;
+  prepareQuiz();
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('resultScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'block';
+  startTimer();
+  renderQuestion();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    const m = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+    const s = String(secondsElapsed % 60).padStart(2, '0');
+    document.getElementById('timerDisplay').textContent = m + ':' + s;
+  }, 1000);
+}
+
+function renderQuestion() {
+  const q = quizQuestions[currentIndex];
+  document.getElementById('qCounter').textContent = 'Question ' + (currentIndex + 1) + ' / ' + quizQuestions.length;
+  document.getElementById('scoreDisplay').textContent = 'Score: ' + score;
+  const progressPct = ((currentIndex) / quizQuestions.length) * 100;
+  document.getElementById('progressBar').style.width = progressPct + '%';
+
+  document.getElementById('questionText').innerHTML = (currentIndex + 1) + '. ' + q.q_en;
+  document.getElementById('questionTextTe').innerHTML = q.q_te;
+
+  const optionsList = document.getElementById('optionsList');
+  optionsList.innerHTML = '';
+
+  if (q.lines) {
+    const linesDiv = document.createElement('div');
+    q.lines.forEach(line => {
+      linesDiv.innerHTML += '<span class="assertion-line">' + line.en + '</span><span class="assertion-line-te">' + line.te + '</span>';
+    });
+    optionsList.appendChild(linesDiv);
+  }
+
+  q.options.forEach((opt, idx) => {
+    const li = document.createElement('li');
+    li.className = 'option';
+    li.innerHTML = '<span class="opt-en">' + opt.en + '</span><span class="opt-te">' + opt.te + '</span>';
+
+    const savedAnswer = userAnswers[currentIndex];
+    if (savedAnswer !== null) {
+      li.classList.add('disabled');
+      if (opt.en === q.correct.en) li.classList.add('correct');
+      if (opt.en === savedAnswer.en && savedAnswer.en !== q.correct.en) li.classList.add('incorrect');
+      if (opt.en === savedAnswer.en) li.classList.add('selected');
+    } else {
+      li.onclick = () => selectOption(opt);
+    }
+    optionsList.appendChild(li);
+  });
+
+  const feedback = document.getElementById('feedback');
+  const explBox = document.getElementById('explanationBox');
+  if (userAnswers[currentIndex] !== null) {
+    if (userAnswers[currentIndex].en === q.correct.en) {
+      feedback.textContent = '✔ Correct! / సరైనది!';
+      feedback.className = 'feedback correct-text';
+    } else {
+      feedback.textContent = '✘ Incorrect / తప్పు. Correct answer: ' + q.correct.en + ' / ' + q.correct.te;
+      feedback.className = 'feedback incorrect-text';
+    }
+    explBox.style.display = 'block';
+    explBox.innerHTML = '<b>Explanation / వివరణ:</b><br>' + q.expl_en + '<br><br>' + q.expl_te;
+  } else {
+    feedback.textContent = '';
+    feedback.className = 'feedback';
+    explBox.style.display = 'none';
+    explBox.innerHTML = '';
+  }
+
+  document.getElementById('prevBtn').disabled = currentIndex === 0;
+  document.getElementById('nextBtn').textContent = currentIndex === quizQuestions.length - 1 ? 'Finish / ముగించు' : 'Next / తర్వాత';
+}
+
+function selectOption(opt) {
+  const q = quizQuestions[currentIndex];
+  if (userAnswers[currentIndex] !== null) return;
+  userAnswers[currentIndex] = opt;
+  if (opt.en === q.correct.en) score++;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentIndex < quizQuestions.length - 1) {
+    currentIndex++;
+    renderQuestion();
+    scrollToQuiz();
+  } else {
+    finishQuiz();
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+    scrollToQuiz();
+  }
+}
+
+function finishQuiz() {
+  clearInterval(timerInterval);
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('resultScreen').style.display = 'block';
+  document.getElementById('finalScore').textContent = score + ' / ' + quizQuestions.length;
+  const pct = Math.round((score / quizQuestions.length) * 100);
+  document.getElementById('finalPercent').textContent = 'Percentage: ' + pct + '%';
+  const m = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+  const s = String(secondsElapsed % 60).padStart(2, '0');
+  document.getElementById('finalTime').textContent = 'Time Taken: ' + m + ':' + s;
+
+  const reviewContainer = document.getElementById('reviewContainer');
+  reviewContainer.innerHTML = '';
+  quizQuestions.forEach((q, idx) => {
+    const ua = userAnswers[idx];
+    const isCorrect = ua !== null && ua.en === q.correct.en;
+    const div = document.createElement('div');
+    div.className = 'review-item ' + (isCorrect ? 'correct-review' : 'incorrect-review');
+    let html = '<span class="q-num">Q' + (idx + 1) + '.</span> <span class="line">' + q.q_en + '</span><span class="line">' + q.q_te + '</span>';
+    if (q.lines) {
+      q.lines.forEach(line => {
+        html += '<span class="line">' + line.en + '</span><span class="line">' + line.te + '</span>';
+      });
+    }
+    html += '<span class="line">Your answer / మీ సమాధానం: <span class="your-ans">' + (ua ? (ua.en + ' / ' + ua.te) : 'Not answered / సమాధానం ఇవ్వలేదు') + '</span></span>';
+    html += '<span class="line">Correct answer / సరైన సమాధానం: <span class="correct-ans">' + q.correct.en + ' / ' + q.correct.te + '</span></span>';
+    html += '<span class="line expl">' + q.expl_en + '</span><span class="line expl">' + q.expl_te + '</span>';
+    div.innerHTML = html;
+    reviewContainer.appendChild(div);
+  });
+
+  document.getElementById('resultScreen').scrollIntoView();
+  submitScore(score, quizQuestions.length, pct, secondsElapsed);
+}
+
+function scrollToQuiz() {
+  const el = document.getElementById('quizScreen');
+  if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView();
+}
+
+// ===================== LEADERBOARD (Google Sheet) =====================
+function fmtTime(sec) {
+  return String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(sec % 60).padStart(2, '0');
+}
+
+function lbMessage(msg) {
+  const body = document.getElementById('lbBody');
+  body.innerHTML = '';
+  const d = document.createElement('div');
+  d.className = 'lb-note';
+  d.textContent = msg;
+  body.appendChild(d);
+}
+
+function submitScore(correct, total, pct, secs) {
+  if (!SHEET_URL) { loadLeaderboard(); return; }
+  lbMessage('Saving your score… / మీ స్కోర్ సేవ్ అవుతోంది…');
+  const payload = JSON.stringify({ quiz: QUIZ_ID, name: studentName, district: studentDistrict, correct: correct, total: total, percent: pct, seconds: secs });
+  const done = () => setTimeout(loadLeaderboard, 1800);
+  try {
+    fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: payload }).then(done, done);
+  } catch (e) { done(); }
+}
+
+function renderLeaderboard(rows) {
+  if (!rows || !rows.length) { lbMessage('No scores yet. Be the first! / ఇంకా స్కోర్లు లేవు.'); return; }
+  const wrap = document.createElement('div'); wrap.className = 'lb-scroll';
+  const table = document.createElement('table'); table.className = 'lb-table';
+  table.innerHTML = '<thead><tr><th>#</th><th>Name / పేరు</th><th>District / జిల్లా</th><th>Score / స్కోర్</th><th>Time / సమయం</th></tr></thead>';
+  const tbody = document.createElement('tbody');
+  const meN = studentName.toLowerCase(), meD = studentDistrict.toLowerCase();
+  rows.slice(0, 50).forEach((r, i) => {
+    const tr = document.createElement('tr');
+    if (String(r.name).toLowerCase() === meN && String(r.district || '').toLowerCase() === meD) tr.className = 'me';
+    const cells = [i + 1, r.name, r.district || '-', r.correct + '/' + r.total, fmtTime(Number(r.seconds) || 0)];
+    cells.forEach((c, k) => {
+      const td = document.createElement('td');
+      if (k === 0) td.className = 'rk';
+      if (k === 1) td.className = 'nm';
+      td.textContent = c;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  const body = document.getElementById('lbBody');
+  body.innerHTML = '';
+  body.appendChild(wrap);
+}
+
+function loadLeaderboard() {
+  if (!SHEET_URL) { lbMessage('Leaderboard is not connected yet. / లీడర్‌బోర్డ్ ఇంకా కనెక్ట్ కాలేదు.'); return; }
+  lbMessage('Loading… / లోడ్ అవుతోంది…');
+  const cb = 'lbCb' + Date.now();
+  const sc = document.createElement('script');
+  let timer = null;
+  const cleanup = () => {
+    clearTimeout(timer);
+    window[cb] = function () {};
+    if (sc.parentNode) sc.parentNode.removeChild(sc);
+  };
+  timer = setTimeout(() => { cleanup(); lbMessage('Could not load. Tap Refresh. / లోడ్ కాలేదు. రిఫ్రెష్ నొక్కండి.'); }, 12000);
+  window[cb] = data => { cleanup(); renderLeaderboard(data); };
+  sc.onerror = () => { cleanup(); lbMessage('Could not load. Tap Refresh. / లోడ్ కాలేదు. రిఫ్రెష్ నొక్కండి.'); };
+  sc.src = SHEET_URL + (SHEET_URL.indexOf('?') > -1 ? '&' : '?') + 'quiz=' + encodeURIComponent(QUIZ_ID) + '&callback=' + cb + '&_=' + Date.now();
+  document.body.appendChild(sc);
+}
+
+// ===================== OPENING-TIME LOCK =====================
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+function istDateNow() {
+  return new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
+function setLockText() {
+  const isToday = istDateNow() === OPEN_DATE_IST;
+  document.getElementById('lockTitleEn').textContent = isToday
+    ? 'This quiz will open at 6.00 PM IST TODAY'
+    : 'This quiz will open at 6.00 PM IST on ' + OPEN_DATE_LABEL;
+  document.getElementById('lockTitleTe').textContent = isToday
+    ? 'ఈ క్విజ్ ఈరోజు సాయంత్రం 6.00 గంటలకు (IST) ప్రారంభమవుతుంది'
+    : 'ఈ క్విజ్ ' + OPEN_DATE_LABEL + ' సాయంత్రం 6.00 గంటలకు (IST) ప్రారంభమవుతుంది';
+}
+
+function showStart() {
+  if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('startScreen').style.display = 'block';
+}
+
+function tickCountdown() {
+  const left = Math.max(0, Math.floor((OPEN_AT - Date.now()) / 1000));
+  if (left <= 0) { showStart(); return; }
+  const d = Math.floor(left / 86400), h = Math.floor((left % 86400) / 3600), m = Math.floor((left % 3600) / 60), sec = left % 60;
+  document.getElementById('countdown').textContent =
+    'Opens in / ప్రారంభానికి: ' + (d > 0 ? d + 'd ' : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+}
+
+function initGate() {
+  if (Date.now() >= OPEN_AT) { showStart(); return; }
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('lockScreen').style.display = 'block';
+  setLockText();
+  tickCountdown();
+  if (!countdownInterval) countdownInterval = setInterval(tickCountdown, 1000);
+}
+
+['studentName', 'studentDistrict'].forEach(id => {
+  document.getElementById(id).addEventListener('input', function () {
+    if (this.value.trim()) this.classList.remove('err');
+    if (document.getElementById('studentName').value.trim() && document.getElementById('studentDistrict').value.trim()) {
+      document.getElementById('formErr').classList.remove('show');
+    }
+  });
+});
+initGate();
+
+function restartQuiz() {
+  document.getElementById('resultScreen').style.display = 'none';
+  document.getElementById('startScreen').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
