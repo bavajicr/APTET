@@ -1,0 +1,813 @@
+<!-- APTET Mathematics Quiz - Practice Test-3  - by C. RASOOL BAVAJI -->
+<div class="crbq-wrap-91012">
+<style>
+.crbq-wrap-91012{
+  --crbq-blue1:#0b1f3a;
+  --crbq-blue2:#122b52;
+  --crbq-blue3:#1b3a6b;
+  --crbq-accent:#3ea6ff;
+  --crbq-gold:#ffce54;
+  --crbq-green:#2ecc71;
+  --crbq-red:#ff5c5c;
+  --crbq-text:#eaf2ff;
+  max-width:700px;
+  margin:20px auto;
+  font-family:'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--crbq-text);
+  background:linear-gradient(160deg,var(--crbq-blue1),var(--crbq-blue2) 60%,var(--crbq-blue3));
+  border-radius:18px;
+  padding:0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.crbq-wrap-91012 *{box-sizing:border-box;}
+.crbq-wrap-91012{-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+.crbq-wrap-91012 input{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+.crbq-header{
+  text-align:center;
+  padding:18px 14px 12px;
+  background:rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.crbq-header h1{
+  font-size:20px;
+  margin:0 0 4px;
+  color:var(--crbq-gold);
+  letter-spacing:.5px;
+}
+.crbq-header p{
+  margin:2px 0;
+  font-size:13px;
+  color:#c9d8f5;
+}
+.crbq-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 16px;
+  font-size:13px;
+  background:rgba(0,0,0,0.15);
+  flex-wrap:wrap;
+  gap:6px;
+}
+.crbq-topbar span{display:flex;align-items:center;gap:5px;}
+.crbq-badge{
+  background:rgba(62,166,255,0.15);
+  border:1px solid rgba(62,166,255,0.4);
+  padding:4px 10px;
+  border-radius:20px;
+  font-weight:600;
+}
+.crbq-submitTopBtn{flex:none;width:auto;padding:6px 16px;font-size:12.5px;border-radius:20px;margin-left:auto;}
+
+.crbq-gate{padding:20px 18px 24px;text-align:center;}
+.crbq-lockIcon{font-size:38px;margin:4px 0 10px;}
+.crbq-lockMsg{font-size:14.5px;color:#eaf2ff;line-height:1.5;margin:0 0 10px;}
+.crbq-lockCountdown{
+  font-size:16px;font-weight:800;color:var(--crbq-gold);
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);
+  border-radius:10px;padding:10px;
+}
+.crbq-gateIntro{font-size:13.5px;color:#c9d8f5;margin-bottom:16px;}
+.crbq-formRow{margin-bottom:14px;text-align:left;}
+.crbq-label{display:block;font-size:12.5px;color:#c9d8f5;margin-bottom:5px;}
+.crbq-req{color:#ff8a8a;}
+.crbq-input{
+  width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.2);
+  color:var(--crbq-text);border-radius:10px;padding:11px 13px;font-size:16px;outline:none;
+  transition:border-color .15s ease;
+}
+.crbq-input:focus{border-color:var(--crbq-accent);}
+.crbq-startError{color:#ff8a8a;font-size:12.5px;margin:-4px 0 12px;}
+
+.crbq-lbStatus{font-size:12px;color:#8ff0c2;margin:4px 0 0;min-height:15px;}
+.crbq-leaderboardPanel,.crbq-responsesPanel{
+  margin-top:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;padding:14px;text-align:left;max-height:440px;overflow-y:auto;
+}
+.crbq-lbTitle{margin:0 0 10px;font-size:14.5px;color:var(--crbq-gold);text-align:center;}
+.crbq-lbLoading{text-align:center;font-size:12.5px;color:#c9d8f5;}
+.crbq-lbRow{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13px;}
+.crbq-lbRow:last-child{border-bottom:none;}
+.crbq-lbRank{width:22px;text-align:center;font-weight:800;color:var(--crbq-gold);flex-shrink:0;}
+.crbq-lbName{flex:1;color:var(--crbq-text);}
+.crbq-lbName small{color:#9fb3d9;}
+.crbq-lbScore{font-weight:800;color:var(--crbq-green);flex-shrink:0;}
+
+.crbq-reviewQ{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;margin-bottom:12px;}
+.crbq-reviewQ:last-child{margin-bottom:0;}
+.crbq-reviewQText{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.45;white-space:pre-line;}
+.crbq-reviewQTextTe{font-size:13px;color:#cfe0ff;margin-bottom:10px;line-height:1.45;white-space:pre-line;}
+.crbq-reviewOpt{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.14);border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;line-height:1.4;}
+.crbq-reviewOpt:last-child{margin-bottom:0;}
+.crbq-reviewCorrect{border-color:var(--crbq-green);background:rgba(46,204,113,0.18);}
+.crbq-reviewWrong{border-color:var(--crbq-red);background:rgba(255,92,92,0.18);}
+.crbq-reviewTag{font-weight:700;font-size:11.5px;margin-left:6px;color:var(--crbq-green);}
+.crbq-reviewYourTag{color:var(--crbq-gold);}
+.crbq-reviewSkipped{font-size:12px;color:var(--crbq-gold);font-style:italic;margin-top:4px;}
+.crbq-progress-outer{
+  height:8px;
+  background:rgba(255,255,255,0.1);
+  margin:0 16px;
+  border-radius:6px;
+  overflow:hidden;
+}
+.crbq-progress-inner{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--crbq-accent),var(--crbq-gold));
+  transition:width .35s ease;
+}
+.crbq-body{padding:18px 18px 22px;}
+.crbq-qcard{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  padding:16px 16px 18px;
+  min-height:170px;
+  animation:crbqFade .35s ease;
+}
+@keyframes crbqFade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.crbq-qnum{
+  font-size:12px;
+  color:var(--crbq-gold);
+  font-weight:700;
+  margin-bottom:8px;
+  letter-spacing:.5px;
+}
+.crbq-qtext-en{
+  font-size:16px;
+  line-height:1.5;
+  margin-bottom:6px;
+  font-weight:600;
+  color:#ffffff;
+  white-space:pre-line;
+}
+.crbq-qtext-te{
+  font-size:15.5px;
+  line-height:1.6;
+  margin-bottom:14px;
+  color:#cfe0ff;
+  white-space:pre-line;
+}
+.crbq-qnote{
+  font-size:12.5px;
+  color:#ffce54;
+  background:rgba(255,206,84,0.1);
+  border:1px solid rgba(255,206,84,0.3);
+  border-radius:8px;
+  padding:6px 10px;
+  margin-bottom:12px;
+}
+.crbq-options{display:flex;flex-direction:column;gap:10px;}
+.crbq-opt{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:11px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  transition:.2s all;
+  user-select:none;
+}
+.crbq-opt:hover{background:rgba(62,166,255,0.15);border-color:var(--crbq-accent);}
+.crbq-opt .crbq-optletter{
+  min-width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.crbq-opt.crbq-correct{
+  background:rgba(46,204,113,0.22);
+  border-color:var(--crbq-green);
+}
+.crbq-opt.crbq-correct .crbq-optletter{background:var(--crbq-green);color:#06210f;}
+.crbq-opt.crbq-wrong{
+  background:rgba(255,92,92,0.22);
+  border-color:var(--crbq-red);
+}
+.crbq-opt.crbq-wrong .crbq-optletter{background:var(--crbq-red);color:#2a0606;}
+.crbq-opt.crbq-disabled{cursor:default;}
+.crbq-opt.crbq-disabled:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12);}
+.crbq-feedback{
+  margin-top:12px;
+  font-size:13.5px;
+  font-weight:600;
+  min-height:18px;
+}
+.crbq-feedback.crbq-fb-correct{color:var(--crbq-green);}
+.crbq-feedback.crbq-fb-wrong{color:var(--crbq-red);}
+.crbq-nav{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:18px;
+}
+.crbq-btn{
+  flex:1;
+  padding:12px 10px;
+  border-radius:10px;
+  border:none;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+.crbq-btn-prev{background:rgba(255,255,255,0.1);color:var(--crbq-text);}
+.crbq-btn-prev:hover{background:rgba(255,255,255,0.18);}
+.crbq-btn-next{background:linear-gradient(90deg,var(--crbq-accent),#5bd1ff);color:#06264a;}
+.crbq-btn-next:hover{filter:brightness(1.08);}
+.crbq-btn-next:disabled{opacity:.4;cursor:not-allowed;}
+.crbq-btn:disabled{opacity:.4;cursor:not-allowed;}
+.crbq-btn-submit{background:linear-gradient(90deg,#ffce54,#ff9d54);color:#3a1e00;}
+
+/* Result screen */
+.crbq-result{text-align:center;padding:10px 6px 6px;}
+.crbq-result h2{color:var(--crbq-gold);font-size:22px;margin-bottom:6px;}
+.crbq-score-circle{
+  width:140px;height:140px;border-radius:50%;
+  margin:14px auto;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  background:conic-gradient(var(--crbq-accent) calc(var(--crbq-pct,0)*1%), rgba(255,255,255,0.08) 0);
+  position:relative;
+}
+.crbq-score-circle::before{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  border-radius:50%;
+  background:var(--crbq-blue2);
+}
+.crbq-score-circle .crbq-score-num{position:relative;font-size:28px;font-weight:800;color:#fff;}
+.crbq-score-circle .crbq-score-sub{position:relative;font-size:12px;color:#c9d8f5;}
+.crbq-result-stats{
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+  margin:16px 0;
+}
+.crbq-stat{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  padding:10px 16px;
+  min-width:90px;
+}
+.crbq-stat .crbq-stat-num{font-size:18px;font-weight:800;color:var(--crbq-gold);}
+.crbq-stat .crbq-stat-label{font-size:11px;color:#c9d8f5;margin-top:2px;}
+.crbq-result-actions{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;
+}
+.crbq-result-actions .crbq-btn{flex:none;min-width:150px;}
+.crbq-btn-restart{background:linear-gradient(90deg,#7c5cff,#3ea6ff);color:#fff;}
+.crbq-btn-pdf{background:linear-gradient(90deg,#2ecc71,#27ae60);color:#06210f;}
+
+.crbq-footer{
+  text-align:center;
+  font-size:12px;
+  color:#9fb3d9;
+  padding:14px 10px 18px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  margin-top:6px;
+  line-height:1.6;
+}
+.crbq-footer b{color:var(--crbq-gold);}
+
+@media (max-width:480px){
+  .crbq-header h1{font-size:17px;}
+  .crbq-qtext-en{font-size:14.5px;}
+  .crbq-qtext-te{font-size:14px;}
+  .crbq-opt{font-size:14px;padding:10px 12px;}
+  .crbq-score-circle{width:120px;height:120px;}
+  .crbq-score-circle::before{width:92px;height:92px;}
+  .crbq-gate{padding:16px 12px 20px;}
+  .crbq-btn{padding:12px 10px;}
+  .crbq-topbar{justify-content:flex-start;}
+  .crbq-submitTopBtn{margin-left:auto;}
+}
+</style>
+
+<div class="crbq-header">
+  <h1>📘 APTET Mathematics Quiz</h1>
+  <p>Previous Question Paper Practice Test-3</p>
+  <p>పూర్వ ప్రశ్నాపత్రం – గణితం (Content &amp; Methodology)</p>
+</div>
+
+<div id="crbq-locked" class="crbq-gate" style="display:none;">
+  <div class="crbq-lockIcon">🔒</div>
+  <p class="crbq-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
+  <p class="crbq-lockCountdown" id="crbq-countdown">Opens in --:--:--</p>
+</div>
+
+<div id="crbq-startGate" class="crbq-gate" style="display:none;">
+  <p class="crbq-gateIntro">20 Questions &nbsp;|&nbsp; Instant Feedback &nbsp;|&nbsp; Live Score &amp; Timer</p>
+  <div class="crbq-formRow">
+    <label class="crbq-label" for="crbq-nameInput">Your Name <span class="crbq-req">*</span></label>
+    <input type="text" id="crbq-nameInput" class="crbq-input" placeholder="Enter your full name" autocomplete="off">
+  </div>
+  <div class="crbq-formRow">
+    <label class="crbq-label" for="crbq-districtInput">District <span class="crbq-req">*</span></label>
+    <input type="text" id="crbq-districtInput" class="crbq-input" placeholder="Enter your district" autocomplete="off">
+  </div>
+  <p id="crbq-startError" class="crbq-startError" style="display:none;">Please enter your name and district to start the quiz.</p>
+  <button class="crbq-btn crbq-btn-submit" id="crbq-startBtn" style="width:100%;">🚀 Start Quiz</button>
+</div>
+
+<div id="crbq-quizWrap" style="display:none;">
+<div class="crbq-topbar">
+  <span class="crbq-badge">⏱ <span id="crbq-timer">00:00</span></span>
+  <span class="crbq-badge">🏆 Score: <span id="crbq-score">0</span>/<span id="crbq-total">20</span></span>
+  <span class="crbq-badge" id="crbq-qcounter">Q 1 / 20</span>
+  <button class="crbq-btn crbq-btn-submit crbq-submitTopBtn" id="crbq-submitTopBtn" style="display:none;">Submit ✔</button>
+</div>
+<div class="crbq-progress-outer"><div class="crbq-progress-inner" id="crbq-progress"></div></div>
+
+<div class="crbq-body">
+  <div id="crbq-quiz-area"></div>
+  <div id="crbq-result-area" style="display:none;"></div>
+</div>
+</div>
+
+<div class="crbq-footer">
+  Credit: <b>C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</b><br>
+  Visit: <a href="https://tenthquiz.blogspot.com" target="_blank" style="color:#3ea6ff;">tenthquiz.blogspot.com</a>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: 'APTET Maths - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  var QUESTION_BANK = [
+    {en:"ABCD is a trapezium such that AB // CD, AD=BC=5 cms and AB = 8 cms, CD = 16 cms, then the area of ABCD is (in cm²)",
+     te:"ABCD సమలంబచతుర్భుజంలో AB // CD, AD = BC = 5 సెం.మీ. మరియు AB = 8 సెం.మీ., CD = 16 సెం.మీ. అయిన ABCD వైశాల్యము (చ.సెం.మీలలో)",
+     opts:["20","36","40","55"], correct:1},
+
+    {en:"By reducing GST from 18% to 10%, a person bought an air cooler for ₹28,160. If he wants to buy before reducing of G.S.T. how much he had to pay? (In Rs.)",
+     te:"GST 18% నుండి 10% కి తగ్గించుట వలన ఒక వ్యక్తి ఎయిర్‌కూలర్‌ని రూ.28,160కి కొన్నాడు. ఒక వేళ GST తగ్గింపుకి ముందు కొనవలెనన్న అతను ఎంత చెల్లించాలి (రూ.లలో)",
+     opts:["30,208","32,008","25,600","38,002"], correct:0},
+
+    {en:"One of the factors of 11⁴ − 1 is",
+     te:"11⁴ – 1 కు గల ఒక కారణాంకము",
+     opts:["31","41","61","71"], correct:2},
+
+    {en:"[√(2√(2√2))]⁸ = ____",
+     te:"[√(2√(2√2))]⁸ = ____",
+     opts:["2","8","64","128"], correct:3},
+
+    {en:"Cube root of 39304?",
+     te:"39304 యొక్క ఘన మూలం?",
+     opts:["24","34","44","54"], correct:1},
+
+    {en:"If a number x is chosen from the numbers 1, 2, 3 and a number y is selected from the numbers 1, 4, 9 then find the probability of xy < 9?",
+     te:"1, 2, 3 లలో ఎంచుకున్న ఒక దానిని x గాను 1, 4, 9లలో ఎంచుకున్న ఒకదానిని y గాను తీసుకున్న xy < 9 వచ్చుటకు సంభావ్యత ఎంత?",
+     opts:["7/9","5/9","2/3","1/9"], correct:1},
+
+    {en:"The median of x/5, x, x/4, x/2 and x/3 is 8, then the value of x is (x > 0)",
+     te:"x/5, x, x/4, x/2 మరియు x/3 అంశముల మధ్యగతము 8 అయిన x విలువ ఎంత? (x > 0)",
+     opts:["16","32","8","24"], correct:3},
+
+    {en:"Perimeter of the triangle whose vertices are (0, 0), (2, 0) and (0, 2) is ______ units.",
+     te:"బిందువులు (0, 0), (2, 0) మరియు (0, 2) శీర్షాలుగా గల త్రిభుజ చుట్టుకొలత ______ యూనిట్లు.",
+     opts:["4√2","6 + 2√2","6√2","4 + 2√2"], correct:3},
+
+    {en:"The equation of the straight line which passes through the points A (−4, 3) and B (9, 5) is ______",
+     te:"A (−4, 3) మరియు B (9, 5) బిందువుల గుండాపోయే సరళరేఖ సమీకరణము ______",
+     opts:["9x − 20y − 96 = 0","9x + 20y + 96 = 0","13y + 2x + 47 = 0","13y − 2x − 47 = 0"], correct:3},
+
+    {en:"If sin x + cosec x = 2 then sin²⁰²⁵x + cosec²⁰²⁵x = ______",
+     te:"sin x + cosec x = 2 అయితే sin²⁰²⁵x + cosec²⁰²⁵x = ______",
+     opts:["2²⁰²⁵","2025","4050","2"], correct:3},
+
+    {en:"If A, B, C are the interior angles of Δ ABC then the value of\nsin((B+C)/2) + tan((A+B)/2) + cot((A+C)/2) − cos(A/2) − cot(C/2) − tan(B/2) = ______",
+     te:"A, B, C లు Δ ABC యొక్క అంతరకోణాలు అయితే\nsin((B+C)/2) + tan((A+B)/2) + cot((A+C)/2) − cos(A/2) − cot(C/2) − tan(B/2) విలువ = ______",
+     opts:["1","2√2 + 1","0","1/2"], correct:2},
+
+    {en:"If two zeroes of the polynomial P(x) = 3x³ − 5x² − 11x − 3 are 3 and −1, then the third zero is",
+     te:"P(x) = 3x³ – 5x² – 11x – 3 అనే బహుపది రెండు శూన్యాలు 3 మరియు −1 అయిన మూడవ శూన్యం",
+     opts:["−1/2","−3","−1/3","1"], correct:2},
+
+    {en:"The 20th term from the last term of the A.P. 3, 8, 13…. 253 is",
+     te:"3, 8, 13.... 253 అంకశ్రేఢి యొక్క చివరి పదము నుండి 20వ పదము",
+     opts:["148","154","156","158"], correct:3},
+
+    {en:"If a + b + c = 8 and ab + bc + ca = 13 then the value of a³ + b³ + c³ − 3abc is",
+     te:"a + b + c = 8 మరియు ab + bc + ca = 13 అయిన a³ + b³ + c³ – 3abc విలువ",
+     opts:["180","200","240","300"], correct:1},
+
+    {en:"The area of a sector having angle measure as 45° and radius r units",
+     te:"45° సెక్టర్ కోణము, r యూనిట్లు వ్యాసార్థము గల సెక్టరు వైశాల్యము",
+     opts:["(1/4) π r²","(1/6) π r²","(1/8) π r²","(1/10) π r²"], correct:2},
+
+    {en:"The figure formed by the tangents from a point to the circle and the radii drawn from the points of contact of the tangents is",
+     te:"ఒక వృత్తమునకు ఒక బిందువు నుండి గీచిన స్పర్శరేఖలు మరియు స్పర్శబిందువు నుండి గీచిన వ్యాసార్థములచే ఏర్పడు పటము",
+     opts:["Parallelogram","Kite","Isosceles trapezium","Trapezium"], correct:1},
+
+    {en:"Choose incorrect statements regarding Ramanujan.\na. Goldbach's conjecture explanation   b. Moc thita functions\nc. Analytical geometry   d. Elliptical Integrals",
+     te:"రామానుజన్‌కు సంబంధించి సరికాని ప్రవచనాలను గుర్తించండి.\na. గోల్డ్‌బాక్ కంజక్చర్ వివరణ   b. మాక్ తీటా ఫంక్షన్స్\nc. ఎనలిటికల్ జామెట్రి   d. ఎలిప్టికల్ ఇంటిగ్రల్స్",
+     note:"Note: Official answer key found ambiguity in this question — full marks were given for ANY option chosen.",
+     opts:["b, c, d","a, c, d","a, b, d","a, b, c, d"], correct:3},
+
+    {en:"According to Stevenson's classification, the projects are classified into how many types?",
+     te:"స్టీవెన్సన్స్ వర్గీకరణ ప్రకారం ప్రాజెక్ట్స్ ఎన్ని రకాలు?",
+     opts:["2","3","4","5"], correct:0},
+
+    {en:"\"Curriculum content will be reduced in each subject to its core essentials\". This suggestion is given in",
+     te:"\"విద్యాప్రణాళికలో ప్రతివిషయంలోని పాఠ్యాంశాలను అత్యవసరమైన ముఖ్యాంశాల వరకు తగ్గిస్తారు\". ఈ సూచన చేసినది.",
+     opts:["RTE 2010","NEP 2020","NPE 1986","APSCF 2011"], correct:1},
+
+    {en:"The following situation is a case where students do not exhibit a problem solving skill.",
+     te:"కింది పరిస్థితులలో గణిత సమస్యాపరిష్కార విధానాన్ని ప్రదర్శించలేని సందర్భం.",
+     opts:["Identifying and using formulas","Identifying and formulating problems","When ensuring data consistency","Using reasoning in new situation"], correct:0}
+  ];
+
+  var LETTERS = ["A","B","C","D"];
+  var quizQuestions = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = [];
+  var timerInterval = null;
+  var lockInterval = null;
+  var seconds = 0;
+  var studentName = '';
+  var studentDistrict = '';
+
+  var quizArea = document.getElementById("crbq-quiz-area");
+  var resultArea = document.getElementById("crbq-result-area");
+  var scoreEl = document.getElementById("crbq-score");
+  var totalEl = document.getElementById("crbq-total");
+  var qCounterEl = document.getElementById("crbq-qcounter");
+  var progressEl = document.getElementById("crbq-progress");
+  var timerEl = document.getElementById("crbq-timer");
+  var lockedGate = document.getElementById("crbq-locked");
+  var startGate = document.getElementById("crbq-startGate");
+  var quizWrap = document.getElementById("crbq-quizWrap");
+  var countdownEl = document.getElementById("crbq-countdown");
+  var nameInput = document.getElementById("crbq-nameInput");
+  var districtInput = document.getElementById("crbq-districtInput");
+  var startError = document.getElementById("crbq-startError");
+  var startBtn = document.getElementById("crbq-startBtn");
+  var submitTopBtn = document.getElementById("crbq-submitTopBtn");
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (lockInterval) clearInterval(lockInterval);
+      lockedGate.style.display = 'none';
+      startGate.style.display = 'block';
+      return;
+    }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    countdownEl.textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      lockedGate.style.display = 'none';
+      startGate.style.display = 'block';
+    } else {
+      startGate.style.display = 'none';
+      lockedGate.style.display = 'block';
+      updateCountdown();
+      lockInterval = setInterval(updateCountdown, 1000);
+    }
+  }
+
+  function shuffle(arr){
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = arr[i]; arr[i]=arr[j]; arr[j]=t;
+    }
+    return arr;
+  }
+
+  function buildQuiz(){
+    var pool = shuffle(QUESTION_BANK.slice());
+    var picked = pool.slice(0, Math.min(20, pool.length));
+    quizQuestions = picked.map(function(q){
+      var idxs = [0,1,2,3];
+      shuffle(idxs);
+      var newOpts = idxs.map(function(i){ return q.opts[i]; });
+      var newCorrect = idxs.indexOf(q.correct);
+      return {en:q.en, te:q.te, opts:newOpts, correct:newCorrect, note:q.note||null};
+    });
+    answered = new Array(quizQuestions.length).fill(null);
+    currentIndex = 0;
+    score = 0;
+    seconds = 0;
+    totalEl.textContent = quizQuestions.length;
+    scoreEl.textContent = 0;
+    resultArea.style.display = "none";
+    quizArea.style.display = "block";
+    quizWrap.style.display = "block";
+    startTimer();
+    renderQuestion();
+  }
+
+  function startTimer(){
+    clearInterval(timerInterval);
+    timerEl.textContent = "00:00";
+    timerInterval = setInterval(function(){
+      seconds++;
+      var m = Math.floor(seconds/60).toString().padStart(2,"0");
+      var s = (seconds%60).toString().padStart(2,"0");
+      timerEl.textContent = m+":"+s;
+    },1000);
+  }
+
+  function stopTimer(){
+    clearInterval(timerInterval);
+  }
+
+  function renderQuestion(){
+    var q = quizQuestions[currentIndex];
+    var userAns = answered[currentIndex];
+
+    qCounterEl.textContent = "Q " + (currentIndex+1) + " / " + quizQuestions.length;
+    progressEl.style.width = (((currentIndex + (userAns!==null?1:0)) / quizQuestions.length)*100) + "%";
+
+    var html = '';
+    html += '<div class="crbq-qcard">';
+    html += '<div class="crbq-qnum">Question ' + (currentIndex+1) + ' of ' + quizQuestions.length + '</div>';
+    html += '<div class="crbq-qtext-en">' + q.en + '</div>';
+    html += '<div class="crbq-qtext-te">' + q.te + '</div>';
+    if(q.note){
+      html += '<div class="crbq-qnote">⚠ ' + q.note + '</div>';
+    }
+    html += '<div class="crbq-options">';
+    q.opts.forEach(function(optText, i){
+      var cls = "crbq-opt";
+      if(userAns !== null){
+        cls += " crbq-disabled";
+        if(i === q.correct) cls += " crbq-correct";
+        else if(i === userAns) cls += " crbq-wrong";
+      }
+      html += '<div class="' + cls + '" data-idx="' + i + '">' +
+                '<span class="crbq-optletter">' + LETTERS[i] + '</span>' +
+                '<span>' + optText + '</span>' +
+              '</div>';
+    });
+    html += '</div>';
+
+    if(userAns !== null){
+      if(userAns === q.correct){
+        html += '<div class="crbq-feedback crbq-fb-correct">✅ Correct! Well done.</div>';
+      } else {
+        html += '<div class="crbq-feedback crbq-fb-wrong">❌ Incorrect. Correct answer: ' + LETTERS[q.correct] + '. ' + q.opts[q.correct] + '</div>';
+      }
+    } else {
+      html += '<div class="crbq-feedback">&nbsp;</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="crbq-nav">' +
+      '<button class="crbq-btn crbq-btn-prev" id="crbq-prevBtn"' + (currentIndex===0 ? ' disabled' : '') + '>⬅ Previous</button>' +
+      (currentIndex === quizQuestions.length-1 ?
+        '' :
+        '<button class="crbq-btn crbq-btn-next" id="crbq-nextBtn"' + (userAns===null ? ' disabled' : '') + '>Next ➡</button>') +
+      '</div>';
+
+    quizArea.innerHTML = html;
+
+    submitTopBtn.style.display = (currentIndex === quizQuestions.length-1) ? 'inline-block' : 'none';
+    submitTopBtn.disabled = (userAns === null);
+
+    var optEls = quizArea.querySelectorAll(".crbq-opt");
+    optEls.forEach(function(el){
+      el.addEventListener("click", function(){
+        if(answered[currentIndex] !== null) return;
+        var idx = parseInt(el.getAttribute("data-idx"),10);
+        answered[currentIndex] = idx;
+        if(idx === quizQuestions[currentIndex].correct){
+          score++;
+          scoreEl.textContent = score;
+        }
+        renderQuestion();
+      });
+    });
+
+    var prevBtn = document.getElementById("crbq-prevBtn");
+    var nextBtn = document.getElementById("crbq-nextBtn");
+    if(prevBtn){
+      prevBtn.addEventListener("click", function(){
+        if(currentIndex>0){ currentIndex--; renderQuestion(); }
+      });
+    }
+    if(nextBtn){
+      nextBtn.addEventListener("click", function(){
+        currentIndex++;
+        renderQuestion();
+      });
+    }
+  }
+
+  function showResult(){
+    stopTimer();
+    quizArea.style.display = "none";
+    resultArea.style.display = "block";
+    progressEl.style.width = "100%";
+
+    var pct = Math.round((score/quizQuestions.length)*100);
+    var m = Math.floor(seconds/60).toString().padStart(2,"0");
+    var s = (seconds%60).toString().padStart(2,"0");
+    var timeStr = m+":"+s;
+
+    var remark = "Keep practicing!";
+    if(pct>=90) remark = "Outstanding! 🌟";
+    else if(pct>=75) remark = "Excellent work! 👏";
+    else if(pct>=50) remark = "Good effort! 👍";
+
+    var html = '<div class="crbq-result">' +
+      '<h2>🎉 Quiz Completed!</h2>' +
+      '<div class="crbq-score-circle" style="--crbq-pct:' + pct + '">' +
+        '<div class="crbq-score-num">' + pct + '%</div>' +
+        '<div class="crbq-score-sub">' + remark + '</div>' +
+      '</div>' +
+      '<div class="crbq-result-stats">' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + score + '/' + quizQuestions.length + '</div><div class="crbq-stat-label">Correct Answers</div></div>' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + (quizQuestions.length-score) + '</div><div class="crbq-stat-label">Wrong Answers</div></div>' +
+        '<div class="crbq-stat"><div class="crbq-stat-num">' + timeStr + '</div><div class="crbq-stat-label">Time Taken</div></div>' +
+      '</div>' +
+      '<p id="crbq-lbStatus" class="crbq-lbStatus"></p>' +
+      '<div class="crbq-result-actions">' +
+        '<button class="crbq-btn crbq-btn-restart" id="crbq-restartBtn">🔄 Restart Quiz</button>' +
+        '<button class="crbq-btn crbq-btn-pdf" id="crbq-responsesBtn">📄 Show Responses</button>' +
+        '<button class="crbq-btn crbq-btn-pdf" id="crbq-leaderboardBtn">🏆 Leaderboard</button>' +
+      '</div>' +
+      '<div class="crbq-responsesPanel" id="crbq-responsesPanel" style="display:none;">' +
+        '<h3 class="crbq-lbTitle">📄 Your Responses</h3>' +
+        '<div id="crbq-responsesList"></div>' +
+      '</div>' +
+      '<div class="crbq-leaderboardPanel" id="crbq-leaderboardPanel" style="display:none;">' +
+        '<h3 class="crbq-lbTitle">🏆 Top Scores</h3>' +
+        '<div id="crbq-lbList" class="crbq-lbLoading">Loading...</div>' +
+      '</div>' +
+      '</div>';
+
+    resultArea.innerHTML = html;
+
+    document.getElementById("crbq-restartBtn").addEventListener("click", function(){
+      startGate.style.display = "block";
+      quizWrap.style.display = "none";
+    });
+    document.getElementById("crbq-responsesBtn").addEventListener("click", function(){
+      var panel = document.getElementById("crbq-responsesPanel");
+      var showing = panel.style.display !== 'none';
+      if (showing){
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+        document.getElementById("crbq-leaderboardPanel").style.display = 'none';
+        document.getElementById("crbq-responsesList").innerHTML = buildResponsesHtml();
+      }
+    });
+    document.getElementById("crbq-leaderboardBtn").addEventListener("click", function(){
+      var panel = document.getElementById("crbq-leaderboardPanel");
+      var showing = panel.style.display !== 'none';
+      if (showing){
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+        document.getElementById("crbq-responsesPanel").style.display = 'none';
+        loadLeaderboard();
+      }
+    });
+
+    submitScoreToLeaderboard(score, quizQuestions.length, pct, timeStr);
+  }
+
+  function buildResponsesHtml(){
+    var html = '';
+    quizQuestions.forEach(function(q, i){
+      var userIdx = answered[i];
+      var wasAnswered = userIdx !== null;
+      html += '<div class="crbq-reviewQ">';
+      html += '<div class="crbq-reviewQText">Q' + (i+1) + '. ' + q.en + '</div>';
+      html += '<div class="crbq-reviewQTextTe">' + q.te + '</div>';
+      q.opts.forEach(function(optText, idx){
+        var isCorrect = idx === q.correct;
+        var isChosen = wasAnswered && idx === userIdx;
+        var cls = 'crbq-reviewOpt';
+        if (isCorrect) cls += ' crbq-reviewCorrect';
+        if (isChosen && !isCorrect) cls += ' crbq-reviewWrong';
+        var tag = '';
+        if (isCorrect) tag += ' <span class="crbq-reviewTag">✔ Correct</span>';
+        if (isChosen) tag += ' <span class="crbq-reviewTag crbq-reviewYourTag">Your Answer</span>';
+        html += '<div class="' + cls + '">' + LETTERS[idx] + '. ' + optText + tag + '</div>';
+      });
+      if (!wasAnswered) { html += '<div class="crbq-reviewSkipped">Not answered</div>'; }
+      html += '</div>';
+    });
+    return html;
+  }
+
+  function submitScoreToLeaderboard(correctScore, total, pct, timeStr){
+    var lbStatus = document.getElementById('crbq-lbStatus');
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      if (lbStatus) lbStatus.textContent = '';
+      return;
+    }
+    if (lbStatus) lbStatus.textContent = 'Saving your score...';
+    var payload = {
+      name: studentName,
+      district: studentDistrict,
+      quiz: CONFIG.QUIZ_NAME,
+      score: correctScore,
+      total: total,
+      percent: pct,
+      timeTaken: timeStr
+    };
+    fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).then(function(){
+      if (lbStatus) lbStatus.textContent = '✅ Score saved to leaderboard.';
+    }).catch(function(){
+      if (lbStatus) lbStatus.textContent = '';
+    });
+  }
+
+  function loadLeaderboard(){
+    var lbList = document.getElementById('crbq-lbList');
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbList.innerHTML = '<p class="crbq-lbLoading">Leaderboard is not set up yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="crbq-lbLoading">Loading...</p>';
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=leaderboard')
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){
+          lbList.innerHTML = '<p class="crbq-lbLoading">No scores yet. Be the first!</p>';
+          return;
+        }
+        rows.sort(function(a,b){ return b.score - a.score; });
+        var html = '';
+        rows.slice(0, 20).forEach(function(r, i){
+          html += '<div class="crbq-lbRow"><span class="crbq-lbRank">' + (i+1) + '</span>' +
+                  '<span class="crbq-lbName">' + escapeHtml(r.name) + '<br><small>' + escapeHtml(r.district) + '</small></span>' +
+                  '<span class="crbq-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + '</span></div>';
+        });
+        lbList.innerHTML = html;
+      })
+      .catch(function(){
+        lbList.innerHTML = '<p class="crbq-lbLoading">Could not load leaderboard right now.</p>';
+      });
+  }
+
+  startBtn.addEventListener('click', function(){
+    var name = nameInput.value.trim();
+    var district = districtInput.value.trim();
+    if (!name || !district){
+      startError.style.display = 'block';
+      if (!name){ nameInput.focus(); } else { districtInput.focus(); }
+      return;
+    }
+    startError.style.display = 'none';
+    studentName = name;
+    studentDistrict = district;
+    startGate.style.display = 'none';
+    buildQuiz();
+  });
+
+  submitTopBtn.addEventListener('click', function(){
+    if (answered[currentIndex] !== null) { showResult(); }
+  });
+
+  checkAccess();
+})();
+</script>
