@@ -1,0 +1,706 @@
+<!-- ===================== TELUGU APTET QUIZ (PRACTICE TEST-3) ===================== -->
+<!-- Blogger-compatible single HTML block. Scoped CSS + IIFE JS. -->
+
+<div id="crb-tq-root" class="crb-tq-wrap">
+
+  <div class="crb-tq-card" id="crb-tq-lockedCard" style="display:none;">
+    <div class="crb-tq-badge">APTET PAPER-II (A)</div>
+    <h2 class="crb-tq-title">TELUGU</h2>
+    <p class="crb-tq-sub">APTET Previous Question Paper Practice Test-3</p>
+    <div class="crb-tq-lockIcon">🔒</div>
+    <p class="crb-tq-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
+    <p class="crb-tq-lockCountdown" id="crb-tq-countdown">Opens in --:--:--</p>
+    <div class="crb-tq-cardCredit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-startCard" style="display:none;">
+    <div class="crb-tq-badge">APTET PAPER-II (A)</div>
+    <h2 class="crb-tq-title">TELUGU</h2>
+    <p class="crb-tq-sub">APTET Previous Question Paper Practice Test-3</p>
+    <div class="crb-tq-info">
+      <div><span>📋</span> 30 Questions</div>
+      <div><span>⏱️</span> Timer Enabled</div>
+      <div><span>🔀</span> Options Shuffle</div>
+    </div>
+    <p class="crb-tq-note">Each question carries 1 mark. Answer feedback is shown instantly after you choose an option. Good luck!</p>
+
+    <div class="crb-tq-formRow">
+      <label class="crb-tq-label" for="crb-tq-nameInput">Your Name <span class="crb-tq-req">*</span></label>
+      <input type="text" id="crb-tq-nameInput" class="crb-tq-input" placeholder="Enter your full name" autocomplete="off">
+    </div>
+    <div class="crb-tq-formRow">
+      <label class="crb-tq-label" for="crb-tq-districtInput">District <span class="crb-tq-req">*</span></label>
+      <input type="text" id="crb-tq-districtInput" class="crb-tq-input" placeholder="Enter your district" autocomplete="off">
+    </div>
+    <p id="crb-tq-startError" class="crb-tq-startError" style="display:none;">Please enter your name and district to start the quiz.</p>
+
+    <div class="crb-tq-cardCredit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+    <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-startBtn">Start Quiz</button>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-quizCard" style="display:none;">
+    <div class="crb-tq-topbar">
+      <div class="crb-tq-timerScore">
+        <div class="crb-tq-timer">⏱️ <span id="crb-tq-timer">00:00</span></div>
+        <div class="crb-tq-score">Score: <span id="crb-tq-liveScore">0</span> / 30</div>
+      </div>
+      <button class="crb-tq-btn crb-tq-btn-success crb-tq-submitTopBtn" id="crb-tq-submitBtn" style="display:none;">Submit ✅</button>
+    </div>
+
+    <div class="crb-tq-progressOuter">
+      <div class="crb-tq-progressInner" id="crb-tq-progressBar"></div>
+    </div>
+    <div class="crb-tq-qcount">Question <span id="crb-tq-qNum">1</span> of 30</div>
+
+    <div class="crb-tq-qBox">
+      <div class="crb-tq-qHeading">TELUGU &ndash; APTET Previous Question Paper – Practice Test - 3</div>
+      <div class="crb-tq-qText" id="crb-tq-qText"></div>
+      <div class="crb-tq-options" id="crb-tq-options"></div>
+      <div class="crb-tq-feedback" id="crb-tq-feedback"></div>
+    </div>
+
+    <div class="crb-tq-navRow">
+      <button class="crb-tq-btn crb-tq-btn-secondary" id="crb-tq-prevBtn">◀ Previous</button>
+      <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-nextBtn">Next ▶</button>
+    </div>
+    <div class="crb-tq-cardCredit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+  </div>
+
+  <div class="crb-tq-card" id="crb-tq-resultCard" style="display:none;">
+    <div class="crb-tq-badge">RESULT</div>
+    <h2 class="crb-tq-title">Quiz Completed!</h2>
+    <div class="crb-tq-resultRing">
+      <div class="crb-tq-resultScore"><span id="crb-tq-finalScore">0</span>/30</div>
+    </div>
+    <div class="crb-tq-resultStats">
+      <div class="crb-tq-statBox crb-tq-good"><div id="crb-tq-correctCount">0</div><span>Correct</span></div>
+      <div class="crb-tq-statBox crb-tq-bad"><div id="crb-tq-wrongCount">0</div><span>Wrong</span></div>
+      <div class="crb-tq-statBox crb-tq-time"><div id="crb-tq-timeTaken">00:00</div><span>Time Taken</span></div>
+    </div>
+    <p class="crb-tq-lbStatus" id="crb-tq-lbStatus"></p>
+    <div class="crb-tq-resultBtns">
+      <button class="crb-tq-btn crb-tq-btn-primary" id="crb-tq-restartBtn">🔄 Restart Quiz</button>
+      <button class="crb-tq-btn crb-tq-btn-secondary" id="crb-tq-responsesBtn">📄 Show Responses</button>
+      <button class="crb-tq-btn crb-tq-btn-secondary" id="crb-tq-leaderboardBtn">🏆 Leaderboard</button>
+    </div>
+    <div class="crb-tq-responsesPanel" id="crb-tq-responsesPanel" style="display:none;">
+      <h3 class="crb-tq-lbTitle">📄 Your Responses</h3>
+      <div id="crb-tq-responsesList" class="crb-tq-responsesList"></div>
+    </div>
+    <div class="crb-tq-leaderboardPanel" id="crb-tq-leaderboardPanel" style="display:none;">
+      <h3 class="crb-tq-lbTitle">🏆 Top Scores</h3>
+      <div id="crb-tq-lbList" class="crb-tq-lbList"><p class="crb-tq-lbLoading">Loading...</p></div>
+    </div>
+    <div class="crb-tq-cardCredit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+  </div>
+
+  <div class="crb-tq-footer">
+    C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE
+  </div>
+</div>
+
+<style>
+  .crb-tq-wrap{
+    max-width:600px; margin:20px auto; font-family:'Segoe UI', Roboto, Arial, sans-serif;
+    color:#eaf2ff; width:100%;
+    -webkit-user-select:none; -moz-user-select:none; user-select:none;
+  }
+  .crb-tq-wrap input, .crb-tq-wrap textarea{
+    -webkit-user-select:text; -moz-user-select:text; user-select:text;
+  }
+  .crb-tq-card{
+    background:linear-gradient(160deg,#0f2447 0%, #0a1730 100%);
+    border-radius:18px; padding:24px 20px; box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    border:1px solid #1e3a63;
+  }
+  .crb-tq-badge{
+    display:inline-block; background:#1c4f8a; color:#bfe0ff; font-size:12px; font-weight:700;
+    letter-spacing:1px; padding:4px 12px; border-radius:20px; margin-bottom:10px;
+  }
+  .crb-tq-title{ margin:4px 0 2px 0; font-size:26px; color:#ffffff; font-weight:800; }
+  .crb-tq-sub{ margin:0 0 16px 0; color:#9fc3ee; font-size:14px; }
+  .crb-tq-info{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+  .crb-tq-info div{
+    background:#132c52; padding:8px 12px; border-radius:10px; font-size:13px; color:#cfe4ff;
+  }
+  .crb-tq-note{ font-size:13px; color:#9fb8d9; margin-bottom:18px; line-height:1.5; }
+
+  .crb-tq-lockIcon{ text-align:center; font-size:38px; margin:6px 0 10px; }
+  .crb-tq-lockMsg{ text-align:center; font-size:14.5px; color:#eaf2ff; line-height:1.5; margin:0 0 10px; }
+  .crb-tq-lockCountdown{
+    text-align:center; font-size:16px; font-weight:800; color:#a8f0c8;
+    background:#132c52; border:1px solid #1e3a63; border-radius:10px; padding:10px; margin:0 0 6px;
+  }
+
+  .crb-tq-formRow{ margin-bottom:14px; text-align:left; }
+  .crb-tq-label{ display:block; font-size:13px; color:#9fc3ee; margin-bottom:6px; }
+  .crb-tq-req{ color:#ff9aa2; }
+  .crb-tq-input{
+    width:100%; background:#132c52; border:1.5px solid #2f4d78; color:#eaf2ff;
+    border-radius:10px; padding:12px 14px; font-size:16px; outline:none; transition:border-color .15s ease;
+  }
+  .crb-tq-input:focus{ border-color:#2f80ed; }
+  .crb-tq-startError{ color:#ff9aa2; font-size:13px; margin:-4px 0 14px; text-align:center; }
+  .crb-tq-btn{
+    border:none; border-radius:12px; padding:13px 22px; font-size:15px; font-weight:700;
+    cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; margin:4px;
+  }
+  .crb-tq-btn:active{ transform:scale(0.97); }
+  .crb-tq-btn-primary{ background:linear-gradient(135deg,#2f80ed,#1c5fc9); color:#fff; }
+  .crb-tq-btn-secondary{ background:#1c2f4d; color:#cfe4ff; border:1px solid #2f4d78; }
+  .crb-tq-btn-success{ background:linear-gradient(135deg,#22a06b,#178754); color:#fff; }
+  .crb-tq-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+
+  .crb-tq-topbar{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; font-size:14px; }
+  .crb-tq-timerScore{ display:flex; gap:10px; flex-wrap:wrap; }
+  .crb-tq-timer{ background:#132c52; padding:6px 12px; border-radius:10px; color:#bfe0ff; font-weight:700; }
+  .crb-tq-score{ background:#132c52; padding:6px 12px; border-radius:10px; color:#a8f0c8; font-weight:700; }
+  .crb-tq-submitTopBtn{ padding:8px 18px; font-size:13px; border-radius:20px; margin:0; flex-shrink:0; }
+
+  .crb-tq-progressOuter{ background:#0d2140; border-radius:10px; height:10px; overflow:hidden; margin-bottom:6px; }
+  .crb-tq-progressInner{ background:linear-gradient(90deg,#2f80ed,#22a06b); height:100%; width:0%; transition:width .3s ease; }
+  .crb-tq-qcount{ font-size:12px; color:#87a6cc; margin-bottom:14px; text-align:right; }
+
+  .crb-tq-qBox{ background:#0d2140; border-radius:14px; padding:18px; margin-bottom:16px; }
+  .crb-tq-qHeading{ font-size:12.5px; font-weight:700; letter-spacing:.3px; color:#7fb8f5; background:#132c52; display:inline-block; padding:5px 12px; border-radius:8px; margin-bottom:12px; }
+  .crb-tq-qText{ font-size:18px; line-height:1.6; margin-bottom:16px; color:#ffffff; white-space:pre-line; }
+  .crb-tq-cardCredit{ text-align:center; font-size:11.5px; color:#7f9bc2; margin-top:16px; letter-spacing:.4px; font-weight:600; border-top:1px solid #1e3a63; padding-top:10px; }
+  .crb-tq-options{ display:flex; flex-direction:column; gap:10px; }
+  .crb-tq-option{
+    background:#132c52; border:2px solid #1e3a63; border-radius:12px; padding:12px 14px;
+    font-size:15.5px; cursor:pointer; color:#eaf2ff; transition:all .15s ease; line-height:1.5;
+  }
+  .crb-tq-option:hover{ border-color:#2f80ed; }
+  .crb-tq-option.crb-tq-selected{ border-color:#2f80ed; background:#173a61; }
+  .crb-tq-option.crb-tq-correct{ background:#154d33; border-color:#22a06b; color:#c9ffe0; }
+  .crb-tq-option.crb-tq-wrong{ background:#5a1f24; border-color:#e0505a; color:#ffd6d9; }
+  .crb-tq-option.crb-tq-disabled{ cursor:default; }
+  .crb-tq-feedback{ margin-top:12px; font-weight:700; font-size:14.5px; min-height:20px; }
+  .crb-tq-feedback.correct{ color:#7dffb0; }
+  .crb-tq-feedback.wrong{ color:#ff9aa2; }
+
+  .crb-tq-navRow{ display:flex; justify-content:space-between; gap:10px; }
+  .crb-tq-navRow .crb-tq-btn{ flex:1; }
+
+  .crb-tq-resultRing{
+    width:150px; height:150px; border-radius:50%; margin:10px auto 20px auto;
+    background:radial-gradient(circle at 50% 50%, #0d2140 60%, transparent 61%),
+    conic-gradient(#22a06b 0deg, #2f80ed 360deg);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .crb-tq-resultScore{ font-size:26px; font-weight:800; color:#fff; }
+  .crb-tq-resultStats{ display:flex; gap:10px; margin-bottom:20px; }
+  .crb-tq-statBox{ flex:1; background:#0d2140; border-radius:12px; padding:14px 6px; text-align:center; }
+  .crb-tq-statBox div{ font-size:20px; font-weight:800; margin-bottom:4px; }
+  .crb-tq-statBox span{ font-size:12px; color:#9fb8d9; }
+  .crb-tq-good div{ color:#7dffb0; }
+  .crb-tq-bad div{ color:#ff9aa2; }
+  .crb-tq-time div{ color:#bfe0ff; }
+  .crb-tq-resultBtns{ display:flex; gap:10px; flex-wrap:wrap; }
+  .crb-tq-resultBtns .crb-tq-btn{ flex:1; min-width:150px; }
+
+  .crb-tq-lbStatus{ font-size:12.5px; color:#a8f0c8; margin:0 0 8px; min-height:16px; text-align:center; }
+  .crb-tq-leaderboardPanel{
+    margin-top:6px; background:#0d2140; border:1px solid #1e3a63; border-radius:14px; padding:14px; text-align:left;
+  }
+  .crb-tq-lbTitle{ margin:0 0 10px; font-size:15px; color:#bfe0ff; text-align:center; }
+  .crb-tq-lbLoading{ text-align:center; font-size:13px; color:#9fb8d9; }
+  .crb-tq-lbRow{ display:flex; align-items:center; gap:10px; padding:8px 4px; border-bottom:1px solid #1e3a63; font-size:13.5px; }
+  .crb-tq-lbRow:last-child{ border-bottom:none; }
+  .crb-tq-lbRank{ width:24px; text-align:center; font-weight:800; color:#bfe0ff; flex-shrink:0; }
+  .crb-tq-lbName{ flex:1; color:#eaf2ff; }
+  .crb-tq-lbName small{ color:#9fb8d9; }
+  .crb-tq-lbScore{ font-weight:800; color:#a8f0c8; flex-shrink:0; }
+
+  .crb-tq-responsesPanel{
+    margin-top:6px; background:#0d2140; border:1px solid #1e3a63; border-radius:14px; padding:14px; text-align:left;
+    max-height:480px; overflow-y:auto;
+  }
+  .crb-tq-reviewQ{
+    background:#132c52; border:1px solid #1e3a63; border-radius:10px; padding:12px 14px; margin-bottom:12px;
+  }
+  .crb-tq-reviewQ:last-child{ margin-bottom:0; }
+  .crb-tq-reviewQText{ font-size:14.5px; font-weight:700; color:#eaf2ff; margin-bottom:10px; line-height:1.5; white-space:pre-line; }
+  .crb-tq-reviewOpt{
+    background:#0d2140; border:1.5px solid #1e3a63; border-radius:8px; padding:8px 12px; margin-bottom:6px;
+    font-size:13.5px; line-height:1.4; color:#eaf2ff;
+  }
+  .crb-tq-reviewOpt:last-child{ margin-bottom:0; }
+  .crb-tq-reviewCorrect{ border-color:#22a06b; background:rgba(34,160,107,0.18); }
+  .crb-tq-reviewWrong{ border-color:#e0505a; background:rgba(224,80,90,0.18); }
+  .crb-tq-reviewTag{ font-weight:700; font-size:12px; margin-left:6px; color:#7dffb0; }
+  .crb-tq-reviewYourTag{ color:#ffd76a; }
+  .crb-tq-reviewSkipped{ font-size:12.5px; color:#ffd76a; font-style:italic; margin-top:4px; }
+
+  .crb-tq-footer{
+    text-align:center; font-size:12.5px; color:#7f9bc2; margin-top:14px; letter-spacing:.4px; font-weight:600;
+  }
+
+  @media (max-width:480px){
+    .crb-tq-wrap{ margin:10px auto; }
+    .crb-tq-card{ padding:18px 14px; }
+    .crb-tq-title{ font-size:22px; }
+    .crb-tq-qText{ font-size:16.5px; }
+    .crb-tq-option{ font-size:14.5px; }
+    .crb-tq-resultBtns .crb-tq-btn{ min-width:120px; font-size:13.5px; }
+    .crb-tq-topbar{ justify-content:flex-start; }
+    .crb-tq-submitTopBtn{ margin-left:auto; }
+    .crb-tq-btn{ padding:12px 16px; }
+  }
+</style>
+
+<script>
+(function(){
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: 'Telugu APTET - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  var QUESTIONS = [
+    { q:"తెలుగు గ్రంథములకు ఆంగ్లమున పీఠికలు రచించిన వారును కలరు. అవతరణ యుగమున గురజాడ అప్పారావు 'కన్యాశుల్కము' రెండు ముద్రణలకును ఆంగ్లభాషలో తొలిపలుకులు వ్రాసిరి. అవి ఆ నాటక ప్రయోజనములను వ్యావహారిక భాషా ప్రాధాన్యమును ఉగ్గడించుచున్నవి. గోమఠం శ్రీనివాసాచారి ఆంగ్ల కావ్యము హరిశ్చంద్రకు కూడ గురజాడ ఆ భాషయందే పీఠికను సంతరించెను.\n\nపై గద్యం ఆధారంగా కింది వాటిలో సరికానిది",
+      options:["గురజాడ అప్పారావు కన్యాశుల్కము రచించారు.","తెలుగు గ్రంథములకు ఆంగ్లంలో పీఠికలు రాసిన రచయితలు కలరు.","గోమఠం శ్రీనివాసాచారి ఆంధ్ర కావ్యము రచించారు.","కన్యాశుల్కమునకు గురజాడ ఆంగ్లభాషలో తొలిపలుకులు వ్రాసిరి."], answer:2 },
+
+    { q:"కన్నులు కన్నులు, జాన్నులు జాన్నులు, చెన్నులు చెన్నులు అనుచో శబ్దమును అర్థమును సమానమే. కాన పౌనరుక్త్యము సంభవించుచున్నది. కాని తాత్పర్యము మాత్రము భిన్నము. ఎట్లన నృసింహా జాడగల కన్నులు శ్రేష్టమైలైన కన్నులు. ఈ విధముగా దాత్పర్యమును బట్టి మొదటి పదములకన్న రెండవ పదములు భిన్నములు.\n\nపై గద్యమును అనుసరించి సత్యం.",
+      options:["పునరావృత్తమైన పదాల అర్థం ఒకటైనా తాత్పర్యం మాత్రం భిన్నం.","పునరావృత్త పదాలకు విభిన్నార్థములు గలవు.","పునరావృత్తమైన పదాలకు అర్థాలు తాత్పర్యాలు సమానాలు.","పునరావృత్తమైన పదాల అర్థాలు వేరైనా తాత్పర్యం ఒక్కటే."], answer:0 },
+
+    { q:"గిరి కార్ముక నిర్గతమై\nహరిశర మపుడసుర వర పురాభిముఖంబై\nసుర గరుడ దురవలోక\nత్వరతో జనె నొక మహారవం బుదయింపన్\n\nపై పద్యంలో హరిశరము అనగా",
+      options:["విష్ణువు అనే బాణం","శివుడు అనే బాణం","గరుత్మంతుడు అనే బాణం","హనుమంతుడు అనే బాణం"], answer:3 },
+
+    { q:"ధరణీ నాయకు రాణియు\nగురు రాణియు నన్నరాణి కులకాంతను గ\nన్న రమణి దనుగన్నదియును\nధర నేపురు తల్లులనుచుందలపు కుమారా!\n\nపై పద్యంలో చెప్పని వారు",
+      options:["భార్య తల్లి","గురుపత్ని","రాజ భార్య","సుతుని భార్య"], answer:3 },
+
+    { q:"కింది వాటిలో 'యమ్మనూరు చినవెంకటరెడ్డి' రచనలు గుర్తించండి.\nఅ) గట్టి గింజలు\nఆ) రంగుటద్దాలు\nఇ) మబ్బు తెరలు\nఈ) వైజయంతి",
+      options:["అ, ఆ","ఆ, ఇ","అ, ఈ","ఇ, ఈ"], answer:2 },
+
+    { q:"తాపీ ధర్మారావు గారు ఈ రచనకు కేంద్ర సాహిత్య అకాడమీ పురస్కారం పొందారు.",
+      options:["పాతపాళీ","హృదయోల్లాస వ్యాఖ్య","సాహితీ మొర్జరాలు","ఇనుప కచ్చడాలు"], answer:1 },
+
+    { q:"పాఠాలను, ఇతివృత్తాలతో జతపరచండి.\n(అ) త్రిజట స్వప్నం      (య) మానవ విలువలు\n(ఆ) చిరమాలిన్యం       (ర) వ్యక్తిత్వ వికాసం\n(ఇ) నాటి చదువు       (ల) సహానుభూతి\n(ఈ) సమదృష్టి         (వ) సమానత్వం",
+      options:["అ-ల, ఆ-య, ఇ-ర, ఈ-వ","అ-య, ఆ-వ, ఇ-ల, ఈ-ర","అ-ర, ఆ-వ, ఇ-ల, ఈ-య","అ-వ, ఆ-ల, ఇ-య, ఈ-ర"], answer:0 },
+
+    { q:"'మాతృభాషను నిరాదరించడం సరికాదు' అని చెప్పడం ఉద్దేశంగా గల పాఠం.",
+      options:["అక్షరం","హితోక్తులు","నాటి చదువు","మమకారం"], answer:3 },
+
+    { q:"హితోక్తి శతకంలోని గురుభక్తి.. అనే పద్యంలో చెప్పిన విద్యార్థికి అవసరమైన లక్షణాలు",
+      options:["గురుభక్తి, వినయం, పునశ్చరణ, సహనం, సాధన","గురుభక్తి, విధేయత, నమ్మకం, సహనం, సాధన","గురుభక్తి, వినయం, పునశ్చరణ, సాధన, నమ్మకం","గురుభక్తి, విద్యపై విశ్వాసం, వినయం, నిరంతర సాధన"], answer:3 },
+
+    { q:"'సంధియం' పదానికి ప్రకృతి",
+      options:["సందోహం","సందేశం","సందేహం","సదుద్దేశం"], answer:2 },
+
+    { q:"మూడు పూటలా మెక్కి గోడకు చేరబడుతుంది.\n- ఈ పొడుపుకు విడుపు",
+      options:["గడియారం","నాలుకండె","తిరుగలి","కంచం"], answer:3 },
+
+    { q:"'వెన్నుచూపు' - జాతీయాన్ని ఉపయోగించే సందర్భం.",
+      options:["వైద్య పరీక్షల సమయంలో","పెరుగు చిలుకునప్పుడు","పారిపోవునపుడు","ప్రయత్నించునపుడు"], answer:2 },
+
+    { q:"'విహంగము' పదానికి వ్యుత్పత్యర్థం.",
+      options:["హరింపబడునది (గుండె)","ఆకాశంలో వెళ్ళునది (పక్షి)","కొండవలే పెద్ద పెద్ద భవనములు కలది (పట్టణం)","దైవం వెలసిన ప్రాంతం (దేవాలయం)"], answer:1 },
+
+    { q:"'మేను' - పర్యాయపదాలు",
+      options:["దేహం, తనువు","శరీరము, పార్శ్వము","కైరవం, కుముదము","విసారము, శకులి"], answer:0 },
+
+    { q:"రాగిణీ దేవిగా పేరుమార్చుకుని భరతనాట్యాన్ని అంతర్జాతీయంగా విస్తరింపచేయడానికి కృషి చేస్తున్నవారు.",
+      options:["అలార్మెల్ వల్లి","మృణాళిని సారాభాయ్","అనితరత్వం","ఎస్తేరు షర్మాన్"], answer:3 },
+
+    { q:"'ఉపవనం' ఈ పదంలో సమాసం",
+      options:["ద్విగు","బహువ్రీహి","అవ్యయీభావ","విశేషణ ఉభయపద కర్మధారయ"], answer:2 },
+
+    { q:"గసడదవాదేశ సంధి పదం కానిది.",
+      options:["గొప్పవాడుగదా","రాక్షసులంజాసిరి","వాడుడక్కరి","కొలువుసేసి"], answer:1 },
+
+    { q:"'దివాకసులు' సంధి విచ్ఛేద రూపం.",
+      options:["దివా + కసులు","దివ + ఔకసులు","దివ + ఒకసులు","దివ + ఒకసులు"], answer:2 },
+
+    { q:"కింది విగ్రహ వాక్యాలలో సరికానిది.",
+      options:["శాంతి కానిది - అశాంతి","నా యొక్క చరిత్ర - నాచరిత్ర","చదువు మరియు సంధ్య - చదువుసంధ్యలు","మునుల గురించి నాథుడు - మునినాథుడు"], answer:3 },
+
+    { q:"'తగణం' గురించి సత్యాలు\nఅ) దీనిలో లఘువు చివరగా ఉంటుంది.\nఆ) ఈ గణంలో రెండు గురువులుంటాయి.\nఇ) ఈ గణంలో రెండు లఘువులుంటాయి.\nఈ) ఇది నాలుగక్షరాల గణం.",
+      options:["అ, ఇ","అ, ఆ","ఆ, ఈ","ఇ, ఈ"], answer:1 },
+
+    { q:"దాతలు గొప్పదానాలను చేస్తున్నారు. దీనికి సరిపడు కర్మణి వాక్యం.",
+      options:["దాతలు గొప్ప దానాలు చేయబోతున్నారు.","దాతల చేత గొప్పదానాలు చేయబడుతున్నవి.","గొప్ప దానాలను దాతలు చేస్తున్నారు.","గొప్ప దానాలు దాతల చేత చేయబడవు."], answer:1 },
+
+    { q:"'చక్కని కన్యకామణికి జక్కనివాడగు ప్రాణ నాథుడున్' - ఈ పద్యపాదం గురించి సత్యాలు\n(అ) ఇది ఉత్పలమాల పద్యం\n(ఆ) 'చ' - 'జ'ల మధ్య యతి చెల్లింది\n(ఇ) 'క్క - క్క' ల మధ్య ప్రాసయతి\n(ఈ) ఈ పద్యపాదంలో 3 భగణాలు ఉంటాయి.",
+      options:["అ, ఆ మాత్రమే","ఆ, ఇ, ఈ","అ, ఆ, ఇ","అ, ఆ, ఈ"], answer:3 },
+
+    { q:"'గుండెలదర దేహ పంజరము డిల్లగ జల్లెడ' ఈ వాక్యంలో ఉపమాన ఉపమేయముల మధ్య చెప్పబడినది.",
+      options:["మనోహర పోలిక","అభేదం","ఊహించడం","సమర్థన"], answer:1 },
+
+    { q:"జతపరచండి.\n(అ) దేవా! నీకు వంద వందనాలు      (య) వృత్త్యనుప్రాస\n(ఆ) విష్ణురోచిష్ణు జిష్ణు సహిష్ణు   (ర) ఉత్ప్రేక్ష\n(ఇ) ముఖము చంద్రబింబమో అన్నట్లున్నది (ల) ఛేకానుప్రాస\n(ఈ) శ్రీనాథు వర్ణించు జిహ్వా జిహ్వా  (వ) లాటానుప్రాస",
+      options:["అ-ల, ఆ-య, ఇ-ర, ఈ-వ","అ-ల, ఆ-య, ఇ-వ, ఈ-ర","అ-ల, ఆ-ర, ఇ-య, ఈ-వ","అ-ల, ఆ-ర, ఇ-వ, ఈ-య"], answer:0 },
+
+    { q:"'మానవ జీవితం కూడా వైకుంఠ పాళి ఆటలాంటిదే' - మేలిమలుపు పాఠంలో ఈ మాటలు వీరివి.",
+      options:["పైడి తెరేష్ బాబు","గుజ్జం జాషువా","దేవులపల్లి వేంకట కృష్ణశాస్త్రి","పవని నిర్మల ప్రభావతి"], answer:2 },
+
+    { q:"కింది వానిలో సరికానిది.",
+      options:["కారు పదానికి ప్రకృతి కార్యము","త్యాగం పదానికి వికృతి చాగం","ఉత్తరిగం పదానికి ప్రకృతి ఉత్తరీయం","కుమారుడు పదానికి వికృతి కొమరుడు"], answer:0 },
+
+    { q:"\"నాబాల్యం అంటే నాకు చాలా ఇష్టం\" అని అన్నాడు వీరరాజు. ఈ వాక్యానికి సరైన పరోక్ష కథనం.",
+      options:["తన బాల్యమంటే తనకు చాలా ఇష్టమని అన్నాడు వీరరాజు.","నాబాల్యం అంటే అతనికి చాలా ఇష్టమని అన్నాడు వీరరాజు.","అతని బాల్యమంటే తనకు చాలా ఇష్టమన్నాడు వీరరాజు.","నాబాల్యం అంటే తనకు ఇష్టమన్నాడు వీరరాజు."], answer:0 },
+
+    { q:"కౌసల్య, రాముని చూసి సంతోషించింది. - ఈ వాక్యం",
+      options:["సకర్మక క్రియాసహిత కర్మణి వాక్యం","సకర్మక క్రియాసహిత సంయుక్త వాక్యం","సకర్మక క్రియాసహిత సంశ్లిష్ట వాక్యం","సకర్మక క్రియాసహిత సామాన్య వాక్యం"], answer:2 },
+
+    { q:"కింది వాటిని జతపరచండి.\n(అ) మీరు పుస్తకాలు తీసుకోవచ్చు   (య) ఆశ్చర్యార్థకం\n(ఆ) నీవు పాఠం చదువు         (ర) సామర్థ్యార్థకం\n(ఇ) ఆహా! ఎంత బాగుందో!       (ల) అనుమత్యర్థకం\n(ఈ) పాపాయి నడవగలదు         (వ) విధ్యర్థకం",
+      options:["అ-ల, ఆ-వ, ఇ-య, ఈ-ర","అ-ల, ఆ-ర, ఇ-య, ఈ-వ","అ-ల, ఆ-వ, ఇ-ర, ఈ-య","అ-వ, ఆ-ల, ఇ-య, ఈ-ర"], answer:0 },
+
+    { q:"'నీక వగచి వగచి నిర్భిన్న హృదయులై\nవిగత చక్షులైరి వినవె?' ఇందులో క్వార్థకం",
+      options:["హృదయులు","విగత చక్షులౌతూ","వినవె","వగచి"], answer:3 }
+  ];
+
+  var root = document.getElementById('crb-tq-root');
+
+  function $(id){ return root.querySelector('#'+id); }
+
+  var lockedCard = $('crb-tq-lockedCard');
+  var countdownEl = $('crb-tq-countdown');
+  var startCard = $('crb-tq-startCard');
+  var quizCard = $('crb-tq-quizCard');
+  var resultCard = $('crb-tq-resultCard');
+  var nameInput = $('crb-tq-nameInput');
+  var districtInput = $('crb-tq-districtInput');
+  var startError = $('crb-tq-startError');
+  var startBtn = $('crb-tq-startBtn');
+  var prevBtn = $('crb-tq-prevBtn');
+  var nextBtn = $('crb-tq-nextBtn');
+  var submitBtn = $('crb-tq-submitBtn');
+  var restartBtn = $('crb-tq-restartBtn');
+  var leaderboardBtn = $('crb-tq-leaderboardBtn');
+  var leaderboardPanel = $('crb-tq-leaderboardPanel');
+  var lbList = $('crb-tq-lbList');
+  var lbStatus = $('crb-tq-lbStatus');
+  var responsesBtn = $('crb-tq-responsesBtn');
+  var responsesPanel = $('crb-tq-responsesPanel');
+  var responsesList = $('crb-tq-responsesList');
+
+  var qTextEl = $('crb-tq-qText');
+  var optionsEl = $('crb-tq-options');
+  var feedbackEl = $('crb-tq-feedback');
+  var progressBar = $('crb-tq-progressBar');
+  var qNumEl = $('crb-tq-qNum');
+  var liveScoreEl = $('crb-tq-liveScore');
+  var timerEl = $('crb-tq-timer');
+
+  var order = [];        // question order (all 30, shuffled)
+  var current = 0;
+  var score = 0;
+  var answered = [];      // per-question: {selectedText, correctText, isCorrect}
+  var timerInterval = null;
+  var lockInterval = null;
+  var secondsElapsed = 0;
+  var currentShuffledOptions = [];
+  var currentAnswerLocked = false;
+  var studentName = '';
+  var studentDistrict = '';
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function pad(n){ return n < 10 ? '0'+n : ''+n; }
+
+  function startTimer(){
+    secondsElapsed = 0;
+    timerEl.textContent = '00:00';
+    timerInterval = setInterval(function(){
+      secondsElapsed++;
+      var m = Math.floor(secondsElapsed/60);
+      var s = secondsElapsed%60;
+      timerEl.textContent = pad(m)+':'+pad(s);
+    }, 1000);
+  }
+
+  function stopTimer(){
+    if (timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+  }
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (lockInterval) clearInterval(lockInterval);
+      lockedCard.style.display = 'none';
+      startCard.style.display = 'block';
+      return;
+    }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    countdownEl.textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      lockedCard.style.display = 'none';
+      startCard.style.display = 'block';
+    } else {
+      startCard.style.display = 'none';
+      lockedCard.style.display = 'block';
+      updateCountdown();
+      lockInterval = setInterval(updateCountdown, 1000);
+    }
+  }
+
+  function initQuiz(){
+    order = shuffleArray(QUESTIONS.map(function(_, idx){ return idx; }));
+    current = 0;
+    score = 0;
+    answered = new Array(order.length).fill(null);
+    liveScoreEl.textContent = '0';
+    startCard.style.display = 'none';
+    resultCard.style.display = 'none';
+    quizCard.style.display = 'block';
+    startTimer();
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    currentAnswerLocked = !!answered[current];
+    var qIdx = order[current];
+    var qObj = QUESTIONS[qIdx];
+
+    qNumEl.textContent = (current+1);
+    progressBar.style.width = Math.round(((current+1)/order.length)*100) + '%';
+
+    qTextEl.textContent = qObj.q;
+    optionsEl.innerHTML = '';
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'crb-tq-feedback';
+
+    // Build shuffled options with correctness mapping, but keep stable per-question via cache
+    if (!qObj._shuffledCache){
+      var withFlags = qObj.options.map(function(text, i){
+        return { text:text, isCorrect: i === qObj.answer };
+      });
+      qObj._shuffledCache = shuffleArray(withFlags);
+    }
+    currentShuffledOptions = qObj._shuffledCache;
+
+    currentShuffledOptions.forEach(function(opt, i){
+      var div = document.createElement('div');
+      div.className = 'crb-tq-option';
+      div.textContent = opt.text;
+      div.setAttribute('data-idx', i);
+
+      var prevAnswer = answered[current];
+      if (prevAnswer){
+        div.classList.add('crb-tq-disabled');
+        if (opt.isCorrect){ div.classList.add('crb-tq-correct'); }
+        if (opt.text === prevAnswer.selectedText && !opt.isCorrect){ div.classList.add('crb-tq-wrong'); }
+      } else {
+        div.addEventListener('click', function(){ selectOption(opt); });
+      }
+      optionsEl.appendChild(div);
+    });
+
+    if (answered[current]){
+      showFeedback(answered[current].isCorrect);
+    }
+
+    prevBtn.disabled = (current === 0);
+    if (current === order.length - 1){
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'inline-block';
+    } else {
+      nextBtn.style.display = 'inline-block';
+      submitBtn.style.display = 'none';
+    }
+  }
+
+  function showFeedback(isCorrect){
+    feedbackEl.textContent = isCorrect ? '✅ Correct!' : '❌ Incorrect.';
+    feedbackEl.className = 'crb-tq-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  }
+
+  function selectOption(opt){
+    if (answered[current]) return;
+    answered[current] = { selectedText: opt.text, isCorrect: opt.isCorrect };
+    if (opt.isCorrect) score++;
+    liveScoreEl.textContent = score;
+    renderQuestion();
+  }
+
+  prevBtn.addEventListener('click', function(){
+    if (current > 0){ current--; renderQuestion(); }
+  });
+
+  nextBtn.addEventListener('click', function(){
+    if (current < order.length - 1){ current++; renderQuestion(); }
+  });
+
+  submitBtn.addEventListener('click', function(){
+    finishQuiz();
+  });
+
+  function finishQuiz(){
+    stopTimer();
+    var correct = answered.filter(function(a){ return a && a.isCorrect; }).length;
+    var attempted = answered.filter(function(a){ return a; }).length;
+    var wrong = attempted - correct;
+
+    quizCard.style.display = 'none';
+    resultCard.style.display = 'block';
+
+    $('crb-tq-finalScore').textContent = correct;
+    $('crb-tq-correctCount').textContent = correct;
+    $('crb-tq-wrongCount').textContent = wrong;
+    var m = Math.floor(secondsElapsed/60);
+    var s = secondsElapsed%60;
+    $('crb-tq-timeTaken').textContent = pad(m)+':'+pad(s);
+
+    leaderboardPanel.style.display = 'none';
+    responsesPanel.style.display = 'none';
+    submitScoreToLeaderboard(correct, order.length, m, s);
+  }
+
+  function submitScoreToLeaderboard(correct, total, m, s){
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbStatus.textContent = '';
+      return;
+    }
+    lbStatus.textContent = 'Saving your score...';
+    var percent = Math.round((correct/total)*100);
+    var payload = {
+      name: studentName,
+      district: studentDistrict,
+      quiz: CONFIG.QUIZ_NAME,
+      score: correct,
+      total: total,
+      percent: percent,
+      timeTaken: pad(m)+':'+pad(s)
+    };
+    fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).then(function(){
+      lbStatus.textContent = '✅ Score saved to leaderboard.';
+    }).catch(function(){
+      lbStatus.textContent = '';
+    });
+  }
+
+  function loadLeaderboard(){
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbList.innerHTML = '<p class="crb-tq-lbLoading">Leaderboard is not set up yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="crb-tq-lbLoading">Loading...</p>';
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=leaderboard')
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){
+          lbList.innerHTML = '<p class="crb-tq-lbLoading">No scores yet. Be the first!</p>';
+          return;
+        }
+        rows.sort(function(a,b){ return b.score - a.score; });
+        var html = '';
+        rows.slice(0, 20).forEach(function(r, i){
+          html += '<div class="crb-tq-lbRow"><span class="crb-tq-lbRank">' + (i+1) + '</span>' +
+                  '<span class="crb-tq-lbName">' + escapeHtml(r.name) + '<br><small>' + escapeHtml(r.district) + '</small></span>' +
+                  '<span class="crb-tq-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + '</span></div>';
+        });
+        lbList.innerHTML = html;
+      })
+      .catch(function(){
+        lbList.innerHTML = '<p class="crb-tq-lbLoading">Could not load leaderboard right now.</p>';
+      });
+  }
+
+  restartBtn.addEventListener('click', function(){
+    QUESTIONS.forEach(function(q){ delete q._shuffledCache; });
+    initQuiz();
+  });
+
+  function buildResponsesHtml(){
+    var html = '';
+    order.forEach(function(qIdx, i){
+      var qObj = QUESTIONS[qIdx];
+      var opts = qObj._shuffledCache || qObj.options.map(function(t, idx){ return { text: t, isCorrect: idx === qObj.answer }; });
+      var a = answered[i];
+      html += '<div class="crb-tq-reviewQ">';
+      html += '<div class="crb-tq-reviewQText">Q' + (i + 1) + '. ' + qObj.q + '</div>';
+      opts.forEach(function(opt){
+        var isChosen = !!(a && opt.text === a.selectedText);
+        var cls = 'crb-tq-reviewOpt';
+        if (opt.isCorrect) cls += ' crb-tq-reviewCorrect';
+        if (isChosen && !opt.isCorrect) cls += ' crb-tq-reviewWrong';
+        var tag = '';
+        if (opt.isCorrect) tag += ' <span class="crb-tq-reviewTag">✔ Correct</span>';
+        if (isChosen) tag += ' <span class="crb-tq-reviewTag crb-tq-reviewYourTag">Your Answer</span>';
+        html += '<div class="' + cls + '">' + opt.text + tag + '</div>';
+      });
+      if (!a) { html += '<div class="crb-tq-reviewSkipped">Not answered</div>'; }
+      html += '</div>';
+    });
+    return html;
+  }
+
+  responsesBtn.addEventListener('click', function(){
+    var showing = responsesPanel.style.display !== 'none';
+    if (showing){
+      responsesPanel.style.display = 'none';
+    } else {
+      responsesPanel.style.display = 'block';
+      leaderboardPanel.style.display = 'none';
+      responsesList.innerHTML = buildResponsesHtml();
+    }
+  });
+
+  startBtn.addEventListener('click', function(){
+    var name = nameInput.value.trim();
+    var district = districtInput.value.trim();
+    if (!name || !district){
+      startError.style.display = 'block';
+      if (!name){ nameInput.focus(); } else { districtInput.focus(); }
+      return;
+    }
+    startError.style.display = 'none';
+    studentName = name;
+    studentDistrict = district;
+    initQuiz();
+  });
+
+  leaderboardBtn.addEventListener('click', function(){
+    var showing = leaderboardPanel.style.display !== 'none';
+    if (showing){
+      leaderboardPanel.style.display = 'none';
+    } else {
+      leaderboardPanel.style.display = 'block';
+      responsesPanel.style.display = 'none';
+      loadLeaderboard();
+    }
+  });
+
+  checkAccess();
+
+})();
+</script>
