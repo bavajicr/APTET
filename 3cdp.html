@@ -4,7 +4,7 @@
   <div id="acdp19d2-locked" class="acdp19d2-screen">
     <div class="acdp19d2-card acdp19d2-start-card">
       <h2 class="acdp19d2-title">CHILD DEVELOPMENT AND PEDAGOGY</h2>
-      <p class="acdp19d2-subtitle">APTET Previous Question Paper practice test - 3 with 6 subjects</p>
+      <p class="acdp19d2-subtitle">APTET Previous Question Paper Practice Test-3</p>
       <div class="acdp19d2-lockIcon">&#128274;</div>
       <p class="acdp19d2-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
       <p class="acdp19d2-lockCountdown" id="acdp19d2-countdown">Opens in --:--:--</p>
@@ -16,7 +16,7 @@
   <div id="acdp19d2-start" class="acdp19d2-screen">
     <div class="acdp19d2-card acdp19d2-start-card">
       <h2 class="acdp19d2-title">CHILD DEVELOPMENT AND PEDAGOGY</h2>
-      <p class="acdp19d2-subtitle">APTET Previous Question Paper practice test - 3 with 6 subjects</p>
+      <p class="acdp19d2-subtitle">APTET Previous Question Paper Practice Test-3)</p>
       <div class="acdp19d2-meta">
         <span>&#128221; 30 Questions</span>
         <span>&#9200; Timed</span>
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="acdp19d2-examHeading"><strong>Subject: Child Development and Pedagogy</strong><br>APTET Previous Question Paper &ndash; 19 December 2025 (Second Shift)</div>
+      <div class="acdp19d2-examHeading"><strong>Subject: Child Development and Pedagogy</strong><br>APTET Previous Question Paper Practice Test-3</div>
 
       <div id="acdp19d2-qBlock" class="acdp19d2-qBlock"></div>
 
@@ -76,7 +76,7 @@
   <div id="acdp19d2-result" class="acdp19d2-screen">
     <div class="acdp19d2-card acdp19d2-result-card">
       <h2 class="acdp19d2-title">Quiz Completed!</h2>
-      <p class="acdp19d2-subtitle">APTET Previous Question Paper &ndash; 19 December 2025 (Second Shift)</p>
+      <p class="acdp19d2-subtitle">APTET Previous Question Paper Practice Test-3</p>
 
       <div class="acdp19d2-scoreCircleWrap">
         <div id="acdp19d2-scoreCircle" class="acdp19d2-scoreCircle">
@@ -107,9 +107,14 @@
       <p id="acdp19d2-lbStatus" class="acdp19d2-lbStatus"></p>
 
       <div class="acdp19d2-resultBtnRow">
-        <button id="acdp19d2-downloadBtn" class="acdp19d2-btn acdp19d2-btn-secondary">&#11015; Download Result (PDF)</button>
+        <button id="acdp19d2-responsesBtn" class="acdp19d2-btn acdp19d2-btn-secondary">&#128220; Show Responses</button>
         <button id="acdp19d2-leaderboardBtn" class="acdp19d2-btn acdp19d2-btn-secondary">&#127942; Leaderboard</button>
         <button id="acdp19d2-restartBtn" class="acdp19d2-btn acdp19d2-btn-primary">&#8635; Restart Quiz</button>
+      </div>
+
+      <div id="acdp19d2-responsesPanel" class="acdp19d2-responsesPanel" style="display:none;">
+        <h3 class="acdp19d2-lbTitle">&#128220; Your Responses</h3>
+        <div id="acdp19d2-responsesList" class="acdp19d2-responsesList"></div>
       </div>
 
       <div id="acdp19d2-leaderboardPanel" class="acdp19d2-leaderboardPanel" style="display:none;">
@@ -122,8 +127,6 @@
   </div>
 
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
   #acdp19d2-root, #acdp19d2-root * { box-sizing: border-box; }
@@ -475,6 +478,42 @@
     flex-shrink: 0;
   }
   #acdp19d2-root .acdp19d2-lbName { flex: 1; color: #e8ecf5; }
+  #acdp19d2-root .acdp19d2-responsesPanel {
+    margin-top: 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: left;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  #acdp19d2-root .acdp19d2-reviewQ {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  #acdp19d2-root .acdp19d2-reviewQ:last-child { margin-bottom: 0; }
+  #acdp19d2-root .acdp19d2-reviewQText { font-size: 14.5px; font-weight: 600; color: #f2f5ff; margin-bottom: 3px; line-height: 1.45; white-space: pre-line; }
+  #acdp19d2-root .acdp19d2-reviewQTextTe { font-size: 13.5px; color: #bcd2ff; margin-bottom: 10px; line-height: 1.45; white-space: pre-line; }
+  #acdp19d2-root .acdp19d2-reviewOpt {
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+  #acdp19d2-root .acdp19d2-reviewOpt:last-child { margin-bottom: 0; }
+  #acdp19d2-root .acdp19d2-reviewOpt .acdp19d2-optTe { display: block; font-size: 12.5px; color: #b7c8ee; margin-top: 2px; }
+  #acdp19d2-root .acdp19d2-reviewCorrect { border-color: #34d399; background: rgba(52,211,153,0.16); }
+  #acdp19d2-root .acdp19d2-reviewWrong { border-color: #f87171; background: rgba(248,113,113,0.16); }
+  #acdp19d2-root .acdp19d2-reviewTag { font-weight: 700; font-size: 12px; margin-left: 6px; color: #34d399; }
+  #acdp19d2-root .acdp19d2-reviewYourTag { color: #ffd166; }
+  #acdp19d2-root .acdp19d2-reviewSkipped { font-size: 12.5px; color: #ffd166; font-style: italic; margin-top: 4px; }
   #acdp19d2-root .acdp19d2-lbName small { color: #9fc0ff; }
   #acdp19d2-root .acdp19d2-lbScore { font-weight: 700; color: #9fe6c8; flex-shrink: 0; }
 
@@ -497,12 +536,12 @@
 
   // ---- CONFIGURATION ----
   var CONFIG = {
-    // Quiz unlocks at 6:00 PM IST on 22-09-2025 (IST = UTC+5:30, so this is 12:30 UTC).
-    OPEN_AT: '2025-09-22T12:30:00Z',
-    QUIZ_NAME: 'APTET CDP - 19 Dec 2025 Shift 2',
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: '3cdp',
     // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
-    GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbyzp6d0xpvMc6Bg3Xlf4X3XWDXSIaPSa0V7MFGrZMn1U4xDLZDacLAnl1HVB3NKC_jbJg/exec'
-};
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
 
   // ---- Basic content-protection (right-click / view-source / copy) ----
   document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
@@ -819,7 +858,9 @@
     correctText: document.getElementById('acdp19d2-correctText'),
     wrongText: document.getElementById('acdp19d2-wrongText'),
     remark: document.getElementById('acdp19d2-remark'),
-    downloadBtn: document.getElementById('acdp19d2-downloadBtn'),
+    responsesBtn: document.getElementById('acdp19d2-responsesBtn'),
+    responsesPanel: document.getElementById('acdp19d2-responsesPanel'),
+    responsesList: document.getElementById('acdp19d2-responsesList'),
     restartBtn: document.getElementById('acdp19d2-restartBtn'),
     leaderboardBtn: document.getElementById('acdp19d2-leaderboardBtn'),
     leaderboardPanel: document.getElementById('acdp19d2-leaderboardPanel'),
@@ -1019,6 +1060,7 @@
     el.remark.textContent = remarkMsg;
 
     el.leaderboardPanel.style.display = 'none';
+    el.responsesPanel.style.display = 'none';
     submitScoreToLeaderboard(correct, total, percent);
 
     showScreen('result');
@@ -1090,32 +1132,32 @@
     startTimer();
   }
 
-  function downloadResultPDF(){
-    if (!window.jspdf) { alert('PDF library not loaded. Please check your internet connection.'); return; }
-    var jsPDF = window.jspdf.jsPDF;
-    var doc = new jsPDF();
-    var total = state.questions.length;
-    var correct = state.score;
-    var wrong = total - correct;
-    var percent = Math.round((correct / total) * 100);
-
-    doc.setFontSize(16);
-    doc.text('APTET Previous Question Paper - 19 December 2025 (Second Shift)', 15, 20);
-    doc.setFontSize(13);
-    doc.text('Child Development and Pedagogy - Quiz Result', 15, 30);
-
-    doc.setFontSize(11);
-    doc.text('Date: ' + new Date().toLocaleString(), 15, 42);
-    doc.text('Total Questions: ' + total, 15, 50);
-    doc.text('Correct Answers: ' + correct, 15, 58);
-    doc.text('Wrong Answers: ' + wrong, 15, 66);
-    doc.text('Score: ' + correct + ' / ' + total + '  (' + percent + '%)', 15, 74);
-    doc.text('Time Taken: ' + fmtTime(state.elapsedSeconds), 15, 82);
-
-    doc.setFontSize(10);
-    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE', 15, 100);
-
-    doc.save('APTET_ChildDev_Pedagogy_19Dec2025_Shift2_Result.pdf');
+  function buildResponsesHtml(){
+    var html = '';
+    state.questions.forEach(function(q, idx){
+      var chosen = state.answers[idx];
+      var wasAnswered = (chosen !== undefined && chosen !== null);
+      html += '<div class="acdp19d2-reviewQ">';
+      html += '<div class="acdp19d2-reviewQText">Q' + (idx + 1) + '. ' + q.en + '</div>';
+      html += '<div class="acdp19d2-reviewQTextTe">' + q.te + '</div>';
+      q.opts.forEach(function(opt, i){
+        var isCorrect = q.correct.indexOf(i) !== -1;
+        var isChosen = wasAnswered && i === chosen;
+        var cls = 'acdp19d2-reviewOpt';
+        if (isCorrect) cls += ' acdp19d2-reviewCorrect';
+        if (isChosen && !isCorrect) cls += ' acdp19d2-reviewWrong';
+        var tag = '';
+        if (isCorrect) tag += ' <span class="acdp19d2-reviewTag">&#10003; Correct</span>';
+        if (isChosen) tag += ' <span class="acdp19d2-reviewTag acdp19d2-reviewYourTag">Your Answer</span>';
+        html += '<div class="' + cls + '">' + (i + 1) + '. ' + opt.en +
+                '<span class="acdp19d2-optTe">' + opt.te + '</span>' + tag + '</div>';
+      });
+      if (!wasAnswered) {
+        html += '<div class="acdp19d2-reviewSkipped">Not answered</div>';
+      }
+      html += '</div>';
+    });
+    return html;
   }
 
   el.startBtn.addEventListener('click', function(){
@@ -1137,13 +1179,23 @@
   el.restartBtn.addEventListener('click', function(){
     showScreen('start');
   });
-  el.downloadBtn.addEventListener('click', downloadResultPDF);
+  el.responsesBtn.addEventListener('click', function(){
+    var showing = el.responsesPanel.style.display !== 'none';
+    if (showing) {
+      el.responsesPanel.style.display = 'none';
+    } else {
+      el.responsesPanel.style.display = 'block';
+      el.leaderboardPanel.style.display = 'none';
+      el.responsesList.innerHTML = buildResponsesHtml();
+    }
+  });
   el.leaderboardBtn.addEventListener('click', function(){
     var showing = el.leaderboardPanel.style.display !== 'none';
     if (showing) {
       el.leaderboardPanel.style.display = 'none';
     } else {
       el.leaderboardPanel.style.display = 'block';
+      el.responsesPanel.style.display = 'none';
       loadLeaderboard();
     }
   });
