@@ -1,0 +1,991 @@
+<!-- ===================== CRB APTET QUIZ START (SHIFT 2) ===================== -->
+<div id="crb-aptet-ps-quiz-s2">
+<style>
+#crb-aptet-ps-quiz-s2{
+  --crbps-blue-dark:#0b1f3a;
+  --crbps-blue:#123a6b;
+  --crbps-blue-light:#1e5fa8;
+  --crbps-accent:#ffb703;
+  --crbps-green:#2e7d32;
+  --crbps-red:#c62828;
+  --crbps-teal:#009688;
+  --crbps-white:#ffffff;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  max-width: 700px;
+  margin: 20px auto;
+  background: linear-gradient(160deg, var(--crbps-blue-dark), var(--crbps-blue));
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  color: var(--crbps-white);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#crb-aptet-ps-quiz-s2 *{ box-sizing: border-box; }
+#crb-aptet-ps-quiz-s2{ -webkit-user-select:none; -moz-user-select:none; user-select:none; }
+#crb-aptet-ps-quiz-s2 input{ -webkit-user-select:text; -moz-user-select:text; user-select:text; }
+#crb-aptet-ps-quiz-s2 .crbps-header{
+  text-align:center;
+  padding: 18px 14px 10px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 2px solid var(--crbps-accent);
+}
+#crb-aptet-ps-quiz-s2 .crbps-header h1{
+  font-size: 20px;
+  margin: 0 0 4px;
+  color: var(--crbps-accent);
+  letter-spacing: 0.5px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-header h2{
+  font-size: 14px;
+  margin: 0 0 4px;
+  font-weight: 400;
+  color: #e0e8f5;
+}
+#crb-aptet-ps-quiz-s2 .crbps-header .crbps-sub{
+  font-size: 12px;
+  color: #b9c8e6;
+}
+#crb-aptet-ps-quiz-s2 .crbps-topbar{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 6px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-pill{
+  background: rgba(255,255,255,0.12);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+#crb-aptet-ps-quiz-s2 .crbps-timer{
+  color: var(--crbps-accent);
+  font-weight: 700;
+}
+#crb-aptet-ps-quiz-s2 .crbps-progress-wrap{
+  padding: 6px 16px 0;
+}
+#crb-aptet-ps-quiz-s2 .crbps-progress-bar{
+  width:100%;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+#crb-aptet-ps-quiz-s2 .crbps-progress-fill{
+  height: 100%;
+  background: linear-gradient(90deg, var(--crbps-accent), #ff8f00);
+  width: 0%;
+  transition: width 0.35s ease;
+}
+#crb-aptet-ps-quiz-s2 .crbps-body{
+  padding: 18px 16px 8px;
+  min-height: 260px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-qnum{
+  font-size: 13px;
+  color: var(--crbps-accent);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-qtext-en{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+#crb-aptet-ps-quiz-s2 .crbps-qtext-te{
+  font-size: 15px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  color: #dce6f7;
+}
+#crb-aptet-ps-quiz-s2 .crbps-options{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-option{
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.18);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14.5px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-option:hover{
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-1px);
+}
+#crb-aptet-ps-quiz-s2 .crbps-option.crbps-selected{
+  border-color: var(--crbps-teal);
+  background: rgba(0,150,136,0.35);
+}
+#crb-aptet-ps-quiz-s2 .crbps-option.crbps-correct{
+  border-color: var(--crbps-green);
+  background: rgba(46,125,50,0.55);
+}
+#crb-aptet-ps-quiz-s2 .crbps-option.crbps-wrong{
+  border-color: var(--crbps-red);
+  background: rgba(198,40,40,0.55);
+}
+#crb-aptet-ps-quiz-s2 .crbps-option.crbps-disabled{
+  cursor: default;
+  pointer-events: none;
+}
+#crb-aptet-ps-quiz-s2 .crbps-feedback{
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  min-height: 18px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-feedback.correct{ color: #8bffa1; }
+#crb-aptet-ps-quiz-s2 .crbps-feedback.wrong{ color: #ff9d9d; }
+#crb-aptet-ps-quiz-s2 .crbps-nav{
+  display:flex;
+  justify-content: space-between;
+  padding: 14px 16px 20px;
+  gap: 10px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-btn{
+  flex:1;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+#crb-aptet-ps-quiz-s2 .crbps-btn:active{ transform: scale(0.97); }
+#crb-aptet-ps-quiz-s2 .crbps-btn:disabled{ opacity:0.4; cursor:not-allowed; }
+#crb-aptet-ps-quiz-s2 .crbps-btn-prev{ background:#3a4a63; color:#fff; }
+#crb-aptet-ps-quiz-s2 .crbps-btn-next{ background: var(--crbps-blue-light); color:#fff; }
+#crb-aptet-ps-quiz-s2 .crbps-btn-submit{ background: linear-gradient(90deg,#ff8f00,#ffb703); color:#111; }
+#crb-aptet-ps-quiz-s2 .crbps-result{
+  text-align:center;
+  padding: 30px 20px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-result h2{
+  color: var(--crbps-accent);
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-score-circle{
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 6px solid var(--crbps-accent);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction: column;
+  margin: 10px auto 18px;
+  background: rgba(255,255,255,0.06);
+}
+#crb-aptet-ps-quiz-s2 .crbps-score-circle .big{ font-size: 30px; font-weight:800; }
+#crb-aptet-ps-quiz-s2 .crbps-score-circle .small{ font-size: 12px; color:#cdd8ec; }
+#crb-aptet-ps-quiz-s2 .crbps-result-msg{
+  font-size: 15px;
+  margin-bottom: 18px;
+  color:#e4ecf9;
+}
+#crb-aptet-ps-quiz-s2 .crbps-result-actions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#crb-aptet-ps-quiz-s2 .crbps-result-actions .crbps-btn{ flex: none; min-width: 150px; }
+#crb-aptet-ps-quiz-s2 .crbps-btn-pdf{ background:#4caf50; color:#fff; }
+#crb-aptet-ps-quiz-s2 .crbps-btn-restart{ background:#7b5cff; color:#fff; }
+#crb-aptet-ps-quiz-s2 .crbps-footer{
+  text-align:center;
+  font-size: 11.5px;
+  color: #9fb0d0;
+  padding: 10px 12px 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+#crb-aptet-ps-quiz-s2 .crbps-hidden{ display:none !important; }
+
+#crb-aptet-ps-quiz-s2 .crbps-submitTopBtn{ flex:none; width:auto; padding:6px 16px; font-size:12.5px; border-radius:20px; margin-left:auto; }
+#crb-aptet-ps-quiz-s2 .crbps-gate{ padding:22px 18px 26px; text-align:center; }
+#crb-aptet-ps-quiz-s2 .crbps-lockIcon{ font-size:38px; margin:4px 0 10px; }
+#crb-aptet-ps-quiz-s2 .crbps-lockMsg{ font-size:14.5px; color:#e4ecf9; line-height:1.5; margin:0 0 10px; }
+#crb-aptet-ps-quiz-s2 .crbps-lockCountdown{
+  font-size:16px; font-weight:800; color:var(--crbps-accent);
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16);
+  border-radius:10px; padding:10px;
+}
+#crb-aptet-ps-quiz-s2 .crbps-gateIntro{ font-size:13.5px; color:#b9c8e6; margin-bottom:16px; }
+#crb-aptet-ps-quiz-s2 .crbps-formRow{ margin-bottom:14px; text-align:left; }
+#crb-aptet-ps-quiz-s2 .crbps-label{ display:block; font-size:12.5px; color:#b9c8e6; margin-bottom:5px; }
+#crb-aptet-ps-quiz-s2 .crbps-req{ color:#ff9d9d; }
+#crb-aptet-ps-quiz-s2 .crbps-input{
+  width:100%; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.22);
+  color:var(--crbps-white); border-radius:10px; padding:11px 13px; font-size:16px; outline:none;
+  transition:border-color .15s ease;
+}
+#crb-aptet-ps-quiz-s2 .crbps-input:focus{ border-color:var(--crbps-blue-light); }
+#crb-aptet-ps-quiz-s2 .crbps-startError{ color:#ff9d9d; font-size:12.5px; margin:-4px 0 12px; }
+
+#crb-aptet-ps-quiz-s2 .crbps-lbStatus{ font-size:12px; color:#8bffa1; margin:4px 0 14px; min-height:15px; text-align:center; }
+#crb-aptet-ps-quiz-s2 .crbps-leaderboardPanel, #crb-aptet-ps-quiz-s2 .crbps-responsesPanel{
+  margin:12px 16px 18px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+  border-radius:12px; padding:14px; text-align:left; max-height:440px; overflow-y:auto;
+}
+#crb-aptet-ps-quiz-s2 .crbps-lbTitle{ margin:0 0 10px; font-size:14.5px; color:var(--crbps-accent); text-align:center; }
+#crb-aptet-ps-quiz-s2 .crbps-lbLoading{ text-align:center; font-size:12.5px; color:#b9c8e6; }
+#crb-aptet-ps-quiz-s2 .crbps-lbRow{ display:flex; align-items:center; gap:10px; padding:7px 4px; border-bottom:1px solid rgba(255,255,255,0.1); font-size:13px; }
+#crb-aptet-ps-quiz-s2 .crbps-lbRow:last-child{ border-bottom:none; }
+#crb-aptet-ps-quiz-s2 .crbps-lbRank{ width:22px; text-align:center; font-weight:800; color:var(--crbps-accent); flex-shrink:0; }
+#crb-aptet-ps-quiz-s2 .crbps-lbName{ flex:1; color:var(--crbps-white); }
+#crb-aptet-ps-quiz-s2 .crbps-lbName small{ color:#b9c8e6; }
+#crb-aptet-ps-quiz-s2 .crbps-lbScore{ font-weight:800; color:#8bffa1; flex-shrink:0; }
+
+#crb-aptet-ps-quiz-s2 .crbps-reviewQ{ background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:12px 14px; margin-bottom:12px; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewQ:last-child{ margin-bottom:0; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewQText{ font-size:14px; font-weight:600; color:#fff; margin-bottom:3px; line-height:1.45; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewQTextTe{ font-size:13px; color:#dce6f7; margin-bottom:10px; line-height:1.45; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewOpt{ background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.16); border-radius:8px; padding:8px 12px; margin-bottom:6px; font-size:13px; line-height:1.4; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewOpt:last-child{ margin-bottom:0; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewCorrect{ border-color:var(--crbps-green); background:rgba(46,125,50,0.35); }
+#crb-aptet-ps-quiz-s2 .crbps-reviewWrong{ border-color:var(--crbps-red); background:rgba(198,40,40,0.35); }
+#crb-aptet-ps-quiz-s2 .crbps-reviewTag{ font-weight:700; font-size:11.5px; margin-left:6px; color:#8bffa1; }
+#crb-aptet-ps-quiz-s2 .crbps-reviewYourTag{ color:var(--crbps-accent); }
+#crb-aptet-ps-quiz-s2 .crbps-reviewSkipped{ font-size:12px; color:var(--crbps-accent); font-style:italic; margin-top:4px; }
+@media (max-width:600px){
+  #crb-aptet-ps-quiz-s2{ margin:10px auto; border-radius:12px; max-width:100%; }
+}
+@media (max-width:480px){
+  #crb-aptet-ps-quiz-s2 .crbps-header{ padding:14px 10px 8px; }
+  #crb-aptet-ps-quiz-s2 .crbps-header h1{ font-size:16.5px; }
+  #crb-aptet-ps-quiz-s2 .crbps-header h2{ font-size:12.5px; }
+  #crb-aptet-ps-quiz-s2 .crbps-topbar{ padding:8px 10px; font-size:12px; }
+  #crb-aptet-ps-quiz-s2 .crbps-pill{ padding:4px 8px; }
+  #crb-aptet-ps-quiz-s2 .crbps-body{ padding:14px 12px 6px; min-height:auto; }
+  #crb-aptet-ps-quiz-s2 .crbps-qtext-en{ font-size:14.5px; }
+  #crb-aptet-ps-quiz-s2 .crbps-qtext-te{ font-size:13.5px; }
+  #crb-aptet-ps-quiz-s2 .crbps-option{ font-size:13.5px; padding:10px 12px; }
+  #crb-aptet-ps-quiz-s2 .crbps-nav{ padding:12px 12px 16px; gap:8px; }
+  #crb-aptet-ps-quiz-s2 .crbps-btn{ padding:13px 8px; font-size:13.5px; min-height:46px; }
+  #crb-aptet-ps-quiz-s2 .crbps-result{ padding:22px 14px; }
+  #crb-aptet-ps-quiz-s2 .crbps-score-circle{ width:110px; height:110px; }
+  #crb-aptet-ps-quiz-s2 .crbps-score-circle .big{ font-size:24px; }
+  #crb-aptet-ps-quiz-s2 .crbps-result-actions{ flex-direction:column; }
+  #crb-aptet-ps-quiz-s2 .crbps-result-actions .crbps-btn{ width:100%; min-width:0; }
+  #crb-aptet-ps-quiz-s2 .crbps-gate{ padding:18px 14px 22px; }
+  #crb-aptet-ps-quiz-s2 .crbps-leaderboardPanel, #crb-aptet-ps-quiz-s2 .crbps-responsesPanel{ margin:10px 10px 14px; padding:12px; }
+}
+</style>
+
+<div class="crbps-header">
+  <h1>APTET Previous Question Paper</h1>
+  <h2>Physical Sciences &mdash; 19th December 2025 (Second Shift)</h2>
+  <div class="crbps-sub">Content &amp; Methodology | 20 Questions</div>
+</div>
+
+<div id="crbps-locked-s2" class="crbps-gate">
+  <div class="crbps-lockIcon">🔒</div>
+  <p class="crbps-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
+  <p class="crbps-lockCountdown" id="crbps-countdown-s2">Opens in --:--:--</p>
+</div>
+
+<div id="crbps-startgate-s2" class="crbps-gate crbps-hidden">
+  <p class="crbps-gateIntro">20 Questions &nbsp;|&nbsp; Instant Feedback &nbsp;|&nbsp; Live Score &amp; Timer</p>
+  <div class="crbps-formRow">
+    <label class="crbps-label" for="crbps-name-s2">Your Name <span class="crbps-req">*</span></label>
+    <input type="text" id="crbps-name-s2" class="crbps-input" placeholder="Enter your full name" autocomplete="off">
+  </div>
+  <div class="crbps-formRow">
+    <label class="crbps-label" for="crbps-district-s2">District <span class="crbps-req">*</span></label>
+    <input type="text" id="crbps-district-s2" class="crbps-input" placeholder="Enter your district" autocomplete="off">
+  </div>
+  <p id="crbps-starterr-s2" class="crbps-startError crbps-hidden">Please enter your name and district to start the quiz.</p>
+  <button class="crbps-btn crbps-btn-submit" id="crbps-startbtn-s2" style="width:100%;">🚀 Start Quiz</button>
+</div>
+
+<div id="crbps-mainwrap-s2" class="crbps-hidden">
+<div class="crbps-topbar">
+  <div class="crbps-pill">Q <span id="crbps-current-q-s2">1</span>/<span id="crbps-total-q-s2">20</span></div>
+  <div class="crbps-pill">Score: <span id="crbps-live-score-s2">0</span></div>
+  <div class="crbps-pill crbps-timer">⏱ <span id="crbps-timer-s2">00:00</span></div>
+  <button class="crbps-btn crbps-btn-submit crbps-submitTopBtn crbps-hidden" id="crbps-submittop-btn-s2">Submit ✅</button>
+</div>
+
+<div class="crbps-progress-wrap">
+  <div class="crbps-progress-bar"><div class="crbps-progress-fill" id="crbps-progress-fill-s2"></div></div>
+</div>
+
+<div id="crbps-quiz-screen-s2">
+  <div class="crbps-body">
+    <div class="crbps-qnum" id="crbps-qnum-s2">Question 1</div>
+    <div class="crbps-qtext-en" id="crbps-qtext-en-s2"></div>
+    <div class="crbps-qtext-te" id="crbps-qtext-te-s2"></div>
+    <div class="crbps-options" id="crbps-options-s2"></div>
+    <div class="crbps-feedback" id="crbps-feedback-s2"></div>
+  </div>
+  <div class="crbps-nav">
+    <button class="crbps-btn crbps-btn-prev" id="crbps-prev-btn-s2">⬅ Previous</button>
+    <button class="crbps-btn crbps-btn-next" id="crbps-next-btn-s2">Next ➡</button>
+  </div>
+</div>
+
+<div id="crbps-result-screen-s2" class="crbps-result crbps-hidden">
+  <h2>Quiz Completed!</h2>
+  <div class="crbps-score-circle">
+    <div class="big" id="crbps-final-score-s2">0/20</div>
+    <div class="small">SCORE</div>
+  </div>
+  <div class="crbps-result-msg" id="crbps-result-msg-s2"></div>
+  <p id="crbps-lbstatus-s2" class="crbps-lbStatus"></p>
+  <div class="crbps-result-actions">
+    <button class="crbps-btn crbps-btn-restart" id="crbps-restart-btn-s2">🔄 Restart Quiz</button>
+    <button class="crbps-btn crbps-btn-pdf" id="crbps-responses-btn-s2">📄 Show Responses</button>
+    <button class="crbps-btn crbps-btn-pdf" id="crbps-leaderboard-btn-s2">🏆 Leaderboard</button>
+  </div>
+  <div class="crbps-responsesPanel crbps-hidden" id="crbps-responsespanel-s2">
+    <h3 class="crbps-lbTitle">📄 Your Responses</h3>
+    <div id="crbps-responseslist-s2"></div>
+  </div>
+  <div class="crbps-leaderboardPanel crbps-hidden" id="crbps-leaderboardpanel-s2">
+    <h3 class="crbps-lbTitle">🏆 Top Scores</h3>
+    <div id="crbps-lblist-s2" class="crbps-lbLoading">Loading...</div>
+  </div>
+</div>
+</div>
+
+<div class="crbps-footer">
+  C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE &nbsp;|&nbsp; tenthquiz.blogspot.com
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: 'APTET Physical Science - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  var crbpsBank = [
+    {
+      en: "A train starting from rest attains a velocity of 90 km.h\u207B\u00B9 in 5 minutes. Assuming that the acceleration of the train is uniform, the acceleration of train is ________",
+      te: "ఒక రైలు నిశ్చల స్థితి నుంచి బయలుదేరిన 5 నిమిషములలో 90 కి.మీ.గం\u207B\u00B9 వేగాన్ని అందుకుంది. రైలు త్వరణం ఏకరీతిగా ఉందని భావిస్తే, ఆ రైలు త్వరణం ..........",
+      options: [
+        {en:"0 m.s\u207B\u00B2", te:"0 m.s\u207B\u00B2"},
+        {en:"1/12 m.s\u207B\u00B2", te:"1/12 m.s\u207B\u00B2"},
+        {en:"1/15 m.s\u207B\u00B2", te:"1/15 m.s\u207B\u00B2"},
+        {en:"7.3 m.s\u207B\u00B2", te:"7.3 m.s\u207B\u00B2"}
+      ],
+      answer: 1
+    },
+    {
+      en: "A constant force of 10 N acts on an object of mass 5 kg for a duration of 4s. Its speed increases from 2 m.s\u207B\u00B9 to x m.s\u207B\u00B9. The value of x is",
+      te: "5 కి.గ్రా. ద్రవ్యరాశి గల వస్తువుపై 4 సెకనుల పాటు 10 న్యూటన్ల స్థిర బలం పని చేస్తుంది. అందువల్ల ఆ వస్తువు వేగం 2 మీ.సె\u207B\u00B9 నుండి x మీ.సె\u207B\u00B9 కు పెరిగింది. x విలువ",
+      options: [
+        {en:"10", te:"10"},
+        {en:"13", te:"13"},
+        {en:"6.25", te:"6.25"},
+        {en:"0", te:"0"}
+      ],
+      answer: 0
+    },
+    {
+      en: "The volume of 50 g of a sealed packet substance is 20 cm\u00B3. If the substance is sink in water, the mass of water displaced is",
+      te: "50 గ్రా సీల్డ్ పాకెట్ పదార్థం యొక్క ఘనపరిమాణం 20 సెం.మీ\u00B3. అయితే ఈ పదార్థం నీటిలో మునిగినపుడు, పదార్థం చేత తొలగించబడిన నీటి ద్రవ్యరాశి",
+      options: [
+        {en:"30 g", te:"30 g"},
+        {en:"2.5 g", te:"2.5 g"},
+        {en:"20 g", te:"20 g"},
+        {en:"50 g", te:"50 g"}
+      ],
+      answer: 2
+    },
+    {
+      en: "Work required to be done to stop a bike of mass 100 kg moving with a velocity 40 m.s\u207B\u00B9 is",
+      te: "40 మీ.సె\u207B\u00B9 వేగంతో కదులుతున్న 100 కి.గ్రా ల బైక్‌ను ఆపుటకు చేయవలసిన పని",
+      options: [
+        {en:"4 kJ", te:"4 kJ"},
+        {en:"40 kJ", te:"40 kJ"},
+        {en:"80 kJ", te:"80 kJ"},
+        {en:"2.5 kJ", te:"2.5 kJ"}
+      ],
+      answer: 2
+    },
+    {
+      en: "To hear distinct echoes, the minimum distance of the obstacle from the source of sound in air will be ____ (speed of sound at 22\u00B0C is 344 m.s\u207B\u00B9 in air).",
+      te: "స్పష్టమైన ప్రతిధ్వనులు వినాలంటే, గాలిలో ధ్వని జనకానికి, అడ్డుగోడకు మధ్య ఉండాల్సిన కనీస దూరం ..... (గాలిలో 22\u00B0C వద్ద ధ్వని వేగం 344 మీ.సె\u207B\u00B9)",
+      options: [
+        {en:"34.4 m", te:"34.4 m"},
+        {en:"344 m", te:"344 m"},
+        {en:"17.2 m", te:"17.2 m"},
+        {en:"172 m", te:"172 m"}
+      ],
+      answer: 2
+    },
+    {
+      en: "The incorrect statement about evaporation is",
+      te: "భాష్పీభవనానికి సంబంధించి సరికాని వాక్యము",
+      options: [
+        {en:"With the increase in temperature, the rate of evaporation increases.", te:"ఉష్ణోగ్రతలో పెరుగుదలతోపాటు భాష్పీభవన రేటు పెరుగును."},
+        {en:"If the amount of water vapour in air is already high, the rate of evaporation increases.", te:"గాలిలోని నీటి ఆవిరి పరిమాణం ఇది వరకే ఎక్కువగా ఉంటే భాష్పీభవన రేటు పెరుగుతుంది."},
+        {en:"Evaporation is a surface phenomenon.", te:"భాష్పీభవనం ఉపరితల దృగ్విషయం."},
+        {en:"The rate of evaporation depends on the wind speed.", te:"భాష్పీభవన రేటు గాలి వేగంపై ఆధారపడుతుంది."}
+      ],
+      answer: 1
+    },
+    {
+      en: "The distance between object and image of a plane mirror is 20 cm. Then the object distance is",
+      te: "వస్తువు మరియు సమతల దర్పణపు ప్రతిబింబముల మధ్య దూరము 20 సెం.మీ. అయిన వస్తు దూరము",
+      options: [
+        {en:"0.1 m", te:"0.1 m"},
+        {en:"40 cm", te:"40 cm"},
+        {en:"0.2 m", te:"0.2 m"},
+        {en:"10 mm", te:"10 mm"}
+      ],
+      answer: 0
+    },
+    {
+      en: "An electric bulb draws a current of 1/6 A from a 220 V source. The resistance of the bulb filament is",
+      te: "ఒక బల్బు 220 V జనకం నుండి 1/6A విద్యుత్ ప్రవాహాన్ని గ్రహించింది. ఆ బల్బు ఫిలమెంట్ యొక్క నిరోధం",
+      options: [
+        {en:"36.67 \u03A9", te:"36.67 \u03A9"},
+        {en:"3667 \u03A9", te:"3667 \u03A9"},
+        {en:"1320 \u03A9", te:"1320 \u03A9"},
+        {en:"13.20 \u03A9", te:"13.20 \u03A9"}
+      ],
+      answer: 2
+    },
+    {
+      en: "Roasting : Sulphide ores : : Calcination : ________",
+      te: "భర్జనము : సల్ఫైడ్ ధాతువులు :: భస్మీకరణము : ...........",
+      options: [
+        {en:"Oxide ores", te:"ఆక్సైడ్ ధాతువులు"},
+        {en:"Carbonate ores", te:"కార్బొనేట్ ధాతువులు"},
+        {en:"Chloride ores", te:"క్లోరైడ్ ధాతువులు"},
+        {en:"Sulphate ores", te:"సల్ఫేట్ ధాతువులు"}
+      ],
+      answer: 1
+    },
+    {
+      en: "Formula of functional group in Ethylalcohol",
+      te: "'ఇథైల్ ఆల్కహాల్'లో ఉన్న ప్రమేయ సముహం ఫార్ములా",
+      options: [
+        {en:"=O (carbonyl, C=O)", te:"=O (కార్బొనైల్, C=O)"},
+        {en:"-OH", te:"-OH"},
+        {en:"-CHO", te:"-CHO"},
+        {en:"-COOH", te:"-COOH"}
+      ],
+      answer: 1
+    },
+    {
+      en: "The melting point of ice in Kelvin scale is",
+      te: "మంచు ద్రవీభవన స్థానం కెల్విన్ స్కేలులో",
+      options: [
+        {en:"373 K", te:"373 K"},
+        {en:"\u2212273 K", te:"\u2212273 K"},
+        {en:"273 K", te:"273 K"},
+        {en:"\u2212173 K", te:"\u2212173 K"}
+      ],
+      answer: 2
+    },
+    {
+      en: "The atomic mass number of an element 'X' is 23. The number of nucleons present in that element is",
+      te: "'X' అనే మూలక పరమాణు ద్రవ్యరాశి సంఖ్య 23. అందులోని న్యూక్లియాన్ల (కేంద్రక కణాల) సంఖ్య",
+      options: [
+        {en:"12", te:"12"},
+        {en:"11", te:"11"},
+        {en:"32", te:"32"},
+        {en:"23", te:"23"}
+      ],
+      answer: 3
+    },
+    {
+      en: "The number of double bonds present in carbon dioxide molecule is",
+      te: "కార్బన్ డయాక్సైడ్ అణువులో గల ద్విబంధాల సంఖ్య",
+      options: [
+        {en:"1", te:"1"},
+        {en:"2", te:"2"},
+        {en:"3", te:"3"},
+        {en:"0", te:"0"}
+      ],
+      answer: 1
+    },
+    {
+      en: "Assertion (A): Electrical wires have plastic covering. Reason (R): Plastics are good conductors of heat and electricity. Choose the correct option.",
+      te: "భావన (A): విద్యుత్ తీగలు ప్లాస్టిక్ తొడుగులను కలిగి ఉంటాయి. కారణం (R): ప్లాస్టిక్‌లు ఉత్తమ ఉష్ణ మరియు విద్యుత్ వాహకతను కలిగి ఉంటాయి. క్రింది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.",
+      options: [
+        {en:"Both A and R are true, R is the correct explanation of A", te:"A మరియు R లు సత్యం, R అనేది A కి సరియైన వివరణ"},
+        {en:"Both A and R are true, R is the incorrect explanation of A", te:"A మరియు R లు సత్యం, R అనేది A కి సరియైన వివరణ కాదు"},
+        {en:"A is true and R is false", te:"A సత్యం మరియు R అసత్యం"},
+        {en:"Both A and R are false", te:"A, R లు రెండూ అసత్యము"}
+      ],
+      answer: 2
+    },
+    {
+      en: "On slowly heating of water in a glass or metal container, we observe some tiny bubbles inside the water. This activity indicates",
+      te: "ఒక గాజు లేదా లోహపు పాత్రలో నీటిని నెమ్మదిగా వేడిచేయు కృత్యంలో, మనం పాత్ర లోపల చిన్న చిన్న గాలి బుడగలను గమనించవచ్చు. ఈ కృత్యం సూచించునది",
+      options: [
+        {en:"air exerts pressure", te:"గాలి పీడనమును కలుగజేస్తుంది."},
+        {en:"air dissolved in water", te:"గాలి నీటిలో కరిగి ఉంది."},
+        {en:"composition of air and water are same", te:"గాలి మరియు నీటి యొక్క సంఘటనాలు ఒకే విధంగా ఉంటాయి."},
+        {en:"composition of air varies from place to place", te:"గాలి సంఘటనం ప్రాంతాలను బట్టి మారుతూ ఉంటుంది."}
+      ],
+      answer: 1
+    },
+    {
+      en: "Assertion (A): A farmer treats the soil of his field with compost, if the soil is basic. Reason (R): Excessive use of chemical fertilizers makes the soil basic. Choose the correct option.",
+      te: "భావన (A): ఒక రైతు క్షారయుతంగా ఉన్న తన వ్యవసాయక్షేత్రంలోని నేలకు కంపోస్ట్‌తో చికిత్స చేశాడు. కారణము (R): మితిమీరిన రసాయనిక ఎరువులు వాడడం వల్ల నేల క్షారయుత మవుతుంది. క్రింది ప్రవచనాలను చదివి, సరియైన ఐచ్చికమును ఎంచుకోండి.",
+      options: [
+        {en:"A and R are correct, R is correct explanation of A", te:"A మరియు R లు సత్యము, R అనేది A కి సరియైన వివరణ"},
+        {en:"A and R are correct, R is incorrect explanation of A", te:"A మరియు R లు సత్యము, R అనేది A కి సరియైన వివరణ కాదు"},
+        {en:"A is correct and R is incorrect", te:"A సత్యము మరియు R అసత్యము"},
+        {en:"A is incorrect and R is correct", te:"A అసత్యము మరియు R సత్యము"}
+      ],
+      answer: 2
+    },
+    {
+      en: 'The scientist who opposed "1400 years old Geocentric theory of universe proposed by Ptolemy"',
+      te: '"1400 సం॥గా ప్రచారంలో ఉన్న, టోలెమీ యొక్క భూకేంద్రక సిద్ధాంతమును" వ్యతిరేకించిన శాస్త్రవేత్త ఎవరు?',
+      options: [
+        {en:"Issac Newton", te:"ఐజాక్ న్యూటన్"},
+        {en:"Galileo", te:"గెలీలియో"},
+        {en:"Nicholas Copernicus", te:"నికోలస్ కోపెర్నికస్"},
+        {en:"Aristotle", te:"అరిస్టాటిల్"}
+      ],
+      answer: 2
+    },
+    {
+      en: 'In which method of teaching "Instructional card" is made and used?',
+      te: 'ఏ బోధనా పద్ధతిలో, సూచన కార్డును తయారుచేసి, ఉపయోగిస్తారు?',
+      options: [
+        {en:"Project method", te:"ప్రాజెక్టు పద్ధతి"},
+        {en:"Laboratory method", te:"ప్రయోగశాల పద్ధతి"},
+        {en:"Heuristic method", te:"అన్వేషణా పద్ధతి"},
+        {en:"Lecture method", te:"ఉపన్యాస పద్ధతి"}
+      ],
+      answer: 1
+    },
+    {
+      en: 'Which of the following method is a "collective activity of a group of teachers"?',
+      te: 'క్రిందివానిలో ఒకటి "ఉపాధ్యాయుల సమూహము యొక్క సమిష్టి బాధ్యత" తో కూడిన బోధన',
+      options: [
+        {en:"Micro teaching", te:"సూక్ష్మబోధన"},
+        {en:"Team teaching", te:"బృందబోధన"},
+        {en:"Self learning", te:"స్వీయ అధ్యయనం"},
+        {en:"Programmed learning", te:"కార్యక్రమయుత బోధన"}
+      ],
+      answer: 1
+    },
+    {
+      en: "Who is the President of School science club?",
+      te: "పాఠశాలల్లో సైన్సుక్లబ్ అధ్యక్షులుగా ఎవరుంటారు?",
+      options: [
+        {en:"Dist. collector", te:"జిల్లా కలెక్టరు"},
+        {en:"Science teacher", te:"సైన్సు ఉపాధ్యాయుడు"},
+        {en:"Headmaster of the school", te:"స్కూల్ ప్రధానోపాధ్యాయుడు"},
+        {en:"Local leader", te:"స్థానిక నాయకుడు"}
+      ],
+      answer: 2
+    }
+  ];
+
+  var quizData = [];
+  var currentIndex = 0;
+  var score = 0;
+  var answered = [];
+  var timerInterval = null;
+  var lockInterval = null;
+  var seconds = 0;
+  var studentName = '';
+  var studentDistrict = '';
+
+  var qnumEl = document.getElementById('crbps-qnum-s2');
+  var qtextEnEl = document.getElementById('crbps-qtext-en-s2');
+  var qtextTeEl = document.getElementById('crbps-qtext-te-s2');
+  var optionsEl = document.getElementById('crbps-options-s2');
+  var feedbackEl = document.getElementById('crbps-feedback-s2');
+  var prevBtn = document.getElementById('crbps-prev-btn-s2');
+  var nextBtn = document.getElementById('crbps-next-btn-s2');
+  var submitTopBtn = document.getElementById('crbps-submittop-btn-s2');
+  var currentQEl = document.getElementById('crbps-current-q-s2');
+  var totalQEl = document.getElementById('crbps-total-q-s2');
+  var liveScoreEl = document.getElementById('crbps-live-score-s2');
+  var progressFill = document.getElementById('crbps-progress-fill-s2');
+  var timerEl = document.getElementById('crbps-timer-s2');
+  var quizScreen = document.getElementById('crbps-quiz-screen-s2');
+  var resultScreen = document.getElementById('crbps-result-screen-s2');
+  var finalScoreEl = document.getElementById('crbps-final-score-s2');
+  var resultMsgEl = document.getElementById('crbps-result-msg-s2');
+  var restartBtn = document.getElementById('crbps-restart-btn-s2');
+
+  var lockedGate = document.getElementById('crbps-locked-s2');
+  var startGate = document.getElementById('crbps-startgate-s2');
+  var mainWrap = document.getElementById('crbps-mainwrap-s2');
+  var countdownEl = document.getElementById('crbps-countdown-s2');
+  var nameInput = document.getElementById('crbps-name-s2');
+  var districtInput = document.getElementById('crbps-district-s2');
+  var startError = document.getElementById('crbps-starterr-s2');
+  var startBtn = document.getElementById('crbps-startbtn-s2');
+  var lbStatusEl = document.getElementById('crbps-lbstatus-s2');
+  var responsesBtn = document.getElementById('crbps-responses-btn-s2');
+  var responsesPanel = document.getElementById('crbps-responsespanel-s2');
+  var responsesList = document.getElementById('crbps-responseslist-s2');
+  var leaderboardBtn = document.getElementById('crbps-leaderboard-btn-s2');
+  var leaderboardPanel = document.getElementById('crbps-leaderboardpanel-s2');
+  var lbList = document.getElementById('crbps-lblist-s2');
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (lockInterval) clearInterval(lockInterval);
+      lockedGate.classList.add('crbps-hidden');
+      startGate.classList.remove('crbps-hidden');
+      return;
+    }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    countdownEl.textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      lockedGate.classList.add('crbps-hidden');
+      startGate.classList.remove('crbps-hidden');
+    } else {
+      startGate.classList.add('crbps-hidden');
+      lockedGate.classList.remove('crbps-hidden');
+      updateCountdown();
+      lockInterval = setInterval(updateCountdown, 1000);
+    }
+  }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildQuiz(){
+    var picked = shuffle(crbpsBank).slice(0, 20);
+    quizData = picked.map(function(q){
+      var idxArr = [0,1,2,3];
+      var shuffledIdx = shuffle(idxArr);
+      var newOptions = shuffledIdx.map(function(i){ return q.options[i]; });
+      var newAnswer = shuffledIdx.indexOf(q.answer);
+      return {
+        en: q.en,
+        te: q.te,
+        options: newOptions,
+        answer: newAnswer
+      };
+    });
+    answered = new Array(quizData.length).fill(null);
+    currentIndex = 0;
+    score = 0;
+    totalQEl.textContent = quizData.length;
+  }
+
+  function startTimer(){
+    seconds = 0;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(function(){
+      seconds++;
+      var m = Math.floor(seconds / 60);
+      var s = seconds % 60;
+      timerEl.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    }, 1000);
+  }
+
+  function stopTimer(){
+    clearInterval(timerInterval);
+  }
+
+  function renderQuestion(){
+    var q = quizData[currentIndex];
+    qnumEl.textContent = 'Question ' + (currentIndex + 1);
+    qtextEnEl.textContent = q.en;
+    qtextTeEl.textContent = q.te;
+    optionsEl.innerHTML = '';
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'crbps-feedback';
+
+    q.options.forEach(function(opt, idx){
+      var div = document.createElement('div');
+      div.className = 'crbps-option';
+      div.innerHTML = '<strong>' + (idx+1) + '.</strong> ' + opt.en + ' &nbsp;/&nbsp; ' + opt.te;
+      div.setAttribute('data-idx', idx);
+
+      var userAns = answered[currentIndex];
+      if (userAns !== null){
+        div.classList.add('crbps-disabled');
+        if (idx === q.answer){
+          div.classList.add('crbps-correct');
+        } else if (idx === userAns && userAns !== q.answer){
+          div.classList.add('crbps-wrong');
+        }
+      }
+
+      div.addEventListener('click', function(){
+        if (answered[currentIndex] !== null) return;
+        selectOption(idx);
+      });
+
+      optionsEl.appendChild(div);
+    });
+
+    if (answered[currentIndex] !== null){
+      var wasCorrect = answered[currentIndex] === q.answer;
+      feedbackEl.textContent = wasCorrect ? '✔ Correct!' : '✘ Incorrect. Correct answer highlighted in green.';
+      feedbackEl.className = 'crbps-feedback ' + (wasCorrect ? 'correct' : 'wrong');
+    }
+
+    currentQEl.textContent = currentIndex + 1;
+    liveScoreEl.textContent = score;
+    var pct = ((currentIndex) / quizData.length) * 100;
+    progressFill.style.width = pct + '%';
+
+    prevBtn.disabled = currentIndex === 0;
+
+    if (currentIndex === quizData.length - 1){
+      nextBtn.classList.add('crbps-hidden');
+      submitTopBtn.classList.remove('crbps-hidden');
+    } else {
+      nextBtn.classList.remove('crbps-hidden');
+      submitTopBtn.classList.add('crbps-hidden');
+    }
+  }
+
+  function selectOption(idx){
+    var q = quizData[currentIndex];
+    answered[currentIndex] = idx;
+    if (idx === q.answer){
+      score++;
+    }
+    renderQuestion();
+  }
+
+  function goNext(){
+    if (currentIndex < quizData.length - 1){
+      currentIndex++;
+      renderQuestion();
+    }
+  }
+
+  function goPrev(){
+    if (currentIndex > 0){
+      currentIndex--;
+      renderQuestion();
+    }
+  }
+
+  function finishQuiz(){
+    stopTimer();
+    progressFill.style.width = '100%';
+    quizScreen.classList.add('crbps-hidden');
+    resultScreen.classList.remove('crbps-hidden');
+    finalScoreEl.textContent = score + '/' + quizData.length;
+
+    var pct = Math.round((score / quizData.length) * 100);
+    var msg = '';
+    if (pct >= 80) msg = 'Excellent! Outstanding performance. 🎉';
+    else if (pct >= 60) msg = 'Good job! Keep practicing to improve further. 👍';
+    else if (pct >= 40) msg = 'Fair attempt. Revise the concepts and try again. 📘';
+    else msg = 'Keep practicing. You will do better next time. 💪';
+
+    var m = Math.floor(seconds / 60);
+    var s = seconds % 60;
+    var timeStr = (m < 10 ? '0'+m : m) + ':' + (s < 10 ? '0'+s : s);
+    resultMsgEl.innerHTML = msg + '<br>Percentage: ' + pct + '%' +
+      '<br>Time Taken: ' + timeStr;
+
+    responsesPanel.classList.add('crbps-hidden');
+    leaderboardPanel.classList.add('crbps-hidden');
+    submitScoreToLeaderboard(score, quizData.length, pct, timeStr);
+  }
+
+  function restartQuiz(){
+    resultScreen.classList.add('crbps-hidden');
+    mainWrap.classList.add('crbps-hidden');
+    startGate.classList.remove('crbps-hidden');
+  }
+
+  function buildResponsesHtml(){
+    var html = '';
+    quizData.forEach(function(q, i){
+      var userIdx = answered[i];
+      var wasAnswered = userIdx !== null && userIdx !== undefined;
+      html += '<div class="crbps-reviewQ">';
+      html += '<div class="crbps-reviewQText">Q' + (i+1) + '. ' + q.en + '</div>';
+      html += '<div class="crbps-reviewQTextTe">' + q.te + '</div>';
+      q.options.forEach(function(opt, idx){
+        var isCorrect = idx === q.answer;
+        var isChosen = wasAnswered && idx === userIdx;
+        var cls = 'crbps-reviewOpt';
+        if (isCorrect) cls += ' crbps-reviewCorrect';
+        if (isChosen && !isCorrect) cls += ' crbps-reviewWrong';
+        var tag = '';
+        if (isCorrect) tag += ' <span class="crbps-reviewTag">✔ Correct</span>';
+        if (isChosen) tag += ' <span class="crbps-reviewTag crbps-reviewYourTag">Your Answer</span>';
+        html += '<div class="' + cls + '">' + (idx+1) + '. ' + opt.en + ' &nbsp;/&nbsp; ' + opt.te + tag + '</div>';
+      });
+      if (!wasAnswered) { html += '<div class="crbps-reviewSkipped">Not answered</div>'; }
+      html += '</div>';
+    });
+    return html;
+  }
+
+  function submitScoreToLeaderboard(correctScore, total, pct, timeStr){
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbStatusEl.textContent = '';
+      return;
+    }
+    lbStatusEl.textContent = 'Saving your score...';
+    var payload = {
+      name: studentName,
+      district: studentDistrict,
+      quiz: CONFIG.QUIZ_NAME,
+      score: correctScore,
+      total: total,
+      percent: pct,
+      timeTaken: timeStr
+    };
+    fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).then(function(){
+      lbStatusEl.textContent = '✅ Score saved to leaderboard.';
+    }).catch(function(){
+      lbStatusEl.textContent = '';
+    });
+  }
+
+  function loadLeaderboard(){
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbList.innerHTML = '<p class="crbps-lbLoading">Leaderboard is not set up yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="crbps-lbLoading">Loading...</p>';
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=leaderboard')
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){
+          lbList.innerHTML = '<p class="crbps-lbLoading">No scores yet. Be the first!</p>';
+          return;
+        }
+        rows.sort(function(a,b){ return b.score - a.score; });
+        var html = '';
+        rows.slice(0, 20).forEach(function(r, i){
+          html += '<div class="crbps-lbRow"><span class="crbps-lbRank">' + (i+1) + '</span>' +
+                  '<span class="crbps-lbName">' + escapeHtml(r.name) + '<br><small>' + escapeHtml(r.district) + '</small></span>' +
+                  '<span class="crbps-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + '</span></div>';
+        });
+        lbList.innerHTML = html;
+      })
+      .catch(function(){
+        lbList.innerHTML = '<p class="crbps-lbLoading">Could not load leaderboard right now.</p>';
+      });
+  }
+
+  function initQuiz(){
+    try {
+      prevBtn.addEventListener('click', goPrev);
+      nextBtn.addEventListener('click', goNext);
+      submitTopBtn.addEventListener('click', function(){
+        if (answered[currentIndex] !== null) { finishQuiz(); }
+      });
+      restartBtn.addEventListener('click', restartQuiz);
+
+      startBtn.addEventListener('click', function(){
+        var name = nameInput.value.trim();
+        var district = districtInput.value.trim();
+        if (!name || !district){
+          startError.classList.remove('crbps-hidden');
+          if (!name){ nameInput.focus(); } else { districtInput.focus(); }
+          return;
+        }
+        startError.classList.add('crbps-hidden');
+        studentName = name;
+        studentDistrict = district;
+        startGate.classList.add('crbps-hidden');
+        mainWrap.classList.remove('crbps-hidden');
+        resultScreen.classList.add('crbps-hidden');
+        quizScreen.classList.remove('crbps-hidden');
+        buildQuiz();
+        renderQuestion();
+        startTimer();
+      });
+
+      responsesBtn.addEventListener('click', function(){
+        var showing = !responsesPanel.classList.contains('crbps-hidden');
+        if (showing){
+          responsesPanel.classList.add('crbps-hidden');
+        } else {
+          responsesPanel.classList.remove('crbps-hidden');
+          leaderboardPanel.classList.add('crbps-hidden');
+          responsesList.innerHTML = buildResponsesHtml();
+        }
+      });
+      leaderboardBtn.addEventListener('click', function(){
+        var showing = !leaderboardPanel.classList.contains('crbps-hidden');
+        if (showing){
+          leaderboardPanel.classList.add('crbps-hidden');
+        } else {
+          leaderboardPanel.classList.remove('crbps-hidden');
+          responsesPanel.classList.add('crbps-hidden');
+          loadLeaderboard();
+        }
+      });
+
+      checkAccess();
+    } catch (err){
+      var body = document.querySelector('#crb-aptet-ps-quiz-s2 .crbps-body');
+      if (body){
+        body.innerHTML = '<p style="color:#ff9d9d;">Quiz failed to load. Please make sure JavaScript is enabled and this page is not the AMP mobile version. Error: ' + (err && err.message ? err.message : err) + '</p>';
+      }
+    }
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initQuiz);
+  } else {
+    initQuiz();
+  }
+
+})();
+</script>
+<!-- ===================== CRB APTET QUIZ END (SHIFT 2) ===================== -->
