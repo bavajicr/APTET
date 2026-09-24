@@ -1,4 +1,4 @@
-<!-- ===================== TELUGU APTET QUIZ (PRACTICE TEST-3) ===================== -->
+<!-- ===================== TELUGU APTET QUIZ (19-Dec-2025, Shift-2) ===================== -->
 <!-- Blogger-compatible single HTML block. Scoped CSS + IIFE JS. -->
 
 <div id="crb-tq-root" class="crb-tq-wrap">
@@ -6,9 +6,9 @@
   <div class="crb-tq-card" id="crb-tq-lockedCard" style="display:none;">
     <div class="crb-tq-badge">APTET PAPER-II (A)</div>
     <h2 class="crb-tq-title">TELUGU</h2>
-    <p class="crb-tq-sub">APTET Previous Question Paper Practice Test-3</p>
+    <p class="crb-tq-sub">APTET Previous Question Paper &ndash; 19 December 2025 (Second Shift)</p>
     <div class="crb-tq-lockIcon">🔒</div>
-    <p class="crb-tq-lockMsg">This quiz will open at <strong>7:00 PM IST TODAY</strong> (23-09-2026).</p>
+    <p class="crb-tq-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
     <p class="crb-tq-lockCountdown" id="crb-tq-countdown">Opens in --:--:--</p>
     <div class="crb-tq-cardCredit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
   </div>
@@ -16,7 +16,7 @@
   <div class="crb-tq-card" id="crb-tq-startCard" style="display:none;">
     <div class="crb-tq-badge">APTET PAPER-II (A)</div>
     <h2 class="crb-tq-title">TELUGU</h2>
-    <p class="crb-tq-sub">APTET Previous Question Paper Practice Test-3</p>
+    <p class="crb-tq-sub">APTET Previous Question Paper &ndash; 19 December 2025 (Second Shift)</p>
     <div class="crb-tq-info">
       <div><span>📋</span> 30 Questions</div>
       <div><span>⏱️</span> Timer Enabled</div>
@@ -53,7 +53,7 @@
     <div class="crb-tq-qcount">Question <span id="crb-tq-qNum">1</span> of 30</div>
 
     <div class="crb-tq-qBox">
-      <div class="crb-tq-qHeading">TELUGU &ndash; APTET Previous Question Paper – Practice Test - 3</div>
+      <div class="crb-tq-qHeading">TELUGU &ndash; APTET Previous Question Paper – 19 December 2025 (Second Shift)</div>
       <div class="crb-tq-qText" id="crb-tq-qText"></div>
       <div class="crb-tq-options" id="crb-tq-options"></div>
       <div class="crb-tq-feedback" id="crb-tq-feedback"></div>
@@ -241,11 +241,14 @@
     .crb-tq-card{ padding:18px 14px; }
     .crb-tq-title{ font-size:22px; }
     .crb-tq-qText{ font-size:16.5px; }
-    .crb-tq-option{ font-size:14.5px; }
+    .crb-tq-option{ font-size:14.5px; padding:11px 13px; }
     .crb-tq-resultBtns .crb-tq-btn{ min-width:120px; font-size:13.5px; }
     .crb-tq-topbar{ justify-content:flex-start; }
     .crb-tq-submitTopBtn{ margin-left:auto; }
-    .crb-tq-btn{ padding:12px 16px; }
+    .crb-tq-btn{ padding:12px 16px; min-height:46px; }
+    .crb-tq-leaderboardPanel, .crb-tq-responsesPanel{ padding:10px; margin-top:10px; }
+    .crb-tq-lockCountdown{ font-size:14px; }
+    .crb-tq-input{ padding:11px 12px; }
   }
 </style>
 
@@ -254,11 +257,11 @@
 
   // ---- CONFIGURATION ----
   var CONFIG = {
-    // Quiz unlocks at 7:00 PM IST on 23-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
-    OPEN_AT: '2026-09-23T12:30:00Z',
-    QUIZ_NAME: '3Telugu',
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: 'Telugu APTET - 19 Dec 2025 Shift 2',
     // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
-    GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbyzp6d0xpvMc6Bg3Xlf4X3XWDXSIaPSa0V7MFGrZMn1U4xDLZDacLAnl1HVB3NKC_jbJg/exec'
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
   };
 
   // ---- Basic content-protection (right-click / view-source / copy) ----
