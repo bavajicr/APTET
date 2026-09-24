@@ -114,9 +114,12 @@
   #aptet-eng-s2-root{margin:10px auto!important;}
   .aeq2-card{padding:16px 12px 20px;}
   .aeq2-qtext{font-size:14.5px;}
-  .aeq2-opt{font-size:13.5px;padding:10px 12px;}
-  .aeq2-btn{padding:12px 14px;}
-  .aeq2-submitTopBtn{margin-left:auto;}
+  .aeq2-opt{font-size:13.5px;padding:11px 13px;}
+  .aeq2-btn{padding:12px 14px;min-height:46px;}
+  .aeq2-submitTopBtn{margin-left:auto;min-height:auto;}
+  .aeq2-leaderboardPanel{padding:10px;margin-top:10px;}
+  .aeq2-lockCountdown{font-size:14px;}
+  .aeq2-input{padding:11px 12px;}
 }
 
 .aeq2-qbox{
@@ -192,18 +195,18 @@
     <span class="aeq2-timer" id="aeq2Timer">⏱ 00:00</span>
   </div>
   <div class="aeq2-heading">
-    <h2>APTET Previous Question Paper Practice Test-3 </h2>
-    <p>Subject: English</p>
+    <h2>APTET Previous Question Paper</h2>
+    <p>19 December 2025 &ndash; Second Shift &nbsp;|&nbsp; Subject: English</p>
   </div>
   <div class="aeq2-card-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT</div>
 
   <div id="aeq2LockedScreen" class="aeq2-start-wrap" style="display:none;">
     <div class="aeq2-lockIcon">🔒</div>
-    <p class="aeq2-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong>(24-09-2026).</p>
+    <p class="aeq2-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
     <p class="aeq2-lockCountdown" id="aeq2Countdown">Opens in --:--:--</p>
   </div>
 
-  <div id="aeq2StartScreen" class="aeq2-start-wrap" style="display:none;">
+  <div id="aeq2StartScreen" class="aeq2-start-wrap" style="display:block;">
     <p style="font-size:14px;color:#cdd9f7;margin-bottom:6px;">30 Questions &nbsp;|&nbsp; Instant Feedback &nbsp;|&nbsp; Live Score &amp; Timer</p>
 
     <div class="aeq2-formRow">
@@ -272,14 +275,14 @@
 
   // ---- CONFIGURATION ----
   var CONFIG = {
-    // Quiz unlocks at 6:00 PM IST on 24-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
-    OPEN_AT: '2026-09-24T12:30:00Z',
-    QUIZ_NAME: '3english',
-    // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
-    GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbyzp6d0xpvMc6Bg3Xlf4X3XWDXSIaPSa0V7MFGrZMn1U4xDLZDacLAnl1HVB3NKC_jbJg/exec'
+    // Quiz unlocks at 6:00 PM IST on 22-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-22T12:30:00Z',
+    QUIZ_NAME: 'APTET English - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below to enable the leaderboard.
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
   };
 
-  // ---- Basic content-protection (right-click / view-source / copy) ----
+  // ---- Basic content-protection ----
   document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
   document.addEventListener('keydown', function(e){
     var k = e.key ? e.key.toLowerCase() : '';
