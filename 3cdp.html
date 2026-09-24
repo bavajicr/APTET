@@ -1,4 +1,15 @@
 <div id="acdp19d2-root" class="acdp19d2-container">
+  <script>
+(function(){
+  var vp = document.querySelector('meta[name="viewport"]');
+  if (!vp) {
+    vp = document.createElement('meta');
+    vp.setAttribute('name', 'viewport');
+    document.getElementsByTagName('head')[0].appendChild(vp);
+  }
+  vp.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+})();
+</script>
 
   <!-- SCREEN 0: LOCKED (shown before open time) -->
   <div id="acdp19d2-locked" class="acdp19d2-screen">
