@@ -638,6 +638,7 @@ body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
   </div>
 </div>
 
+
 <script>
 (function(){
 "use strict";
@@ -645,9 +646,12 @@ body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;}
 /* ============================================================
    CONFIG
    ============================================================ */
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzp6d0xpvMc6Bg3Xlf4X3XWDXSIaPSa0V7MFGrZMn1U4xDLZDacLAnl1HVB3NKC_jbJg/exec";
+// Paste your deployed Google Apps Script Web App URL here (see setup guide).
+// Leave as-is to run the leaderboard in local/offline demo mode.
+var APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 var LB_POLL_MS = 8000;
 
+// Quiz opens at 6:00 PM IST on 22-09-2026 (IST = UTC+05:30). Change the date here if needed.
 var OPEN_AT = new Date('2026-09-22T18:00:00+05:30').getTime();
 var OPEN_DATE_IST = '2026-09-22';
 var OPEN_DATE_LABEL = '22-09-2026';
@@ -662,824 +666,661 @@ var SUBJECT_META = {
   SCI:  {full:"Physical & Biological Science",short:"Science"}
 };
 
-var QUESTIONS = [
-  {"subj": "CDP", "qEn": "The role of intelligence in overall growth and development of a child is", "qTe": "శిశువు యొక్క సమగ్ర పెరుగుదల, వికాసంలలో ప్రజ్ఞ యొక్క పాత్ర", "opts": [{"en": "to learn, adjust and take right decision at the right time", "te": "నేర్చుకోవటానికి, సర్దుబాటుకి, సరైన సమయంలో సరైన నిర్ణయం తీసుకోగలగటానికి"}, {"en": "to achieve academic goals for a bright future", "te": "మంచి భవిష్యత్ కోసం విద్యాపరమైన లక్ష్యాల సాధనకు"}, {"en": "to gain useful technological skills", "te": "ఉపయోగకరమైన సాంకేతిక నైపుణ్యాలను పొందేందుకు"}, {"en": "to develop proficiency in productive sectors", "te": "ఉత్పాదక రంగాలలో నైపుణ్యాన్ని పెంపొందించుకోవటం కోసం"}], "ans": 0, "mono": false, "id": 1},
-  {"subj": "CDP", "qEn": "Among the factors that influence growth and development the parental and family care received by child comes under", "qTe": "పెరుగుదల, వికాసాన్ని ప్రభావితం చేసే కారకాలలో, తల్లిదండ్రుల మరియు కుటుంబం నుండి పొందే శ్రద్ధ/రక్షణ ఈ రకానికి చెందిన కారకం", "opts": [{"en": "Biological", "te": "జీవసంబంధ"}, {"en": "External", "te": "బాహ్య"}, {"en": "Hereditary", "te": "వంశపారంపర్య"}, {"en": "Social nature", "te": "సామాజిక స్వభావ"}], "ans": 1, "mono": false, "id": 2},
-  {"subj": "CDP", "qEn": "Every child is unique with respect to the various dimensions of development. This applies to the following principle of development.", "qTe": "అనేకమైన వికాస పరిమాణాలకు సంబంధించి, ప్రతి శిశువు ప్రత్యేకమైనది. ఇది ఈ వికాస నియమానికి వర్తిస్తుంది.", "opts": [{"en": "Inter-relationships", "te": "పరస్పర సంబంధాలు"}, {"en": "Individual differences", "te": "వైయక్తిక భేదాలు"}, {"en": "Predictability", "te": "ప్రాగుక్తీకరణ"}, {"en": "Integration", "te": "ఏకీకరణము"}], "ans": 1, "mono": false, "id": 3},
-  {"subj": "CDP", "qEn": "One of the following is not correct with respect to the growth and development.", "qTe": "పెరుగుల, అభివృద్ధికి సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.", "opts": [{"en": "Growth refers to physical change and development for overall change", "te": "పెరుగుదల శారీరక మార్పుని సూచిస్తుంది, అభివృద్ధి మొత్తం మార్పుని సూచిస్తుంది."}, {"en": "Growth is a part of development and development addresses changes in total.", "te": "పెరుగుదల అభివృద్ధిలో ఒక భాగం మరియు అభివృద్ధి పూర్తి మార్పులని సూచిస్తుంది."}, {"en": "The changes of both growth and development are totally measurable and observable", "te": "పెరుగుదల, అభివృద్ధికి సంబంధించిన మార్పులు పూర్తిగా కొలవదగినవి మరియు పరిశీలింపదగినవి."}, {"en": "Physical change may not result in functional change", "te": "భౌతిక మార్పు క్రియాత్మక మార్పుకి దారితీయకపోవచ్చును."}], "ans": 2, "mono": false, "id": 4},
-  {"subj": "CDP", "qEn": "With regard to the structural development during Pre-natal period, embryonic period is between", "qTe": "జనన పూర్వదశలోని శిశువు నిర్మాణాత్మక అభివృద్ధికి సంబంధించి అపరిణత పిండోత్పత్తి దశ (ఎంబ్రియోనిక్) ఈ మధ్య కాలం లోనిది", "opts": [{"en": "3rd week to 8th week", "te": "3వ వారం నుండి 8వ వారం"}, {"en": "First two weeks", "te": "మొదటి రెండు వారాలు"}, {"en": "8th week to birth", "te": "8వ వారం నుండి జననం వరకు"}, {"en": "5th week to 8th week", "te": "5వ వారం నుండి 8వ వారం"}], "ans": 0, "mono": false, "id": 5},
-  {"subj": "CDP", "qEn": "In the early childhood stage, the thinking and reasoning develops in relation to", "qTe": "పూర్వ బాల్య దశలో, ఆలోచన మరియు తార్కికత వీటి ఆధారంగా అభివృద్ధి చెందుతుంది.", "opts": [{"en": "Abstract materials", "te": "అమూర్త వస్తువులు"}, {"en": "Concrete materials", "te": "మూర్త వస్తువులు"}, {"en": "Moving pictures", "te": "కదిలే చిత్రాలు"}, {"en": "Unavailable materials", "te": "లభ్యం కాని వస్తువులు"}], "ans": 1, "mono": false, "id": 6},
-  {"subj": "CDP", "qEn": "When a baby below 1 year old is playing with a toy, if the toy is replaced with a pillow, she forgets the toy and starts playing with pillow. According to piaget, this is because of", "qTe": "ఒక సం॥ లోపు వయసున్న పాప ఆడుకొంటున్న బొమ్మని మార్చి, దిండు ఉంచినట్లయితే ఆమె బొమ్మని మరచి, దిండుతోనే ఆడుకొంటుంది. పియాజే ప్రకారం దీనికి కారణం", "opts": [{"en": "The concept of object permanence", "te": "వస్తుశాశ్వత భావన వలన"}, {"en": "Lack of concept of irreversibility", "te": "అనిపర్యాత్మక భావనాలోపం"}, {"en": "The absence of object permanence concept", "te": "వస్తు శాశ్వత భావన లేకపోవటం వలన"}, {"en": "ego centrism", "te": "అహంకేంద్రవాదం"}], "ans": 2, "mono": false, "id": 7},
-  {"subj": "CDP", "qEn": "The major focus of 'behavioristic theory' of development is on", "qTe": "అభివృద్ధికి సంబంధించి 'ప్రవర్తనా సిద్ధాంతం' యొక్క ప్రధాన దృష్టి దీని గురించి", "opts": [{"en": "Cognitive abilities and perception", "te": "ప్రజ్ఞాసామర్థ్యాలు మరియు ప్రత్యక్షం"}, {"en": "Learning of stimulus-response associations", "te": "ఉద్దీపన-ప్రతిస్పందనల సాహచర్యం గురించి తెలుసుకోవటం"}, {"en": "Importance of early childhood experiences on later development of child", "te": "పిల్లవాని తరువాత వికాసం పై పూర్వప్రాథమిక దశలోని అనుభవాల ప్రాముఖ్యత"}, {"en": "The ability to construct mental images involving reasoning.", "te": "తార్కికతతో కూడిన మానసిక చిత్రాలను నిర్మించుకోగల సామర్థ్యం"}], "ans": 1, "mono": false, "id": 8},
-  {"subj": "CDP", "qEn": "One of the following is not true with respect to 'Self-concept'", "qTe": "'ఆత్మభావన' కు సంబంధించి, ఈ క్రింది వానిలో ఒకటి నిజం కాదు.", "opts": [{"en": "'Self-concept' is what the individual thinks about himself", "te": "'ఆత్మభావన' అనేది వ్యక్తికి తన గురించి తనకు గల ఒక ఆలోచన"}, {"en": "'Self-concept' is knowing one's strengths and weaknesses", "te": "'ఆత్మభావన' అంటే తన బలాలు, బలహీనతలు తెలుసుకొని ఉండటం"}, {"en": "'Self-concept' develops self-respect and self confidence", "te": "'ఆత్మభావన' ఆత్మ గౌరవం మరియు ఆత్మ విశ్వాసాన్ని పెంచుతుంది."}, {"en": "'Self-concept' does not influence the individual differences", "te": "'ఆత్మభావన' వ్యక్తుల్లో వైవిధ్యతను ప్రభావితం చేయదు."}], "ans": 3, "mono": false, "id": 9},
-  {"subj": "CDP", "qEn": "The important tool of thinking is", "qTe": "ఆలోచన యొక్క ముఖ్యమైన సాధనం", "opts": [{"en": "Motivation", "te": "ప్రేరణ"}, {"en": "Intelligence", "te": "ప్రజ్ఞ"}, {"en": "Personality", "te": "మూర్తిమత్వం"}, {"en": "Language", "te": "భాష"}], "ans": 3, "mono": false, "id": 10},
-  {"subj": "CDP", "qEn": "One of the following is not the innate individual difference", "qTe": "క్రింది వానిలో ఒకటి జన్మత: వచ్చిన వైయక్తిక భేదము కానిది", "opts": [{"en": "Physical", "te": "శారీరక"}, {"en": "Mental", "te": "మానసిక"}, {"en": "Emotional", "te": "ఉద్వేగ"}, {"en": "Educational", "te": "విద్యాపరమైన"}], "ans": 3, "mono": false, "id": 11},
-  {"subj": "CDP", "qEn": "One of the following is not correct with respect to Intelligence", "qTe": "ప్రజ్ఞకు సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు", "opts": [{"en": "Intelligence is the ability to carry out abstract thinking", "te": "అమూర్త ఆలోచన చేయగల సామర్థ్యమే ప్రజ్ఞ"}, {"en": "Knowledge comes through learning and intelligence occurs naturally", "te": "జ్ఞానం అభ్యసన ద్వారా వస్తుంది, ప్రజ్ఞ సహజసిద్ధంగా ఏర్పడుతుంది."}, {"en": "Intelligence pertains to all fields. Aptitude belongs to a particular field", "te": "ప్రజ్ఞ అన్ని రంగాలకు సంబంధించినది. సహజ సామర్థ్యం ఒక ప్రత్యేక రంగానికి సంబంధించినది."}, {"en": "All the persons who have intelligence have creativity but not all creative have intelligence", "te": "ప్రజ్ఞ ఉన్న అందరికీ సృజనాత్మకత ఉంటుంది. కానీ సృజనాత్మకత ఉన్న అందరికీ ప్రజ్ఞ ఉండదు."}], "ans": 3, "mono": false, "id": 12},
-  {"subj": "CDP", "qEn": "One of the following is not a subtest of Differential Aptitude Test (DAT)", "qTe": "క్రింది వానిలో భేదాత్మక సహజ సామర్థ్య పరీక్ష (DAT) లోని ఉపపరీక్ష కానిది", "opts": [{"en": "Verbal ability", "te": "శాబ్దిక సామర్థ్యం"}, {"en": "Numerical ability", "te": "సంఖ్య సామర్థ్యం"}, {"en": "Object assembly test", "te": "వస్తు సమాఖ్య పరీక్ష"}, {"en": "Spatial ability", "te": "ప్రాదేశిక సామర్థ్యం"}], "ans": 2, "mono": false, "id": 13},
-  {"subj": "CDP", "qEn": "Among the blocks of creativity, \"Excessive reliance on authority\" comes under this category", "qTe": "సృజనాత్మకతను నిరోధించే వాటిలో \"అధికారం పై అధికంగా ఆధార పడటం\" ఈ తరహాకు చెందినది", "opts": [{"en": "Perceptional blocks", "te": "అవగాహనా అవరోధాలు"}, {"en": "Emotional blocks", "te": "ఉద్వేగ అవరోధాలు"}, {"en": "Intellectual blocks", "te": "ప్రజ్ఞా అవరోధాలు"}, {"en": "Cultural blocks", "te": "సాంస్కృతిక అవరోధాలు"}], "ans": 3, "mono": false, "id": 14},
-  {"subj": "CDP", "qEn": "Interest is formed in this way — a. Naturally, due to person's nature b. Due to reaction with surroundings c. Because of the experiences gained over time", "qTe": "అభిరుచి ఇలా ఏర్పడుతుంది. a. సహజసిద్ధంగా, వ్యక్తి స్వభావం వలన b. పరిసరాలతో ప్రతిచర్యల వలన c. కాలంతో పాటు పొందే అనుభవాల వలన", "opts": [{"en": "a only", "te": "a మాత్రమే"}, {"en": "a, b", "te": "a, b"}, {"en": "b, c", "te": "b, c"}, {"en": "a, b, c", "te": "a, b, c"}], "ans": 3, "mono": false, "id": 15},
-  {"subj": "CDP", "qEn": "The projective test of personality among the following", "qTe": "ఈ క్రింది వానిలో ప్రక్షేపక పరీక్ష", "opts": [{"en": "Personality inventories", "te": "మూర్తిమత్వశోధికలు"}, {"en": "Rating scales", "te": "నిర్ధారణ మాపనులు"}, {"en": "Sentence completion test", "te": "వాక్య పూరణ పరీక్ష"}, {"en": "Anecdotal record", "te": "సంఘటన రచన పద్ధతి / పత్రావళి"}], "ans": 2, "mono": false, "id": 16},
-  {"subj": "CDP", "qEn": "According to Hippocrates 'type approach' to personality, the dominant fluid in the \"choleric\" personality type is", "qTe": "మూర్తిమత్వానికి సంబంధించి హిప్పోక్రెటిస్ 'రూప సిద్ధాంతం' ప్రకారం \"పైత్యప్రవృత్తి\" గల వారిలో ఉండే ఆధిపత్య ద్రవం", "opts": [{"en": "Blood", "te": "రక్తము"}, {"en": "phlegm (mucus)", "te": "శ్లేష్మము"}, {"en": "Black bile", "te": "నల్లని పైత్యరసం"}, {"en": "yellow bile", "te": "పసుపు పైత్యరసం"}], "ans": 3, "mono": false, "id": 17},
-  {"subj": "CDP", "qEn": "One of the following is not the part of central processing unit", "qTe": "క్రింది వానిలో సెంట్రల్ ప్రొసెసింగ్ యూనిట్‌లో భాగం కానిది", "opts": [{"en": "Control unit", "te": "కంట్రోల్ యూనిట్"}, {"en": "Memory unit", "te": "మెమొరీ యూనిట్"}, {"en": "Arithmetic & logical unit", "te": "అర్ధమెటిక్ & లాజికల్ విభాగం"}, {"en": "Printer", "te": "ప్రింటర్"}], "ans": 3, "mono": false, "id": 18},
-  {"subj": "CDP", "qEn": "Behavioristic theories of development was proposed by", "qTe": "వికాసం యొక్క ప్రవర్తనా వాద సిద్ధాంతాలు ప్రతిపాదించినది", "opts": [{"en": "Sigmund Freud and Erik Erikson", "te": "సిగ్మండ్ ఫ్రాయిడ్ మరియు ఎరిక్ ఎరిక్సన్"}, {"en": "Ivan Pavlov and B.F. Skinner", "te": "ఐవాన్ పావ్‌లోవ్ మరియు బి.ఎఫ్. స్కిన్నర్"}, {"en": "Jean Piaget and Bandura", "te": "జీన్ పియాజె మరియు బండూరా"}, {"en": "Kohlberg and Goldstein", "te": "కోల్బర్గ్ మరియు గోల్డ్‌స్టీన్"}], "ans": 1, "mono": false, "id": 19},
-  {"subj": "CDP", "qEn": "\"Adjustment means the modification to compensate for or meet special conditions\". This definition is given by", "qTe": "\"ప్రత్యేక పరిస్థితులకు అనుగుణంగా లేదా వాటిని భర్తీ చేయటం కోసం సవరణ చేసుకోవటమే సర్దుబాటు\" ఈ నిర్వచనం ఇచ్చినది", "opts": [{"en": "Webster", "te": "వెబ్‌స్టర్"}, {"en": "Carter V. Good", "te": "కార్టర్ వి. గుడ్"}, {"en": "Warren", "te": "వారెన్"}, {"en": "James Drever", "te": "జేమ్స్ డ్రివెర్"}], "ans": 2, "mono": false, "id": 20},
-  {"subj": "CDP", "qEn": "\"Conflict is a painful emotional state which results from a tension between two opposed and contradictory wishes\". This definition is given by", "qTe": "\"రెండు విరుద్ధ కోర్కెల మధ్య ఏర్పడే తన్యత వల్ల కలిగే బాధాకరమైన ఉద్వేగ స్థితే సంఘర్షణ\" ఈ నిర్వచనం ఇచ్చినది.", "opts": [{"en": "Kurt Lewin", "te": "కర్ట్ లెవిన్"}, {"en": "Douglass and Holland", "te": "డగ్లస్, హాలెండ్"}, {"en": "Murray", "te": "మురై"}, {"en": "Jacob.L. Moreno", "te": "జాకబ్.ఎల్. మొరినో"}], "ans": 1, "mono": false, "id": 21},
-  {"subj": "CDP", "qEn": "When requirements are not met during developmental stages, some people though they are elders behave like children. This defense mechanism is", "qTe": "అభివృద్ధి దశలలో అవసరాలు తీరనపుడు, కొందరు పెద్దవారైనప్పటికీ చిన్నపిల్లల్లా ప్రవర్తిస్తారు. ఇది ఈ రక్షణ తంత్రం", "opts": [{"en": "Repression", "te": "దమనం"}, {"en": "Regression", "te": "ప్రతిగమనం"}, {"en": "Compensation", "te": "పరిహారం"}, {"en": "Rationalization", "te": "హేతుకీకరణ"}], "ans": 1, "mono": false, "id": 22},
-  {"subj": "CDP", "qEn": "\"Measuring without instruments\" is also the name of the following method of psychology", "qTe": "\"పరికరం లేకుండా కొలవటం\" ఇది ఈ క్రింది మనోవిజ్ఞానశాస్త్ర పద్ధతికి ఇంకో పేరు", "opts": [{"en": "Projective tests", "te": "ప్రక్షేపక పరీక్షలు"}, {"en": "Observation method", "te": "పరిశీలన పద్ధతి"}, {"en": "Experimental method", "te": "ప్రయోగ పద్ధతి"}, {"en": "Case study method", "te": "వ్యక్తి అధ్యయన పద్ధతి"}], "ans": 1, "mono": false, "id": 23},
-  {"subj": "CDP", "qEn": "One of the following is correct with respect to learning", "qTe": "క్రింది వానిలో అభ్యసనకు సంబంధించి సరైనది", "opts": [{"en": "Learning involves making sense of the presented material", "te": "అభ్యసన అనేది హాజరుపరచిన విషయాలు అర్థవంతం అవడాన్ని కలిగి ఉంటుంది."}, {"en": "Learning is a relatively temporary change in behaviour", "te": "అభ్యసన అనేది సాపేక్షంగా ప్రవర్తనలో తాత్కాలిక మార్పు"}, {"en": "No relation between learning and adjustment", "te": "అభ్యసనకు, సర్దుబాటుకు సంబంధం లేదు"}, {"en": "Learning is a product", "te": "అభ్యసన అనేది ఒక ఉత్పత్తి"}], "ans": 0, "mono": false, "id": 24},
-  {"subj": "CDP", "qEn": "Correctly matched pair is", "qTe": "సరిగ్గా జతపరచబడిన జత", "opts": [{"en": "Pavlov – Operant conditioning", "te": "పావ్‌లోవ్ – కార్యసాధక నిబంధనం"}, {"en": "Kohlberg – Language development theory", "te": "కోల్బర్గ్ – భాషావికాస సిద్ధాంతం"}, {"en": "Bandura – Social learning theory", "te": "బండూర – సాంఘిక అభ్యసనా సిద్ధాంతం"}, {"en": "Rogers – Social constructivism", "te": "రోజర్స్ – సామాజిక నిర్మాణాత్మకవాదం"}], "ans": 2, "mono": false, "id": 25},
-  {"subj": "CDP", "qEn": "'Attention Concentration' is", "qTe": "'అవధాన ఏకాగ్రత' అనేది", "opts": [{"en": "An indicator of attention 'depth'", "te": "అవధానం యొక్క 'లోతు / పరిపూర్ణత' యొక్క సూచిక"}, {"en": "An indicator of attention width and narrowness", "te": "అవధానం యొక్క విశాలత మరియు సంకుచితత్వం యొక్క సూచిక"}, {"en": "Attention is the speed of transition from one object to another", "te": "ఒక వస్తువు నుండి మరొక విషయానికి మారే అవధాన వేగం"}, {"en": "The duration of voluntary attention", "te": "సంకల్పిత అవధానం యొక్క వ్యవధి"}], "ans": 0, "mono": false, "id": 26},
-  {"subj": "CDP", "qEn": "One of the following is not the part of planning phase of teaching.", "qTe": "ఈ క్రింది వానిలో ఒకటి బోధన యొక్క ప్రణాళికా దశకు చెందినది కాదు", "opts": [{"en": "Selection of content to be taught", "te": "నేర్పవలసిన విషయాన్ని ఎంపిక చేసుకోవడం"}, {"en": "Organization of the content", "te": "విషయాన్ని వ్యవస్థీకరించటం"}, {"en": "Selection and presentation of stimuli", "te": "ఉద్దీపనల ఎంపిక మరియు హాజరుపరచుట"}, {"en": "Sequencing the elements of content for presentation", "te": "హాజరుపరచాల్సిన విషయాంశాలను క్రమపరచుట"}], "ans": 2, "mono": false, "id": 27},
-  {"subj": "CDP", "qEn": "One of the following is not correct regarding the use of knowledge of group dynamics to the teacher.", "qTe": "సమూహ గతి శాస్త్రజ్ఞానము ఉపాధ్యాయునికి ఉపయోగపడే విషయంలో ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.", "opts": [{"en": "He can improve social and emotional climate of the group", "te": "సమూహం యొక్క సామాజిక మరియు భావోద్వేగ పరిస్థితులను మెరుగుపరచుకుంటాడు."}, {"en": "He finds out the causes that work against conducive environment of the class", "te": "తరగతి యొక్క అనుకూల వాతావరణానికి వ్యతిరేకంగా పని చేసే కారణాలు తెలుసుకొంటాడు."}, {"en": "He can improve intra group relations", "te": "అంతర్ సమూహ సంబంధాలను మెరుగుపరచుకుంటాడు."}, {"en": "He can understand the relationship patterns which are same for all activities.", "te": "అన్ని కార్యకలాపాలకు ఒకేవిధంగా ఉండే సంబంధాల నమూనాలను అర్థం చేసుకోగలడు."}], "ans": 3, "mono": false, "id": 28},
-  {"subj": "CDP", "qEn": "The creator of project method", "qTe": "ప్రాజెక్టు / ప్రకల్పనా పద్ధతి రూపకర్త", "opts": [{"en": "John Dewey", "te": "జాన్ డ్యూయి"}, {"en": "Kil Patrik", "te": "కిల్‌పాట్రిక్"}, {"en": "Froebel", "te": "ఫ్రోబెల్"}, {"en": "Morrison", "te": "మోరిసన్"}], "ans": 1, "mono": false, "id": 29},
-  {"subj": "CDP", "qEn": "One of the following is not correct with regard to the 'instruction' and 'teaching'", "qTe": "ఈ క్రింది వానిలో ఒకటి 'సూచన' మరియు 'బోధన'ల గురించి సరైనది కాదు.", "opts": [{"en": "Instruction is suggesting directions in teaching learning Process", "te": "సూచన అనేది బోధనాభ్యసన ప్రక్రియలో దిశలను సూచించేది."}, {"en": "Teaching is based on individual differences on learning", "te": "బోధన, అభ్యసనలో ఉండే వ్యక్తిగత వ్యత్యాసాల మీద ఆధారపడి ఉంటుంది."}, {"en": "Instruction may not be possible in informal Education", "te": "అనియత విద్యలో సూచనలు ఇచ్చుటకు అవకాశం లేదు."}, {"en": "Teaching takes place only in formal education", "te": "నియత విద్యలో మాత్రమే బోధన జరుగుతుంది."}], "ans": 3, "mono": false, "id": 30},
-  {"subj": "TEL", "qEn": null, "qTe": "'తెనుగు' దేశ్యపదమని, దిగ్వాచి అని గంటి జోగి సోమయాజి గారి అభిప్రాయం 'తెన్' శబ్దం దక్షిణ దిక్కు అనే అర్థం ఉన్న ద్రావిడ పదాంశం. సాధారణంగా ఒక సమాజంలో ఒక భాష రూపొందే ప్రాథమిక దశలో ఆ భాషకు నామకరణం జరుగదు. ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వాళ్ళని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి తూర్పు వాళ్ళని, ఉత్తరాది వాళ్ళని వ్యవహరించడం సాధారణం.\n\nపై గద్యం ఆధారంగా సరికానిది.", "opts": [{"en": null, "te": "'తెన్' శబ్దం ద్రావిడపదాంశం"}, {"en": null, "te": "గంటి జోగి సోమయాజి గారి అభిప్రాయంలో 'తెనుగు' దేశ్యపదం"}, {"en": null, "te": "ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వారిని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి వ్యవహరించడం సాధారణం."}, {"en": null, "te": "భాషకు నామకరణం భాష రూపొందే ప్రాథమికదశలోనే జరుగుతుంది."}], "ans": 3, "mono": true, "monoLang": "te", "id": 31},
-  {"subj": "TEL", "qEn": null, "qTe": "సాధారణంగా తెలుగుపై సంస్కృత భాషా ప్రభావాన్ని గురించి చర్చిస్తూ ఉంటారు. కాని మొదట ఆర్యులు భారతదేశానికి వచ్చి ద్రావిడులతో సంబంధం ఏర్పరచుకున్నప్పుడు ఆదాన, ప్రదానాల వల్ల ద్రావిడ భాషా పదాలు ఆర్య భాషలలో ప్రవేశించాయి. అవి ఆర్యులకు తెలియని వృక్ష, ఫల, జంతు వాచక పదాలు అయి ఉండడం విశేషం. మొదటగా ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన కాల్డ్వెల్, కిటెల్, ఎమ్.బి ఎమెనో వంటి వారు సుమారు 700 కు పైగా ఆర్యభాషలలో చేరిన ద్రావిడ పదాలను గుర్తించారు.\n\nపై గద్యం ఆధారంగా కింది వాటిలో సరైనది", "opts": [{"en": null, "te": "ఏడువందలకు పైగా పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో చేరాయి."}, {"en": null, "te": "ఆర్య, ద్రావిడ సంబంధాల వలన ఆదాన ప్రదానాలు జరగలేదు."}, {"en": null, "te": "ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన వారిలో కాల్డ్వెల్, ఎమెనో ప్రముఖులు"}, {"en": null, "te": "వృక్ష, ఫల, జంతు వాచక పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో ప్రవేశించాయి."}], "ans": 2, "mono": true, "monoLang": "te", "id": 32},
-  {"subj": "TEL", "qEn": null, "qTe": "అంతరంగమందు నపరాధములు చేసి\nమంచివాని వలెను మనుజుండుండు\nఇతరు లెఱుగ కున్న నీశ్వరుడెఱుగడా?\nవిశ్వదాభిరామ వినురవేమ\n\n'అంతరంగము' అనగా", "opts": [{"en": null, "te": "మనసు"}, {"en": null, "te": "తప్పు"}, {"en": null, "te": "భగవంతుడు"}, {"en": null, "te": "రహస్యం"}], "ans": 0, "mono": true, "monoLang": "te", "id": 33},
-  {"subj": "TEL", "qEn": null, "qTe": "ఉత్తమ గుణములు నీచున\nకెత్తెఱుగన గలుగనేర్చు నెయ్యెడలన్ దా\nనెత్తిచ్చి కఱుగ బోసిన\nనిత్తడి బంగార మగునె యెల్లో సుమతీ!\n\nపై పద్యంలో నీచగుణాలు గల వాడిని దీనితో పోల్చారు.", "opts": [{"en": null, "te": "బంగారం"}, {"en": null, "te": "ఇత్తడి"}, {"en": null, "te": "రాగి"}, {"en": null, "te": "పుత్తడి"}], "ans": 1, "mono": true, "monoLang": "te", "id": 34},
-  {"subj": "TEL", "qEn": null, "qTe": "\"ఏ స్త్రీయైనా కుటుంబం లోంచి రాకుండా ఎక్కడ నుంచి వస్తుంది\" - అన్న పావలా శ్యామల మాటలు ఈ పాఠం లోనివి", "opts": [{"en": null, "te": "మాణిక్యవీణ"}, {"en": null, "te": "గోరంతదీపాలు"}, {"en": null, "te": "మా ప్రయత్నం"}, {"en": null, "te": "జానపదుని జాబు"}], "ans": 2, "mono": true, "monoLang": "te", "id": 35},
-  {"subj": "TEL", "qEn": null, "qTe": "'కథానిక' ప్రక్రియకు చెందిన పాఠం", "opts": [{"en": null, "te": "నా యాత్ర"}, {"en": null, "te": "మాతృభూమి"}, {"en": null, "te": "భువనవిజయం"}, {"en": null, "te": "నాటి చదువు"}], "ans": 1, "mono": true, "monoLang": "te", "id": 36},
-  {"subj": "TEL", "qEn": null, "qTe": "ఉన్నాడు లెస్స రాఘవుడు\nదున్నా విడిదె కపుల గూడి, యురుగతి రానై\nయున్నాడు ......\n\nమొల్ల రామాయణంలో సీతాదేవితో ఈ మాటలు అన్నవారు.", "opts": [{"en": null, "te": "హనుమంతుడు"}, {"en": null, "te": "త్రిజట"}, {"en": null, "te": "విభీషణుడు"}, {"en": null, "te": "జటాయువు"}], "ans": 0, "mono": true, "monoLang": "te", "id": 37},
-  {"subj": "TEL", "qEn": null, "qTe": "కవి కలం నుండి జాలువారిన భావ పరంపరను ఆస్వాదించడంతో బాటు 'ప్రకృతి నుండి పాఠాలు నేర్చుస్తూ, విద్యార్థుల్లో మానవీయత మేల్కొల్పడం'. ఈ పాఠం ఉద్దేశం.", "opts": [{"en": null, "te": "తీర్పు"}, {"en": null, "te": "ఏదేశమేగినా"}, {"en": null, "te": "ఆకుపచ్చశోకం"}, {"en": null, "te": "హరివిల్లు"}], "ans": 3, "mono": true, "monoLang": "te", "id": 38},
-  {"subj": "TEL", "qEn": null, "qTe": "\"గూడుకోసం గువ్వలు\" - రచించినది", "opts": [{"en": null, "te": "కొలకలూరి స్వరూపరాణి"}, {"en": null, "te": "పులికంటి కృష్ణారెడ్డి"}, {"en": null, "te": "గరిమెళ్ళ సత్యనారాయణ"}, {"en": null, "te": "రావినూతల ప్రేమకిషోర్"}], "ans": 1, "mono": true, "monoLang": "te", "id": 39},
-  {"subj": "TEL", "qEn": null, "qTe": "\"ఆశావహదృక్పథం\" ఇతివృత్తంగా గల పాఠం", "opts": [{"en": null, "te": "ఎద"}, {"en": null, "te": "హితోక్తులు"}, {"en": null, "te": "మట్టిచెట్టు"}, {"en": null, "te": "మాయాకంబళి"}], "ans": 0, "mono": true, "monoLang": "te", "id": 40},
-  {"subj": "TEL", "qEn": null, "qTe": "పింగళి బాలాదేవి రచనలలో కథాసంపుటి", "opts": [{"en": null, "te": "ఒక చీకటి - ఒక వెన్నెల"}, {"en": null, "te": "కుసుమ కోమలి"}, {"en": null, "te": "నాన్నకు రాయని ఉత్తరం"}, {"en": null, "te": "గాజు బొమ్మలు"}], "ans": 2, "mono": true, "monoLang": "te", "id": 41},
-  {"subj": "TEL", "qEn": null, "qTe": "'కొత్త గబ్బిలం' - వీరి రచన", "opts": [{"en": null, "te": "కొలకలూరి ఇనాక్"}, {"en": null, "te": "గుర్రం జాషువా"}, {"en": null, "te": "ఊటుకూరి లక్ష్మీకాంతమ్మ"}, {"en": null, "te": "ఎండ్లూరి సుధాకర్"}], "ans": 3, "mono": true, "monoLang": "te", "id": 42},
-  {"subj": "TEL", "qEn": null, "qTe": "\"వృక్షశాఖాదులను విరగ్గొట్టేది\" అనే వ్యుత్పత్యర్థం గల పదం", "opts": [{"en": null, "te": "కరేణువు"}, {"en": null, "te": "జలధరం"}, {"en": null, "te": "ప్రభంజనం"}, {"en": null, "te": "పారావారం"}], "ans": 2, "mono": true, "monoLang": "te", "id": 43},
-  {"subj": "TEL", "qEn": null, "qTe": "\"భావన\" ఈ పదానికి పర్యాయపదాలు", "opts": [{"en": null, "te": "స్త్రీ, ఉవిద"}, {"en": null, "te": "తలంపు, విధము"}, {"en": null, "te": "తలపు, ఆలోచన"}, {"en": null, "te": "ఆలోచన, నెమరు"}], "ans": 2, "mono": true, "monoLang": "te", "id": 44},
-  {"subj": "TEL", "qEn": null, "qTe": "\"మేఘము\" - ఈ పదానికి వికృతి", "opts": [{"en": null, "te": "మొయిలు"}, {"en": null, "te": "మొగము"}, {"en": null, "te": "మేగము"}, {"en": null, "te": "మెకము"}], "ans": 0, "mono": true, "monoLang": "te", "id": 45},
-  {"subj": "TEL", "qEn": null, "qTe": "\"తగువుకు సిద్ధపడు\" అనే అర్థంలో ఈ జాతీయాన్ని ఉపయోగిస్తారు.", "opts": [{"en": null, "te": "రంగులు మార్పు"}, {"en": null, "te": "రంకెవేయు"}, {"en": null, "te": "సిద్ధమవ్వు"}, {"en": null, "te": "కాలుదువ్వు"}], "ans": 3, "mono": true, "monoLang": "te", "id": 46},
-  {"subj": "TEL", "qEn": null, "qTe": "కింది పదాలను వాటి నానార్థాలతో జతపరచండి.\n\nఅ. చైతన్యం\nఆ. మదనం\nఇ. సుఖం\nఈ. క్రతువు\n\ny. సంతోషం, స్వర్గం\nర. యజ్ఞం, విష్ణువు\nల. తెలివి, ప్రాణం\nవ. ఉమ్మెత్త, వసంతం", "opts": [{"en": null, "te": "అ-ల, ఆ-వ, ఇ-య, ఈ-ర"}, {"en": null, "te": "అ-ల, ఆ-వ, ఇ-ర, ఈ-య"}, {"en": null, "te": "అ-ల, ఆ-ర, ఇ-వ, ఈ-య"}, {"en": null, "te": "అ-ల, ఆ-య, ఇ-ర, ఈ-వ"}], "ans": 0, "mono": true, "monoLang": "te", "id": 47},
-  {"subj": "TEL", "qEn": null, "qTe": "\"చెయ్యనికుండ, పోయ్యని నీళ్ళు, వెయ్యని సున్నం, తియ్యగనుండు\" ఈ పొడుపుకు విడుపు", "opts": [{"en": null, "te": "నాలుక"}, {"en": null, "te": "కొబ్బరికాయ"}, {"en": null, "te": "మేఘం"}, {"en": null, "te": "కొండ"}], "ans": 1, "mono": true, "monoLang": "te", "id": 48},
-  {"subj": "TEL", "qEn": null, "qTe": "\"తెరువు\" పదానికి అర్థం", "opts": [{"en": null, "te": "నౌక"}, {"en": null, "te": "పడవ"}, {"en": null, "te": "స్థిరం"}, {"en": null, "te": "దారి"}], "ans": 3, "mono": true, "monoLang": "te", "id": 49},
-  {"subj": "TEL", "qEn": null, "qTe": "\"ఇక నాకిక్కడ వసింపదగదు. ఇప్పుడు నా వృత్తాంతము పరులతో చెప్పికొలును యుక్తము గాదు\" ఈ వాక్యం ఏ పురుషలో ఉంది", "opts": [{"en": null, "te": "ద్వితీయపురుష"}, {"en": null, "te": "మధ్యమపురుష"}, {"en": null, "te": "ప్రథమపురుష"}, {"en": null, "te": "ఉత్తమపురుష"}], "ans": 3, "mono": true, "monoLang": "te", "id": 50},
-  {"subj": "TEL", "qEn": null, "qTe": "కింది ఇచ్చిన వాక్యాలలో సరికానిది", "opts": [{"en": null, "te": "హోలునికి కవివత్సలుడు అనే బిరుదు ఉంది."}, {"en": null, "te": "హోలుడు సంస్కృతంలో 'గాథాసప్తశతి' ని సంకలనం చేశారు."}, {"en": null, "te": "హోలుడు శాలివాహన చక్రవర్తి"}, {"en": null, "te": "'గాథాసప్తశతి'లో ఏడువందల గాథలు ఉన్నాయి."}], "ans": 1, "mono": true, "monoLang": "te", "id": 51},
-  {"subj": "TEL", "qEn": null, "qTe": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరిగాయి. ఈ వాక్యానికి వ్యతిరేకార్థక వాక్యం", "opts": [{"en": null, "te": "నేటి విద్యార్థులకు వినయ విధేయతలు అనవసరం"}, {"en": null, "te": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగలేదు"}, {"en": null, "te": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగవు"}, {"en": null, "te": "నేటి విద్యార్థులకు వినయ విధేయతలు కొంచెం అవసరం"}], "ans": 1, "mono": true, "monoLang": "te", "id": 52},
-  {"subj": "TEL", "qEn": null, "qTe": "ఆ, ఈ, ఏ అనే సర్వనామాలు", "opts": [{"en": null, "te": "త్రికము"}, {"en": null, "te": "ద్రుతము"}, {"en": null, "te": "ఆమ్రేడితము"}, {"en": null, "te": "ఔపవిభక్తికము"}], "ans": 0, "mono": true, "monoLang": "te", "id": 53},
-  {"subj": "TEL", "qEn": null, "qTe": "కుఱు, చిఱు, కడు, నిడు, నడు శబ్దముల అ, డ లకు అచ్చుపరమైతే వచ్చే సంధి", "opts": [{"en": null, "te": "గసడదవాదేశసంధి"}, {"en": null, "te": "సరళాదేశసంధి"}, {"en": null, "te": "ద్విరుక్తటకారసంధి"}, {"en": null, "te": "ఆమ్రేడిత సంధి"}], "ans": 2, "mono": true, "monoLang": "te", "id": 54},
-  {"subj": "TEL", "qEn": null, "qTe": "'నీవు + టక్కరివి' సంధి జరిగిన రూపం", "opts": [{"en": null, "te": "నీవాక్కరివి"}, {"en": null, "te": "నీవుదక్కరివి"}, {"en": null, "te": "నీవుతక్కరివి"}, {"en": null, "te": "నీవుటక్కరివి"}], "ans": 1, "mono": true, "monoLang": "te", "id": 55},
-  {"subj": "TEL", "qEn": null, "qTe": "'చేతులున్' ఏ విభక్తి శబ్దం", "opts": [{"en": null, "te": "ద్వితీయా విభక్తి"}, {"en": null, "te": "ప్రథమా విభక్తి"}, {"en": null, "te": "తృతీయా విభక్తి"}, {"en": null, "te": "షష్ఠీ విభక్తి"}], "ans": 1, "mono": true, "monoLang": "te", "id": 56},
-  {"subj": "TEL", "qEn": null, "qTe": "\"ముత్యాలలాంటి మాటలు\" లో సమాసం", "opts": [{"en": null, "te": "ఉపమానోత్తరపద కర్మధారయ సమాసం"}, {"en": null, "te": "ఉపమానపూర్వపద కర్మధారయ సమాసం"}, {"en": null, "te": "అవధారణ పూర్వపద కర్మధారయ సమాసం"}, {"en": null, "te": "విశేషణ పూర్వపద కర్మధారయ సమాసం"}], "ans": 1, "mono": true, "monoLang": "te", "id": 57},
-  {"subj": "TEL", "qEn": null, "qTe": "వల్లమాలిన భ్రమ చేత వర్తమాన\nకాల మిటులనె తెలవారగాంచినావు\nహృదయ పద్మమధ్యమున నివసించు దేవు\nనరసి పూజింపలేవైతి వకట హంస!\n\nఈ పద్యంలోని చందస్సు", "opts": [{"en": null, "te": "తేటగీతి"}, {"en": null, "te": "ఆటవెలది"}, {"en": null, "te": "మత్తేభము"}, {"en": null, "te": "మత్తకోకిల"}], "ans": 3, "mono": true, "monoLang": "te", "id": 58},
-  {"subj": "TEL", "qEn": null, "qTe": "'భారతంలో ఒక పాత్ర రాత్రింబవళ్ళు పాండవులను కంటికి రెప్పలా కాపాడింది.' - ఇది ఏ అలంకారం", "opts": [{"en": null, "te": "స్వభావోక్తి అలంకారం"}, {"en": null, "te": "రూపకాలంకారం"}, {"en": null, "te": "ఉపమాలంకారం"}, {"en": null, "te": "ఉత్ప్రేక్షాలంకారం"}], "ans": 2, "mono": true, "monoLang": "te", "id": 59},
-  {"subj": "TEL", "qEn": null, "qTe": "కింది వాటిలో ద్యుప్రాస గల పద్యపాదం", "opts": [{"en": null, "te": "పూచిన పూతలే పూతలై తొడిగెను"}, {"en": null, "te": "కన్నుల వెలుగులు కరముల బాహువు"}, {"en": null, "te": "వెలయును సిరులు విద్యాప్రభావమున"}, {"en": null, "te": "చిత్తము స్థిరముగా జేయుము నిత్యము"}], "ans": 3, "mono": true, "monoLang": "te", "id": 60},
-  {"subj": "ENG", "qEn": "Read the following passage and answer the question:\n\nEducation is not merely about gaining academic knowledge; it is a holistic process that shapes character, values, and life skills. In a rapidly changing world, critical thinking and emotional intelligence are as crucial as academic achievement.", "qTe": null, "opts": [{"en": "Only academic performance matters for success.", "te": null}, {"en": "Education should focus on overall personality development.", "te": null}, {"en": "Critical thinking is less important than memorizing facts.", "te": null}, {"en": "Emotional intelligence is unnecessary in modern times.", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 61},
-  {"subj": "ENG", "qEn": "Based on the passage above, what is essential in addition to academic skills?", "qTe": null, "opts": [{"en": "Rote learning", "te": null}, {"en": "Critical thinking and emotional intelligence", "te": null}, {"en": "Physical sports only", "te": null}, {"en": "Technical skills exclusively", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 62},
-  {"subj": "ENG", "qEn": "Choose the correct passive voice form of: \"The teacher explained the lesson clearly.\"", "qTe": null, "opts": [{"en": "The lesson was explained clearly by the teacher.", "te": null}, {"en": "The lesson is explained clearly by the teacher.", "te": null}, {"en": "The lesson has been explained by teacher clearly.", "te": null}, {"en": "The teacher was explaining the lesson clearly.", "te": null}], "ans": 0, "mono": true, "monoLang": "en", "id": 63},
-  {"subj": "ENG", "qEn": "Choose the correct indirect speech: He said, \"I am reading an interesting book.\"", "qTe": null, "opts": [{"en": "He said that he is reading an interesting book.", "te": null}, {"en": "He said that he was reading an interesting book.", "te": null}, {"en": "He says that he had read an interesting book.", "te": null}, {"en": "He told that he reads an interesting book.", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 64},
-  {"subj": "ENG", "qEn": "Identify the part with an error: \"Neither of the two candidates (A) / are eligible (B) / for the post (C) / No error (D).\"", "qTe": null, "opts": [{"en": "Neither of the two candidates", "te": null}, {"en": "are eligible", "te": null}, {"en": "for the post", "te": null}, {"en": "No error", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 65},
-  {"subj": "ENG", "qEn": "Fill in the blank with appropriate preposition: She has been living in this city _____ 2018.", "qTe": null, "opts": [{"en": "for", "te": null}, {"en": "since", "te": null}, {"en": "from", "te": null}, {"en": "during", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 66},
-  {"subj": "ENG", "qEn": "Choose the synonym of the word 'BENEVOLENT':", "qTe": null, "opts": [{"en": "Kind", "te": null}, {"en": "Cruel", "te": null}, {"en": "Greedy", "te": null}, {"en": "Arrogant", "te": null}], "ans": 0, "mono": true, "monoLang": "en", "id": 67},
-  {"subj": "ENG", "qEn": "Choose the antonym of the word 'TRANSIENT':", "qTe": null, "opts": [{"en": "Temporary", "te": null}, {"en": "Permanent", "te": null}, {"en": "Brief", "te": null}, {"en": "Fleeting", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 68},
-  {"subj": "ENG", "qEn": "Select the correctly spelt word:", "qTe": null, "opts": [{"en": "Accomodation", "te": null}, {"en": "Accommodation", "te": null}, {"en": "Acommodation", "te": null}, {"en": "Accommodasion", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 69},
-  {"subj": "ENG", "qEn": "Meaning of the idiom: \"To burn the candle at both ends\"", "qTe": null, "opts": [{"en": "To waste money recklessly", "te": null}, {"en": "To work very hard from early morning until late at night", "te": null}, {"en": "To be extremely angry", "te": null}, {"en": "To celebrate a festival enthusiastically", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 70},
-  {"subj": "ENG", "qEn": "Choose the appropriate article: \"He is _____ European scholar working on ancient Indian history.\"", "qTe": null, "opts": [{"en": "a", "te": null}, {"en": "an", "te": null}, {"en": "the", "te": null}, {"en": "No article needed", "te": null}], "ans": 0, "mono": true, "monoLang": "en", "id": 71},
-  {"subj": "ENG", "qEn": "Choose the correct tag: \"She hardly ever complains about anything, _____?\"", "qTe": null, "opts": [{"en": "doesn't she", "te": null}, {"en": "does she", "te": null}, {"en": "isn't she", "te": null}, {"en": "is she", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 72},
-  {"subj": "ENG", "qEn": "Identify the sentence type: \"Although it was raining heavily, we decided to go for a walk.\"", "qTe": null, "opts": [{"en": "Simple sentence", "te": null}, {"en": "Compound sentence", "te": null}, {"en": "Complex sentence", "te": null}, {"en": "Compound-complex sentence", "te": null}], "ans": 2, "mono": true, "monoLang": "en", "id": 73},
-  {"subj": "ENG", "qEn": "Choose the correct conditional form: If you _____ studied harder, you would have passed the exam.", "qTe": null, "opts": [{"en": "have", "te": null}, {"en": "had", "te": null}, {"en": "would have", "te": null}, {"en": "were", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 74},
-  {"subj": "ENG", "qEn": "Which tense is used in: \"By next December, they will have completed the project.\"", "qTe": null, "opts": [{"en": "Future Continuous", "te": null}, {"en": "Future Perfect", "te": null}, {"en": "Future Perfect Continuous", "te": null}, {"en": "Simple Future", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 75},
-  {"subj": "ENG", "qEn": "One-word substitution: \"A person who looks at the bright side of things\"", "qTe": null, "opts": [{"en": "Pessimist", "te": null}, {"en": "Optimist", "te": null}, {"en": "Altruist", "te": null}, {"en": "Misanthrope", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 76},
-  {"subj": "ENG", "qEn": "Choose the correct phrase: He was accused _____ stealing money from the cash register.", "qTe": null, "opts": [{"en": "for", "te": null}, {"en": "of", "te": null}, {"en": "with", "te": null}, {"en": "at", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 77},
-  {"subj": "ENG", "qEn": "Select the correct plural form of 'Criterion':", "qTe": null, "opts": [{"en": "Criterions", "te": null}, {"en": "Criteria", "te": null}, {"en": "Criterias", "te": null}, {"en": "Criteriones", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 78},
-  {"subj": "ENG", "qEn": "Identify the word that functions as a conjunction in: \"Stay here until I return.\"", "qTe": null, "opts": [{"en": "Stay", "te": null}, {"en": "here", "te": null}, {"en": "until", "te": null}, {"en": "return", "te": null}], "ans": 2, "mono": true, "monoLang": "en", "id": 79},
-  {"subj": "ENG", "qEn": "Choose the correct option: The news _____ spread very quickly across the town.", "qTe": null, "opts": [{"en": "were", "te": null}, {"en": "was", "te": null}, {"en": "are", "te": null}, {"en": "have", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 80},
-  {"subj": "ENG", "qEn": "In English Language Teaching, 'Skimming' refers to:", "qTe": null, "opts": [{"en": "Reading rapidly for main ideas", "te": null}, {"en": "Reading for specific details", "te": null}, {"en": "Reading aloud with expression", "te": null}, {"en": "Writing brief summary notes", "te": null}], "ans": 0, "mono": true, "monoLang": "en", "id": 81},
-  {"subj": "ENG", "qEn": "The Primary focus of the Communicative Language Teaching (CLT) approach is:", "qTe": null, "opts": [{"en": "Mastery of grammatical rules", "te": null}, {"en": "Translation from L1 to L2", "te": null}, {"en": "Meaningful real-life communication", "te": null}, {"en": "Rote memorization of vocabulary lists", "te": null}], "ans": 2, "mono": true, "monoLang": "en", "id": 82},
-  {"subj": "ENG", "qEn": "Phonemic awareness refers to the ability to:", "qTe": null, "opts": [{"en": "Understand paragraph structure", "te": null}, {"en": "Identify and manipulate individual sounds in spoken words", "te": null}, {"en": "Write grammatically correct sentences", "te": null}, {"en": "Memorize spelling rules", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 83},
-  {"subj": "ENG", "qEn": "Which skill is considered a 'Receptive Skill' in language learning?", "qTe": null, "opts": [{"en": "Speaking", "te": null}, {"en": "Writing", "te": null}, {"en": "Listening", "te": null}, {"en": "Presenting", "te": null}], "ans": 2, "mono": true, "monoLang": "en", "id": 84},
-  {"subj": "ENG", "qEn": "The Direct Method of teaching English strictly prohibits:", "qTe": null, "opts": [{"en": "Use of mother tongue (L1)", "te": null}, {"en": "Use of visual aids", "te": null}, {"en": "Oral practice in target language", "te": null}, {"en": "Interactive group work", "te": null}], "ans": 0, "mono": true, "monoLang": "en", "id": 85},
-  {"subj": "ENG", "qEn": "Diagnostic evaluation in language testing is conducted to:", "qTe": null, "opts": [{"en": "Assign final grades to students", "te": null}, {"en": "Identify specific learning gaps and weaknesses", "te": null}, {"en": "Rank students in competitive order", "te": null}, {"en": "Select students for scholarships", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 86},
-  {"subj": "ENG", "qEn": "Which figure of speech is present in: \"The stars danced playfully in the moonlit sky\"?", "qTe": null, "opts": [{"en": "Simile", "te": null}, {"en": "Metaphor", "te": null}, {"en": "Personification", "te": null}, {"en": "Hyperbole", "te": null}], "ans": 2, "mono": true, "monoLang": "en", "id": 87},
-  {"subj": "ENG", "qEn": "Formative Assessment is mainly used for:", "qTe": null, "opts": [{"en": "Judging end-of-term performance", "te": null}, {"en": "Providing continuous feedback during the learning process", "te": null}, {"en": "Certifying student achievement", "te": null}, {"en": "Standardized annual reporting", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 88},
-  {"subj": "ENG", "qEn": "In phonetics, the diphthong is also known as:", "qTe": null, "opts": [{"en": "Pure vowel", "te": null}, {"en": "Vowel glide", "te": null}, {"en": "Consonant sound", "te": null}, {"en": "Plosive sound", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 89},
-  {"subj": "ENG", "qEn": "Remedial teaching is designed for students who are:", "qTe": null, "opts": [{"en": "Gifted and advanced learners", "te": null}, {"en": "Lagging behind in learning concepts", "te": null}, {"en": "Extremely active in sports", "te": null}, {"en": "Preparing for board exams only", "te": null}], "ans": 1, "mono": true, "monoLang": "en", "id": 90},
-  {"subj": "MATH", "qEn": "If x + (1/x) = 5, then x² + (1/x²) =", "qTe": "x + (1/x) = 5 అయితే, x² + (1/x²) విలువ ఎంత?", "opts": [{"en": "23", "te": "23"}, {"en": "25", "te": "25"}, {"en": "27", "te": "27"}, {"en": "21", "te": "21"}], "ans": 0, "mono": false, "id": 91},
-  {"subj": "MATH", "qEn": "The sum of the interior angles of a convex polygon with 8 sides is:", "qTe": "8 భుజాలు కలిగిన కుంభకోణ బహుభుజి లోపలి కోణాల మొత్తం ఎంత?", "opts": [{"en": "1080°", "te": "1080°"}, {"en": "1440°", "te": "1440°"}, {"en": "720°", "te": "720°"}, {"en": "900°", "te": "900°"}], "ans": 0, "mono": false, "id": 92},
-  {"subj": "MATH", "qEn": "The HCF and LCM of two numbers are 12 and 144 respectively. If one number is 36, the other number is:", "qTe": "రెండు సంఖ్యల గ.సా.భా మరియు ల.సా.గు వరుసగా 12 మరియు 144. అందులో ఒక సంఖ్య 36 అయితే, రెండవ సంఖ్య ఎంత?", "opts": [{"en": "48", "te": "48"}, {"en": "24", "te": "24"}, {"en": "72", "te": "72"}, {"en": "60", "te": "60"}], "ans": 0, "mono": false, "id": 93},
-  {"subj": "MATH", "qEn": "If 15% of a number is 45, then 40% of the same number is:", "qTe": "ఒక సంఖ్యలో 15% విలువ 45 అయితే, అదే సంఖ్యలో 40% విలువ ఎంత?", "opts": [{"en": "120", "te": "120"}, {"en": "150", "te": "150"}, {"en": "100", "te": "100"}, {"en": "135", "te": "135"}], "ans": 0, "mono": false, "id": 94},
-  {"subj": "MATH", "qEn": "A trader buys an item for ₹800 and sells it for ₹960. His profit percentage is:", "qTe": "ఒక వర్తకుడు ఒక వస్తువును ₹800 కి కొని ₹960 కి అమ్మితే అతనికి లభించే లాభ శాతం ఎంత?", "opts": [{"en": "20%", "te": "20%"}, {"en": "16%", "te": "16%"}, {"en": "25%", "te": "25%"}, {"en": "18%", "te": "18%"}], "ans": 0, "mono": false, "id": 95},
-  {"subj": "MATH", "qEn": "The mean of first 10 natural numbers is:", "qTe": "మొదటి 10 సహజ సంఖ్యల సరాసరి ఎంత?", "opts": [{"en": "5.5", "te": "5.5"}, {"en": "5.0", "te": "5.0"}, {"en": "6.0", "te": "6.0"}, {"en": "4.5", "te": "4.5"}], "ans": 0, "mono": false, "id": 96},
-  {"subj": "MATH", "qEn": "If the ratio of two numbers is 3 : 4 and their sum is 140, the smaller number is:", "qTe": "రెండు సంఖ్యల నిష్పత్తి 3 : 4 మరియు వాటి మొత్తం 140 అయితే, చిన్న సంఖ్య ఎంత?", "opts": [{"en": "60", "te": "60"}, {"en": "80", "te": "80"}, {"en": "45", "te": "45"}, {"en": "50", "te": "50"}], "ans": 0, "mono": false, "id": 97},
-  {"subj": "MATH", "qEn": "The total surface area of a cube is 294 cm². Its volume is:", "qTe": "ఒక ఘనం యొక్క సంపూర్ణతల వైశాల్యం 294 చ.సెం.మీ. అయితే దాని ఘనపరిమాణం ఎంత?", "opts": [{"en": "343 cm³", "te": "343 ఘ.సెం.మీ"}, {"en": "216 cm³", "te": "216 ఘ.సెం.మీ"}, {"en": "512 cm³", "te": "512 ఘ.సెం.మీ"}, {"en": "125 cm³", "te": "125 ఘ.సెం.మీ"}], "ans": 0, "mono": false, "id": 98},
-  {"subj": "MATH", "qEn": "The roots of quadratic equation x² - 7x + 12 = 0 are:", "qTe": "వర్గ సమీకరణం x² - 7x + 12 = 0 యొక్క మూలాలు ఏమిటి?", "opts": [{"en": "3, 4", "te": "3, 4"}, {"en": "-3, -4", "te": "-3, -4"}, {"en": "2, 6", "te": "2, 6"}, {"en": "-2, -6", "te": "-2, -6"}], "ans": 0, "mono": false, "id": 99},
-  {"subj": "MATH", "qEn": "If sin θ = 3/5, then tan θ =", "qTe": "sin θ = 3/5 అయితే, tan θ విలువ ఎంత?", "opts": [{"en": "3/4", "te": "3/4"}, {"en": "4/3", "te": "4/3"}, {"en": "4/5", "te": "4/5"}, {"en": "5/3", "te": "5/3"}], "ans": 0, "mono": false, "id": 100},
-  {"subj": "MATH", "qEn": "If Simple Interest on a sum of ₹5000 for 2 years at r% per annum is ₹600, then r =", "qTe": "₹5000 పై 2 సంవత్సరాలకు r% వార్షిక వడ్డీ రేటు చొప్పున సాధారణ వడ్డీ ₹600 అయితే r ఎంత?", "opts": [{"en": "6%", "te": "6%"}, {"en": "5%", "te": "5%"}, {"en": "8%", "te": "8%"}, {"en": "10%", "te": "10%"}], "ans": 0, "mono": false, "id": 101},
-  {"subj": "MATH", "qEn": "Area of a circle whose circumference is 44 cm is (π = 22/7):", "qTe": "చుట్టుకొలత 44 సెం.మీ కలిగిన వృత్తం యొక్క వైశాల్యం ఎంత? (π = 22/7)", "opts": [{"en": "154 cm²", "te": "154 చ.సెం.మీ"}, {"en": "616 cm²", "te": "616 చ.సెం.మీ"}, {"en": "308 cm²", "te": "308 చ.సెం.మీ"}, {"en": "77 cm²", "te": "77 చ.సెం.మీ"}], "ans": 0, "mono": false, "id": 102},
-  {"subj": "MATH", "qEn": "If 12 men can complete a work in 20 days, how many days will 15 men take to complete the same work?", "qTe": "12 మంది పురుషులు ఒక పనిని 20 రోజుల్లో పూర్తి చేయగలరు. అదే పనిని 15 మంది పురుషులు ఎన్ని రోజుల్లో పూర్తి చేయగలరు?", "opts": [{"en": "16 days", "te": "16 రోజులు"}, {"en": "18 days", "te": "18 రోజులు"}, {"en": "15 days", "te": "15 రోజులు"}, {"en": "25 days", "te": "25 రోజులు"}], "ans": 0, "mono": false, "id": 103},
-  {"subj": "MATH", "qEn": "Median of the data: 12, 17, 11, 19, 15, 14, 20 is:", "qTe": "క్రింది దత్తాంశానికి మధ్యగతం ఎంత? 12, 17, 11, 19, 15, 14, 20", "opts": [{"en": "15", "te": "15"}, {"en": "14", "te": "14"}, {"en": "17", "te": "17"}, {"en": "16", "te": "16"}], "ans": 0, "mono": false, "id": 104},
-  {"subj": "MATH", "qEn": "A single unbiased die is rolled. Probability of getting a prime number is:", "qTe": "ఒక పాచికను దొర్లించినప్పుడు ఒక ప్రధాన సంఖ్య పడే సంభావ్యత ఎంత?", "opts": [{"en": "1/2", "te": "1/2"}, {"en": "1/3", "te": "1/3"}, {"en": "2/3", "te": "2/3"}, {"en": "1/6", "te": "1/6"}], "ans": 0, "mono": false, "id": 105},
-  {"subj": "MATH", "qEn": "The value of log₂ 64 is:", "qTe": "log₂ 64 యొక్క విలువ ఎంత?", "opts": [{"en": "6", "te": "6"}, {"en": "8", "te": "8"}, {"en": "32", "te": "32"}, {"en": "4", "te": "4"}], "ans": 0, "mono": false, "id": 106},
-  {"subj": "MATH", "qEn": "If the slope of a line joining (2, 5) and (x, 9) is 2, then x =", "qTe": "(2, 5) మరియు (x, 9) బిందువులను కలిపే రేఖ వాలు 2 అయితే x విలువ ఎంత?", "opts": [{"en": "4", "te": "4"}, {"en": "3", "te": "3"}, {"en": "5", "te": "5"}, {"en": "6", "te": "6"}], "ans": 0, "mono": false, "id": 107},
-  {"subj": "MATH", "qEn": "If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, then A - B =", "qTe": "A = {1, 2, 3, 4} మరియు B = {3, 4, 5, 6} అయితే, A - B విలువ ఏమిటి?", "opts": [{"en": "{1, 2}", "te": "{1, 2}"}, {"en": "{5, 6}", "te": "{5, 6}"}, {"en": "{3, 4}", "te": "{3, 4}"}, {"en": "{1, 2, 5, 6}", "te": "{1, 2, 5, 6}"}], "ans": 0, "mono": false, "id": 108},
-  {"subj": "MATH", "qEn": "If third term of an AP is 8 and 7th term is 20, the common difference is:", "qTe": "ఒక అంకశ్రేఢిలో 3వ పదం 8 మరియు 7వ పదం 20 అయితే పదాంతరం (d) ఎంత?", "opts": [{"en": "3", "te": "3"}, {"en": "2", "te": "2"}, {"en": "4", "te": "4"}, {"en": "5", "te": "5"}], "ans": 0, "mono": false, "id": 109},
-  {"subj": "MATH", "qEn": "A line segment joining center to any point on circle is called:", "qTe": "వృత్త కేంద్రం నుండి వృత్తం పై ఉన్న ఏదైనా బిందువుకు గీచిన రేఖాఖండాన్ని ఏమంటారు?", "opts": [{"en": "Radius", "te": "వ్యాసార్ధం"}, {"en": "Diameter", "te": "వ్యాసము"}, {"en": "Chord", "te": "జ్యా"}, {"en": "Tangent", "te": "స్పర్శరేఖ"}], "ans": 0, "mono": false, "id": 110},
-  {"subj": "MATH", "qEn": "Simplify: (27)^(2/3) + (16)^(3/4) =", "qTe": "సులభకరింపుము: (27)^(2/3) + (16)^(3/4) =", "opts": [{"en": "17", "te": "17"}, {"en": "15", "te": "15"}, {"en": "25", "te": "25"}, {"en": "19", "te": "19"}], "ans": 0, "mono": false, "id": 111},
-  {"subj": "MATH", "qEn": "In a right angled triangle ABC, right angled at B, if AB = 6 cm and BC = 8 cm, hypotenuse AC =", "qTe": "లంబకోణ త్రిభుజం ABC లో, B వద్ద లంబకోణం ఉండి, AB = 6 సెం.మీ, BC = 8 సెం.మీ అయితే కర్ణం AC =", "opts": [{"en": "10 cm", "te": "10 సెం.మీ"}, {"en": "12 cm", "te": "12 సెం.మీ"}, {"en": "14 cm", "te": "14 సెం.మీ"}, {"en": "9 cm", "te": "9 సెం.మీ"}], "ans": 0, "mono": false, "id": 112},
-  {"subj": "MATH", "qEn": "Distance between points (3, 4) and (7, 1) is:", "qTe": "(3, 4) మరియు (7, 1) బిందువుల మధ్య దూరం ఎంత?", "opts": [{"en": "5 units", "te": "5 యూనిట్లు"}, {"en": "25 units", "te": "25 యూనిట్లు"}, {"en": "7 units", "te": "7 యూనిట్లు"}, {"en": "√17 units", "te": "√17 యూనిట్లు"}], "ans": 0, "mono": false, "id": 113},
-  {"subj": "MATH", "qEn": "The value of sin² 30° + cos² 30° =", "qTe": "sin² 30° + cos² 30° యొక్క విలువ ఎంత?", "opts": [{"en": "1", "te": "1"}, {"en": "0", "te": "0"}, {"en": "1/2", "te": "1/2"}, {"en": "√3/2", "te": "√3/2"}], "ans": 0, "mono": false, "id": 114},
-  {"subj": "MATH", "qEn": "Pedagogical Method: 'Proceeding from Concrete to Abstract' is best suited for:", "qTe": "గణిత బోధనా నియమం: 'మూర్తం నుండి అమూర్తం వైపు సాగడం' దేనికి బాగా ఉపయోగపడుతుంది?", "opts": [{"en": "Primary & Upper Primary stages", "te": "ప్రాథమిక మరియు ప్రాథమికోన్నత స్థాయిలు"}, {"en": "Post-graduate level mathematics", "te": "ఉన్నత స్థాయి పరిశోధన విభాగం"}, {"en": "Theoretical proofs only", "te": "సిద్ధాంత నిరూపణలకు మాత్రమే"}, {"en": "Abstract algebra advanced studies", "te": "అమూర్త బీజగణితం నేర్చుకోవడానికి"}, "ans": 0, "mono": false, "id": 115},
-  {"subj": "MATH", "qEn": "Who wrote the famous mathematical work 'Lilavati'?", "qTe": "ప్రసిద్ధ గణిత గ్రంథం 'లీలావతి' ని రచించినది ఎవరు?", "opts": [{"en": "Bhaskaracharya II", "te": "రెండవ భాస్కరాచార్యుడు"}, {"en": "Aryabhata", "te": "ఆర్యభట్ట"}, {"en": "Ramanujan", "te": "శ్రీనివాస రామానుజన్"}, {"en": "Brahmagupta", "te": "బ్రహ్మగుప్తుడు"}], "ans": 0, "mono": false, "id": 116},
-  {"subj": "MATH", "qEn": "'Inductive Method' in mathematics teaching proceeds from:", "qTe": "గణిత బోధనలో 'ఆగమన పద్ధతి' ఏ విధంగా సాగుతుంది?", "opts": [{"en": "Specific examples to General rule", "te": "ప్రత్యేక ఉదాహరణల నుండి సాధారణ నియమానికి"}, {"en": "General rule to Specific examples", "te": "సాధారణ నియమం నుండి ప్రత్యేక ఉదాహరణలకు"}, {"en": "Complex formulas to simple calculations", "te": "క్లిష్టమైన సూత్రాల నుండి సులువైన కొలతలకు"}, {"en": "Abstract theory to practical tasks", "te": "అమూర్త సిద్ధాంతం నుండి ప్రయోగాల వైపు"}, "ans": 0, "mono": false, "id": 117},
-  {"subj": "MATH", "qEn": "Which objective belongs to the Cognitive Domain of Bloom's Taxonomy?", "qTe": "బ్లూమ్స్ వర్గీకరణలోని 'జ్ఞానాత్మక రంగానికి' చెందిన లక్ష్యం ఏది?", "opts": [{"en": "Understanding / Application", "te": "అవగాహన / వినియోగం"}, {"en": "Organization", "te": "వ్యవస్థాపనం"}, {"en": "Precision", "te": "కచ్చితత్వం"}, {"en": "Characterization", "te": "చారిత్రకీకరణ"}, "ans": 0, "mono": false, "id": 118},
-  {"subj": "MATH", "qEn": "The main objective of Diagnostic Test in Mathematics is:", "qTe": "గణితంలో లోపనిర్ధారణ పరీక్ష (Diagnostic Test) యొక్క ముఖ్య ఉద్దేశం ఏమిటి?", "opts": [{"en": "To pinpoint specific learning difficulties of students", "te": "విద్యార్థుల అభ్యసన లోపాలను లేదా కష్టాలను గుర్తించడం"}, {"en": "To assign grades and ranks in class", "te": "తరగతిలో ర్యాంకులు మరియు గ్రేడులు ఇవ్వడం"}, {"en": "To complete the syllabus quickly", "te": "పాఠ్యాంశాలను త్వరగా పూర్తి చేయడం"}, {"en": "To report performance to parents at year end", "te": "సంవత్సరాంతంలో తల్లిదండ్రులకు మార్కులు చెప్పడం"}, "ans": 0, "mono": false, "id": 119},
-  {"subj": "MATH", "qEn": "A Lesson Plan according to Herbartian steps starts with:", "qTe": "హెర్బార్ట్ పాఠ్యాంశ ప్రణాళిక సోపానాలలో మొదటి సోపానం ఏది?", "opts": [{"en": "Preparation / Introduction", "te": "ఆయత్తపరచడం / ఉపోద్ఘాతం"}, {"en": "Presentation", "te": "విషయ సమర్పణ"}, {"en": "Association", "te": "తులనీకరణ / సంసర్గం"}, {"en": "Generalization", "te": "సామాన్యీకరణం"}, "ans": 0, "mono": false, "id": 120},
-  {"subj": "SCI", "qEn": "Which organelle is known as the 'Powerhouse of the Cell'?", "qTe": "కణం యొక్క 'శక్తి భాండాగారం' (Powerhouse of the Cell) అని దేనిని పిలుస్తారు?", "opts": [{"en": "Mitochondria", "te": "మైటోకాండ్రియా"}, {"en": "Nucleus", "te": "కేంద్రకం"}, {"en": "Ribosome", "te": "రైబోజోమ్"}, {"en": "Golgi complex", "te": "గాడ్జీ సంక్లిష్టం"}], "ans": 0, "mono": false, "id": 121},
-  {"subj": "SCI", "qEn": "The SI unit of force is:", "qTe": "బలం యొక్క SI ప్రమాణం ఏది?", "opts": [{"en": "Newton", "te": "న్యూటన్"}, {"en": "Joule", "te": "జౌల్"}, {"en": "Watt", "te": "వాట్"}, {"en": "Pascal", "te": "పాస్కల్"}], "ans": 0, "mono": false, "id": 122},
-  {"subj": "SCI", "qEn": "Chemical formula of Washing Soda is:", "qTe": "లాండ్రీ లేదా బట్టల సోడా రసాయన సూత్రం ఏమిటి?", "opts": [{"en": "Na₂CO₃·10H₂O", "te": "Na₂CO₃·10H₂O"}, {"en": "NaHCO₃", "te": "NaHCO₃"}, {"en": "NaOH", "te": "NaOH"}, {"en": "CaCl₂", "te": "CaCl₂"}], "ans": 0, "mono": false, "id": 123},
-  {"subj": "SCI", "qEn": "Which vitamin deficiency causes Night Blindness?", "qTe": "ఏ విటమిన్ లోపం వల్ల రేచీకటి (Night Blindness) వస్తుంది?", "opts": [{"en": "Vitamin A", "te": "విటమిన్ A"}, {"en": "Vitamin C", "te": "విటమిన్ C"}, {"en": "Vitamin D", "te": "విటమిన్ D"}, {"en": "Vitamin B12", "te": "విటమిన్ B12"}], "ans": 0, "mono": false, "id": 124},
-  {"subj": "SCI", "qEn": "Speed of light is maximum in:", "qTe": "కాంతి వేగం దేనిలో గరిష్టంగా ఉంటుంది?", "opts": [{"en": "Vacuum", "te": "శూన్యం"}, {"en": "Water", "te": "నీరు"}, {"en": "Glass", "te": "గాజు"}, {"en": "Diamond", "te": "వజ్రం"}], "ans": 0, "mono": false, "id": 125},
-  {"subj": "SCI", "qEn": "Which gas is released during photosynthesis in green plants?", "qTe": "ఆకుపచ్చని మొక్కలలో కిరణజన్య సంయోగక్రియ సమయంలో విడుదలయ్యే వాయువు ఏది?", "opts": [{"en": "Oxygen", "te": "ఆక్సిజన్"}, {"en": "Carbon dioxide", "te": "కార్బన్ డయాక్సైడ్"}, {"en": "Nitrogen", "te": "నైట్రోజన్"}, {"en": "Hydrogen", "te": "హైడ్రోజన్"}], "ans": 0, "mono": false, "id": 126},
-  {"subj": "SCI", "qEn": "An acid turns blue litmus paper into:", "qTe": "ఆమ్లం నీలి లిట్మస్ కాగితాన్ని ఏ రంగులోకి మారుస్తుంది?", "opts": [{"en": "Red", "te": "ఎరుపు"}, {"en": "Green", "te": "ఆకుపచ్చ"}, {"en": "Yellow", "te": "పసుపు"}, {"en": "Colorless", "te": "రంగు లేదు"}], "ans": 0, "mono": false, "id": 127},
-  {"subj": "SCI", "qEn": "Which instrument is used to measure atmospheric pressure?", "qTe": "వాతావరణ పీడనాన్ని కొలవడానికి ఉపయోగించే పరికరం ఏది?", "opts": [{"en": "Barometer", "te": "బారోమీటర్"}, {"en": "Thermometer", "te": "థర్మామీటర్"}, {"en": "Anemometer", "te": "అనెమోమీటర్"}, {"en": "Hygrometer", "te": "హైగ్రోమీటర్"}], "ans": 0, "mono": false, "id": 128},
-  {"subj": "SCI", "qEn": "The functional unit of the human kidney is:", "qTe": "మానవ మూత్రపిండం యొక్క క్రియాత్మక ప్రమాణం ఏది?", "opts": [{"en": "Nephron", "te": "నెఫ్రాన్"}, {"en": "Neuron", "te": "నాడీ కణం"}, {"en": "Alveoli", "te": "వాయుగోణులు"}, {"en": "Hepatocyte", "te": "హెపటోసైట్"}], "ans": 0, "mono": false, "id": 129},
-  {"subj": "SCI", "qEn": "Which mirror is used as a rear-view mirror in vehicles?", "qTe": "వాహనాలలో వెనుక దృశ్యాన్ని చూడటానికి (Rear-view mirror) ఉపయోగించే దర్పణం ఏది?", "opts": [{"en": "Convex mirror", "te": "కుంభకోణ దర్పణం"}, {"en": "Concave mirror", "te": "పుటాకార దర్పణం"}, {"en": "Plane mirror", "te": "సమతల దర్పణం"}, {"en": "Parabolic mirror", "te": "పారాబోలిక్ దర్పణం"}], "ans": 0, "mono": false, "id": 130},
-  {"subj": "SCI", "qEn": "Rusting of iron is an example of:", "qTe": "ఇనుము తుప్పు పట్టడం అనేది దేనికి ఉదాహరణ?", "opts": [{"en": "Chemical change", "te": "రసాయన మార్పు"}, {"en": "Physical change", "te": "భౌతిక మార్పు"}, {"en": "Reversible change", "te": "ద్విగత మార్పు"}, {"en": "Periodic change", "te": "ఆవర్తన మార్పు"}], "ans": 0, "mono": false, "id": 131},
-  {"subj": "SCI", "qEn": "Human blood pressure is normally measured as:", "qTe": "సాధారణ మానవ రక్తపోటు విలువ ఎంత?", "opts": [{"en": "120/80 mm Hg", "te": "120/80 mm Hg"}, {"en": "80/120 mm Hg", "te": "80/120 mm Hg"}, {"en": "140/90 mm Hg", "te": "140/90 mm Hg"}, {"en": "100/60 mm Hg", "te": "100/60 mm Hg"}], "ans": 0, "mono": false, "id": 132},
-  {"subj": "SCI", "qEn": "Resistance of a conductor is inversely proportional to its:", "qTe": "ఒక వాహకం యొక్క నిరోధం దేనికి విలోమానుపాతంలో ఉంటుంది?", "opts": [{"en": "Area of cross-section", "te": "మధ్యచ్ఛేద వైశాల్యం"}, {"en": "Length", "te": "పొడవు"}, {"en": "Temperature", "te": "ఉష్ణోగ్రత"}, {"en": "Resistivity", "te": "విశిష్ట నిరోధం"}], "ans": 0, "mono": false, "id": 133},
-  {"subj": "SCI", "qEn": "Which metal is liquid at room temperature?", "qTe": "సాధారణ గది ఉష్ణోగ్రత వద్ద ద్రవ రూపంలో ఉండే లోహం ఏది?", "opts": [{"en": "Mercury", "te": "పాతురసం"}, {"en": "Bromine", "te": "బ్రోమిన్"}, {"en": "Sodium", "te": "సోడియం"}, {"en": "Gallium", "te": "గాలియం"}], "ans": 0, "mono": false, "id": 134},
-  {"subj": "SCI", "qEn": "Insulin is secreted by which organ/gland?", "qTe": "ఇన్సులిన్ అనే హార్మోన్ ఏ అవయవం / గ్రంథి నుండి స్రవిస్తుంది?", "opts": [{"en": "Pancreas", "te": "క్లోమం"}, {"en": "Liver", "te": "కాలేయం"}, {"en": "Thyroid", "te": "థైరాయిడ్"}, {"en": "Pituitary", "te": "పీయూష గ్రంథి"}], "ans": 0, "mono": false, "id": 135},
-  {"subj": "SCI", "qEn": "Short-sightedness (Myopia) can be corrected using:", "qTe": "హ్రస్వదృష్టి (Myopia) ని నివారించడానికి ఉపయోగించే కటకం ఏది?", "opts": [{"en": "Concave lens", "te": "పుటాకార కటకం"}, {"en": "Convex lens", "te": "కుంభకోణ కటకం"}, {"en": "Bifocal lens", "te": "ద్విఫోకస్ కటకం"}, {"en": "Cylindrical lens", "te": "స్థూపాకార కటకం"}], "ans": 0, "mono": false, "id": 136},
-  {"subj": "SCI", "qEn": "Which process converts sugar into alcohol by yeast?", "qTe": "ఈస్ట్ ద్వారా చక్కెర ఆల్కహాల్‌గా మారే ప్రక్రియను ఏమంటారు?", "opts": [{"en": "Fermentation", "te": "కిణ్వ ప్రక్రియ"}, {"en": "Pasteurization", "te": "పాశ్చరైజేషన్"}, {"en": "Sterilization", "te": "స్టెరిలైజేషన్"}, {"en": "Oxidation", "te": "ఆక్సీకరణం"}], "ans": 0, "mono": false, "id": 137},
-  {"subj": "SCI", "qEn": "Sound waves cannot travel through:", "qTe": "ధ్వని తరంగాలు దేని గుండా ప్రయాణించలేవు?", "opts": [{"en": "Vacuum", "te": "శూన్యం"}, {"en": "Water", "te": "నీరు"}, {"en": "Air", "te": "గాలి"}, {"en": "Iron", "te": "ఇనుము"}], "ans": 0, "mono": false, "id": 138},
-  {"subj": "SCI", "qEn": "pH value of pure water at 25°C is:", "qTe": "25°C వద్ద పరిశుద్ధమైన నీటి pH విలువ ఎంత?", "opts": [{"en": "7.0", "te": "7.0"}, {"en": "0.0", "te": "0.0"}, {"en": "14.0", "te": "14.0"}, {"en": "5.6", "te": "5.6"}], "ans": 0, "mono": false, "id": 139},
-  {"subj": "SCI", "qEn": "The tissue that transports water and minerals in plants is:", "qTe": "మొక్కలలో నీరు మరియు ఖనిజ లవణాలను రవాణా చేసే కణజాలం ఏది?", "opts": [{"en": "Xylem", "te": "దారువు"}, {"en": "Phloem", "te": "పోషక కణజాలం"}, {"en": "Parenchyma", "te": "మృదు కణజాలం"}, {"en": "Collenchyma", "te": "స్థూలకోణ కణజాలం"}], "ans": 0, "mono": false, "id": 140},
-  {"subj": "SCI", "qEn": "Acceleration due to gravity (g) at Earth's surface is approximately:", "qTe": "భూమి ఉపరితలంపై గురుత్వ త్వరణం (g) విలువ సుమారుగా ఎంత?", "opts": [{"en": "9.8 m/s²", "te": "9.8 మీ/సెకను²"}, {"en": "9.8 cm/s²", "te": "9.8 సెం.మీ/సెకను²"}, {"en": "98 m/s²", "te": "98 మీ/సెకను²"}, {"en": "1.6 m/s²", "te": "1.6 మీ/సెకను²"}], "ans": 0, "mono": false, "id": 141},
-  {"subj": "SCI", "qEn": "Which gas is mainly responsible for Global Warming?", "qTe": "గ్లోబల్ వార్మింగ్ లేదా భూగోళం వేడెక్కడానికి ప్రధాన కారణమైన వాయువు ఏది?", "opts": [{"en": "Carbon dioxide", "te": "కార్బన్ డయాక్సైడ్"}, {"en": "Oxygen", "te": "ఆక్సిజన్"}, {"en": "Nitrogen", "te": "నైట్రోజన్"}, {"en": "Argon", "te": "ఆర్గాన్"}], "ans": 0, "mono": false, "id": 142},
-  {"subj": "SCI", "qEn": "The Master Gland of human endocrine system is:", "qTe": "మానవ అంతఃస్రావి వ్యవస్థలో 'మాస్టర్ గ్లాండ్' అని ఏ గ్రంథిని అంటారు?", "opts": [{"en": "Pituitary gland", "te": "పీయూష గ్రంథి"}, {"en": "Thyroid gland", "te": "థైరాయిడ్ గ్రంథి"}, {"en": "Adrenal gland", "te": "అధ్రివృక్క గ్రంథి"}, {"en": "Pancreas", "te": "క్లోమ గ్రంథి"}], "ans": 0, "mono": false, "id": 143},
-  {"subj": "SCI", "qEn": "Electric current is measured in units of:", "qTe": "విద్యుత్ ప్రవాహాన్ని ఏ ప్రమాణాలలో కొలుస్తారు?", "opts": [{"en": "Ampere", "te": "ఆంపియర్"}, {"en": "Volt", "te": "వోల్ట్"}, {"en": "Ohm", "te": "ఓమ్"}, {"en": "Coulomb", "te": "కూలుంబ్"}], "ans": 0, "mono": false, "id": 144},
-  {"subj": "SCI", "qEn": "Which acid is present in lemon and citrus fruits?", "qTe": "నిమ్మ మరియు నిమ్మజాతి పండ్లలో ఉండే ఆమ్లం ఏది?", "opts": [{"en": "Citric acid", "te": "సిట్రిక్ ఆమ్లం"}, {"en": "Acetic acid", "te": "ఎసిటిక్ ఆమ్లం"}, {"en": "Tartaric acid", "te": "టార్టారిక్ ఆమ్లం"}, {"en": "Lactic acid", "te": "లాక్టిక్ ఆమ్లం"}], "ans": 0, "mono": false, "id": 145},
-  {"subj": "SCI", "qEn": "Pedagogy: Scientific Method begins with which step?", "qTe": "శాస్త్రీయ పద్ధతి ఏ సోపానంతో ప్రారంభమవుతుంది?", "opts": [{"en": "Observation of a problem", "te": "సమస్యను పరిశీలించడం"}, {"en": "Formulation of hypothesis", "te": "పరిపరి కల్పన చేయడం"}, {"en": "Experimentation", "te": "ప్రయోగం నిర్వహించడం"}, {"en": "Drawing conclusions", "te": "నిర్ణయాలు రాబట్టడం"}], "ans": 0, "mono": false, "id": 146},
-  {"subj": "SCI", "qEn": "According to Bloom's taxonomy, evaluating and creating belong to:", "qTe": "బ్లూమ్స్ వర్గీకరణ ప్రకారం మూల్యాంకనం మరియు సృజనాత్మకత ఏ రంగానికి చెందినవి?", "opts": [{"en": "Cognitive domain", "te": "జ్ఞానాత్మక రంగం"}, {"en": "Affective domain", "te": "భావోద్వేగ రంగం"}, {"en": "Psychomotor domain", "te": "మానసిక చలనాత్మక రంగం"}, {"en": "Social domain", "te": "సామాజిక రంగం"}], "ans": 0, "mono": false, "id": 147},
-  {"subj": "SCI", "qEn": "Heuristic method of teaching science was developed by:", "qTe": "సైన్స్ బోధనలో ఆన్వేషణ/అన్వేషణా పద్ధతి (Heuristic Method) ని అభివృద్ధి చేసినది ఎవరు?", "opts": [{"en": "H.E. Armstrong", "te": "హెచ్.ఇ. ఆర్మ్‌స్ట్రాంగ్"}, {"en": "John Dewey", "te": "జాన్ డ్యూయి"}, {"en": "Kilpatrick", "te": "కిల్‌పాట్రిక్"}, {"en": "Herbert Spencer", "te": "హెర్బార్ట్ స్పెన్సర్"}], "ans": 0, "mono": false, "id": 148},
-  {"subj": "SCI", "qEn": "A good science textbook should mainly emphasize:", "qTe": "ఒక మంచి సైన్స్ పాఠ్యపుస్తకం దేనికి ప్రధాన ప్రాధాన్యత ఇవ్వాలి?", "opts": [{"en": "Process skills and activity-based learning", "te": "ప్రక్రియ నైపుణ్యాలు మరియు కృత్యాల ఆధారిత అభ్యసనం"}, {"en": "Rote memorization of scientific laws", "te": "సూత్రాలను కంఠస్థం చేయడం"}, {"en": "High price and colorful glossy paper", "te": "ఎక్కువ ధర మరియు నాణ్యమైన పేపరు"}, {"en": "Only theoretical exam preparation", "te": "కేవలం సిద్ధాంత పరీక్షల తయారీ"}, "ans": 0, "mono": false, "id": 149},
-  {"subj": "SCI", "qEn": "Continuous and Comprehensive Evaluation (CCE) aims at assessing:", "qTe": "నిరంతర సమగ్ర మూల్యాంకనం (CCE) యొక్క ప్రధాన లక్ష్యం ఏమిటి?", "opts": [{"en": "Scholastic and Co-scholastic aspects holistically", "te": "పాఠ్యాంశ మరియు అనుబంధ పాఠ్యాంశాల సమగ్ర వికాసం"}, {"en": "Only annual written examination marks", "te": "సంవత్సరాంతపు రాత పరీక్షల మార్కులు మాత్రమే"}, {"en": "Physical fitness of student only", "te": "విద్యార్థుల శారీరక సామర్థ్యం మాత్రమే"}, {"en": "Classroom attendance count", "te": "తరగతి గదికి హాజరైన రోజుల సంఖ్య"}, "ans": 0, "mono": false, "id": 150}
-];
+var QUESTIONS = [{"subj": "CDP","qEn": "The role of intelligence in overall growth and development of a child is","qTe": "శిశువు యొక్క సమగ్ర పెరుగుదల, వికాసంలలో ప్రజ్ఞ యొక్క పాత్ర","opts": [{"en": "to learn, adjust and take right decision at the right time","te": "నేర్చుకోవటానికి, సర్దుబాటుకి, సరైన సమయంలో సరైన నిర్ణయం తీసుకోగలగటానికి"},{"en": "to achieve academic goals for a bright future","te": "మంచి భవిష్యత్ కోసం విద్యాపరమైన లక్ష్యాల సాధనకు"},{"en": "to gain useful technological skills","te": "ఉపయోగకరమైన సాంకేతిక నైపుణ్యాలను పొందేందుకు"},{"en": "to develop proficiency in productive sectors","te": "ఉత్పాదక రంగాలలో నైపుణ్యాన్ని పెంపొందించుకోవటం కోసం"}],"ans": 0,"mono": false,"id": 1},{"subj": "CDP","qEn": "Among the factors that influence growth and development the parental and family care received by child comes under","qTe": "పెరుగుదల, వికాసాన్ని ప్రభావితం చేసే కారకాలలో, తల్లిదండ్రుల మరియు కుటుంబం నుండి పొందే శ్రద్ధ/రక్షణ ఈ రకానికి చెందిన కారకం","opts": [{"en": "Biological","te": "జీవసంబంధ"},{"en": "External","te": "బాహ్య"},{"en": "Hereditary","te": "వంశపారంపర్య"},{"en": "Social nature","te": "సామాజిక స్వభావ"}],"ans": 1,"mono": false,"id": 2},{"subj": "CDP","qEn": "Every child is unique with respect to the various dimensions of development. This applies to the following principle of development.","qTe": "అనేకమైన వికాస పరిమాణాలకు సంబంధించి, ప్రతి శిశువు ప్రత్యేకమైనది. ఇది ఈ వికాస నియమానికి వర్తిస్తుంది.","opts": [{"en": "Inter-relationships","te": "పరస్పర సంబంధాలు"},{"en": "Individual differences","te": "వైయక్తిక భేదాలు"},{"en": "Predictability","te": "ప్రాగుక్తీకరణ"},{"en": "Integration","te": "ఏకీకరణము"}],"ans": 1,"mono": false,"id": 3},{"subj": "CDP","qEn": "One of the following is not correct with respect to the growth and development.","qTe": "పెరుగుల, అభివృద్ధికి సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.","opts": [{"en": "Growth refers to physical change and development for overall change","te": "పెరుగుదల శారీరక మార్పుని సూచిస్తుంది, అభివృద్ధి మొత్తం మార్పుని సూచిస్తుంది."},{"en": "Growth is a part of development and development addresses changes in total.","te": "పెరుగుదల అభివృద్ధిలో ఒక భాగం మరియు అభివృద్ధి పూర్తి మార్పులని సూచిస్తుంది."},{"en": "The changes of both growth and development are totally measurable and observable","te": "పెరుగుదల, అభివృద్ధికి సంబంధించిన మార్పులు పూర్తిగా కొలవదగినవి మరియు పరిశీలింపదగినవి."},{"en": "Physical change may not result in functional change","te": "భౌతిక మార్పు క్రియాత్మక మార్పుకి దారితీయకపోవచ్చును."}],"ans": 2,"mono": false,"id": 4},{"subj": "CDP","qEn": "With regard to the structural development during Pre-natal period, embryonic period is between","qTe": "జనన పూర్వదశలోని శిశువు నిర్మాణాత్మక అభివృద్ధికి సంబంధించి అపరిణత పిండోత్పత్తి దశ (ఎంబ్రియోనిక్) ఈ మధ్య కాలం లోనిది","opts": [{"en": "3rd week to 8th week","te": "3వ వారం నుండి 8వ వారం"},{"en": "First two weeks","te": "మొదటి రెండు వారాలు"},{"en": "8th week to birth","te": "8వ వారం నుండి జననం వరకు"},{"en": "5th week to 8th week","te": "5వ వారం నుండి 8వ వారం"}],"ans": 0,"mono": false,"id": 5},{"subj": "CDP","qEn": "In the early childhood stage, the thinking and reasoning develops in relation to","qTe": "పూర్వ బాల్య దశలో, ఆలోచన మరియు తార్కికత వీటి ఆధారంగా అభివృద్ధి చెందుతుంది.","opts": [{"en": "Abstract materials","te": "అమూర్త వస్తువులు"},{"en": "Concrete materials","te": "మూర్త వస్తువులు"},{"en": "Moving pictures","te": "కదిలే చిత్రాలు"},{"en": "Unavailable materials","te": "లభ్యం కాని వస్తువులు"}],"ans": 1,"mono": false,"id": 6},{"subj": "CDP","qEn": "When a baby below 1 year old is playing with a toy, if the toy is replaced with a pillow, she forgets the toy and starts playing with pillow. According to piaget, this is because of","qTe": "ఒక సం॥ లోపు వయసున్న పాప ఆడుకొంటున్న బొమ్మని మార్చి, దిండు ఉంచినట్లయితే ఆమె బొమ్మని మరచి, దిండుతోనే ఆడుకొంటుంది. పియాజే ప్రకారం దీనికి కారణం","opts": [{"en": "The concept of object permanence","te": "వస్తుశాశ్వత భావన వలన"},{"en": "Lack of concept of irreversibility","te": "అనిపర్యాత్మక భావనాలోపం"},{"en": "The absence of object permanence concept","te": "వస్తు శాశ్వత భావన లేకపోవటం వలన"},{"en": "ego centrism","te": "అహంకేంద్రవాదం"}],"ans": 2,"mono": false,"id": 7},{"subj": "CDP","qEn": "The major focus of 'behavioristic theory' of development is on","qTe": "అభివృద్ధికి సంబంధించి 'ప్రవర్తనా సిద్ధాంతం' యొక్క ప్రధాన దృష్టి దీని గురించి","opts": [{"en": "Cognitive abilities and perception","te": "ప్రజ్ఞాసామర్థ్యాలు మరియు ప్రత్యక్షం"},{"en": "Learning of stimulus-response associations","te": "ఉద్దీపన-ప్రతిస్పందనల సాహచర్యం గురించి తెలుసుకోవటం"},{"en": "Importance of early childhood experiences on later development of child","te": "పిల్లవాని తరువాత వికాసం పై పూర్వప్రాథమిక దశలోని అనుభవాల ప్రాముఖ్యత"},{"en": "The ability to construct mental images involving reasoning.","te": "తార్కికతతో కూడిన మానసిక చిత్రాలను నిర్మించుకోగల సామర్థ్యం"}],"ans": 1,"mono": false,"id": 8},{"subj": "CDP","qEn": "One of the following is not true with respect to 'Self-concept'","qTe": "'ఆత్మభావన' కు సంబంధించి, ఈ క్రింది వానిలో ఒకటి నిజం కాదు.","opts": [{"en": "'Self-concept' is what the individual thinks about himself","te": "'ఆత్మభావన' అనేది వ్యక్తికి తన గురించి తనకు గల ఒక ఆలోచన"},{"en": "'Self-concept' is knowing one's strengths and weaknesses","te": "'ఆత్మభావన' అంటే తన బలాలు, బలహీనతలు తెలుసుకొని ఉండటం"},{"en": "'Self-concept' develops self-respect and self confidence","te": "'ఆత్మభావన' ఆత్మ గౌరవం మరియు ఆత్మ విశ్వాసాన్ని పెంచుతుంది."},{"en": "'Self-concept' does not influence the individual differences","te": "'ఆత్మభావన' వ్యక్తుల్లో వైవిధ్యతను ప్రభావితం చేయదు."}],"ans": 3,"mono": false,"id": 9},{"subj": "CDP","qEn": "The important tool of thinking is","qTe": "ఆలోచన యొక్క ముఖ్యమైన సాధనం","opts": [{"en": "Motivation","te": "ప్రేరణ"},{"en": "Intelligence","te": "ప్రజ్ఞ"},{"en": "Personality","te": "మూర్తిమత్వం"},{"en": "Language","te": "భాష"}],"ans": 3,"mono": false,"id": 10},{"subj": "CDP","qEn": "One of the following is not the innate individual difference","qTe": "క్రింది వానిలో ఒకటి జన్మత: వచ్చిన వైయక్తిక భేదము కానిది","opts": [{"en": "Physical","te": "శారీరక"},{"en": "Mental","te": "మానసిక"},{"en": "Emotional","te": "ఉద్వేగ"},{"en": "Educational","te": "విద్యాపరమైన"}],"ans": 3,"mono": false,"id": 11},{"subj": "CDP","qEn": "One of the following is not correct with respect to Intelligence","qTe": "ప్రజ్ఞకు సంబంధించి ఈ క్రింది వానిలో ఒకటి సరైనది కాదు","opts": [{"en": "Intelligence is the ability to carry out abstract thinking","te": "అమూర్త ఆలోచన చేయగల సామర్థ్యమే ప్రజ్ఞ"},{"en": "Knowledge comes through learning and intelligence occurs naturally","te": "జ్ఞానం అభ్యసన ద్వారా వస్తుంది, ప్రజ్ఞ సహజసిద్ధంగా ఏర్పడుతుంది."},{"en": "Intelligence pertains to all fields. Aptitude belongs to a particular field","te": "ప్రజ్ఞ అన్ని రంగాలకు సంబంధించినది. సహజ సామర్థ్యం ఒక ప్రత్యేక రంగానికి సంబంధించినది."},{"en": "All the persons who have intelligence have creativity but not all creative have intelligence","te": "ప్రజ్ఞ ఉన్న అందరికీ సృజనాత్మకత ఉంటుంది. కానీ సృజనాత్మకత ఉన్న అందరికీ ప్రజ్ఞ ఉండదు."}],"ans": 3,"mono": false,"id": 12},{"subj": "CDP","qEn": "One of the following is not a subtest of Differential Aptitude Test (DAT)","qTe": "క్రింది వానిలో భేదాత్మక సహజ సామర్థ్య పరీక్ష (DAT) లోని ఉపపరీక్ష కానిది","opts": [{"en": "Verbal ability","te": "శాబ్దిక సామర్థ్యం"},{"en": "Numerical ability","te": "సంఖ్య సామర్థ్యం"},{"en": "Object assembly test","te": "వస్తు సమాఖ్య పరీక్ష"},{"en": "Spatial ability","te": "ప్రాదేశిక సామర్థ్యం"}],"ans": 2,"mono": false,"id": 13},{"subj": "CDP","qEn": "Among the blocks of creativity, \"Excessive reliance on authority\" comes under this category","qTe": "సృజనాత్మకతను నిరోధించే వాటిలో \"అధికారం పై అధికంగా ఆధార పడటం\" ఈ తరహాకు చెందినది","opts": [{"en": "Perceptional blocks","te": "అవగాహనా అవరోధాలు"},{"en": "Emotional blocks","te": "ఉద్వేగ అవరోధాలు"},{"en": "Intellectual blocks","te": "ప్రజ్ఞా అవరోధాలు"},{"en": "Cultural blocks","te": "సాంస్కృతిక అవరోధాలు"}],"ans": 3,"mono": false,"id": 14},{"subj": "CDP","qEn": "Interest is formed in this way — a. Naturally, due to person's nature b. Due to reaction with surroundings c. Because of the experiences gained over time","qTe": "అభిరుచి ఇలా ఏర్పడుతుంది. a. సహజసిద్ధంగా, వ్యక్తి స్వభావం వలన b. పరిసరాలతో ప్రతిచర్యల వలన c. కాలంతో పాటు పొందే అనుభవాల వలన","opts": [{"en": "a only","te": "a మాత్రమే"},{"en": "a, b","te": "a, b"},{"en": "b, c","te": "b, c"},{"en": "a, b, c","te": "a, b, c"}],"ans": 3,"mono": false,"id": 15},{"subj": "CDP","qEn": "The projective test of personality among the following","qTe": "ఈ క్రింది వానిలో ప్రక్షేపక పరీక్ష","opts": [{"en": "Personality inventories","te": "మూర్తిమత్వశోధికలు"},{"en": "Rating scales","te": "నిర్ధారణ మాపనులు"},{"en": "Sentence completion test","te": "వాక్య పూరణ పరీక్ష"},{"en": "Anecdotal record","te": "సంఘటన రచన పద్ధతి / పత్రావళి"}],"ans": 2,"mono": false,"id": 16},{"subj": "CDP","qEn": "According to Hippocrates 'type approach' to personality, the dominant fluid in the \"choleric\" personality type is","qTe": "మూర్తిమత్వానికి సంబంధించి హిప్పోక్రెటిస్ 'రూప సిద్ధాంతం' ప్రకారం \"పైత్యప్రవృత్తి\" గల వారిలో ఉండే ఆధిపత్య ద్రవం","opts": [{"en": "Blood","te": "రక్తము"},{"en": "phlegm (mucus)","te": "శ్లేష్మము"},{"en": "Black bile","te": "నల్లని పైత్యరసం"},{"en": "yellow bile","te": "పసుపు పైత్యరసం"}],"ans": 3,"mono": false,"id": 17},{"subj": "CDP","qEn": "One of the following is not the part of central processing unit","qTe": "క్రింది వానిలో సెంట్రల్ ప్రొసెసింగ్ యూనిట్‌లో భాగం కానిది","opts": [{"en": "Control unit","te": "కంట్రోల్ యూనిట్"},{"en": "Memory unit","te": "మెమొరీ యూనిట్"},{"en": "Arithmetic & logical unit","te": "అర్ధమెటిక్ & లాజికల్ విభాగం"},{"en": "Printer","te": "ప్రింటర్"}],"ans": 3,"mono": false,"id": 18},{"subj": "CDP","qEn": "Behavioristic theories of development was proposed by","qTe": "వికాసం యొక్క ప్రవర్తనా వాద సిద్ధాంతాలు ప్రతిపాదించినది","opts": [{"en": "Sigmund Freud and Erik Erikson","te": "సిగ్మండ్ ఫ్రాయిడ్ మరియు ఎరిక్ ఎరిక్సన్"},{"en": "Ivan Pavlov and B.F. Skinner","te": "ఐవాన్ పావ్‌లోవ్ మరియు బి.ఎఫ్. స్కిన్నర్"},{"en": "Jean Piaget and Bandura","te": "జీన్ పియాజె మరియు బండూరా"},{"en": "Kohlberg and Goldstein","te": "కోల్బర్గ్ మరియు గోల్డ్‌స్టీన్"}],"ans": 1,"mono": false,"id": 19},{"subj": "CDP","qEn": "\"Adjustment means the modification to compensate for or meet special conditions\". This definition is given by","qTe": "\"ప్రత్యేక పరిస్థితులకు అనుగుణంగా లేదా వాటిని భర్తీ చేయటం కోసం సవరణ చేసుకోవటమే సర్దుబాటు\" ఈ నిర్వచనం ఇచ్చినది","opts": [{"en": "Webster","te": "వెబ్‌స్టర్"},{"en": "Carter V. Good","te": "కార్టర్ వి. గుడ్"},{"en": "Warren","te": "వారెన్"},{"en": "James Drever","te": "జేమ్స్ డ్రివెర్"}],"ans": 2,"mono": false,"id": 20},{"subj": "CDP","qEn": "\"Conflict is a painful emotional state which results from a tension between two opposed and contradictory wishes\". This definition is given by","qTe": "\"రెండు విరుద్ధ కోర్కెల మధ్య ఏర్పడే తన్యత వల్ల కలిగే బాధాకరమైన ఉద్వేగ స్థితే సంఘర్షణ\" ఈ నిర్వచనం ఇచ్చినది.","opts": [{"en": "Kurt Lewin","te": "కర్ట్ లెవిన్"},{"en": "Douglass and Holland","te": "డగ్లస్, హాలెండ్"},{"en": "Murray","te": "మురై"},{"en": "Jacob.L. Moreno","te": "జాకబ్.ఎల్. మొరినో"}],"ans": 1,"mono": false,"id": 21},{"subj": "CDP","qEn": "When requirements are not met during developmental stages, some people though they are elders behave like children. This defense mechanism is","qTe": "అభివృద్ధి దశలలో అవసరాలు తీరనపుడు, కొందరు పెద్దవారైనప్పటికీ చిన్నపిల్లల్లా ప్రవర్తిస్తారు. ఇది ఈ రక్షణ తంత్రం","opts": [{"en": "Repression","te": "దమనం"},{"en": "Regression","te": "ప్రతిగమనం"},{"en": "Compensation","te": "పరిహారం"},{"en": "Rationalization","te": "హేతుకీకరణ"}],"ans": 1,"mono": false,"id": 22},{"subj": "CDP","qEn": "\"Measuring without instruments\" is also the name of the following method of psychology","qTe": "\"పరికరం లేకుండా కొలవటం\" ఇది ఈ క్రింది మనోవిజ్ఞానశాస్త్ర పద్ధతికి ఇంకో పేరు","opts": [{"en": "Projective tests","te": "ప్రక్షేపక పరీక్షలు"},{"en": "Observation method","te": "పరిశీలన పద్ధతి"},{"en": "Experimental method","te": "ప్రయోగ పద్ధతి"},{"en": "Case study method","te": "వ్యక్తి అధ్యయన పద్ధతి"}],"ans": 1,"mono": false,"id": 23},{"subj": "CDP","qEn": "One of the following is correct with respect to learning","qTe": "క్రింది వానిలో అభ్యసనకు సంబంధించి సరైనది","opts": [{"en": "Learning involves making sense of the presented material","te": "అభ్యసన అనేది హాజరుపరచిన విషయాలు అర్థవంతం అవడాన్ని కలిగి ఉంటుంది."},{"en": "Learning is a relatively temporary change in behaviour","te": "అభ్యసన అనేది సాపేక్షంగా ప్రవర్తనలో తాత్కాలిక మార్పు"},{"en": "No relation between learning and adjustment","te": "అభ్యసనకు, సర్దుబాటుకు సంబంధం లేదు"},{"en": "Learning is a product","te": "అభ్యసన అనేది ఒక ఉత్పత్తి"}],"ans": 0,"mono": false,"id": 24},{"subj": "CDP","qEn": "Correctly matched pair is","qTe": "సరిగ్గా జతపరచబడిన జత","opts": [{"en": "Pavlov – Operant conditioning","te": "పావ్‌లోవ్ – కార్యసాధక నిబంధనం"},{"en": "Kohlberg – Language development theory","te": "కోల్బర్గ్ – భాషావికాస సిద్ధాంతం"},{"en": "Bandura – Social learning theory","te": "బండూర – సాంఘిక అభ్యసనా సిద్ధాంతం"},{"en": "Rogers – Social constructivism","te": "రోజర్స్ – సామాజిక నిర్మాణాత్మకవాదం"}],"ans": 2,"mono": false,"id": 25},{"subj": "CDP","qEn": "'Attention Concentration' is","qTe": "'అవధాన ఏకాగ్రత' అనేది","opts": [{"en": "An indicator of attention 'depth'","te": "అవధానం యొక్క 'లోతు / పరిపూర్ణత' యొక్క సూచిక"},{"en": "An indicator of attention width and narrowness","te": "అవధానం యొక్క విశాలత మరియు సంకుచితత్వం యొక్క సూచిక"},{"en": "Attention is the speed of transition from one object to another","te": "ఒక వస్తువు నుండి మరొక విషయానికి మారే అవధాన వేగం"},{"en": "The duration of voluntary attention","te": "సంకల్పిత అవధానం యొక్క వ్యవధి"}],"ans": 0,"mono": false,"id": 26},{"subj": "CDP","qEn": "One of the following is not the part of planning phase of teaching.","qTe": "ఈ క్రింది వానిలో ఒకటి బోధన యొక్క ప్రణాళికా దశకు చెందినది కాదు","opts": [{"en": "Selection of content to be taught","te": "నేర్పవలసిన విషయాన్ని ఎంపిక చేసుకోవడం"},{"en": "Organization of the content","te": "విషయాన్ని వ్యవస్థీకరించటం"},{"en": "Selection and presentation of stimuli","te": "ఉద్దీపనల ఎంపిక మరియు హాజరుపరచుట"},{"en": "Sequencing the elements of content for presentation","te": "హాజరుపరచాల్సిన విషయాంశాలను క్రమపరచుట"}],"ans": 2,"mono": false,"id": 27},{"subj": "CDP","qEn": "One of the following is not correct regarding the use of knowledge of group dynamics to the teacher.","qTe": "సమూహ గతి శాస్త్రజ్ఞానము ఉపాధ్యాయునికి ఉపయోగపడే విషయంలో ఈ క్రింది వానిలో ఒకటి సరైనది కాదు.","opts": [{"en": "He can improve social and emotional climate of the group","te": "సమూహం యొక్క సామాజిక మరియు భావోద్వేగ పరిస్థితులను మెరుగుపరచుకుంటాడు."},{"en": "He finds out the causes that work against conducive environment of the class","te": "తరగతి యొక్క అనుకూల వాతావరణానికి వ్యతిరేకంగా పని చేసే కారణాలు తెలుసుకొంటాడు."},{"en": "He can improve intra group relations","te": "అంతర్ సమూహ సంబంధాలను మెరుగుపరచుకుంటాడు."},{"en": "He can understand the relationship patterns which are same for all activities.","te": "అన్ని కార్యకలాపాలకు ఒకేవిధంగా ఉండే సంబంధాల నమూనాలను అర్థం చేసుకోగలడు."}],"ans": 3,"mono": false,"id": 28},{"subj": "CDP","qEn": "The creator of project method","qTe": "ప్రాజెక్టు / ప్రకల్పనా పద్ధతి రూపకర్త","opts": [{"en": "John Dewey","te": "జాన్ డ్యూయి"},{"en": "Kil Patrik","te": "కిల్‌పాట్రిక్"},{"en": "Froebel","te": "ఫ్రోబెల్"},{"en": "Morrison","te": "మోరిసన్"}],"ans": 1,"mono": false,"id": 29},{"subj": "CDP","qEn": "One of the following is not correct with regard to the 'instruction' and 'teaching'","qTe": "ఈ క్రింది వానిలో ఒకటి 'సూచన' మరియు 'బోధన'ల గురించి సరైనది కాదు.","opts": [{"en": "Instruction is suggesting directions in teaching learning Process","te": "సూచన అనేది బోధనాభ్యసన ప్రక్రియలో దిశలను సూచించేది."},{"en": "Teaching is based on individual differences on learning","te": "బోధన, అభ్యసనలో ఉండే వ్యక్తిగత వ్యత్యాసాల మీద ఆధారపడి ఉంటుంది."},{"en": "Instruction may not be possible in informal Education","te": "అనియత విద్యలో సూచనలు ఇచ్చుటకు అవకాశం లేదు."},{"en": "Teaching takes place only in formal education","te": "నియత విద్యలో మాత్రమే బోధన జరుగుతుంది."}],"ans": 3,"mono": false,"id": 30},{"subj": "TEL","qEn": null,"qTe": "'తెనుగు' దేశ్యపదమని, దిగ్వాచి అని గంటి జోగి సోమయాజి గారి అభిప్రాయం 'తెన్' శబ్దం దక్షిణ దిక్కు అనే అర్థం ఉన్న ద్రావిడ పదాంశం. సాధారణంగా ఒక సమాజంలో ఒక భాష రూపొందే ప్రాథమిక దశలో ఆ భాషకు నామకరణం జరుగదు. ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వాళ్ళని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి తూర్పు వాళ్ళని, ఉత్తరాది వాళ్ళని వ్యవహరించడం సాధారణం.\n\nపై గద్యం ఆధారంగా సరికానిది.","opts": [{"en": null,"te": "'తెన్' శబ్దం ద్రావిడపదాంశం"},{"en": null,"te": "గంటి జోగి సోమయాజి గారి అభిప్రాయంలో 'తెనుగు' దేశ్యపదం"},{"en": null,"te": "ఒక భాషా సమాజంలోనే ఒక ప్రాంతం వారిని సూచించాల్సి వచ్చినప్పుడు దిక్కుల్ని బట్టి వ్యవహరించడం సాధారణం."},{"en": null,"te": "భాషకు నామకరణం భాష రూపొందే ప్రాథమికదశలోనే జరుగుతుంది."}],"ans": 3,"mono": true,"monoLang": "te","id": 31},{"subj": "TEL","qEn": null,"qTe": "సాధారణంగా తెలుగుపై సంస్కృత భాషా ప్రభావాన్ని గురించి చర్చిస్తూ ఉంటారు. కాని మొదట ఆర్యులు భారతదేశానికి వచ్చి ద్రావిడులతో సంబంధం ఏర్పరచుకున్నప్పుడు ఆదాన, ప్రదానాల వల్ల ద్రావిడ భాషా పదాలు ఆర్య భాషలలో ప్రవేశించాయి. అవి ఆర్యులకు తెలియని వృక్ష, ఫల, జంతు వాచక పదాలు అయి ఉండడం విశేషం. మొదటగా ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన కాల్డ్వెల్, కిటెల్, ఎమ్.బి ఎమెనో వంటి వారు సుమారు 700 కు పైగా ఆర్యభాషలలో చేరిన ద్రావిడ పదాలను గుర్తించారు.\n\nపై గద్యం ఆధారంగా కింది వాటిలో సరైనది","opts": [{"en": null,"te": "ఏడువందలకు పైగా పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో చేరాయి."},{"en": null,"te": "ఆర్య, ద్రావిడ సంబంధాల వలన ఆదాన ప్రదానాలు జరగలేదు."},{"en": null,"te": "ద్రావిడ భాషలను తులనాత్మకంగా పరిశీలించిన వారిలో కాల్డ్వెల్, ఎమెనో ప్రముఖులు"},{"en": null,"te": "వృక్ష, ఫల, జంతు వాచక పదాలు ఆర్యభాషల నుండి ద్రావిడ భాషలో ప్రవేశించాయి."}],"ans": 2,"mono": true,"monoLang": "te","id": 32},{"subj": "TEL","qEn": null,"qTe": "అంతరంగమందు నపరాధములు చేసి\nమంచివాని వలెను మనుజుండుండు\nఇతరు లెఱుగ కున్న నీశ్వరుడెఱుగడా?\nవిశ్వదాభిరామ వినురవేమ\n\n'అంతరంగము' అనగా","opts": [{"en": null,"te": "మనసు"},{"en": null,"te": "తప్పు"},{"en": null,"te": "భగవంతుడు"},{"en": null,"te": "రహస్యం"}],"ans": 0,"mono": true,"monoLang": "te","id": 33},{"subj": "TEL","qEn": null,"qTe": "ఉత్తమ గుణములు నీచున\nకెత్తెఱుగన గలుగనేర్చు నెయ్యెడలన్ దా\nనెత్తిచ్చి కఱుగ బోసిన\nనిత్తడి బంగార మగునె యెల్లో సుమతీ!\n\nపై పద్యంలో నీచగుణాలు గల వాడిని దీనితో పోల్చారు.","opts": [{"en": null,"te": "బంగారం"},{"en": null,"te": "ఇత్తడి"},{"en": null,"te": "రాగి"},{"en": null,"te": "పుత్తడి"}],"ans": 1,"mono": true,"monoLang": "te","id": 34},{"subj": "TEL","qEn": null,"qTe": "\"ఏ స్త్రీయైనా కుటుంబం లోంచి రాకుండా ఎక్కడ నుంచి వస్తుంది\" - అన్న పావలా శ్యామల మాటలు ఈ పాఠం లోనివి","opts": [{"en": null,"te": "మాణిక్యవీణ"},{"en": null,"te": "గోరంతదీపాలు"},{"en": null,"te": "మా ప్రయత్నం"},{"en": null,"te": "జానపదుని జాబు"}],"ans": 2,"mono": true,"monoLang": "te","id": 35},{"subj": "TEL","qEn": null,"qTe": "'కథానిక' ప్రక్రియకు చెందిన పాఠం","opts": [{"en": null,"te": "నా యాత్ర"},{"en": null,"te": "మాతృభూమి"},{"en": null,"te": "భువనవిజయం"},{"en": null,"te": "నాటి చదువు"}],"ans": 1,"mono": true,"monoLang": "te","id": 36},{"subj": "TEL","qEn": null,"qTe": "ఉన్నాడు లెస్స రాఘవుడు\nదున్నా విడిదె కపుల గూడి, యురుగతి రానై\nయున్నాడు ......\n\nమొల్ల రామాయణంలో సీతాదేవితో ఈ మాటలు అన్నవారు.","opts": [{"en": null,"te": "హనుమంతుడు"},{"en": null,"te": "త్రిజట"},{"en": null,"te": "విభీషణుడు"},{"en": null,"te": "జటాయువు"}],"ans": 0,"mono": true,"monoLang": "te","id": 37},{"subj": "TEL","qEn": null,"qTe": "కవి కలం నుండి జాలువారిన భావ పరంపరను ఆస్వాదించడంతో బాటు 'ప్రకృతి నుండి పాఠాలు నేర్చుస్తూ, విద్యార్థుల్లో మానవీయత మేల్కొల్పడం'. ఈ పాఠం ఉద్దేశం.","opts": [{"en": null,"te": "తీర్పు"},{"en": null,"te": "ఏదేశమేగినా"},{"en": null,"te": "ఆకుపచ్చశోకం"},{"en": null,"te": "హరివిల్లు"}],"ans": 3,"mono": true,"monoLang": "te","id": 38},{"subj": "TEL","qEn": null,"qTe": "\"గూడుకోసం గువ్వలు\" - రచించినది","opts": [{"en": null,"te": "కొలకలూరి స్వరూపరాణి"},{"en": null,"te": "పులికంటి కృష్ణారెడ్డి"},{"en": null,"te": "గరిమెళ్ళ సత్యనారాయణ"},{"en": null,"te": "రావినూతల ప్రేమకిషోర్"}],"ans": 1,"mono": true,"monoLang": "te","id": 39},{"subj": "TEL","qEn": null,"qTe": "\"ఆశావహదృక్పథం\" ఇతివృత్తంగా గల పాఠం","opts": [{"en": null,"te": "ఎద"},{"en": null,"te": "హితోక్తులు"},{"en": null,"te": "మట్టిచెట్టు"},{"en": null,"te": "మాయాకంబళి"}],"ans": 0,"mono": true,"monoLang": "te","id": 40},{"subj": "TEL","qEn": null,"qTe": "పింగళి బాలాదేవి రచనలలో కథాసంపుటి","opts": [{"en": null,"te": "ఒక చీకటి - ఒక వెన్నెల"},{"en": null,"te": "కుసుమ కోమలి"},{"en": null,"te": "నాన్నకు రాయని ఉత్తరం"},{"en": null,"te": "గాజు బొమ్మలు"}],"ans": 2,"mono": true,"monoLang": "te","id": 41},{"subj": "TEL","qEn": null,"qTe": "'కొత్త గబ్బిలం' - వీరి రచన","opts": [{"en": null,"te": "కొలకలూరి ఇనాక్"},{"en": null,"te": "గుర్రం జాషువా"},{"en": null,"te": "ఊటుకూరి లక్ష్మీకాంతమ్మ"},{"en": null,"te": "ఎండ్లూరి సుధాకర్"}],"ans": 3,"mono": true,"monoLang": "te","id": 42},{"subj": "TEL","qEn": null,"qTe": "\"వృక్షశాఖాదులను విరగ్గొట్టేది\" అనే వ్యుత్పత్యర్థం గల పదం","opts": [{"en": null,"te": "కరేణువు"},{"en": null,"te": "జలధరం"},{"en": null,"te": "ప్రభంజనం"},{"en": null,"te": "పారావారం"}],"ans": 2,"mono": true,"monoLang": "te","id": 43},{"subj": "TEL","qEn": null,"qTe": "\"భావన\" ఈ పదానికి పర్యాయపదాలు","opts": [{"en": null,"te": "స్త్రీ, ఉవిద"},{"en": null,"te": "తలంపు, విధము"},{"en": null,"te": "తలపు, ఆలోచన"},{"en": null,"te": "ఆలోచన, నెమరు"}],"ans": 2,"mono": true,"monoLang": "te","id": 44},{"subj": "TEL","qEn": null,"qTe": "\"మేఘము\" - ఈ పదానికి వికృతి","opts": [{"en": null,"te": "మొయిలు"},{"en": null,"te": "మొగము"},{"en": null,"te": "మేగము"},{"en": null,"te": "మెకము"}],"ans": 0,"mono": true,"monoLang": "te","id": 45},{"subj": "TEL","qEn": null,"qTe": "\"తగువుకు సిద్ధపడు\" అనే అర్థంలో ఈ జాతీయాన్ని ఉపయోగిస్తారు.","opts": [{"en": null,"te": "రంగులు మార్పు"},{"en": null,"te": "రంకెవేయు"},{"en": null,"te": "సిద్ధమవ్వు"},{"en": null,"te": "కాలుదువ్వు"}],"ans": 3,"mono": true,"monoLang": "te","id": 46},{"subj": "TEL","qEn": null,"qTe": "కింది పదాలను వాటి నానార్థాలతో జతపరచండి.\n\nఅ. చైతన్యం\nఆ. మదనం\nఇ. సుఖం\nఈ. క్రతువు\n\ny. సంతోషం, స్వర్గం\nర. యజ్ఞం, విష్ణువు\nల. తెలివి, ప్రాణం\nవ. ఉమ్మెత్త, వసంతం","opts": [{"en": null,"te": "అ-ల, ఆ-వ, ఇ-య, ఈ-ర"},{"en": null,"te": "అ-ల, ఆ-వ, ఇ-ర, ఈ-య"},{"en": null,"te": "అ-ల, ఆ-ర, ఇ-వ, ఈ-య"},{"en": null,"te": "అ-ల, ఆ-య, ఇ-ర, ఈ-వ"}],"ans": 0,"mono": true,"monoLang": "te","id": 47},{"subj": "TEL","qEn": null,"qTe": "\"చెయ్యనికుండ, పోయ్యని నీళ్ళు, వెయ్యని సున్నం, తియ్యగనుండు\" ఈ పొడుపుకు విడుపు","opts": [{"en": null,"te": "నాలుక"},{"en": null,"te": "కొబ్బరికాయ"},{"en": null,"te": "మేఘం"},{"en": null,"te": "కొండ"}],"ans": 1,"mono": true,"monoLang": "te","id": 48},{"subj": "TEL","qEn": null,"qTe": "\"తెరువు\" పదానికి అర్థం","opts": [{"en": null,"te": "నౌక"},{"en": null,"te": "పడవ"},{"en": null,"te": "స్థిరం"},{"en": null,"te": "దారి"}],"ans": 3,"mono": true,"monoLang": "te","id": 49},{"subj": "TEL","qEn": null,"qTe": "\"ఇక నాకిక్కడ వసింపదగదు. ఇప్పుడు నా వృత్తాంతము పరులతో చెప్పికొలును యుక్తము గాదు\" ఈ వాక్యం ఏ పురుషలో ఉంది","opts": [{"en": null,"te": "ద్వితీయపురుష"},{"en": null,"te": "మధ్యమపురుష"},{"en": null,"te": "ప్రథమపురుష"},{"en": null,"te": "ఉత్తమపురుష"}],"ans": 3,"mono": true,"monoLang": "te","id": 50},{"subj": "TEL","qEn": null,"qTe": "కింది ఇచ్చిన వాక్యాలలో సరికానిది","opts": [{"en": null,"te": "హోలునికి కవివత్సలుడు అనే బిరుదు ఉంది."},{"en": null,"te": "హోలుడు సంస్కృతంలో 'గాథాసప్తశతి' ని సంకలనం చేశారు."},{"en": null,"te": "హోలుడు శాలివాహన చక్రవర్తి"},{"en": null,"te": "'గాథాసప్తశతి'లో ఏడువందల గాథలు ఉన్నాయి."}],"ans": 1,"mono": true,"monoLang": "te","id": 51},{"subj": "TEL","qEn": null,"qTe": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరిగాయి. ఈ వాక్యానికి వ్యతిరేకార్థక వాక్యం","opts": [{"en": null,"te": "నేటి విద్యార్థులకు వినయ విధేయతలు అనవసరం"},{"en": null,"te": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగలేదు"},{"en": null,"te": "నేటి విద్యార్థులకు వినయ విధేయతలు పెరగవు"},{"en": null,"te": "నేటి విద్యార్థులకు వినయ విధేయతలు కొంచెం అవసరం"}],"ans": 1,"mono": true,"monoLang": "te","id": 52},{"subj": "TEL","qEn": null,"qTe": "ఆ, ఈ, ఏ అనే సర్వనామాలు","opts": [{"en": null,"te": "త్రికము"},{"en": null,"te": "ద్రుతము"},{"en": null,"te": "ఆమ్రేడితము"},{"en": null,"te": "ఔపవిభక్తికము"}],"ans": 0,"mono": true,"monoLang": "te","id": 53},{"subj": "TEL","qEn": null,"qTe": "కుఱు, చిఱు, కడు, నిడు, నడు శబ్దముల అ, డ లకు అచ్చుపరమైతే వచ్చే సంధి","opts": [{"en": null,"te": "గసడదవాదేశసంధి"},{"en": null,"te": "సరళాదేశసంధి"},{"en": null,"te": "ద్విరుక్తటకారసంధి"},{"en": null,"te": "ఆమ్రేడిత సంధి"}],"ans": 2,"mono": true,"monoLang": "te","id": 54},{"subj": "TEL","qEn": null,"qTe": "'నీవు + టక్కరివి' సంధి జరిగిన రూపం","opts": [{"en": null,"te": "నీవాక్కరివి"},{"en": null,"te": "నీవుదక్కరివి"},{"en": null,"te": "నీవుతక్కరివి"},{"en": null,"te": "నీవుడక్కరివి"}],"ans": 3,"mono": true,"monoLang": "te","id": 55},{"subj": "TEL","qEn": null,"qTe": "\"మేలిముసుగు తెరలో దట్టమైన నీలిమేఘం మాటున మెరుపుతీగ వలె ఉన్న స్త్రీని చూశాడు\". ఈ వాక్యంలోని అలంకారం","opts": [{"en": null,"te": "అతిశయోక్తి"},{"en": null,"te": "స్వభావోక్తి"},{"en": null,"te": "ఉపమ"},{"en": null,"te": "రూపకం"}],"ans": 2,"mono": true,"monoLang": "te","id": 56},{"subj": "TEL","qEn": null,"qTe": "\"సిరిగలవాని కెయ్యెడల జేసిన మేలది నిష్ఫలంబగున్\" పద్య పాదం ఈ వృత్తానికి చెందినది","opts": [{"en": null,"te": "చంపకమాల"},{"en": null,"te": "ఉత్పలమాల"},{"en": null,"te": "మత్తేభం"},{"en": null,"te": "శార్దూలం"}],"ans": 0,"mono": true,"monoLang": "te","id": 57},{"subj": "TEL","qEn": null,"qTe": "కింది వాక్యాలలో సత్యాలు\n\nఅ. జటాయువు నేల కూలాడు - అకర్మకం\nఆ. జటాయువుని రావణుడు నేలకూల్చాడు - అకర్మకం\nఇ. సంపాతి ఎగురుతున్నాడు - సకర్మకం\nఈ. సంపాతి ఆకాశంలో ఎగురుతున్నాడు - సకర్మకం","opts": [{"en": null,"te": "ఆ, ఇ"},{"en": null,"te": "అ, ఆ"},{"en": null,"te": "అ, ఈ"},{"en": null,"te": "ఇ, ఈ"}],"ans": 2,"mono": true,"monoLang": "te","id": 58},{"subj": "TEL","qEn": null,"qTe": "'వర్షం' పడితే పంటలు పండుతాయి ఈ వాక్యంలో 'పడితే' అన్నది","opts": [{"en": null,"te": "శత్రర్థకం"},{"en": null,"te": "చేదర్థకం"},{"en": null,"te": "అప్యర్థకం"},{"en": null,"te": "క్త్వార్థకం"}],"ans": 1,"mono": true,"monoLang": "te","id": 59},{"subj": "TEL","qEn": null,"qTe": "\"మృగనేత్రి\" సమాసం","opts": [{"en": null,"te": "రూపకం"},{"en": null,"te": "అవ్యయీభావం"},{"en": null,"te": "బహువ్రీహి"},{"en": null,"te": "విశేషణపూర్వపద కర్మధారయం"}],"ans": 2,"mono": true,"monoLang": "te","id": 60},{"subj": "ENG","qEn": "By the time she was eleven her marks had deteriorated and her headmistress urged her parents to take her to a specialist.\nWhen something 'deteriorated' it:","qTe": null,"opts": [{"en": "improved","te": null},{"en": "enhanced","te": null},{"en": "declined","te": null},{"en": "strengthened","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 61},{"subj": "ENG","qEn": "Actually, the overall pattern for her progress is quite satisfactory.\nIdentify the antonym of 'progress' in the context of the sentence:","qTe": null,"opts": [{"en": "regress","te": null},{"en": "enhance","te": null},{"en": "strengthen","te": null},{"en": "improvement","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 62},{"subj": "ENG","qEn": "Your life __________ by this book.\nIdentify the option that best fits the blank.","qTe": null,"opts": [{"en": "will be changed","te": null},{"en": "will change","te": null},{"en": "will changed","te": null},{"en": "will be changing","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 63},{"subj": "ENG","qEn": "Choose the correct suffix to mean 'without' in 'fearless'.","qTe": null,"opts": [{"en": "-ty","te": null},{"en": "-ness","te": null},{"en": "-ment","te": null},{"en": "-less","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 64},{"subj": "ENG","qEn": "Even though it was hard to bite the bullet, Tom finally told about the mistake.\nIn the above sentence, \"bite the bullet\" is used in the following sense:","qTe": null,"opts": [{"en": "to endure a painful experience","te": null},{"en": "to take a dangerous risk","te": null},{"en": "to argue with someone","te": null},{"en": "to finish a difficult task","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 65},{"subj": "ENG","qEn": "She decided to bring up the issue during the meeting.\nIdentify what 'bring up' means in the sentence:","qTe": null,"opts": [{"en": "to ignore","te": null},{"en": "to remove","te": null},{"en": "to finish","te": null},{"en": "to start discussing","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 66},{"subj": "ENG","qEn": "In a dictionary, words with the same prefix, such as 'uncle' and 'uncleared' should be ordered:","qTe": null,"opts": [{"en": "by the length of the word.","te": null},{"en": "alphabetically by the characters following the prefix.","te": null},{"en": "by their semantic meaning.","te": null},{"en": "alphabetically by their prefixes.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 67},{"subj": "ENG","qEn": "Choose the sentence that correctly uses commas with a quotation:","qTe": null,"opts": [{"en": "He said “I’ll be, back soon”.","te": null},{"en": "He said, “I’ll be back soon.”","te": null},{"en": "He, said “I’ll be back soon.”","te": null},{"en": "He said I’ll be back, soon.”","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 68},{"subj": "ENG","qEn": "To finish your project in time, you should start now.\nChoose the sentence that correctly converts the simple sentence into a complex sentence:","qTe": null,"opts": [{"en": "You should start now, so you finish your project in time.","te": null},{"en": "You should start now if you want to finish your project in time.","te": null},{"en": "You need to start now because you want to finish your project in time.","te": null},{"en": "Start working now to complete your project in time","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 69},{"subj": "ENG","qEn": "Identify the grammatically correct sentence:","qTe": null,"opts": [{"en": "It is a old television set.","te": null},{"en": "It is an old television set.","te": null},{"en": "It is old television set.","te": null},{"en": "It is an old television sets.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 70},{"subj": "ENG","qEn": "Choose the sentence that describes a feeling:","qTe": null,"opts": [{"en": "She walks to school every day.","te": null},{"en": "I feel very happy today.","te": null},{"en": "Can you open the window?","te": null},{"en": "Please shut the computer.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 71},{"subj": "ENG","qEn": "Identify the correct spelling of the word.","qTe": null,"opts": [{"en": "encyclipedea","te": null},{"en": "encyclopedia","te": null},{"en": "encylopidia","te": null},{"en": "encyclopaedia","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 72},{"subj": "ENG","qEn": "John said to Mary, “You are innocent”.\nChoose the correct indirect speech.","qTe": null,"opts": [{"en": "John told Mary that she was innocent.","te": null},{"en": "John told Mary that she has innocent.","te": null},{"en": "John told Mary that you were innocent.","te": null},{"en": "John told Mary that you are innocent.","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 73},{"subj": "ENG","qEn": "Whether we will go to the beach this weekend depends on the weather.\nIdentify the noun clause:","qTe": null,"opts": [{"en": "we will go","te": null},{"en": "to the beach","te": null},{"en": "Whether we will go to the beach this weekend.","te": null},{"en": "depends on the weather.","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 74},{"subj": "ENG","qEn": "Identify the term for a person who is a bootlicker or flatterer:","qTe": null,"opts": [{"en": "Sychophant","te": null},{"en": "Patriot","te": null},{"en": "Misanthropist","te": null},{"en": "Philanthropist","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 75},{"subj": "ENG","qEn": "The news __________ the entire nation.\nChoose the option that fits the blank.","qTe": null,"opts": [{"en": "shock","te": null},{"en": "is shocked","te": null},{"en": "shocking","te": null},{"en": "shocks","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 76},{"subj": "ENG","qEn": "Choose the correct example of an imperative sentence.","qTe": null,"opts": [{"en": "Where is the nearest Pharmacy?","te": null},{"en": "Please take out the trash.","te": null},{"en": "Wow, that was amazing!","te": null},{"en": "Are you coming to the party?","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 77},{"subj": "ENG","qEn": "The chef prepared a delicious meal. _______, the guests were impressed with his culinary skills.\nChoose the linker that fits the blank.","qTe": null,"opts": [{"en": "Consequently","te": null},{"en": "Yet","te": null},{"en": "For example","te": null},{"en": "Similarly","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 78},{"subj": "ENG","qEn": "Identify the example where the definite article is used before trades and professions following a proper noun:","qTe": null,"opts": [{"en": "Newton, the scientist","te": null},{"en": "The lion is the king of a forest.","te": null},{"en": "The Hindus in India","te": null},{"en": "The goat was all skin and bones.","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 79},{"subj": "ENG","qEn": "I __________ finish the report tomorrow.\nIdentify the modal verb used to express a future intention.","qTe": null,"opts": [{"en": "would","te": null},{"en": "should","te": null},{"en": "could","te": null},{"en": "will","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 80},{"subj": "ENG","qEn": "Choose the sentence that correctly uses 'because' as a subordinating conjunction.","qTe": null,"opts": [{"en": "Because he went to bed, he was tired.","te": null},{"en": "She was late because the traffic was bad.","te": null},{"en": "Because it was raining, but they went outside.","te": null},{"en": "I will go because of home.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 81},{"subj": "ENG","qEn": "Choose the sentence that uses a subordinating conjunction to show contrast.","qTe": null,"opts": [{"en": "We will go to beach when the sun comes out.","te": null},{"en": "She finished her homework before she watched TV.","te": null},{"en": "Although he was tired, he kept working.","te": null},{"en": "He went to the store because he needed milk.","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 82},{"subj": "ENG","qEn": "The first part of a diary entry typically includes:","qTe": null,"opts": [{"en": "A summary of the day’s events","te": null},{"en": "A personal reflection","te": null},{"en": "The date and time","te": null},{"en": "A closing line.","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 83},{"subj": "ENG","qEn": "The purpose of an invitation is to __________.\nChoose the best option.","qTe": null,"opts": [{"en": "Provide a summary of the event.","te": null},{"en": "request someone to attend an event.","te": null},{"en": "detail the organization’s history.","te": null},{"en": "outline the event’s budget.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 84},{"subj": "ENG","qEn": "Choose the negative form of the Present Perfect tense:","qTe": null,"opts": [{"en": "Subject + do not + base form of the verb.","te": null},{"en": "Subject + has / have + not + Past Participle.","te": null},{"en": "Subject + was / were + not + verb + ing","te": null},{"en": "Subject + will not + base form of the verb.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 85},{"subj": "ENG","qEn": "One of the following is NOT an example of the Present Perfect Continuous tense. Identify it.","qTe": null,"opts": [{"en": "She has been reading a book for two hours.","te": null},{"en": "They have been travelling since last week.","te": null},{"en": "He has finished his work.","te": null},{"en": "I have been working on this project for a month.","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 86},{"subj": "ENG","qEn": "The keys are __________ the drawer.\nChoose the correct preposition to fill the blank.","qTe": null,"opts": [{"en": "inside of","te": null},{"en": "in charge of","te": null},{"en": "in place of","te": null},{"en": "in back of","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 87},{"subj": "ENG","qEn": "__________ the rain, they went for a walk.\nIdentify the option that fits the blank.","qTe": null,"opts": [{"en": "Instead of","te": null},{"en": "Inspite of","te": null},{"en": "In exchange of","te": null},{"en": "In case of","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 88},{"subj": "ENG","qEn": "Read the following passage.\nChild labour remains a significant issue in India, with many children working in hazardous conditions instead of attending school. Efforts to combat child labour include legislation and social programmes aimed at improving education and economic opportunities for families. However, enforcement and implementation challenges persist, making it a complex problem to resolve.\n\nIdentify the main focus of efforts to combat child labour in India:","qTe": null,"opts": [{"en": "Increasing industrial jobs","te": null},{"en": "Promoting child entertainment","te": null},{"en": "Expanding child labour laws only","te": null},{"en": "Improving education and economic opportunities","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 89},{"subj": "ENG","qEn": "Read the following passage.\nChild labour remains a significant issue in India, with many children working in hazardous conditions instead of attending school. Efforts to combat child labour include legislation and social programmes aimed at improving education and economic opportunities for families. However, enforcement and implementation challenges persist, making it a complex problem to resolve.\n\nEfforts to address child labour face challenges related to ____.\nChoose the option that fits the blank.","qTe": null,"opts": [{"en": "public awareness","te": null},{"en": "enforcement and implementation","te": null},{"en": "media coverage","te": null},{"en": "technological advancement.","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 90},{"subj": "MATH","qEn": "If Tan A = 3/4, then the value of (1 − Cot A) / (1 + Cot A) is","qTe": null,"opts": [{"en": "−1/7","te": null},{"en": "−7","te": null},{"en": "1/7","te": null},{"en": "7","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 91},{"subj": "MATH","qEn": "A semicircular cardboard piece is made to rotate speedily along its diameter as axis of rotation. It forms the following 3-D object to our visualization:","qTe": null,"opts": [{"en": "Cuboid","te": null},{"en": "Cube","te": null},{"en": "Sphere","te": null},{"en": "Cylinder","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 92},{"subj": "MATH","qEn": "The value of (Sinθ + Cosθ)² + (Sinθ − Cosθ)² is","qTe": null,"opts": [{"en": "4","te": null},{"en": "3","te": null},{"en": "2","te": null},{"en": "1","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 93},{"subj": "MATH","qEn": "Ravi borrowed ₹10,000 at 10% per annum for 3 years at simple interest and Raju borrowed the same amount for the same period at 10% per annum, compounded annually. The difference of their interest paid is","qTe": null,"opts": [{"en": "₹300","te": null},{"en": "₹310","te": null},{"en": "₹320","te": null},{"en": "₹330","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 94},{"subj": "MATH","qEn": "Find the correct mathematical statement in the following:","qTe": null,"opts": [{"en": "2x + 3y = 5xy","te": null},{"en": "4(x − 5) = 4x − 5","te": null},{"en": "(3x + 2)² = 9x² + 12x + 4","te": null},{"en": "(x − 5)² = x² − 25","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 95},{"subj": "MATH","qEn": "While representing the data of a histogram on a graph, if the first class interval does not start from '0', we use ___ on the axis to show it on the graph.","qTe": null,"opts": [{"en": "Circle","te": null},{"en": "Bar","te": null},{"en": "Kink","te": null},{"en": "No sign is necessary to be shown","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 96},{"subj": "MATH","qEn": "3, 2, (2x+8) and (x+6) are in proportion. Then the value of 'x' is","qTe": null,"opts": [{"en": "3","te": null},{"en": "1","te": null},{"en": "−1","te": null},{"en": "2","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 97},{"subj": "MATH","qEn": "In the given diagram, 'O' is the centre of the circle. A, C, B are points on the circle. If ∠AOB = 110°, then ∠ACB = ?","qTe": null,"opts": [{"en": "70°","te": null},{"en": "55°","te": null},{"en": "125°","te": null},{"en": "110°","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 98},{"subj": "MATH","qEn": "The additive inverse of the multiplicative identity of −3 is","qTe": null,"opts": [{"en": "0","te": null},{"en": "−1","te": null},{"en": "+1","te": null},{"en": "3","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 99},{"subj": "MATH","qEn": "If p/q = (2/3)³ ÷ (3/2)⁻³, then (p/q)⁻¹⁰ is","qTe": null,"opts": [{"en": "3","te": null},{"en": "−3","te": null},{"en": "−1","te": null},{"en": "1","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 100},{"subj": "MATH","qEn": "The point which divides the line segment joining the points (2,−3) and (−1,4) in the ratio 3:2 internally is","qTe": null,"opts": [{"en": "(2/5, 6/5)","te": null},{"en": "(1/5, 6/5)","te": null},{"en": "(−2/5, 6/5)","te": null},{"en": "(1/5, −6/5)","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 101},{"subj": "MATH","qEn": "An angle is 2/7th of its complement. Then the difference between the complement and the original angle is","qTe": null,"opts": [{"en": "90°","te": null},{"en": "70°","te": null},{"en": "50°","te": null},{"en": "20°","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 102},{"subj": "MATH","qEn": "Set builder form of Set A − B is","qTe": null,"opts": [{"en": "{x : x ∈ B or x ∉ A}","te": null},{"en": "{x : x ∈ B and x ∉ A}","te": null},{"en": "{x : x ∈ A or x ∉ B}","te": null},{"en": "{x : x ∈ A and x ∉ B}","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 103},{"subj": "MATH","qEn": "Distance between two points (Cosθ, −Sinθ) and (Sinθ, Cosθ) is (in units)","qTe": null,"opts": [{"en": "√2","te": null},{"en": "√3","te": null},{"en": "√(Sinθ + Cosθ)","te": null},{"en": "√(Cosθ − Sinθ)","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 104},{"subj": "MATH","qEn": "The value of k, if (x − 1) is a factor of 4x³ + 3x² − 4x + k, is","qTe": null,"opts": [{"en": "2","te": null},{"en": "−3","te": null},{"en": "−2","te": null},{"en": "3","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 105},{"subj": "MATH","qEn": "Nainika orders a circular pizza of radius 8cm in a restaurant. But due to unavailability of 8cm pizzas, the bearer served two circular pizzas of radii 5cm each to her. Nainika argues that she was supplied with lesser quantity than what she has ordered, whereas the bearer claims that he supplied two 5cm radii pizzas which is 2cm more than what Nainika ordered. Identify the correct argument and by how much?","qTe": null,"opts": [{"en": "Bearer is correct by 2cm","te": null},{"en": "Nainika is correct by 14π cm²","te": null},{"en": "Bearer is correct by 14π cm²","te": null},{"en": "Nainika is correct by 2cm","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 106},{"subj": "MATH","qEn": "Identify the TRUE statement:","qTe": null,"opts": [{"en": "(a + √b)(a − √b) = a − b, a≠0, b≠0","te": null},{"en": "(√a + √b) = a + 2ab + b, a≠0, b≠0","te": null},{"en": "aᵐ / aⁿ = aᵐ⁺ⁿ, m > n","te": null},{"en": "ⁿ√a = a^(1/n), a > 0, n ∈ z⁺","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 107},{"subj": "MATH","qEn": "Diameter of a circle with centre (3,2) and passing through (−5,6) is (in units)","qTe": null,"opts": [{"en": "2√5","te": null},{"en": "4√5","te": null},{"en": "6√5","te": null},{"en": "8√5","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 108},{"subj": "MATH","qEn": "The probability of an event E is P(E). Then identify the TRUE statement in the following:","qTe": null,"opts": [{"en": "0 < P(E) ≤ 1","te": null},{"en": "0 < P(E) < 1","te": null},{"en": "0 ≤ P(E) < 1","te": null},{"en": "0 ≤ P(E) ≤ 1","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 109},{"subj": "MATH","qEn": "ABCD is a square. If a diagonal AC = 10cm, then AB + BC = (in cm)","qTe": null,"opts": [{"en": "5√2","te": null},{"en": "10√2","te": null},{"en": "20√2","te": null},{"en": "5/√2","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 110},{"subj": "MATH","qEn": "The height of a right circular cone with slant height 10cm and base radius 6cm is _____ (in cm)","qTe": null,"opts": [{"en": "4","te": null},{"en": "√136","te": null},{"en": "8","te": null},{"en": "16","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 111},{"subj": "MATH","qEn": "In Geometric Progression (G.P.) 2, 2√2, 4 ... which term is 128?","qTe": null,"opts": [{"en": "12th","te": null},{"en": "10th","te": null},{"en": "13th","te": null},{"en": "11th","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 112},{"subj": "MATH","qEn": "A bag contains 5x red balls and (3x+14) blue balls. If the probability of getting a red ball is equal to half of the probability of getting a blue ball, the total balls in the bag is","qTe": null,"opts": [{"en": "70","te": null},{"en": "50","te": null},{"en": "30","te": null},{"en": "25","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 113},{"subj": "MATH","qEn": "In the formula for finding the Median of a grouped data: l + [((n/2) − cf)/f] × h, 'l' represents:","qTe": null,"opts": [{"en": "Mid value of the median class","te": null},{"en": "Lower boundary of the median class","te": null},{"en": "Upper boundary of the median class","te": null},{"en": "Sum of the frequencies","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 114},{"subj": "MATH","qEn": "The first part of the 'Siddhanta Siromani' book is","qTe": null,"opts": [{"en": "Leelavathi","te": null},{"en": "Bijaganitam","te": null},{"en": "Graha Ganitam","te": null},{"en": "Goladhyaya","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 115},{"subj": "MATH","qEn": "A 9th class student named Laxmi gave a 'definition for the slant height of a cone'. This is related to the following objective:","qTe": null,"opts": [{"en": "Understanding","te": null},{"en": "Knowledge","te": null},{"en": "Application","te": null},{"en": "Skill","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 116},{"subj": "MATH","qEn": "'Preparatory Value' is given in whose classification of educational values?","qTe": null,"opts": [{"en": "Young","te": null},{"en": "Breslich","te": null},{"en": "Munnick","te": null},{"en": "Locke","te": null}],"ans": 2,"mono": true,"monoLang": "en","id": 117},{"subj": "MATH","qEn": "'Picto-graphs' come under the category of","qTe": null,"opts": [{"en": "3D-Aids","te": null},{"en": "A.V. Aids","te": null},{"en": "Audio Aids","te": null},{"en": "2D-Aids","te": null}],"ans": 3,"mono": true,"monoLang": "en","id": 118},{"subj": "MATH","qEn": "The term \"Summative\" is derived from this word:","qTe": null,"opts": [{"en": "Sum","te": null},{"en": "Summation","te": null},{"en": "Total","te": null},{"en": "Total Learning","te": null}],"ans": 0,"mono": true,"monoLang": "en","id": 119},{"subj": "MATH","qEn": "One of the following is NOT an attribute of the 'Heuristic Method':","qTe": null,"opts": [{"en": "Gives immense encouragement to the students","te": null},{"en": "Takes less time to conduct","te": null},{"en": "Chance to develop a sense of perception","te": null},{"en": "Develops self-study habits","te": null}],"ans": 1,"mono": true,"monoLang": "en","id": 120},{"subj": "SCI","qEn": "A particle moves along a circular path of radius 7m. The magnitude of displacement when it covers 1/4th of revolution is","qTe": "ఒక కణం 7మీ వ్యాసార్థం గల వృత్తాకార మార్గంలో చలించుచున్నది. ఆ కణం పరిభ్రమణంలో 1/4వ వంతు ప్రయాణించిన దాని స్థాన భ్రంశ పరిమాణం","opts": [{"en": "11 m","te": "11 మీ"},{"en": "7√2 m","te": "7√2 మీ"},{"en": "0","te": "0"},{"en": "2√7 m","te": "2√7 మీ"}],"ans": 1,"mono": false,"id": 121},{"subj": "SCI","qEn": "If the distance between the objects is halved, then the gravitational force between them becomes","qTe": "రెండు వస్తువుల మధ్య దూరాన్ని సగానికి తగ్గిస్తే, వాటి మధ్య గురుత్వాకర్షణ బలం","opts": [{"en": "4 times","te": "4 రెట్లు అగును"},{"en": "1/4 times","te": "1/4 వంతు అగును"},{"en": "2 times","te": "2 రెట్లు అగును"},{"en": "1/2 times","te": "1/2 వంతు అగును"}],"ans": 0,"mono": false,"id": 122},{"subj": "SCI","qEn": "Choose the correct option:\n\nA: Ultrasonics are sound waves with very long wave lengths.\nB: Ultrasonic waves move with the same velocity as sound waves.","qTe": "సరైన ఐచ్చికాన్ని ఎంచుకోండి:\n\nA: అతిధ్వనులు అధిక తరంగ దైర్ఘ్యాలు కలిగిన ధ్వని తరంగాలు\nB: ధ్వని తరంగ వేగానికి సమాన వేగంతో అతిధ్వనులు చలిస్తాయి","opts": [{"en": "Both A, B are correct","te": "A మరియు B రెండూ సరైనవి"},{"en": "A correct, B incorrect","te": "A సరైనది, B సరైనది కాదు"},{"en": "A incorrect, B correct","te": "A సరైనది కాదు, B సరైనది"},{"en": "Both A and B are incorrect","te": "A మరియు B రెండూ సరైనవి కావు"}],"ans": 2,"mono": false,"id": 123},{"subj": "SCI","qEn": "The temperature of a substance increases by 73K. On the centigrade scale, this increase is equal to","qTe": "ఒక పదార్ధపు ఉష్ణోగ్రతను 73K పెంచారు. సెంటీగ్రేడ్ మానంలో ఈ ఉష్ణోగ్రతలో పెరుగుదల","opts": [{"en": "−200°C","te": "−200°C"},{"en": "200°C","te": "200°C"},{"en": "73°C","te": "73°C"},{"en": "346°C","te": "346°C"}],"ans": 2,"mono": false,"id": 124},{"subj": "SCI","qEn": "There is a voltage drop of 220V across a wire of resistance 484Ω. The power consumed will be","qTe": "484Ω నిరోధం కలిగిన ఒక తీగ రెండు చివరల మధ్య పొటెన్షియల్ బేధం 220V అయిన, ఆ తీగ వినియోగించిన విద్యుత్","opts": [{"en": "5/11 W","te": "5/11 W"},{"en": "11/5 W","te": "11/5 W"},{"en": "1/100 W","te": "1/100 W"},{"en": "100 W","te": "100 W"}],"ans": 3,"mono": false,"id": 125},{"subj": "SCI","qEn": "When a proton is moving perpendicular to magnetic field","qTe": "ఒక ప్రోటాను అయస్కాంత క్షేత్రానికి లంబంగా ప్రయాణించినపుడు","opts": [{"en": "Magnetic field will not affect the motion of the proton","te": "ప్రోటాను చలనాన్ని అయస్కాంత క్షేత్రం ప్రభావితం చేయదు"},{"en": "Proton will bend in an arc of a circle","te": "ప్రోటాను వృత్త చాపం మార్గంలోకి మరలును"},{"en": "Proton will continue to move in the same direction with increasing speed","te": "ప్రోటాను అదేదిశలో అధిక వేగంతో పయనించును"},{"en": "Proton will continue to move in the opposite direction with decreasing speed","te": "ప్రోటాను వ్యతిరేక దిశలో తగ్గు వేగంతో పయనించును"}],"ans": 1,"mono": false,"id": 126},{"subj": "SCI","qEn": "The final product in oxidation reaction of ethanol in presence of alkaline KMnO4 is","qTe": "క్షారయుత KMnO4 సమక్షంలో ఇథనాల్ ఆక్సీకరణం చేసే చర్యలో చివరి ఉత్పన్నం","opts": [{"en": "Ethanal","te": "ఇథనాల్"},{"en": "Methanoic acid","te": "మిథనోయికామ్లం"},{"en": "Ethanoic acid","te": "ఇథనోయికామ్లం"},{"en": "Methanal","te": "మిథనాల్"}],"ans": 2,"mono": false,"id": 127},{"subj": "SCI","qEn": "The constellation with distorted shape of letter 'M' is","qTe": "వక్రీకరించిన 'M' అక్షర ఆకారంలో గల నక్షత్రరాశి","opts": [{"en": "Big dipper","te": "బిగ్‌డిప్పర్"},{"en": "Cancer","te": "కర్కాటకం"},{"en": "Cassiopeia","te": "కాసియోపియా"},{"en": "Orion","te": "ఓరియన్"}],"ans": 2,"mono": false,"id": 128},{"subj": "SCI","qEn": "Match the scientists in SET-A with their discoveries given in SET-B\n\nSET-A: A) Rutherford  B) Sommerfeld  C) Neils Bohr  D) Thomson\nSET-B: P) Stationary orbits  Q) Electrons  R) Elliptical orbits  S) Nucleus","qTe": "SET-A లో ఇవ్వబడిన శాస్త్రవేత్తలను SET-B లోని వారి ఆవిష్కరణలతో జతపరచండి\n\nSET-A: A) రూధర్‌ఫర్డ్  B) సోమర్‌ఫీల్డ్  C) నీల్స్‌బోర్  D) థామ్సన్\nSET-B: P) స్థిరకక్ష్యలు  Q) ఎలక్ట్రాన్లు  R) దీర్ఘవృత్తాకార కక్ష్యలు  S) కేంద్రకం","opts": [{"en": "A-R, B-S, C-P, D-Q","te": "A-R, B-S, C-P, D-Q"},{"en": "A-S, B-R, C-Q, D-P","te": "A-S, B-R, C-Q, D-P"},{"en": "A-S, B-R, C-P, D-Q","te": "A-S, B-R, C-P, D-Q"},{"en": "A-P, B-Q, C-R, D-S","te": "A-P, B-Q, C-R, D-S"}],"ans": 2,"mono": false,"id": 129},{"subj": "SCI","qEn": "\"The physical and chemical properties of elements are the periodic functions of the electronic configurations of their atoms.\" This is stated by","qTe": "\"మూలకాల భౌతిక రసాయన ధర్మాలు వాటి ఎలక్ట్రాన్ విన్యాసపు ఆవర్తన ప్రమేయాలు\" దీనిని ప్రవచించినది","opts": [{"en": "Mendleff","te": "మెండలీఫ్"},{"en": "Neils Bohr","te": "నీల్స్‌బోర్"},{"en": "Moseley","te": "మోస్లే"},{"en": "Heisenberg","te": "హైసన్‌బర్గ్"}],"ans": 2,"mono": false,"id": 130},{"subj": "SCI","qEn": "Choose the correct answer.\n\nAssertion (A): The alkali metal, sodium is stored in Kerosene.\nReason (R): Sodium is a highly reactive metal.","qTe": "సరైన సమాధానం ఎన్నుకోండి.\n\nప్రకటన (A): క్షారలోహమైన సోడియంను కిరోసిన్‌లో నిల్వ చేస్తారు.\nకారణం (R): సోడియం చాలా చురుకైన లోహం.","opts": [{"en": "Both 'A' & 'R' correct, but 'R' is not correct explanation of 'A'","te": "'A' మరియు 'R' సరైనవి, కానీ 'R', 'A'కు సరైన వివరణ కాదు"},{"en": "Both 'A' & 'R' correct and 'R' is the correct explanation of 'A'","te": "'A' మరియు 'R' సరైనవి మరియు 'R', 'A'కు సరైన వివరణ"},{"en": "A is correct and R is incorrect","te": "A సరైనది మరియు R సరైనది కాదు"},{"en": "A is incorrect and R is correct","te": "A సరైనది కాదు మరియు R సరైనది"}],"ans": 1,"mono": false,"id": 131},{"subj": "SCI","qEn": "Study the statements and choose correct option.\n\nRohan: Most of the thermoplastics can be recycled.\nRoshan: Plastics are non-biodegradable.","qTe": "క్రింది వాక్యాలను చదివి సరైన ఐచ్చికాన్ని ఎంచుకోండి.\n\nరోహన్: అనేక థర్మోప్లాస్టిక్‌లను రీసైకిల్ చేయవచ్చు\nరోషన్: ప్లాస్టిక్‌లు జీవ విచ్ఛిన్నం కానివి","opts": [{"en": "Rohan correct, Roshan incorrect","te": "రోహన్ ఒప్పు, రోషన్ తప్పు"},{"en": "Rohan incorrect, Roshan correct","te": "రోహన్ తప్పు, రోషన్ ఒప్పు"},{"en": "Both Rohan and Roshan incorrect","te": "రోహన్ మరియు రోషన్ ఇద్దరూ తప్పు"},{"en": "Both Rohan and Roshan correct","te": "రోహన్ మరియు రోషన్ ఇద్దరూ ఒప్పు"}],"ans": 3,"mono": false,"id": 132},{"subj": "SCI","qEn": "Identify the organism(s) that does not have gills:\n\nA) Fish  B) Squid  C) Octopus  D) Whale","qTe": "క్రిందివానిలో మొప్పలు లేని జీవులను గుర్తించండి.\n\nA) చేప  B) స్క్విడ్  C) ఆక్టోపస్  D) తిమింగలం","opts": [{"en": "A only","te": "A మాత్రమే"},{"en": "B and C","te": "B మరియు C"},{"en": "D only","te": "D మాత్రమే"},{"en": "C and D","te": "C మరియు D"}],"ans": 2,"mono": false,"id": 133},{"subj": "SCI","qEn": "The tissue that is seen in lining of kidney tubule and ducts of salivary glands is","qTe": "మూత్రనాళాల్లో మరియు లాలాజల గ్రంధుల నాళాలలో ఉపరితల పొరగా ఉండే కణజాలం","opts": [{"en": "Squamous epithelial tissue","te": "శల్క ఉపకళా కణజాలం"},{"en": "Stratified epithelial tissue","te": "స్తరిత ఉపకళా కణజాలం"},{"en": "Cuboidal epithelial tissue","te": "ఘనాకార ఉపకళా కణజాలం"},{"en": "Columnar epithelial tissue","te": "స్తంభాకార ఉపకళా కణజాలం"}],"ans": 2,"mono": false,"id": 134},{"subj": "SCI","qEn": "The diseases caused by bacteria are:\n\nA) Polio  B) Typhoid  C) Malaria  D) Citrus Canker","qTe": "క్రింది వానిలో బాక్టీరియా కారక వ్యాధులు\n\nA) పోలియో  B) టైఫాయిడ్  C) మలేరియా  D) సిట్రస్ కాంకర్","opts": [{"en": "A and D","te": "A మరియు D"},{"en": "B and D","te": "B మరియు D"},{"en": "A and C","te": "A మరియు C"},{"en": "B and C","te": "B మరియు C"}],"ans": 1,"mono": false,"id": 135},{"subj": "SCI","qEn": "Choose the correct answer.\n\nAssertion (A): The Lipase enzyme in bile juice digests the fats.\nReason (R): The process of converting large fat globules into small ones is called emulsification.","qTe": "సరియైన సమాధానాన్ని ఎంచుకోండి.\n\nప్రకటన (A): పైత్యరసంలోని లైపేజ్ ఎంజైమ్ కొవ్వులను జీర్ణం చేయును\nకారణం (R): పెద్ద కొవ్వు అణువులను చిన్న కొవ్వు అణువులుగా మార్చడాన్ని ఎమల్సీకరణ అంటారు.","opts": [{"en": "A is correct; R is incorrect","te": "A సత్యం; R అసత్యం"},{"en": "A is incorrect; R is correct","te": "A అసత్యం; R సత్యం"},{"en": "Both A and R are correct and R is correct explanation of A","te": "A మరియు R రెండూ సత్యం మరియు R, Aకి సరైన వివరణ"},{"en": "Both A and R are correct but R is not a correct explanation of A","te": "A మరియు R రెండూ సత్యం కాని R, Aకి సరైన వివరణ కాదు"}],"ans": 1,"mono": false,"id": 136},{"subj": "SCI","qEn": "The correct order of events in respiration is:\n\nA) Gaseous exchange at tissue level\nB) Gaseous exchange at Lung level\nC) Breathing\nD) Cellular respiration\nE) Gas transport by blood","qTe": "శ్వాసక్రియలోని అంశాల సరైన క్రమం\n\nA) కణజాలాల్లో వాయు మార్పిడి\nB) ఊపిరితిత్తుల్లో వాయు మార్పిడి\nC) శ్వాసించడం\nD) కణశ్వాసక్రియ\nE) రక్తం ద్వారా వాయు రవాణా","opts": [{"en": "B, E, A, D, C","te": "B, E, A, D, C"},{"en": "C, D, B, A, E","te": "C, D, B, A, E"},{"en": "C, B, E, A, D","te": "C, B, E, A, D"},{"en": "A, C, D, E, B","te": "A, C, D, E, B"}],"ans": 2,"mono": false,"id": 137},{"subj": "SCI","qEn": "The Incorrect statement from the following is:\n\nA) The tricuspid valve allows blood from Right auricle to ventricle.\nB) The mitral valve allows blood from left ventricle to auricle.\nC) The pulmonary valve allows blood from Right ventricle to pulmonary artery.\nD) The aortic valve allows blood from left ventricle to body parts.","qTe": "క్రింది వానిలో సరికాని వాక్యం\n\nA) అగ్రత్రయ కవాటం రక్తాన్ని కుడి కర్ణిక నుండి జఠరికకు పంపును\nB) మిత్రల్ కవాటం రక్తాన్ని ఎడమ జఠరిక నుండి కర్ణికకు పంపును\nC) పుపుస ధమని కవాటం రక్తాన్ని కుడి జఠరిక నుండి పుపుస ధమనికి పంపును\nD) మహా ధమని కవాటం రక్తాన్ని ఎడమ జఠరిక నుండి శరీర భాగాలకు పంపును","opts": [{"en": "A only","te": "A మాత్రమే"},{"en": "B only","te": "B మాత్రమే"},{"en": "A and B","te": "A మరియు B"},{"en": "C and D","te": "C మరియు D"}],"ans": 1,"mono": false,"id": 138},{"subj": "SCI","qEn": "Match the following:\n\ni) Caffeine  ii) Nicotine  iii) Reserpine  iv) Quinine\na) Antimalarial drug  b) CNS stimulant  c) Insecticide  d) Snake bite","qTe": "క్రింది వానిని జతపరచండి.\n\ni) కెఫిన్  ii) నికోటిన్  iii) రిసర్పిన్  iv) క్వినైన్\na) మలేరియా నివారణ ఔషధం  b) నాడీవ్యవస్థ ఉత్తేజ కారకం  c) కీటక నాశని  d) పాము కాటు","opts": [{"en": "i-b, ii-d, iii-a, iv-c","te": "i-b, ii-d, iii-a, iv-c"},{"en": "i-d, ii-a, iii-c, iv-b","te": "i-d, ii-a, iii-c, iv-b"},{"en": "i-b, ii-c, iii-d, iv-a","te": "i-b, ii-c, iii-d, iv-a"},{"en": "i-d, ii-b, iii-c, iv-a","te": "i-d, ii-b, iii-c, iv-a"}],"ans": 2,"mono": false,"id": 139},{"subj": "SCI","qEn": "The correct statement about Diencephalon from the following is","qTe": "క్రింది వానిలో ద్వారగోర్థంనకు సంబంధించి సరైన వాక్యం","opts": [{"en": "It has centers for Vasomotor activities","te": "వాసోమోటార్ చర్యలకు కేంద్రాలను కలిగి ఉంటుంది"},{"en": "It controls voluntary movements initiated by cerebrum","te": "మస్తిష్కం నుండి ప్రారంభమైన నియంత్రిత చలనాలను నియంత్రిస్తుంది"},{"en": "It controls coughing and sneezing","te": "తుమ్మడం మరియు దగ్గడంలను నియంత్రించును"},{"en": "It controls reflex centres for muscular activities","te": "కండరాల కదలికలకు ప్రతిక్రియ (ప్రతిచర్య) కేంద్రాలను నియంత్రించును"}],"ans": 3,"mono": false,"id": 140},{"subj": "SCI","qEn": "The incorrect statement from the following is","qTe": "క్రింది వానిలో సరికాని వాక్యం","opts": [{"en": "The prostate gland secretions supply nutrients to sperms","te": "పౌరుషగ్రంధి స్రావాలు శుక్రకణాలకు పోషకాలను సరఫరా చేస్తాయి"},{"en": "Cowper glands secretions activate sperms","te": "కౌపర్‌గ్రంధి స్రావాలు శుక్రకణాలను ఉత్తేజితం చేస్తాయి"},{"en": "Seminal fluid gives energy to sperms outside the body","te": "శుక్ర ద్రవం శరీరం బయటకు విడుదలైన శుక్రకణాలకు పోషణ అందిస్తుంది"},{"en": "Vasa efferentia carry sperms to epididymis","te": "శుక్రనాళికలు శుక్రకణాలను ఎపిడిడిమిస్ లోనికి తీసుకువెళ్తాయి"}],"ans": 1,"mono": false,"id": 141},{"subj": "SCI","qEn": "The product that is not produced from petroleum is","qTe": "పెట్రోలియం నుండి ఉత్పత్తి చేయలేని పదార్థం","opts": [{"en": "Nylon","te": "నైలాన్"},{"en": "Wax","te": "మైనం"},{"en": "Medical devices","te": "వైద్య పరికరాలు"},{"en": "Cellulose","te": "సెల్యులోజ్"}],"ans": 3,"mono": false,"id": 142},{"subj": "SCI","qEn": "The first reserve forest of India is","qTe": "భారతదేశంలోని మొట్టమొదటి రిజర్వ్ అటవీ ప్రాంతం","opts": [{"en": "Satpura National Park","te": "సాత్పురా జాతీయ ఉద్యానవనం"},{"en": "Kaziranga National Park","te": "కజిరంగా జాతీయ ఉద్యానవనం"},{"en": "Great Nicobar Biosphere Reserve","te": "గ్రేట్ నికోబార్ జీవావరణ రిజర్స్"},{"en": "Lockchao Wildlife Sanctuary","te": "లొక్చావో వన్యప్రాణుల అభయారణ్యం"}],"ans": 0,"mono": false,"id": 143},{"subj": "SCI","qEn": "The organic impurities in sewage water are:\n\nA) Herbicide  B) Phosphate  C) Nitrogen  D) Urine","qTe": "మురుగు నీటిలోని కర్బన మలినాలు\n\nA) కలుపు సంహారకాలు  B) ఫాస్ఫేట్  C) నైట్రోజన్  D) యూరిన్","opts": [{"en": "A and C","te": "A మరియు C"},{"en": "B and D","te": "B మరియు D"},{"en": "B and C","te": "B మరియు C"},{"en": "A and D","te": "A మరియు D"}],"ans": 3,"mono": false,"id": 144},{"subj": "SCI","qEn": "This does not belong to the academic standard \"Conceptual understanding\":","qTe": "క్రిందివానిలో 'విషయావగాహన' అనే విద్యాప్రమాణానికి చెందనిది","opts": [{"en": "Classification","te": "వర్గీకరించడం"},{"en": "Analysis","te": "విశ్లేషించడం"},{"en": "Asking questions","te": "ప్రశ్నించడం"},{"en": "Giving reasons","te": "కారణాలు చెప్పడం"}],"ans": 2,"mono": false,"id": 145},{"subj": "SCI","qEn": "The incorrect statement about field trip is","qTe": "క్షేత్ర పర్యటనకు సంబంధించి సరికాని వాక్యము","opts": [{"en": "Teacher and student representative should visit before the field trip.","te": "క్షేత్ర పర్యటనకు ముందు ఉపాధ్యాయుడు, పిల్లల ప్రతినిధి ఆ ప్రాంతాన్ని సందర్శించాలి."},{"en": "We should not discuss with students the experiences and observations of previous trips.","te": "ఇంతకు మునుపు పర్యటన యొక్క అనుభవం, పరిశీలనల గురించి పిల్లలతో చర్చించరాదు."},{"en": "Either individual or group wise reports has to be submitted by the students.","te": "పిల్లలు వ్యక్తిగతంగా కానీ, జట్టు పరంగా కానీ నివేదికలు సమర్పించాలి."},{"en": "Student reports should be evaluated after completion of the visit.","te": "పర్యటన తర్వాత పిల్లల నివేదికలను మూల్యాంకనం చేయాలి."}],"ans": 1,"mono": false,"id": 146},{"subj": "SCI","qEn": "This is not a co-curricular programme suggested by NCF-2005 for science curriculum:","qTe": "విజ్ఞానశాస్త్ర పాఠ్యప్రణాళిక కోసం NCF-2005 సూచించిన సహ పాఠ్య కార్యక్రమం కానిది","opts": [{"en": "Science corners","te": "సైన్స్‌కార్నర్లు"},{"en": "Utilization of science kits","te": "సైన్స్ కిట్ల వినియోగం"},{"en": "Utilization of ICT in Science teaching","te": "సైన్స్ బోధనలో ICT వినియోగం"},{"en": "Conducting exams for content","te": "విషయపరిజ్ఞానానికి పరీక్షల నిర్వహణ"}],"ans": 3,"mono": false,"id": 147},{"subj": "SCI","qEn": "\"A project is a bit of real-life that has been imported into the school.\" This was stated by","qTe": "\"పాఠశాలలో దిగుమతి అయిన నిజ జీవిత భాగమే ప్రకల్పన\" అని అన్నది","opts": [{"en": "W.H. Kilpatrick","te": "W.H.కిల్ ప్యాట్రిక్"},{"en": "Parker","te": "పార్కర్"},{"en": "J.A. Stevenson","te": "J.A. స్టీవెన్సన్"},{"en": "Ballard","te": "బల్లార్డ్"}],"ans": 3,"mono": false,"id": 148},{"subj": "SCI","qEn": "According to Edgar Dale's cone of Experience the percentage of learning that occurs in a student through directly attending a demonstration of experiment (to show that sunlight is required for photosynthesis) by a teacher is","qTe": "ఎడ్గర్ డేల్ అనుభవాల శంఖువు ప్రకారం కిరణజన్య సంయోగక్రియకు సూర్యరశ్మి అవసరమన్న ప్రయోగాన్ని ఉపాధ్యాయుడు ప్రదర్శిస్తున్నప్పుడు ప్రత్యక్షంగా పాల్గొనడం ద్వారా విద్యార్థిలో జరిగే అభ్యసన శాతం","opts": [{"en": "20%","te": "20%"},{"en": "50%","te": "50%"},{"en": "70%","te": "70%"},{"en": "90%","te": "90%"}],"ans": 2,"mono": false,"id": 149},{"subj": "SCI","qEn": "This among the following is NOT a fundamental principle in the formulation of \"A.P. State Curriculum Frame Work – 2011\":","qTe": "క్రింది వానిలో 'ఆంధ్రప్రదేశ్ రాష్ట్ర పాఠ్య ప్రణాళికా చట్రం - 2011' రూపకల్పనలో మౌలిక సూత్రం కానిది","opts": [{"en": "Connecting knowledge to life outside the school","te": "బడి బయటి జీవితంతో జ్ఞానాన్ని అనుసంధానం చేయడం"},{"en": "Medium of instruction shall, as far as possible, be in English","te": "సాధ్యమయినంత వరకూ బోధనా మాధ్యమంగా ఆంగ్లమును ఉంచడం"},{"en": "Simplifying examinations and making them an integral part of teaching-learning processes","te": "పరీక్షలను సరళీకరించి బోధనాభ్యసన ప్రక్రియలో అంతర్భాగం చేయడం"},{"en": "Prioritizing children's culture, experiences and local context in the classroom.","te": "పిల్లల సంస్కృతి, అనుభవాలు, స్థానిక అంశాలకు తరగతి గదిలో ప్రాధాన్యం కల్పించడం."}],"ans": 1,"mono": false,"id": 150}];
 
 /* ============================================================
-   APP STATE & DOM
+   STATE
    ============================================================ */
-var state = {
-  userName: '',
-  userDistrict: '',
-  currentQIndex: 0,
-  userAnswers: {}, // { qIndex: optIndex }
-  visited: {},     // { qIndex: true }
-  submitted: false,
-  shuffledQuestions: [],
-  score: 0,
-  leaderboard: [],
-  filterKey: 'all'
-};
+var attempt = [];        // shuffled 150 questions for this attempt, each with .ans remapped
+var responses = {};      // index -> selected option index (or undefined)
+var visited = {};        // index -> true
+var locked = {};         // index -> true once answered
+var currentIndex = 0;
+var candidateName = "";
+var submitted = false;
+var candidateDistrict = "";
+var startedAt = 0;
+var countdownInterval = null;
 
-var timerInt = null;
-var lbPollInt = null;
-
-// DOM Elements
-var elLockScreen = document.getElementById('lock-screen');
-var elStartScreen = document.getElementById('start-screen');
-var elTestScreen = document.getElementById('test-screen');
-var elResultScreen = document.getElementById('result-screen');
-
-var elNameInput = document.getElementById('nameInput');
-var elDistrictInput = document.getElementById('districtInput');
-var elNameWarn = document.getElementById('nameWarn');
-var elStartBtn = document.getElementById('startBtn');
-
-var elLiveScore = document.getElementById('liveScore');
-var elProgressPill = document.getElementById('progressPill');
-var elSubjectNav = document.getElementById('subjectNav');
-var elSubmitBtnTop = document.getElementById('submitBtnTop');
-
-var elQNumLabel = document.getElementById('qNumLabel');
-var elQSubjLabel = document.getElementById('qSubjLabel');
-var elQTextWrap = document.getElementById('qTextWrap');
-var elOptsWrap = document.getElementById('optsWrap');
-var elPrevBtn = document.getElementById('prevBtn');
-var elNextBtn = document.getElementById('nextBtn');
-var elPaletteGroups = document.getElementById('paletteGroups');
-
-var elConfirmModal = document.getElementById('confirmModal');
-var elConfirmModalText = document.getElementById('confirmModalText');
-var elConfirmNo = document.getElementById('confirmNo');
-var elConfirmYes = document.getElementById('confirmYes');
-
-var elResultNameHeading = document.getElementById('resultNameHeading');
-var elScoreRing = document.getElementById('scoreRing');
-var elScoreRingVal = document.getElementById('scoreRingVal');
-var elStatCorrect = document.getElementById('statCorrect');
-var elStatWrong = document.getElementById('statWrong');
-var elStatUnattempted = document.getElementById('statUnattempted');
-var elStatPercent = document.getElementById('statPercent');
-var elSubjectBreakdown = document.getElementById('subjectBreakdown');
-
-var elCertCanvas = document.getElementById('certCanvas');
-var elDownloadCertBtn = document.getElementById('downloadCertBtn');
-var elLeaderboardBody = document.getElementById('leaderboardBody');
-var elLbStatus = document.getElementById('lbStatus');
-var elKeyList = document.getElementById('keyList');
-
-/* ============================================================
-   UTIL & SHUFFLE
-   ============================================================ */
-function shuffleArray(arr) {
+function shuffleArray(arr){
   var a = arr.slice();
-  for (var i = a.length - 1; i > 0; i--) {
+  for (var i = a.length - 1; i > 0; i--){
     var j = Math.floor(Math.random() * (i + 1));
-    var tmp = a[i];
-    a[i] = a[j];
-    a[j] = tmp;
+    var t = a[i]; a[i] = a[j]; a[j] = t;
   }
   return a;
 }
 
-function prepareQuizData() {
-  var prepared = [];
-  QUESTIONS.forEach(function(q, origIdx) {
-    var optsCopy = q.opts.map(function(o, oIdx) {
-      return { en: o.en, te: o.te, origOptIndex: oIdx };
-    });
-    var shuffledOpts = shuffleArray(optsCopy);
-    var newAnsIndex = 0;
-    shuffledOpts.forEach(function(so, nIdx) {
-      if (so.origOptIndex === q.ans) newAnsIndex = nIdx;
-    });
-
-    prepared.push({
-      origId: q.id,
-      subj: q.subj,
-      qEn: q.qEn,
-      qTe: q.qTe,
-      opts: shuffledOpts,
-      ans: newAnsIndex,
-      mono: q.mono,
-      monoLang: q.monoLang
+function prepareAttempt(){
+  attempt = [];
+  responses = {}; visited = {}; locked = {}; currentIndex = 0;
+  SUBJECT_ORDER.forEach(function(subj){
+    var block = QUESTIONS.filter(function(q){ return q.subj === subj; });
+    block = shuffleArray(block);
+    block.forEach(function(q){
+      var optOrder = shuffleArray(q.opts.map(function(o, idx){ return idx; }));
+      var newOpts = optOrder.map(function(origIdx){ return q.opts[origIdx]; });
+      var newAns = optOrder.indexOf(q.ans);
+      attempt.push({
+        subj: q.subj, qEn: q.qEn, qTe: q.qTe, mono: q.mono, monoLang: q.monoLang,
+        opts: newOpts, ans: newAns, origId: q.id
+      });
     });
   });
-  state.shuffledQuestions = prepared;
+}
+
+function subjectRange(subj){
+  var start = -1, end = -1;
+  for (var i = 0; i < attempt.length; i++){
+    if (attempt[i].subj === subj){
+      if (start === -1) start = i;
+      end = i;
+    }
+  }
+  return {start: start, end: end};
 }
 
 /* ============================================================
-   LOCK SCREEN & TIMING
+   START SCREEN
    ============================================================ */
-function checkLockState() {
-  var now = Date.now();
-  if (now < OPEN_AT) {
-    elLockScreen.style.display = 'block';
-    elStartScreen.style.display = 'none';
-    updateCountdown();
-    timerInt = setInterval(updateCountdown, 1000);
-  } else {
-    elLockScreen.style.display = 'none';
-    elStartScreen.style.display = 'block';
-  }
-}
+var nameInput = document.getElementById('nameInput');
+var startBtn = document.getElementById('startBtn');
+var nameWarn = document.getElementById('nameWarn');
 
-function updateCountdown() {
-  var now = Date.now();
-  var diff = OPEN_AT - now;
-  if (diff <= 0) {
-    clearInterval(timerInt);
-    elLockScreen.style.display = 'none';
-    elStartScreen.style.display = 'block';
+var districtInput = document.getElementById('districtInput');
+
+startBtn.addEventListener('click', function(){
+  // Gate 1: quiz must be open
+  if (Date.now() < OPEN_AT){ initGate(); return; }
+  // Gate 2: name and district are mandatory
+  var v = nameInput.value.replace(/\s+/g, ' ').trim();
+  var d = districtInput.value.replace(/\s+/g, ' ').trim();
+  nameInput.classList.toggle('err', !v);
+  districtInput.classList.toggle('err', !d);
+  if (!v || !d){
+    nameWarn.textContent = (!v && !d) ? "Please enter your name and district to start the test."
+                         : (!v ? "Please enter your name to start the test."
+                                : "Please enter your district to start the test.");
+    (!v ? nameInput : districtInput).focus();
     return;
   }
-  var h = Math.floor(diff / 3600000);
-  var m = Math.floor((diff % 3600000) / 60000);
-  var s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('countdown').textContent =
-    (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
-}
+  nameWarn.textContent = "";
+  candidateName = v;
+  candidateDistrict = d;
+  prepareAttempt();
+  startedAt = Date.now();
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('test-screen').style.display = 'block';
+  buildSubjectNav();
+  buildPalette();
+  renderQuestion(0);
+  window.scrollTo(0,0);
+});
+nameInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') districtInput.focus(); });
+districtInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') startBtn.click(); });
+[nameInput, districtInput].forEach(function(el){
+  el.addEventListener('input', function(){
+    if (el.value.trim()) el.classList.remove('err');
+    if (nameInput.value.trim() && districtInput.value.trim()) nameWarn.textContent = "";
+  });
+});
 
 /* ============================================================
-   START TEST
+   SUBJECT NAV (top buttons)
    ============================================================ */
-function handleStartTest() {
-  var name = elNameInput.value.trim();
-  var dist = elDistrictInput.value.trim();
-  if (!name || !dist) {
-    elNameWarn.textContent = 'Please enter both your name and district to proceed.';
-    if (!name) elNameInput.classList.add('err');
-    if (!dist) elDistrictInput.classList.add('err');
-    return;
-  }
-  elNameWarn.textContent = '';
-  elNameInput.classList.remove('err');
-  elDistrictInput.classList.remove('err');
-
-  state.userName = name;
-  state.userDistrict = dist;
-
-  prepareQuizData();
-  elStartScreen.style.display = 'none';
-  elTestScreen.style.display = 'block';
-
-  renderSubjectNav();
-  renderPalette();
-  loadQuestion(0);
-}
-
-/* ============================================================
-   TEST RENDER & NAVIGATION
-   ============================================================ */
-function renderSubjectNav() {
-  elSubjectNav.innerHTML = '';
-  SUBJECT_ORDER.forEach(function(sCode) {
+function buildSubjectNav(){
+  var wrap = document.getElementById('subjectNav');
+  wrap.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(subj){
     var btn = document.createElement('button');
     btn.className = 'subject-btn';
-    btn.textContent = SUBJECT_META[sCode].short;
-    btn.addEventListener('click', function() {
-      var targetIdx = state.shuffledQuestions.findIndex(function(q) { return q.subj === sCode; });
-      if (targetIdx !== -1) loadQuestion(targetIdx);
+    btn.textContent = SUBJECT_META[subj].short;
+    btn.dataset.subj = subj;
+    btn.addEventListener('click', function(){
+      var r = subjectRange(subj);
+      goTo(r.start);
     });
-    elSubjectNav.appendChild(btn);
+    wrap.appendChild(btn);
+  });
+  updateSubjectNavActive();
+}
+function updateSubjectNavActive(){
+  var subj = attempt[currentIndex].subj;
+  document.querySelectorAll('.subject-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.subj === subj);
   });
 }
 
-function loadQuestion(index) {
-  if (index < 0 || index >= state.shuffledQuestions.length) return;
-  state.currentQIndex = index;
-  state.visited[index] = true;
-
-  var q = state.shuffledQuestions[index];
-  elQNumLabel.textContent = 'Q ' + (index + 1) + ' / 150';
-  elQSubjLabel.textContent = SUBJECT_META[q.subj].full;
-
-  // Render text
-  elQTextWrap.innerHTML = '';
-  if (q.mono) {
-    var div = document.createElement('div');
-    div.className = 'qtext ' + (q.monoLang || 'te');
-    div.textContent = q.monoLang === 'en' ? q.qEn : q.qTe;
-    elQTextWrap.appendChild(div);
-  } else {
-    if (q.qEn) {
-      var divEn = document.createElement('div');
-      divEn.className = 'qtext en';
-      divEn.textContent = q.qEn;
-      elQTextWrap.appendChild(divEn);
-    }
-    if (q.qTe) {
-      var divTe = document.createElement('div');
-      divTe.className = 'qtext te';
-      divTe.textContent = q.qTe;
-      elQTextWrap.appendChild(divTe);
-    }
-  }
-
-  // Render options
-  elOptsWrap.innerHTML = '';
-  var userSel = state.userAnswers[index];
-  var letters = ['A', 'B', 'C', 'D'];
-
-  q.opts.forEach(function(opt, oIdx) {
-    var optDiv = document.createElement('button');
-    optDiv.className = 'opt';
-    
-    if (userSel !== undefined) {
-      optDiv.classList.add('locked');
-      if (oIdx === q.ans) optDiv.classList.add('correct');
-      if (userSel === oIdx && userSel !== q.ans) optDiv.classList.add('wrong');
-    }
-
-    var letterSpan = document.createElement('span');
-    letterSpan.className = 'letter';
-    letterSpan.textContent = letters[oIdx];
-
-    var textSpan = document.createElement('span');
-    textSpan.className = 'opt-text';
-
-    if (opt.en && opt.te && opt.en !== opt.te) {
-      textSpan.innerHTML = '<span class="en">' + escapeHtml(opt.en) + '</span><span class="te">' + escapeHtml(opt.te) + '</span>';
-    } else {
-      textSpan.textContent = opt.te || opt.en;
-    }
-
-    optDiv.appendChild(letterSpan);
-    optDiv.appendChild(textSpan);
-
-    optDiv.addEventListener('click', function() {
-      if (state.userAnswers[index] !== undefined) return; // locked
-      state.userAnswers[index] = oIdx;
-      if (oIdx === q.ans) state.score++;
-      updateTopBar();
-      loadQuestion(index);
-      renderPalette();
-    });
-
-    elOptsWrap.appendChild(optDiv);
-  });
-
-  // Buttons state
-  elPrevBtn.disabled = (index === 0);
-  elNextBtn.disabled = (index === state.shuffledQuestions.length - 1);
-
-  // Active Subject Nav Highlight
-  var btns = elSubjectNav.querySelectorAll('.subject-btn');
-  SUBJECT_ORDER.forEach(function(sCode, idx) {
-    if (sCode === q.subj) btns[idx].classList.add('active');
-    else btns[idx].classList.remove('active');
-  });
-
-  renderPalette();
-  
-  // Scroll Q card into view on small screens
-  if (window.innerWidth <= 900) {
-    document.querySelector('.qcard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-function updateTopBar() {
-  elLiveScore.textContent = state.score;
-  var answeredCnt = Object.keys(state.userAnswers).length;
-  elProgressPill.textContent = 'Answered ' + answeredCnt + ' / 150';
-}
-
-function renderPalette() {
-  elPaletteGroups.innerHTML = '';
-  
-  SUBJECT_ORDER.forEach(function(sCode) {
+/* ============================================================
+   PALETTE
+   ============================================================ */
+function buildPalette(){
+  var wrap = document.getElementById('paletteGroups');
+  wrap.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(subj){
+    var r = subjectRange(subj);
     var title = document.createElement('div');
     title.className = 'subject-group-title';
-    title.textContent = SUBJECT_META[sCode].short;
-    elPaletteGroups.appendChild(title);
-
+    title.textContent = SUBJECT_META[subj].full;
+    wrap.appendChild(title);
     var grid = document.createElement('div');
     grid.className = 'pnums';
-
-    state.shuffledQuestions.forEach(function(q, qIdx) {
-      if (q.subj !== sCode) return;
-
-      var pnum = document.createElement('button');
-      pnum.className = 'pnum';
-      pnum.textContent = (qIdx + 1);
-
-      var isAns = (state.userAnswers[qIdx] !== undefined);
-      var isVis = state.visited[qIdx];
-
-      if (isAns) pnum.classList.add('answered');
-      else if (isVis) pnum.classList.add('skipped');
-
-      if (qIdx === state.currentQIndex) pnum.classList.add('current');
-
-      pnum.addEventListener('click', function() { loadQuestion(qIdx); });
-      grid.appendChild(pnum);
-    });
-
-    elPaletteGroups.appendChild(grid);
+    for (var i = r.start; i <= r.end; i++){
+      var cell = document.createElement('button');
+      cell.className = 'pnum';
+      cell.textContent = (i + 1);
+      cell.dataset.idx = i;
+      cell.addEventListener('click', (function(idx){ return function(){ goTo(idx); }; })(i));
+      grid.appendChild(cell);
+    }
+    wrap.appendChild(grid);
   });
 }
-
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+function refreshPalette(){
+  document.querySelectorAll('.pnum').forEach(function(cell){
+    var idx = parseInt(cell.dataset.idx, 10);
+    cell.classList.remove('answered','skipped','current');
+    if (responses[idx] !== undefined){
+      cell.classList.add('answered');
+    } else if (visited[idx]){
+      cell.classList.add('skipped');
+    }
+    if (idx === currentIndex) cell.classList.add('current');
+  });
 }
 
 /* ============================================================
-   SUBMIT & RESULT
+   RENDER QUESTION
    ============================================================ */
-function showConfirmModal() {
-  var ansCnt = Object.keys(state.userAnswers).length;
-  var unans = 150 - ansCnt;
-  elConfirmModalText.textContent = 'You have answered ' + ansCnt + ' questions out of 150 (' + unans + ' unattempted). Once submitted, your score will be final.';
-  elConfirmModal.classList.remove('hidden');
-}
+function renderQuestion(idx){
+  if (idx < 0 || idx >= attempt.length) return;
+  currentIndex = idx;
+  visited[idx] = true;
+  var q = attempt[idx];
 
-function submitTest() {
-  state.submitted = true;
-  elConfirmModal.classList.add('hidden');
-  elTestScreen.style.display = 'none';
-  elResultScreen.style.display = 'block';
+  document.getElementById('qNumLabel').textContent = 'Q ' + (idx + 1) + ' / ' + attempt.length;
+  document.getElementById('qSubjLabel').textContent = SUBJECT_META[q.subj].full;
 
-  calculateResults();
-  generateCertificate();
-  postScoreToLeaderboard();
-  renderAnswerKey('all');
-}
+  var textWrap = document.getElementById('qTextWrap');
+  textWrap.innerHTML = "";
+  if (q.mono){
+    var p = document.createElement('div');
+    p.className = 'qtext' + (q.monoLang === 'te' ? ' te' : '');
+    p.textContent = q.monoLang === 'te' ? q.qTe : q.qEn;
+    textWrap.appendChild(p);
+  } else {
+    var pEn = document.createElement('div');
+    pEn.className = 'qtext';
+    pEn.textContent = q.qEn;
+    var pTe = document.createElement('div');
+    pTe.className = 'qtext te';
+    pTe.textContent = q.qTe;
+    var gap = document.createElement('div');
+    gap.className = 'qtext-gap';
+    textWrap.appendChild(pEn);
+    textWrap.appendChild(gap);
+    textWrap.appendChild(pTe);
+  }
 
-function calculateResults() {
-  var total = 150;
-  var correct = state.score;
-  var answered = Object.keys(state.userAnswers).length;
-  var wrong = 0;
+  var optsWrap = document.getElementById('optsWrap');
+  optsWrap.innerHTML = "";
+  var letters = ['A','B','C','D'];
+  q.opts.forEach(function(opt, oi){
+    var btn = document.createElement('button');
+    btn.className = 'opt';
+    var letter = document.createElement('span');
+    letter.className = 'letter';
+    letter.textContent = letters[oi] || (oi+1);
+    var textSpan = document.createElement('span');
+    textSpan.className = 'opt-text';
+    if (q.mono){
+      var only = document.createElement('span');
+      only.className = q.monoLang === 'te' ? 'te' : 'en';
+      only.textContent = q.monoLang === 'te' ? opt.te : opt.en;
+      textSpan.appendChild(only);
+    } else {
+      var enS = document.createElement('span');
+      enS.className = 'en';
+      enS.textContent = opt.en;
+      var teS = document.createElement('span');
+      teS.className = 'te';
+      teS.textContent = opt.te;
+      textSpan.appendChild(enS);
+      textSpan.appendChild(teS);
+    }
+    btn.appendChild(letter);
+    btn.appendChild(textSpan);
 
-  state.shuffledQuestions.forEach(function(q, idx) {
-    var uAns = state.userAnswers[idx];
-    if (uAns !== undefined && uAns !== q.ans) wrong++;
+    if (locked[idx]){
+      btn.classList.add('locked');
+      if (oi === q.ans) btn.classList.add('correct');
+      if (responses[idx] === oi && oi !== q.ans) btn.classList.add('wrong');
+    } else {
+      btn.addEventListener('click', function(selOi){
+        return function(){ selectOption(idx, selOi); };
+      }(oi));
+    }
+    optsWrap.appendChild(btn);
   });
 
-  var unattempted = total - answered;
-  var pct = Math.round((correct / total) * 100);
+  document.getElementById('prevBtn').disabled = (idx === 0);
+  document.getElementById('nextBtn').disabled = (idx === attempt.length - 1);
 
-  elResultNameHeading.textContent = 'Well done, ' + state.userName + '!';
-  elScoreRingVal.textContent = correct;
-  elScoreRing.style.setProperty('--pct', pct);
+  updateSubjectNavActive();
+  refreshPalette();
+  updateTopStats();
+}
 
-  elStatCorrect.textContent = correct;
-  elStatWrong.textContent = wrong;
-  elStatUnattempted.textContent = unattempted;
-  elStatPercent.textContent = pct + '%';
+function scrollToQuestion(){
+  var card = document.querySelector('.qcard');
+  if (!card || !card.scrollIntoView) return;
+  var top = card.getBoundingClientRect().top;
+  if (top < 60 || top > window.innerHeight * 0.6) card.scrollIntoView();
+}
+function goTo(i){
+  renderQuestion(i);
+  scrollToQuestion();
+}
 
-  // Subject breakdown
-  elSubjectBreakdown.innerHTML = '';
-  SUBJECT_ORDER.forEach(function(sCode) {
-    var subCorrect = 0;
-    var subTotal = 0;
-    state.shuffledQuestions.forEach(function(q, idx) {
-      if (q.subj === sCode) {
-        subTotal++;
-        if (state.userAnswers[idx] === q.ans) subCorrect++;
-      }
-    });
+function selectOption(idx, oi){
+  if (locked[idx]) return;
+  responses[idx] = oi;
+  locked[idx] = true;
+  renderQuestion(idx);
+}
 
+document.getElementById('prevBtn').addEventListener('click', function(){ goTo(currentIndex - 1); });
+document.getElementById('nextBtn').addEventListener('click', function(){ goTo(currentIndex + 1); });
+
+/* ============================================================
+   LIVE SCORE / PROGRESS
+   ============================================================ */
+function computeScore(){
+  var correct = 0, wrong = 0, answered = 0;
+  for (var i = 0; i < attempt.length; i++){
+    if (responses[i] !== undefined){
+      answered++;
+      if (responses[i] === attempt[i].ans) correct++; else wrong++;
+    }
+  }
+  return {correct: correct, wrong: wrong, answered: answered, unattempted: attempt.length - answered};
+}
+function updateTopStats(){
+  var s = computeScore();
+  document.getElementById('liveScore').textContent = s.correct;
+  document.getElementById('progressPill').textContent = 'Answered ' + s.answered + ' / ' + attempt.length;
+}
+
+/* ============================================================
+   SUBMIT FLOW
+   ============================================================ */
+var confirmModal = document.getElementById('confirmModal');
+function openConfirm(){ confirmModal.classList.remove('hidden'); }
+function closeConfirm(){ confirmModal.classList.add('hidden'); }
+document.getElementById('submitBtnTop').addEventListener('click', openConfirm);
+document.getElementById('confirmNo').addEventListener('click', closeConfirm);
+document.getElementById('confirmYes').addEventListener('click', function(){
+  closeConfirm();
+  finalizeSubmit();
+});
+
+function finalizeSubmit(){
+  if (submitted) return;
+  submitted = true;
+  document.getElementById('test-screen').style.display = 'none';
+  document.getElementById('result-screen').style.display = 'block';
+  renderResults();
+  window.scrollTo(0,0);
+}
+
+/* ============================================================
+   RESULTS
+   ============================================================ */
+function renderResults(){
+  var s = computeScore();
+  var pct = Math.round((s.correct / attempt.length) * 1000) / 10;
+
+  document.getElementById('resultNameHeading').textContent = "Well done, " + candidateName + "!";
+  document.getElementById('scoreRing').style.setProperty('--pct', pct);
+  document.getElementById('scoreRingVal').textContent = s.correct;
+  document.getElementById('statCorrect').textContent = s.correct;
+  document.getElementById('statWrong').textContent = s.wrong;
+  document.getElementById('statUnattempted').textContent = s.unattempted;
+  document.getElementById('statPercent').textContent = pct + '%';
+
+  // subject breakdown
+  var bdWrap = document.getElementById('subjectBreakdown');
+  bdWrap.innerHTML = "";
+  SUBJECT_ORDER.forEach(function(subj){
+    var r = subjectRange(subj);
+    var c = 0;
+    for (var i = r.start; i <= r.end; i++){
+      if (responses[i] !== undefined && responses[i] === attempt[i].ans) c++;
+    }
     var row = document.createElement('div');
     row.className = 'sb-row';
-    var pctSub = Math.round((subCorrect / (subTotal || 1)) * 100);
-    row.innerHTML =
-      '<div class="sb-name">' + SUBJECT_META[sCode].full + '</div>' +
-      '<div class="sb-bar-track"><div class="sb-bar-fill" style="width:' + pctSub + '%"></div></div>' +
-      '<div class="sb-score">' + subCorrect + ' / ' + subTotal + '</div>';
-    elSubjectBreakdown.appendChild(row);
+    var name = document.createElement('div');
+    name.className = 'sb-name';
+    name.textContent = SUBJECT_META[subj].full;
+    var track = document.createElement('div');
+    track.className = 'sb-bar-track';
+    var fill = document.createElement('div');
+    fill.className = 'sb-bar-fill';
+    fill.style.width = Math.round((c/30)*100) + '%';
+    track.appendChild(fill);
+    var score = document.createElement('div');
+    score.className = 'sb-score';
+    score.textContent = c + ' / 30';
+    row.appendChild(name); row.appendChild(track); row.appendChild(score);
+    bdWrap.appendChild(row);
   });
+
+  drawCertificate(s.correct, pct);
+  renderKeyList('all');
+  submitScoreToLeaderboard(s.correct, pct);
+  startLeaderboardPolling();
 }
 
-/* ============================================================
-   CERTIFICATE GENERATOR
-   ============================================================ */
-function generateCertificate() {
-  var ctx = elCertCanvas.getContext('2d');
-  ctx.fillStyle = '#0c1526';
-  ctx.fillRect(0, 0, 1000, 700);
+/* ---------- Certificate (canvas) ---------- */
+function drawCertificate(score, pct){
+  var canvas = document.getElementById('certCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
 
-  // Border
+  var bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0, '#0c1526');
+  bg.addColorStop(1, '#132140');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0,0,W,H);
+
   ctx.strokeStyle = '#e8b84b';
-  ctx.lineWidth = 8;
-  ctx.strokeRect(20, 20, 960, 660);
+  ctx.lineWidth = 6;
+  ctx.strokeRect(24,24,W-48,H-48);
+  ctx.strokeStyle = '#6d7fa3';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(38,38,W-76,H-76);
 
-  ctx.strokeStyle = '#1d3a66';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(30, 30, 940, 640);
-
-  // Header
-  ctx.fillStyle = '#e8b84b';
-  ctx.font = 'bold 20px Sora, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('AP TEACHER ELIGIBILITY TEST (APTET) MOCK PRACTICE', 500, 90);
+  ctx.fillStyle = '#e8b84b';
+  ctx.font = '600 16px Inter, sans-serif';
+  ctx.fillText('CERTIFICATE OF APPRECIATION', W/2, 120);
 
+  ctx.fillStyle = '#e7edf9';
+  ctx.font = '700 40px Sora, sans-serif';
+  ctx.fillText('APTET Paper-II Mock Test', W/2, 175);
+
+  ctx.font = '400 16px Inter, sans-serif';
+  ctx.fillStyle = '#9fb0cf';
+  ctx.fillText('This certificate is proudly presented to', W/2, 240);
+
+  ctx.font = '700 38px Sora, sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 34px Sora, sans-serif';
-  ctx.fillText('CERTIFICATE OF APPRECIATION', 500, 140);
+  ctx.fillText(candidateName, W/2, 300);
 
+  ctx.font = '400 17px Inter, sans-serif';
   ctx.fillStyle = '#9fb0cf';
-  ctx.font = '16px Inter, sans-serif';
-  ctx.fillText('This is proudly presented to', 500, 190);
+  ctx.fillText('for completing the 150-question Combined Mock Test', W/2, 345);
+  ctx.fillText('(Child Development & Pedagogy · Telugu · English · Mathematics · Science)', W/2, 370);
 
-  // Candidate Name
-  ctx.fillStyle = '#f4cd6b';
-  ctx.font = 'bold 36px Sora, sans-serif';
-  ctx.fillText(state.userName.toUpperCase(), 500, 250);
-
-  ctx.fillStyle = '#9fb0cf';
-  ctx.font = '16px Inter, sans-serif';
-  ctx.fillText('District: ' + state.userDistrict, 500, 290);
-
-  ctx.fillStyle = '#e7edf9';
-  ctx.font = '18px Inter, sans-serif';
-  ctx.fillText('for successfully completing the APTET Paper-II (Mathematics & Science)', 500, 350);
-  ctx.fillText('Full-Length Practice Mock Test with outstanding performance.', 500, 380);
-
-  // Score Box
-  ctx.fillStyle = '#132140';
-  ctx.fillRect(350, 420, 300, 100);
-  ctx.strokeStyle = '#3b82f6';
-  ctx.lineWidth = 1;
-  ctx.strokeRect(350, 420, 300, 100);
-
+  ctx.font = '800 46px Sora, sans-serif';
   ctx.fillStyle = '#22c55e';
-  ctx.font = 'bold 38px Sora, sans-serif';
-  ctx.fillText(state.score + ' / 150', 500, 470);
+  ctx.fillText('Score: ' + score + ' / 150  (' + pct + '%)', W/2, 445);
 
-  var pct = Math.round((state.score / 150) * 100);
-  ctx.fillStyle = '#9fb0cf';
-  ctx.font = '14px Inter, sans-serif';
-  ctx.fillText('Overall Percentage: ' + pct + '%', 500, 502);
-
-  // Signatures
+  var today = new Date();
+  var dateStr = today.toLocaleDateString('en-IN', {day:'2-digit', month:'long', year:'numeric'});
+  ctx.font = '400 14px Inter, sans-serif';
   ctx.fillStyle = '#6d7fa3';
-  ctx.font = '12px Inter, sans-serif';
-  ctx.fillText('Date: ' + OPEN_DATE_LABEL, 200, 600);
+  ctx.fillText('Date: ' + dateStr, W/2, 500);
 
+  ctx.font = '600 15px Inter, sans-serif';
   ctx.fillStyle = '#e7edf9';
-  ctx.font = 'bold 13px Inter, sans-serif';
-  ctx.fillText('C. RASOOL BAVAJI, S.A.(P.S.)', 800, 595);
-  ctx.fillStyle = '#6d7fa3';
-  ctx.font = '12px Inter, sans-serif';
-  ctx.fillText('ZPHS, Madanapalle, Annamayya Dist.', 800, 615);
+  ctx.fillText('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT', W/2, 600);
+  ctx.font = '400 14px Inter, sans-serif';
+  ctx.fillStyle = '#e8b84b';
+  ctx.fillText('https://tenthquiz.blogspot.com', W/2, 624);
 }
 
-function downloadCertificate() {
+document.getElementById('downloadCertBtn').addEventListener('click', function(){
+  var canvas = document.getElementById('certCanvas');
   var link = document.createElement('a');
-  link.download = 'APTET_Certificate_' + state.userName.replace(/\s+/g, '_') + '.png';
-  link.href = elCertCanvas.toDataURL('image/png');
+  var safeName = candidateName.replace(/[^a-z0-9]+/gi, '_');
+  link.download = 'APTET_Mock_Certificate_' + safeName + '.png';
+  link.href = canvas.toDataURL('image/png');
   link.click();
-}
+});
 
-/* ============================================================
-   LEADERBOARD & GOOGLE APPS SCRIPT INTEGRATION
-   ============================================================ */
-function postScoreToLeaderboard() {
-  if (!APPS_SCRIPT_URL) {
-    elLbStatus.textContent = 'Leaderboard server URL not configured. Demo mode active.';
-    renderLocalLeaderboard();
-    return;
-  }
+/* ---------- Answer key + responses ---------- */
+function renderKeyList(filter){
+  var wrap = document.getElementById('keyList');
+  wrap.innerHTML = "";
+  var letters = ['A','B','C','D'];
+  attempt.forEach(function(q, idx){
+    var resp = responses[idx];
+    var isWrong = resp !== undefined && resp !== q.ans;
+    var isSkip = resp === undefined;
 
-  elLbStatus.textContent = 'Saving score to live leaderboard…';
-
-  var payload = {
-    quizId: QUIZ_ID,
-    name: state.userName,
-    district: state.userDistrict,
-    score: state.score,
-    total: 150,
-    pct: Math.round((state.score / 150) * 100)
-  };
-
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function() {
-    elLbStatus.textContent = 'Score saved! Fetching live rankings…';
-    setTimeout(fetchLeaderboard, 1500);
-  })
-  .catch(function(err) {
-    elLbStatus.textContent = 'Could not sync score automatically. Showing cached rankings.';
-    renderLocalLeaderboard();
-  });
-}
-
-function fetchLeaderboard() {
-  if (!APPS_SCRIPT_URL) return;
-
-  fetch(APPS_SCRIPT_URL + '?quizId=' + encodeURIComponent(QUIZ_ID))
-    .then(function(res) { return res.json(); })
-    .then(function(data) {
-      if (Array.isArray(data)) {
-        state.leaderboard = data;
-        renderLeaderboardTable(data);
-        elLbStatus.textContent = 'Live rankings updated at ' + new Date().toLocaleTimeString();
-      }
-    })
-    .catch(function() {
-      elLbStatus.textContent = 'Live updates paused.';
-    });
-}
-
-function renderLocalLeaderboard() {
-  var mock = [
-    { rank: 1, name: state.userName, district: state.userDistrict, score: state.score, pct: Math.round((state.score/150)*100), me: true },
-    { rank: 2, name: 'K. Rajasekhar', district: 'Chittoor', score: 138, pct: 92 },
-    { rank: 3, name: 'M. Sravani', district: 'Kadapa', score: 132, pct: 88 },
-    { rank: 4, name: 'P. Venkat', district: 'Anantapur', score: 125, pct: 83 }
-  ];
-  renderLeaderboardTable(mock);
-}
-
-function renderLeaderboardTable(list) {
-  elLeaderboardBody.innerHTML = '';
-  if (!list || list.length === 0) {
-    elLeaderboardBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--ink-faint);">No attempts recorded yet. Be the first!</td></tr>';
-    return;
-  }
-
-  list.forEach(function(row, idx) {
-    var tr = document.createElement('tr');
-    if (row.me || (row.name === state.userName && row.district === state.userDistrict)) {
-      tr.className = 'me';
-    }
-
-    var rVal = row.rank || (idx + 1);
-    tr.innerHTML =
-      '<td><span class="rank-badge">' + rVal + '</span></td>' +
-      '<td><b>' + escapeHtml(row.name) + '</b></td>' +
-      '<td>' + escapeHtml(row.district) + '</td>' +
-      '<td><b style="color:var(--gold)">' + row.score + '</b> / 150</td>' +
-      '<td>' + (row.pct || Math.round((row.score/150)*100)) + '%</td>';
-
-    elLeaderboardBody.appendChild(tr);
-  });
-}
-
-/* ============================================================
-   ANSWER KEY RENDER
-   ============================================================ */
-function renderAnswerKey(filter) {
-  state.filterKey = filter;
-  elKeyList.innerHTML = '';
-
-  var filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(function(btn) {
-    if (btn.getAttribute('data-filter') === filter) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
-
-  var letters = ['A', 'B', 'C', 'D'];
-
-  state.shuffledQuestions.forEach(function(q, qIdx) {
-    var uAns = state.userAnswers[qIdx];
-    var isCorrect = (uAns === q.ans);
-    var isUnans = (uAns === undefined);
-
-    if (filter === 'wrong' && (isCorrect || isUnans)) return;
-    if (filter === 'skip' && !isUnans) return;
-    if (['CDP','TEL','ENG','MATH','SCI'].indexOf(filter) !== -1 && q.subj !== filter) return;
+    if (filter === 'wrong' && !isWrong) return;
+    if (filter === 'skip' && !isSkip) return;
+    if (SUBJECT_ORDER.indexOf(filter) !== -1 && q.subj !== filter) return;
 
     var item = document.createElement('div');
     item.className = 'key-item';
 
-    var meta = '<div class="kmeta"><span class="key-num">Q ' + (qIdx + 1) + '</span><span class="key-subj">' + SUBJECT_META[q.subj].full + '</span></div>';
-    
-    var qTextHtml = '';
-    if (q.mono) {
-      qTextHtml = '<div class="key-q">' + escapeHtml(q.qTe || q.qEn) + '</div>';
-    } else {
-      qTextHtml = '<div class="key-q">' + escapeHtml(q.qEn) + '\n' + escapeHtml(q.qTe) + '</div>';
-    }
+    var meta = document.createElement('div');
+    meta.className = 'kmeta';
+    var num = document.createElement('span');
+    num.className = 'key-num';
+    num.textContent = 'Q' + (idx+1);
+    var subj = document.createElement('span');
+    subj.className = 'key-subj';
+    subj.textContent = SUBJECT_META[q.subj].full;
+    meta.appendChild(num); meta.appendChild(subj);
+    item.appendChild(meta);
 
-    var optsHtml = '<div class="key-opts">';
-    q.opts.forEach(function(opt, oIdx) {
-      var isThisCorrect = (oIdx === q.ans);
-      var isThisUserPick = (uAns === oIdx);
+    var qtext = document.createElement('div');
+    qtext.className = 'key-q';
+    qtext.textContent = q.mono ? (q.monoLang==='te'?q.qTe:q.qEn) : (q.qEn + (q.qTe ? ('\n' + q.qTe) : ''));
+    item.appendChild(qtext);
 
-      var cls = 'key-opt';
-      var tag = '';
-
-      if (isThisCorrect) {
-        cls += ' correctopt';
-        tag = '<span class="tagpill">Correct Answer</span>';
-      } else if (isThisUserPick && !isThisCorrect) {
-        cls += ' wrongopt';
-        tag = '<span class="tagpill">Your Pick</span>';
+    var optsBox = document.createElement('div');
+    optsBox.className = 'key-opts';
+    q.opts.forEach(function(opt, oi){
+      var row = document.createElement('div');
+      row.className = 'key-opt';
+      if (oi === q.ans) row.classList.add('correctopt');
+      if (resp === oi && oi !== q.ans) row.classList.add('wrongopt');
+      var label = document.createElement('span');
+      label.textContent = letters[oi] + '. ' + (q.mono ? (q.monoLang==='te'?opt.te:opt.en) : (opt.en + (opt.te?(' / '+opt.te):'')));
+      row.appendChild(label);
+      if (oi === q.ans){
+        var tag = document.createElement('span');
+        tag.className = 'tagpill';
+        tag.textContent = 'CORRECT';
+        row.appendChild(tag);
+      } else if (resp === oi){
+        var tag2 = document.createElement('span');
+        tag2.className = 'tagpill';
+        tag2.textContent = 'YOUR CHOICE';
+        row.appendChild(tag2);
       }
-
-      var optLabel = letters[oIdx] + '. ' + (opt.te ? (opt.en ? opt.en + ' / ' + opt.te : opt.te) : opt.en);
-      optsHtml += '<div class="' + cls + '">' + tag + '<span>' + escapeHtml(optLabel) + '</span></div>';
+      optsBox.appendChild(row);
     });
-    optsHtml += '</div>';
+    item.appendChild(optsBox);
 
-    var statusNote = '';
-    if (isUnans) {
-      statusNote = '<div class="key-unattempted">⚠ You left this question unattempted.</div>';
+    if (isSkip){
+      var uw = document.createElement('div');
+      uw.className = 'key-unattempted';
+      uw.textContent = 'Not attempted';
+      item.appendChild(uw);
     }
 
-    item.innerHTML = meta + qTextHtml + optsHtml + statusNote;
-    elKeyList.appendChild(item);
+    wrap.appendChild(item);
   });
+}
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    renderKeyList(btn.dataset.filter);
+  });
+});
+
+/* ============================================================
+   LEADERBOARD (Google Apps Script backend)
+   ============================================================ */
+function lbConfigured(){
+  return APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PASTE_YOUR') === -1;
+}
+
+function submitScoreToLeaderboard(score, pct){
+  if (!lbConfigured()) return;
+  var secs = Math.max(0, Math.min(86400, Math.round((Date.now() - startedAt) / 1000)));
+  var payload = {
+    quiz: QUIZ_ID,
+    name: candidateName,
+    district: candidateDistrict,
+    correct: score,
+    total: attempt.length,
+    percent: pct,
+    seconds: secs
+  };
+  try {
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).catch(function(){ /* fail silently, offline mode */ });
+  } catch (e) { /* ignore */ }
+}
+
+var lbPollTimer = null;
+var lbBusy = false;
+function startLeaderboardPolling(){
+  // small delay so our own score reaches the sheet before the first read
+  setTimeout(fetchLeaderboard, lbConfigured() ? 1800 : 0);
+  if (lbPollTimer) clearInterval(lbPollTimer);
+  if (lbConfigured()){
+    lbPollTimer = setInterval(function(){ if (!document.hidden) fetchLeaderboard(); }, LB_POLL_MS);
+  }
+}
+
+function ownRow(){
+  return {name: candidateName, district: candidateDistrict, score: computeScore().correct, total: attempt.length};
+}
+
+function fetchLeaderboard(){
+  var statusEl = document.getElementById('lbStatus');
+  if (!lbConfigured()){
+    statusEl.textContent = 'Leaderboard backend not connected yet \u2014 showing your result only. (Add your Google Apps Script URL to enable the live global leaderboard.)';
+    renderLeaderboardRows([ownRow()]);
+    return;
+  }
+  if (lbBusy) return;
+  lbBusy = true;
+  statusEl.textContent = 'Refreshing\u2026';
+  var cb = 'lbCb' + Date.now();
+  var sc = document.createElement('script');
+  var timer = null;
+  function cleanup(){
+    clearTimeout(timer);
+    window[cb] = function(){};
+    if (sc.parentNode) sc.parentNode.removeChild(sc);
+    lbBusy = false;
+  }
+  function fail(){
+    cleanup();
+    statusEl.textContent = 'Could not reach the leaderboard server. Showing your result only.';
+    renderLeaderboardRows([ownRow()]);
+  }
+  timer = setTimeout(fail, 12000);
+  window[cb] = function(data){
+    cleanup();
+    renderLeaderboardRows(data || []);
+    statusEl.textContent = 'Live \u2014 updates every ' + Math.round(LB_POLL_MS/1000) + 's';
+  };
+  sc.onerror = fail;
+  sc.src = APPS_SCRIPT_URL + (APPS_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?') +
+           'quiz=' + encodeURIComponent(QUIZ_ID) + '&callback=' + cb + '&_=' + Date.now();
+  document.body.appendChild(sc);
+}
+
+function renderLeaderboardRows(rows){
+  rows = rows.map(function(r){
+    return {
+      name: r.name, district: r.district || '',
+      score: (r.score !== undefined ? r.score : r.correct),
+      total: r.total, seconds: Number(r.seconds) || 0
+    };
+  });
+  rows.sort(function(a,b){ return (b.score - a.score) || (a.seconds - b.seconds); });
+  var body = document.getElementById('leaderboardBody');
+  body.innerHTML = "";
+  var meN = candidateName.toLowerCase(), meD = candidateDistrict.toLowerCase();
+  rows.slice(0,50).forEach(function(row, i){
+    var tr = document.createElement('tr');
+    if (String(row.name).toLowerCase() === meN && String(row.district).toLowerCase() === meD) tr.classList.add('me');
+    var total = row.total || attempt.length;
+    var pct = Math.round((row.score/total)*1000)/10;
+    tr.innerHTML =
+      '<td><span class="rank-badge">' + (i+1) + '</span></td>' +
+      '<td>' + escapeHtml(row.name || 'Anonymous') + '</td>' +
+      '<td>' + escapeHtml(row.district || '-') + '</td>' +
+      '<td>' + row.score + ' / ' + total + '</td>' +
+      '<td>' + pct + '%</td>';
+    body.appendChild(tr);
+  });
+}
+function escapeHtml(s){
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
 }
 
 /* ============================================================
-   EVENTS
+   Guard against accidental reload/close mid-test
    ============================================================ */
-function bindEvents() {
-  elStartBtn.addEventListener('click', handleStartTest);
-
-  elPrevBtn.addEventListener('click', function() {
-    if (state.currentQIndex > 0) loadQuestion(state.currentQIndex - 1);
-  });
-
-  elNextBtn.addEventListener('click', function() {
-    if (state.currentQIndex < state.shuffledQuestions.length - 1) loadQuestion(state.currentQIndex + 1);
-  });
-
-  elSubmitBtnTop.addEventListener('click', showConfirmModal);
-  elConfirmNo.addEventListener('click', function() { elConfirmModal.classList.add('hidden'); });
-  elConfirmYes.addEventListener('click', submitTest);
-
-  elDownloadCertBtn.addEventListener('click', downloadCertificate);
-
-  // Filter bar
-  var filterContainer = document.querySelector('.filter-row');
-  if (filterContainer) {
-    filterContainer.addEventListener('click', function(e) {
-      var t = e.target;
-      if (t.classList.contains('filter-btn')) {
-        var f = t.getAttribute('data-filter');
-        renderAnswerKey(f);
-      }
-    });
-  }
-
-  // Poll leaderboard periodically if on result screen
-  lbPollInt = setInterval(function() {
-    if (state.submitted) fetchLeaderboard();
-  }, LB_POLL_MS);
+/* ============================================================
+   OPENING-TIME LOCK
+   ============================================================ */
+function pad2(n){ return (n < 10 ? '0' : '') + n; }
+function istDateNow(){
+  return new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
 }
+function setLockText(){
+  document.getElementById('lockTitle').textContent = (istDateNow() === OPEN_DATE_IST)
+    ? 'This quiz will open at 6.00 PM IST TODAY'
+    : 'This quiz will open at 6.00 PM IST on ' + OPEN_DATE_LABEL;
+}
+function showStart(){
+  if (countdownInterval){ clearInterval(countdownInterval); countdownInterval = null; }
+  document.getElementById('lock-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+}
+function tickCountdown(){
+  var left = Math.max(0, Math.floor((OPEN_AT - Date.now()) / 1000));
+  if (left <= 0){ showStart(); return; }
+  var d = Math.floor(left / 86400), h = Math.floor((left % 86400) / 3600),
+      m = Math.floor((left % 3600) / 60), sec = left % 60;
+  document.getElementById('countdown').textContent =
+    'Opens in ' + (d > 0 ? d + 'd ' : '') + pad2(h) + ':' + pad2(m) + ':' + pad2(sec);
+}
+function initGate(){
+  if (Date.now() >= OPEN_AT){ showStart(); return; }
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('lock-screen').style.display = 'block';
+  setLockText();
+  tickCountdown();
+  if (!countdownInterval) countdownInterval = setInterval(tickCountdown, 1000);
+}
+initGate();
 
-// Initialize
-checkLockState();
-bindEvents();
+window.addEventListener('beforeunload', function(e){
+  if (!submitted && Object.keys(responses).length > 0 && document.getElementById('test-screen').style.display === 'block'){
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
 
 })();
 </script>
