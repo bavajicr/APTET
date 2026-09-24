@@ -1,0 +1,618 @@
+<div id="aptet-eng-s2-root" style="max-width:720px;margin:20px auto;font-family:'Segoe UI',Arial,sans-serif;">
+<style>
+#aptet-eng-s2-root *{box-sizing:border-box;}
+#aptet-eng-s2-root{color:#e8f0ff;-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+#aptet-eng-s2-root input{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+.aeq2-card{
+  background:linear-gradient(160deg,#0b1a3a 0%,#122a5c 55%,#0b1a3a 100%);
+  border-radius:16px;
+  padding:20px 18px 26px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45), 0 0 0 1px rgba(90,140,255,0.25) inset;
+  position:relative;
+  overflow:hidden;
+}
+.aeq2-card::before{
+  content:"";
+  position:absolute; top:-60px; right:-60px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(80,140,255,0.35),transparent 70%);
+}
+.aeq2-topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;position:relative;z-index:2;}
+.aeq2-badge{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(120,170,255,0.4);
+  padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:600;letter-spacing:.3px;color:#9fc4ff;
+}
+.aeq2-timer{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(120,170,255,0.4);
+  padding:5px 12px;border-radius:20px;font-size:13px;font-weight:700;color:#ffd76a;
+  display:flex;align-items:center;gap:5px;
+}
+.aeq2-heading{text-align:center;margin:6px 0 10px;position:relative;z-index:2;}
+.aeq2-heading h2{font-size:16px;margin:0 0 4px;color:#7fb3ff;font-weight:800;letter-spacing:.4px;}
+.aeq2-heading p{font-size:12.5px;margin:0;color:#b9c9ee;font-weight:500;}
+.aeq2-card-credit{
+  text-align:center;font-size:11px;color:#8ca3d8;margin-bottom:12px;letter-spacing:.2px;position:relative;z-index:2;
+  border-top:1px dashed rgba(140,180,255,0.25);border-bottom:1px dashed rgba(140,180,255,0.25);
+  padding:6px 0;
+}
+.aeq2-progress-wrap{
+  background:rgba(255,255,255,0.08);
+  border-radius:10px;height:10px;overflow:hidden;margin-bottom:14px;position:relative;z-index:2;
+}
+.aeq2-progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,#3b82f6,#22d3ee);
+  width:0%;
+  transition:width .35s ease;
+  border-radius:10px;
+}
+.aeq2-meta-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:12px;color:#a9bce6;margin-bottom:14px;position:relative;z-index:2;}
+.aeq2-meta-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.aeq2-score-pill{
+  background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.45);
+  color:#7ce9ff;padding:3px 10px;border-radius:14px;font-weight:700;
+}
+.aeq2-submitTopBtn{flex:none;padding:6px 16px;font-size:12.5px;border-radius:20px;}
+
+.aeq2-lockIcon{text-align:center;font-size:36px;margin:4px 0 8px;position:relative;z-index:2;}
+.aeq2-lockMsg{text-align:center;font-size:14px;color:#eef4ff;line-height:1.5;margin:0 0 10px;position:relative;z-index:2;}
+.aeq2-lockCountdown{
+  text-align:center;font-size:15.5px;font-weight:800;color:#ffd76a;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(120,170,255,0.4);
+  border-radius:10px;padding:10px;position:relative;z-index:2;
+}
+
+.aeq2-formRow{margin-bottom:12px;text-align:left;position:relative;z-index:2;}
+.aeq2-label{display:block;font-size:12.5px;color:#a9bce6;margin-bottom:5px;}
+.aeq2-req{color:#fca5a5;}
+.aeq2-input{
+  width:100%;background:rgba(255,255,255,0.07);border:1.5px solid rgba(120,170,255,0.35);
+  color:#eaf1ff;border-radius:10px;padding:11px 13px;font-size:16px;outline:none;
+  transition:border-color .15s ease;
+}
+.aeq2-input:focus{border-color:#7fb3ff;}
+.aeq2-startError{color:#fca5a5;font-size:12.5px;margin:-2px 0 10px;text-align:center;}
+
+.aeq2-lbStatus{font-size:12px;color:#5eead4;margin:0 0 8px;min-height:15px;text-align:center;position:relative;z-index:2;}
+.aeq2-leaderboardPanel{
+  margin-top:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(120,170,255,0.25);
+  border-radius:12px;padding:14px;text-align:left;position:relative;z-index:2;
+}
+.aeq2-lbTitle{margin:0 0 10px;font-size:14.5px;color:#7fb3ff;text-align:center;}
+.aeq2-lbLoading{text-align:center;font-size:12.5px;color:#a9bce6;}
+.aeq2-lbRow{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid rgba(120,170,255,0.2);font-size:13px;}
+.aeq2-lbRow:last-child{border-bottom:none;}
+.aeq2-lbRank{width:22px;text-align:center;font-weight:800;color:#ffd76a;flex-shrink:0;}
+.aeq2-lbName{flex:1;color:#eaf1ff;}
+.aeq2-lbName small{color:#a9bce6;}
+.aeq2-lbScore{font-weight:800;color:#5eead4;flex-shrink:0;}
+
+.aeq2-responsesList{max-height:440px;overflow-y:auto;}
+.aeq2-reviewQ{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(120,170,255,0.25);
+  border-radius:10px;padding:12px 14px;margin-bottom:12px;
+}
+.aeq2-reviewQ:last-child{margin-bottom:0;}
+.aeq2-reviewQText{font-size:14px;font-weight:600;color:#eef4ff;margin-bottom:10px;line-height:1.5;}
+.aeq2-reviewOpt{
+  background:rgba(255,255,255,0.05);border:1.5px solid rgba(140,180,255,0.25);
+  border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;line-height:1.4;color:#eaf1ff;
+}
+.aeq2-reviewOpt:last-child{margin-bottom:0;}
+.aeq2-reviewCorrect{background:rgba(34,197,94,0.2)!important;border-color:#22c55e!important;}
+.aeq2-reviewWrong{background:rgba(239,68,68,0.2)!important;border-color:#ef4444!important;}
+.aeq2-reviewTag{font-weight:700;font-size:11.5px;margin-left:6px;color:#5eead4;}
+.aeq2-reviewYourTag{color:#ffd76a;}
+.aeq2-reviewSkipped{font-size:12px;color:#ffd76a;font-style:italic;margin-top:4px;}
+
+.aeq2-navrow-wrap{flex-wrap:wrap;}
+.aeq2-navrow-wrap .aeq2-btn{flex:1 1 auto;min-width:130px;}
+
+@media (max-width:480px){
+  #aptet-eng-s2-root{margin:10px auto!important;}
+  .aeq2-card{padding:16px 12px 20px;}
+  .aeq2-qtext{font-size:14.5px;}
+  .aeq2-opt{font-size:13.5px;padding:10px 12px;}
+  .aeq2-btn{padding:12px 14px;}
+  .aeq2-submitTopBtn{margin-left:auto;}
+}
+
+.aeq2-qbox{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(120,170,255,0.25);
+  border-radius:12px;padding:16px;margin-bottom:16px;position:relative;z-index:2;
+  min-height:70px;
+}
+.aeq2-qtext{font-size:15.5px;line-height:1.55;color:#eef4ff;font-weight:600;}
+.aeq2-options{display:flex;flex-direction:column;gap:10px;position:relative;z-index:2;}
+.aeq2-opt{
+  display:block;width:100%;text-align:left;
+  background:rgba(255,255,255,0.06);
+  border:1.5px solid rgba(140,180,255,0.3);
+  color:#eaf1ff;padding:12px 14px;border-radius:10px;
+  font-size:14.5px;font-weight:500;cursor:pointer;
+  transition:all .18s ease;
+  line-height:1.4;
+}
+.aeq2-opt:hover{background:rgba(255,255,255,0.12);border-color:#7fb3ff;}
+.aeq2-opt.aeq2-correct{background:rgba(34,197,94,0.28)!important;border-color:#22c55e!important;color:#eafff0;font-weight:700;}
+.aeq2-opt.aeq2-wrong{background:rgba(239,68,68,0.28)!important;border-color:#ef4444!important;color:#fff0f0;font-weight:700;}
+.aeq2-opt.aeq2-disabled{cursor:default;opacity:.85;}
+.aeq2-feedback{margin-top:10px;font-size:13px;font-weight:700;position:relative;z-index:2;}
+.aeq2-feedback.ok{color:#5eead4;}
+.aeq2-feedback.no{color:#fca5a5;}
+.aeq2-navrow{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:relative;z-index:2;}
+.aeq2-btn{
+  flex:1;padding:11px 14px;border-radius:10px;border:none;
+  font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.2px;
+  transition:transform .12s ease, opacity .12s ease;
+}
+.aeq2-btn:active{transform:scale(0.97);}
+.aeq2-btn:disabled{opacity:.35;cursor:not-allowed;}
+.aeq2-btn-prev{background:rgba(255,255,255,0.1);color:#dce6ff;border:1px solid rgba(140,180,255,0.35);}
+.aeq2-btn-next{background:linear-gradient(90deg,#3b82f6,#2563eb);color:#fff;}
+.aeq2-btn-submit{background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;}
+.aeq2-start-wrap{text-align:center;position:relative;z-index:2;}
+.aeq2-startbtn{
+  background:linear-gradient(90deg,#3b82f6,#22d3ee);color:#04203f;
+  border:none;padding:13px 28px;border-radius:12px;font-size:15px;font-weight:800;
+  cursor:pointer;box-shadow:0 6px 18px rgba(34,211,238,0.35);margin-top:10px;
+}
+.aeq2-result{text-align:center;position:relative;z-index:2;}
+.aeq2-result h2{color:#7fb3ff;margin-bottom:4px;}
+.aeq2-scorecircle{
+  width:130px;height:130px;border-radius:50%;
+  margin:16px auto;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  background:conic-gradient(#22d3ee var(--pct,0%), rgba(255,255,255,0.08) 0);
+  position:relative;
+}
+.aeq2-scorecircle::before{
+  content:"";position:absolute;width:104px;height:104px;border-radius:50%;
+  background:#0e1f45;
+}
+.aeq2-scorecircle span{position:relative;z-index:2;font-size:24px;font-weight:900;color:#fff;}
+.aeq2-scorecircle small{position:relative;z-index:2;font-size:11px;color:#a9bce6;}
+.aeq2-statgrid{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:16px 0;}
+.aeq2-stat{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(140,180,255,0.3);
+  border-radius:12px;padding:10px 16px;min-width:90px;
+}
+.aeq2-stat b{display:block;font-size:18px;}
+.aeq2-stat span{font-size:11px;color:#a9bce6;}
+.aeq2-credit-footer{
+  text-align:center;font-size:11.5px;color:#8ca3d8;margin-top:16px;letter-spacing:.3px;position:relative;z-index:2;
+}
+</style>
+
+<div class="aeq2-card">
+  <div class="aeq2-topbar">
+    <span class="aeq2-badge">📘 ENGLISH</span>
+    <span class="aeq2-timer" id="aeq2Timer">⏱ 00:00</span>
+  </div>
+  <div class="aeq2-heading">
+    <h2>APTET Previous Question Paper Practice Test-3 </h2>
+    <p>Subject: English</p>
+  </div>
+  <div class="aeq2-card-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE, ANNAMAYYA DISTRICT</div>
+
+  <div id="aeq2LockedScreen" class="aeq2-start-wrap" style="display:none;">
+    <div class="aeq2-lockIcon">🔒</div>
+    <p class="aeq2-lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong>(24-09-2026).</p>
+    <p class="aeq2-lockCountdown" id="aeq2Countdown">Opens in --:--:--</p>
+  </div>
+
+  <div id="aeq2StartScreen" class="aeq2-start-wrap" style="display:none;">
+    <p style="font-size:14px;color:#cdd9f7;margin-bottom:6px;">30 Questions &nbsp;|&nbsp; Instant Feedback &nbsp;|&nbsp; Live Score &amp; Timer</p>
+
+    <div class="aeq2-formRow">
+      <label class="aeq2-label" for="aeq2NameInput">Your Name <span class="aeq2-req">*</span></label>
+      <input type="text" id="aeq2NameInput" class="aeq2-input" placeholder="Enter your full name" autocomplete="off">
+    </div>
+    <div class="aeq2-formRow">
+      <label class="aeq2-label" for="aeq2DistrictInput">District <span class="aeq2-req">*</span></label>
+      <input type="text" id="aeq2DistrictInput" class="aeq2-input" placeholder="Enter your district" autocomplete="off">
+    </div>
+    <p id="aeq2StartError" class="aeq2-startError" style="display:none;">Please enter your name and district to start the quiz.</p>
+
+    <button class="aeq2-startbtn" id="aeq2StartBtn">🚀 Start Quiz</button>
+  </div>
+
+  <div id="aeq2QuizScreen" style="display:none;">
+    <div class="aeq2-progress-wrap"><div class="aeq2-progress-bar" id="aeq2ProgressBar"></div></div>
+    <div class="aeq2-meta-row">
+      <span id="aeq2QNoLabel">Question 1 / 30</span>
+      <div class="aeq2-meta-right">
+        <span class="aeq2-score-pill" id="aeq2ScorePill">Score: 0</span>
+        <button class="aeq2-btn aeq2-btn-submit aeq2-submitTopBtn" id="aeq2SubmitBtn" style="display:none;">Submit ✅</button>
+      </div>
+    </div>
+    <div class="aeq2-qbox">
+      <div class="aeq2-qtext" id="aeq2QuestionText"></div>
+    </div>
+    <div class="aeq2-options" id="aeq2OptionsBox"></div>
+    <div class="aeq2-feedback" id="aeq2Feedback"></div>
+    <div class="aeq2-navrow">
+      <button class="aeq2-btn aeq2-btn-prev" id="aeq2PrevBtn">◀ Previous</button>
+      <button class="aeq2-btn aeq2-btn-next" id="aeq2NextBtn">Next ▶</button>
+    </div>
+  </div>
+
+  <div id="aeq2ResultScreen" style="display:none;" class="aeq2-result">
+    <h2>🏁 Quiz Completed!</h2>
+    <div class="aeq2-scorecircle" id="aeq2ScoreCircle"><span id="aeq2ScoreCircleText">0/30</span><small>SCORE</small></div>
+    <div class="aeq2-statgrid">
+      <div class="aeq2-stat"><b id="aeq2CorrectCount" style="color:#5eead4;">0</b><span>Correct</span></div>
+      <div class="aeq2-stat"><b id="aeq2WrongCount" style="color:#fca5a5;">0</b><span>Wrong</span></div>
+      <div class="aeq2-stat"><b id="aeq2TimeTaken" style="color:#ffd76a;">00:00</b><span>Time Taken</span></div>
+    </div>
+    <p id="aeq2LbStatus" class="aeq2-lbStatus"></p>
+    <div class="aeq2-navrow aeq2-navrow-wrap">
+      <button class="aeq2-btn aeq2-btn-prev" id="aeq2RestartBtn">🔄 Restart</button>
+      <button class="aeq2-btn aeq2-btn-submit" id="aeq2ResponsesBtn">📄 Show Responses</button>
+      <button class="aeq2-btn aeq2-btn-prev" id="aeq2LeaderboardBtn">🏆 Leaderboard</button>
+    </div>
+    <div id="aeq2ResponsesPanel" class="aeq2-leaderboardPanel" style="display:none;">
+      <h3 class="aeq2-lbTitle">📄 Your Responses</h3>
+      <div id="aeq2ResponsesList" class="aeq2-responsesList"></div>
+    </div>
+    <div id="aeq2LeaderboardPanel" class="aeq2-leaderboardPanel" style="display:none;">
+      <h3 class="aeq2-lbTitle">🏆 Top Scores</h3>
+      <div id="aeq2LbList" class="aeq2-lbList"><p class="aeq2-lbLoading">Loading...</p></div>
+    </div>
+  </div>
+
+  <div class="aeq2-credit-footer">Credit: C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</div>
+</div>
+</div>
+
+<script>
+(function(){
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 24-09-2025 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2025-09-24T12:30:00Z',
+    QUIZ_NAME: '3english',
+    // Paste your Google Apps Script Web App URL below (see setup notes) to enable the leaderboard.
+    GOOGLE_SHEET_URL: 'https://script.google.com/macros/s/AKfycbyzp6d0xpvMc6Bg3Xlf4X3XWDXSIaPSa0V7MFGrZMn1U4xDLZDacLAnl1HVB3NKC_jbJg/exec'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  var RAW_QUESTIONS = [
+    {q:"The officer unduly <u>taunted</u> the clerk for his inaction.<br>Choose the synonym of the underlined word.", opts:["praised","appeased","provoked","prompted"], correct:2},
+    {q:"Kalam asked his father for <u>permission</u> to study further.<br>Pick out the antonym for the underlined word.", opts:["approval","consent","consideration","prohibition"], correct:3},
+    {q:"If he worked hard, he________a scholarship.<br>Choose the word that fits the blank.", opts:["did get","would get","will be getting","would have gotten"], correct:1},
+    {q:"Which of the following prefixes means 'outwards'?", opts:["subvert","extrovert","invert","divert"], correct:1},
+    {q:"The minister <u>distributed</u> the prizes to the winners.<br>Replace the underlined word with a suitable phrasal verb given.", opts:["gave away","turned in","took out","gave in"], correct:0},
+    {q:"The teacher saw the students whispering, but she <u>turned a blind eye</u> to it.<br>Identify the meaning of the idiom 'turned a blind eye'.", opts:["The teacher watched them carefully.","The teacher punished them.","The teacher asked them to be quite.","The teacher ignored their behaviour."], correct:3},
+    {q:"Which of the following is the correct order as per dictionary arrangement?", opts:["climb, climax, climate, clinic","climax, climate, climb, clinic","climb, climax, clinic, climate","climate, climax, climb, clinic"], correct:3},
+    {q:"Select the sentence with the right punctuation and capitalization.", opts:["Jody's father said &ldquo;iam glad you found him&rdquo;.","Jody's father said, &ldquo;I'm glad you found him.&rdquo;","Jody's Father said, &ldquo;Iam glad you found him&rdquo;.","Jody's father said, I'm glad you found him."], correct:1},
+    {q:"Choose the sentence that correctly converts the compound sentence into simple sentence.<br>The boy was poor yet he could pursue higher studies.", opts:["Though the boy was poor, he could pursue higher studies.","Although the boy was poor, but he could pursue his higher studies","In spite of his poverty, the boy could pursue higher studies.","In spite of poor the boy could pursue higher studies."], correct:2},
+    {q:"Choose the grammatically correct sentence from the following.", opts:["Teacher day is celebrated on September 5th in India.","Teachers' day is celebrated on September 5th in India.","Teacher's day is celebrated in September 5th in India.","Teachers' day is celebrated in September 5th in India."], correct:1},
+    {q:"I may yet live for a few more years.<br>Identify the language function of the above sentence.", opts:["expressing disability","expressing possibility","seeking information","permission"], correct:1},
+    {q:"Identify the incorrectly spelt word.", opts:["conferring","endeavour","precints","obligation"], correct:2},
+    {q:"Reporter said to her, &ldquo;Are you a shy person?&rdquo;<br>Choose the indirect speech.", opts:["The reporter asked her if she is a shy person.","The reporter told her if she was a shy person.","The reporter asked her why she was a shy person.","The reporter asked her if she was a shy person."], correct:3},
+    {q:"Choose the correct example of a noun clause as a subject.", opts:["How long I shall be here is doubtful.","I think you will stay here.","Will you stay here?","How long will you stay here?"], correct:0},
+    {q:"One of the following words describes a device for measuring time accurately.", opts:["Chronometer","Anachronism","Synchronize","Chronicle"], correct:0},
+    {q:"Identify the sentence in which the verb agrees with the subject.", opts:["The first two pages of the book is lost.","The two first pages of the book are lost.","The two first pages of the book is lost.","The first two pages of the book are lost."], correct:3},
+    {q:"Mala likes milk.<br>Choose the option that is the negative declarative sentence of the given sentence.", opts:["Mala does likes milk.","Does Mala like milk?","Mala doesn't like milk.","Mala likes milk, doesn't she?"], correct:2},
+    {q:"He failed; _____ he persevered.<br>Choose the linker that fits the blank.", opts:["consequently","as a result","nevertheless","meanwhile"], correct:2},
+    {q:"Identify the sentence with the correct use of articles or no article.", opts:["Sun rises in the East.","Draw map of India.","An umbrella is of no avail against the thunderstorm.","Time makes most enemies friends."], correct:2},
+    {q:"I know how to swim.<br>Choose the sentence with the same meaning.", opts:["I can swim.","I may swim.","I should swim.","I might swim."], correct:0},
+    {q:"Choose the sentence that uses a possessive pronoun correctly.", opts:["Your's is a good idea.","Yours' is a good idea.","You're is a good idea.","Yours is a good idea."], correct:3},
+    {q:"Choose the silent letter in the word 'subtle'.", opts:["u","b","t","l"], correct:1},
+    {q:"Identify a component / part not required in the format of a letter either formal or informal.", opts:["Salutation","Subscription","Body of the letter","By-line"], correct:3},
+    {q:"Which statement is incorrect about formal invitation?", opts:["It is generally written in the third person.","It should contain conflict, salutation and complimentary close.","The host's name should appear in the body.","The reply to such an invitation also be in the third person."], correct:1},
+    {q:"Identify the grammatically correct sentence.", opts:["He has never tried sushi so far.","He has never try sushi so far.","He never tried sushi so far.","He have never tried sushi so far."], correct:0},
+    {q:"Choose the sentence in which present participle is used as an adjective.", opts:["Running on the road, he saw a lovely garden.","The train is running very fast.","The running train hit a buffalo on the track.","Running makes you fit and healthy."], correct:2},
+    {q:"Choose the noun phrase in which adjectives are used in their correct order.", opts:["Small black tin box","Black small tin box","Tin black small box","Small tin black box"], correct:0},
+    {q:"Good bye! I'll see you_________.<br>Choose the correct expression to complete the sentence.", opts:["at Friday morning","on Friday morning","in Friday morning","for Friday morning"], correct:1},
+    {q:"Read the following: The economic system of any country is largely dependent upon the efficiency of its transport system. Without the help of a good transport system the expansion in national and international trade would never take place.<br><br>The given passage is about_________.", opts:["Importance of transport system in economic growth","Efficiency of transport system","Expansion of international trade","The economic system of a state"], correct:0},
+    {q:"Read the following: The banished Duke had an only daughter, named Rosalind whom the usurper, Duke Frederick, when he banished her father, still retained in his court as a companion for his only daughter Celia. A strict friendship subsisted between these ladies, which the disagreement between their fathers did not, in the least interrupt.<br><br>Choose the correct statement from the passage.", opts:["Rosalind is the daughter of Frederick.","Frederick is the banished Duke.","Celia is the daughter of the usurper.","There is no friendship between the two ladies."], correct:2}
+  ];
+
+  var TOTAL_Q = RAW_QUESTIONS.length;
+  var quiz = [];
+  var current = 0;
+  var score = 0;
+  var answered = [];
+  var timerInterval = null;
+  var lockInterval = null;
+  var seconds = 0;
+  var studentName = '';
+  var studentDistrict = '';
+
+  function shuffleArr(a){
+    var arr = a.slice();
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t=arr[i]; arr[i]=arr[j]; arr[j]=t;
+    }
+    return arr;
+  }
+
+  function buildQuiz(){
+    var order = shuffleArr(RAW_QUESTIONS.map(function(_,i){return i;}));
+    quiz = order.map(function(idx){
+      var src = RAW_QUESTIONS[idx];
+      var correctSet = Array.isArray(src.correct) ? src.correct : [src.correct];
+      var optOrder = shuffleArr(src.opts.map(function(_,i){return i;}));
+      var newOpts = optOrder.map(function(oi){return src.opts[oi];});
+      var newCorrect = [];
+      optOrder.forEach(function(origIdx, newIdx){
+        if(correctSet.indexOf(origIdx) !== -1){ newCorrect.push(newIdx); }
+      });
+      return {q:src.q, opts:newOpts, correct:newCorrect, chosen:null};
+    });
+    current = 0; score = 0; answered = new Array(TOTAL_Q).fill(false);
+  }
+
+  function fmtTime(s){
+    var m = Math.floor(s/60); var sec = s%60;
+    return (m<10?"0":"")+m+":"+(sec<10?"0":"")+sec;
+  }
+
+  function startTimer(){
+    seconds = 0;
+    document.getElementById('aeq2Timer').textContent = "⏱ 00:00";
+    timerInterval = setInterval(function(){
+      seconds++;
+      document.getElementById('aeq2Timer').textContent = "⏱ " + fmtTime(seconds);
+    },1000);
+  }
+  function stopTimer(){ clearInterval(timerInterval); }
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (lockInterval) clearInterval(lockInterval);
+      document.getElementById('aeq2LockedScreen').style.display = 'none';
+      document.getElementById('aeq2StartScreen').style.display = 'block';
+      return;
+    }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('aeq2Countdown').textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      document.getElementById('aeq2LockedScreen').style.display = 'none';
+      document.getElementById('aeq2StartScreen').style.display = 'block';
+    } else {
+      document.getElementById('aeq2StartScreen').style.display = 'none';
+      document.getElementById('aeq2LockedScreen').style.display = 'block';
+      updateCountdown();
+      lockInterval = setInterval(updateCountdown, 1000);
+    }
+  }
+
+  function renderQuestion(){
+    var item = quiz[current];
+    document.getElementById('aeq2QNoLabel').textContent = "Question " + (current+1) + " / " + TOTAL_Q;
+    document.getElementById('aeq2ScorePill').textContent = "Score: " + score;
+    document.getElementById('aeq2ProgressBar').style.width = (((current)/TOTAL_Q)*100) + "%";
+    document.getElementById('aeq2QuestionText').innerHTML = item.q;
+    var box = document.getElementById('aeq2OptionsBox');
+    box.innerHTML = "";
+    var fb = document.getElementById('aeq2Feedback');
+    fb.textContent = ""; fb.className = "aeq2-feedback";
+
+    item.opts.forEach(function(optText, idx){
+      var btn = document.createElement('button');
+      btn.type = "button";
+      btn.className = "aeq2-opt";
+      btn.innerHTML = optText;
+      if(item.chosen !== null){
+        btn.classList.add('aeq2-disabled');
+        if(item.correct.indexOf(idx) !== -1){ btn.classList.add('aeq2-correct'); }
+        else if(idx === item.chosen){ btn.classList.add('aeq2-wrong'); }
+      }
+      btn.addEventListener('click', function(){
+        if(item.chosen !== null) return;
+        item.chosen = idx;
+        var isRight = item.correct.indexOf(idx) !== -1;
+        if(isRight){ score++; }
+        answered[current] = true;
+        renderQuestion();
+        var fbEl = document.getElementById('aeq2Feedback');
+        if(isRight){
+          fbEl.textContent = "✅ Correct!";
+          fbEl.className = "aeq2-feedback ok";
+        } else {
+          fbEl.textContent = "❌ Wrong! Correct answer highlighted in green.";
+          fbEl.className = "aeq2-feedback no";
+        }
+      });
+      box.appendChild(btn);
+    });
+
+    document.getElementById('aeq2PrevBtn').disabled = (current === 0);
+    var nextBtn = document.getElementById('aeq2NextBtn');
+    var submitBtn = document.getElementById('aeq2SubmitBtn');
+    if (current === TOTAL_Q - 1){
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'inline-block';
+    } else {
+      nextBtn.style.display = 'inline-block';
+      submitBtn.style.display = 'none';
+    }
+  }
+
+  function goNext(){
+    if(current < TOTAL_Q-1){ current++; renderQuestion(); }
+  }
+  function goPrev(){
+    if(current > 0){ current--; renderQuestion(); }
+  }
+
+  function finishQuiz(){
+    stopTimer();
+    document.getElementById('aeq2QuizScreen').style.display = "none";
+    document.getElementById('aeq2ProgressBar').style.width = "100%";
+    var wrong = TOTAL_Q - score;
+    var pct = Math.round((score/TOTAL_Q)*100);
+    document.getElementById('aeq2ScoreCircle').style.setProperty('--pct', pct + '%');
+    document.getElementById('aeq2ScoreCircleText').textContent = score + "/" + TOTAL_Q;
+    document.getElementById('aeq2CorrectCount').textContent = score;
+    document.getElementById('aeq2WrongCount').textContent = wrong;
+    document.getElementById('aeq2TimeTaken').textContent = fmtTime(seconds);
+    document.getElementById('aeq2ResultScreen').style.display = "block";
+    document.getElementById('aeq2LeaderboardPanel').style.display = "none";
+    document.getElementById('aeq2ResponsesPanel').style.display = "none";
+    submitScoreToLeaderboard(score, TOTAL_Q, pct);
+  }
+
+  function submitScoreToLeaderboard(correctScore, total, percent){
+    var lbStatus = document.getElementById('aeq2LbStatus');
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbStatus.textContent = '';
+      return;
+    }
+    lbStatus.textContent = 'Saving your score...';
+    var payload = {
+      name: studentName,
+      district: studentDistrict,
+      quiz: CONFIG.QUIZ_NAME,
+      score: correctScore,
+      total: total,
+      percent: percent,
+      timeTaken: fmtTime(seconds)
+    };
+    fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).then(function(){
+      lbStatus.textContent = '✅ Score saved to leaderboard.';
+    }).catch(function(){
+      lbStatus.textContent = '';
+    });
+  }
+
+  function loadLeaderboard(){
+    var lbList = document.getElementById('aeq2LbList');
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbList.innerHTML = '<p class="aeq2-lbLoading">Leaderboard is not set up yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="aeq2-lbLoading">Loading...</p>';
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=leaderboard')
+      .then(function(res){ return res.json(); })
+      .then(function(rows){
+        if (!rows || !rows.length){
+          lbList.innerHTML = '<p class="aeq2-lbLoading">No scores yet. Be the first!</p>';
+          return;
+        }
+        rows.sort(function(a,b){ return b.score - a.score; });
+        var html = '';
+        rows.slice(0, 20).forEach(function(r, i){
+          html += '<div class="aeq2-lbRow"><span class="aeq2-lbRank">' + (i+1) + '</span>' +
+                  '<span class="aeq2-lbName">' + escapeHtml(r.name) + '<br><small>' + escapeHtml(r.district) + '</small></span>' +
+                  '<span class="aeq2-lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + '</span></div>';
+        });
+        lbList.innerHTML = html;
+      })
+      .catch(function(){
+        lbList.innerHTML = '<p class="aeq2-lbLoading">Could not load leaderboard right now.</p>';
+      });
+  }
+
+  function buildResponsesHtml(){
+    var html = '';
+    quiz.forEach(function(item, i){
+      var answeredFlag = item.chosen !== null;
+      html += '<div class="aeq2-reviewQ">';
+      html += '<div class="aeq2-reviewQText">Q' + (i + 1) + '. ' + item.q + '</div>';
+      item.opts.forEach(function(optText, idx){
+        var isCorrect = item.correct.indexOf(idx) !== -1;
+        var isChosen = answeredFlag && item.chosen === idx;
+        var cls = 'aeq2-reviewOpt';
+        if (isCorrect) cls += ' aeq2-reviewCorrect';
+        if (isChosen && !isCorrect) cls += ' aeq2-reviewWrong';
+        var tag = '';
+        if (isCorrect) tag += ' <span class="aeq2-reviewTag">✔ Correct</span>';
+        if (isChosen) tag += ' <span class="aeq2-reviewTag aeq2-reviewYourTag">Your Answer</span>';
+        html += '<div class="' + cls + '">' + optText + tag + '</div>';
+      });
+      if (!answeredFlag) { html += '<div class="aeq2-reviewSkipped">Not answered</div>'; }
+      html += '</div>';
+    });
+    return html;
+  }
+
+  document.getElementById('aeq2StartBtn').addEventListener('click', function(){
+    var nameInput = document.getElementById('aeq2NameInput');
+    var districtInput = document.getElementById('aeq2DistrictInput');
+    var startError = document.getElementById('aeq2StartError');
+    var name = nameInput.value.trim();
+    var district = districtInput.value.trim();
+    if (!name || !district){
+      startError.style.display = 'block';
+      if (!name){ nameInput.focus(); } else { districtInput.focus(); }
+      return;
+    }
+    startError.style.display = 'none';
+    studentName = name;
+    studentDistrict = district;
+    buildQuiz();
+    document.getElementById('aeq2StartScreen').style.display = "none";
+    document.getElementById('aeq2ResultScreen').style.display = "none";
+    document.getElementById('aeq2QuizScreen').style.display = "block";
+    renderQuestion();
+    startTimer();
+  });
+  document.getElementById('aeq2NextBtn').addEventListener('click', goNext);
+  document.getElementById('aeq2PrevBtn').addEventListener('click', goPrev);
+  document.getElementById('aeq2SubmitBtn').addEventListener('click', finishQuiz);
+  document.getElementById('aeq2RestartBtn').addEventListener('click', function(){
+    document.getElementById('aeq2ResultScreen').style.display = "none";
+    document.getElementById('aeq2StartScreen').style.display = "block";
+  });
+  document.getElementById('aeq2ResponsesBtn').addEventListener('click', function(){
+    var panel = document.getElementById('aeq2ResponsesPanel');
+    var showing = panel.style.display !== 'none';
+    if (showing){
+      panel.style.display = 'none';
+    } else {
+      panel.style.display = 'block';
+      document.getElementById('aeq2LeaderboardPanel').style.display = 'none';
+      document.getElementById('aeq2ResponsesList').innerHTML = buildResponsesHtml();
+    }
+  });
+  document.getElementById('aeq2LeaderboardBtn').addEventListener('click', function(){
+    var panel = document.getElementById('aeq2LeaderboardPanel');
+    var showing = panel.style.display !== 'none';
+    if (showing){
+      panel.style.display = 'none';
+    } else {
+      panel.style.display = 'block';
+      document.getElementById('aeq2ResponsesPanel').style.display = 'none';
+      loadLeaderboard();
+    }
+  });
+
+  checkAccess();
+})();
+</script>
