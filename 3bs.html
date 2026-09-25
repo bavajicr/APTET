@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>APTET Biological Sciences Quiz - 19 Dec 2025 Shift 2</title>
+</head>
+<body>
+<!-- APTET Biological Sciences Quiz - 19 Dec 2025 Shift 2 - C. RASOOL BAVAJI -->
+<div class="aptetbio2_wrap">
+  <div class="aptetbio2_card">
+
+    <div id="aptetbio2_locked" class="aptetbio2_screen">
+      <h2 class="aptetbio2_title">BIOLOGICAL SCIENCES</h2>
+      <p class="aptetbio2_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (Second Shift)</p>
+      <div class="aptetbio2_lockIcon">&#128274;</div>
+      <p class="aptetbio2_lockMsg">This quiz will open at <strong>6:00 PM IST on 25-09-2026</strong>.</p>
+      <p class="aptetbio2_lockCountdown" id="aptetbio2_countdown">Opens in --:--:--</p>
+    </div>
+
+    <div id="aptetbio2_start" class="aptetbio2_screen" style="display:none;">
+      <h2 class="aptetbio2_title">BIOLOGICAL SCIENCES</h2>
+      <p class="aptetbio2_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (Second Shift)</p>
+      <div class="aptetbio2_info">
+        <div class="aptetbio2_infoBox"><span>20</span>Questions</div>
+        <div class="aptetbio2_infoBox"><span>&#8734;</span>No Time Limit*</div>
+        <div class="aptetbio2_infoBox"><span>EN/TE</span>Bilingual</div>
+      </div>
+      <p class="aptetbio2_note">*A timer will track how long you take. Options shuffle every attempt.</p>
+
+      <div class="aptetbio2_formRow">
+        <label class="aptetbio2_label" for="aptetbio2_nameInput">Your Name <span class="aptetbio2_req">*</span></label>
+        <input type="text" id="aptetbio2_nameInput" class="aptetbio2_input" placeholder="Enter your full name" autocomplete="off">
+      </div>
+      <div class="aptetbio2_formRow">
+        <label class="aptetbio2_label" for="aptetbio2_districtInput">District <span class="aptetbio2_req">*</span></label>
+        <input type="text" id="aptetbio2_districtInput" class="aptetbio2_input" placeholder="Enter your district" autocomplete="off">
+      </div>
+      <p id="aptetbio2_startError" class="aptetbio2_startError" style="display:none;">Please enter your name and district to start the quiz.</p>
+
+      <button id="aptetbio2_startBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Start Quiz</button>
+    </div>
+
+    <div id="aptetbio2_quiz" class="aptetbio2_screen" style="display:none;">
+      <div class="aptetbio2_topbar">
+        <div class="aptetbio2_timer">&#9201; <span id="aptetbio2_timerText">00:00</span></div>
+        <div class="aptetbio2_scoreTop">Score: <span id="aptetbio2_liveScore">0</span></div>
+        <button id="aptetbio2_submitTopBtn" class="aptetbio2_btn aptetbio2_btnSuccess aptetbio2_submitTopBtn" style="display:none;">Submit</button>
+      </div>
+      <div class="aptetbio2_progressOuter">
+        <div id="aptetbio2_progressBar" class="aptetbio2_progressInner"></div>
+      </div>
+      <p class="aptetbio2_qcount">Question <span id="aptetbio2_qnum">1</span> / <span id="aptetbio2_qtotal">20</span></p>
+
+      <div class="aptetbio2_qbox">
+        <p class="aptetbio2_paperHead">APTET Previous Question Paper &#8211; 19 December 2025 (Second Shift) &#8211; Biological Sciences</p>
+        <p id="aptetbio2_qEn" class="aptetbio2_qtext"></p>
+        <div id="aptetbio2_qEnLines" class="aptetbio2_qlines"></div>
+        <p id="aptetbio2_qTe" class="aptetbio2_qtextTe"></p>
+        <div id="aptetbio2_qTeLines" class="aptetbio2_qlinesTe"></div>
+        <div id="aptetbio2_options" class="aptetbio2_options"></div>
+        <p id="aptetbio2_feedback" class="aptetbio2_feedback"></p>
+      </div>
+
+      <div class="aptetbio2_nav">
+        <button id="aptetbio2_prevBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#8592; Previous</button>
+        <button id="aptetbio2_nextBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Next &#8594;</button>
+      </div>
+    </div>
+
+    <div id="aptetbio2_result" class="aptetbio2_screen" style="display:none;">
+      <h2 class="aptetbio2_title">Quiz Completed!</h2>
+      <div class="aptetbio2_resultCircle">
+        <span id="aptetbio2_finalScore">0</span><small>/ 20</small>
+      </div>
+      <p id="aptetbio2_finalPercent" class="aptetbio2_subtitle"></p>
+      <p id="aptetbio2_finalTime" class="aptetbio2_note"></p>
+      <p id="aptetbio2_lbStatus" class="aptetbio2_lbStatus"></p>
+      <div class="aptetbio2_resultBtns">
+        <button id="aptetbio2_restartBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Restart Quiz</button>
+        <button id="aptetbio2_reviewBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#128196; Show Responses</button>
+        <button id="aptetbio2_leaderboardBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#127942; Leaderboard</button>
+      </div>
+      <div id="aptetbio2_reviewBox" class="aptetbio2_reviewBox" style="display:none;"></div>
+      <div id="aptetbio2_leaderboardBox" class="aptetbio2_leaderboardBox" style="display:none;">
+        <h3 class="aptetbio2_lbTitle">&#127942; Top Scores</h3>
+        <div id="aptetbio2_lbList" class="aptetbio2_lbLoading">Loading...</div>
+      </div>
+    </div>
+
+    <div class="aptetbio2_credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE.</div>
+  </div>
+</div>
+
+<style>
+.aptetbio2_wrap{max-width:640px;margin:20px auto;font-family:'Segoe UI',Roboto,Arial,sans-serif;color:#e8f0ff;}
+.aptetbio2_card{background:linear-gradient(160deg,#0b1730,#11224a 60%,#0b1730);border-radius:18px;padding:26px 22px 18px;box-shadow:0 10px 35px rgba(0,0,0,.45);border:1px solid #1e3a6e;}
+.aptetbio2_screen{animation:aptetbio2_fade .4s ease;}
+@keyframes aptetbio2_fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.aptetbio2_title{text-align:center;margin:4px 0 4px;font-size:26px;font-weight:800;letter-spacing:.5px;color:#7fd3ff;text-shadow:0 0 14px rgba(127,211,255,.35);}
+.aptetbio2_subtitle{text-align:center;color:#b9c8ea;margin:0 0 16px;font-size:15px;}
+.aptetbio2_info{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.aptetbio2_infoBox{background:#132a55;border:1px solid #24447f;border-radius:12px;padding:12px 16px;text-align:center;min-width:90px;font-size:13px;color:#c7d6f5;}
+.aptetbio2_infoBox span{display:block;font-size:20px;font-weight:800;color:#ffd166;margin-bottom:2px;}
+.aptetbio2_note{text-align:center;font-size:12.5px;color:#8fa2c9;margin:6px 0 18px;}
+.aptetbio2_btn{border:none;border-radius:12px;padding:13px 22px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s transform,.2s box-shadow;}
+.aptetbio2_btn:active{transform:scale(.97);}
+.aptetbio2_btnPrimary{background:linear-gradient(135deg,#2f80ed,#1360d6);color:#fff;box-shadow:0 6px 16px rgba(47,128,237,.4);}
+.aptetbio2_btnSuccess{background:linear-gradient(135deg,#27ae60,#1e8e4d);color:#fff;box-shadow:0 6px 16px rgba(39,174,96,.4);}
+.aptetbio2_btnGhost{background:#152a52;color:#cfe0ff;border:1px solid #2c4d8f;}
+#aptetbio2_startBtn{display:block;margin:0 auto;}
+.aptetbio2_topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;font-weight:700;color:#ffd166;}
+.aptetbio2_scoreTop{color:#8fffb0;}
+.aptetbio2_progressOuter{background:#0e1e3d;border-radius:10px;height:10px;overflow:hidden;margin-bottom:8px;border:1px solid #24447f;}
+.aptetbio2_progressInner{background:linear-gradient(90deg,#2f80ed,#56ccf2);height:100%;width:5%;transition:width .3s ease;}
+.aptetbio2_qcount{text-align:center;color:#9fb3dd;font-size:13px;margin:0 0 12px;}
+.aptetbio2_qbox{background:#0e1f42;border:1px solid #22407a;border-radius:14px;padding:18px;margin-bottom:16px;}
+.aptetbio2_paperHead{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#ffd166;background:#1a2f5c;border:1px solid #2c4d8f;border-radius:8px;padding:6px 10px;margin:0 0 12px;text-align:center;line-height:1.4;}
+.aptetbio2_qtext{font-size:16.5px;font-weight:700;color:#f2f6ff;margin:0 0 6px;line-height:1.5;}
+.aptetbio2_qtextTe{font-size:15.5px;color:#bcd0f7;margin:14px 0 6px;line-height:1.6;}
+.aptetbio2_qlines{margin:0 0 14px;}
+.aptetbio2_qlinesTe{margin:0 0 14px;}
+.aptetbio2_qline{display:block;font-size:15px;color:#e3ecff;line-height:1.5;margin:0 0 6px;padding-left:2px;}
+.aptetbio2_qlineTe{display:block;font-size:14.5px;color:#bcd0f7;line-height:1.6;margin:0 0 6px;padding-left:2px;}
+.aptetbio2_options{display:flex;flex-direction:column;gap:10px;}
+.aptetbio2_opt{background:#132a55;border:1.5px solid #2c4d8f;border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14.5px;color:#e8f0ff;transition:.15s;line-height:1.4;}
+.aptetbio2_opt:hover{border-color:#56ccf2;background:#173263;}
+.aptetbio2_opt.aptetbio2_selected{border-color:#56ccf2;background:#1a3a72;}
+.aptetbio2_opt.aptetbio2_correct{background:#16472c!important;border-color:#27ae60!important;color:#c9ffde!important;}
+.aptetbio2_opt.aptetbio2_wrong{background:#4a1a22!important;border-color:#eb5757!important;color:#ffd4d4!important;}
+.aptetbio2_opt.aptetbio2_disabled{cursor:default;}
+.aptetbio2_feedback{min-height:20px;font-size:13.5px;font-weight:700;margin-top:10px;}
+.aptetbio2_feedback.aptetbio2_right{color:#6dffa8;}
+.aptetbio2_feedback.aptetbio2_wrongTxt{color:#ff9c9c;}
+.aptetbio2_nav{display:flex;justify-content:space-between;gap:10px;}
+.aptetbio2_nav .aptetbio2_btn{flex:1;}
+.aptetbio2_resultCircle{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#1a3a72,#0e1f42);border:4px solid #2f80ed;display:flex;align-items:baseline;justify-content:center;margin:10px auto 6px;box-shadow:0 0 30px rgba(47,128,237,.4);}
+#aptetbio2_finalScore{font-size:44px;font-weight:800;color:#ffd166;}
+.aptetbio2_resultCircle small{font-size:16px;color:#9fb3dd;margin-left:4px;}
+.aptetbio2_resultBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.aptetbio2_resultBtns .aptetbio2_btn{flex:1;min-width:140px;}
+.aptetbio2_reviewBox{margin-top:18px;border-top:1px solid #24447f;padding-top:14px;}
+.aptetbio2_reviewItem{background:#0e1f42;border:1px solid #22407a;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13.5px;}
+.aptetbio2_reviewItem b{color:#7fd3ff;}
+.aptetbio2_reviewLine{display:block;margin:2px 0;}
+.aptetbio2_reviewCorrect{color:#6dffa8;}
+.aptetbio2_reviewWrong{color:#ff9c9c;}
+.aptetbio2_credit{text-align:center;margin-top:18px;font-size:12px;color:#7f93bd;letter-spacing:.3px;}
+
+.aptetbio2_wrap{-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+.aptetbio2_wrap input{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+
+.aptetbio2_lockIcon{text-align:center;font-size:38px;margin:6px 0 10px;}
+.aptetbio2_lockMsg{text-align:center;font-size:14.5px;color:#eaf2ff;line-height:1.5;margin:0 0 10px;}
+.aptetbio2_lockCountdown{text-align:center;font-size:16px;font-weight:800;color:#ffd166;background:rgba(255,255,255,.06);border:1px solid #24447f;border-radius:10px;padding:10px;}
+
+.aptetbio2_formRow{margin-bottom:14px;text-align:left;}
+.aptetbio2_label{display:block;font-size:12.5px;color:#b9c8ea;margin-bottom:5px;}
+.aptetbio2_req{color:#ff9c9c;}
+.aptetbio2_input{width:100%;background:#132a55;border:1.5px solid #2c4d8f;color:#e8f0ff;border-radius:10px;padding:11px 13px;font-size:16px;outline:none;transition:border-color .15s ease;}
+.aptetbio2_input:focus{border-color:#56ccf2;}
+.aptetbio2_startError{color:#ff9c9c;font-size:12.5px;margin:-4px 0 12px;text-align:center;}
+
+.aptetbio2_topbar .aptetbio2_submitTopBtn{margin-left:auto;flex:none;width:auto;padding:8px 18px;font-size:13px;border-radius:20px;}
+
+.aptetbio2_lbStatus{font-size:12px;color:#8fffb0;margin:4px 0 0;min-height:15px;text-align:center;}
+.aptetbio2_leaderboardBox{margin-top:16px;border-top:1px solid #24447f;padding-top:14px;text-align:left;max-height:420px;overflow-y:auto;}
+.aptetbio2_lbTitle{margin:0 0 10px;font-size:14.5px;color:#ffd166;text-align:center;}
+.aptetbio2_lbLoading{text-align:center;font-size:12.5px;color:#9fb3dd;}
+.aptetbio2_lbRow{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid #24447f;font-size:13px;}
+.aptetbio2_lbRow:last-child{border-bottom:none;}
+.aptetbio2_lbRank{width:22px;text-align:center;font-weight:800;color:#ffd166;flex-shrink:0;}
+.aptetbio2_lbName{flex:1;color:#e8f0ff;}
+.aptetbio2_lbName small{color:#9fb3dd;}
+.aptetbio2_lbScore{font-weight:800;color:#6dffa8;flex-shrink:0;}
+
+.aptetbio2_reviewOpt{background:#132a55;border:1.5px solid #2c4d8f;border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;line-height:1.4;}
+.aptetbio2_reviewOpt:last-child{margin-bottom:0;}
+.aptetbio2_reviewOptCorrect{border-color:#27ae60;background:rgba(39,174,96,.18);}
+.aptetbio2_reviewOptWrong{border-color:#eb5757;background:rgba(235,87,87,.18);}
+.aptetbio2_reviewTag{font-weight:700;font-size:11.5px;margin-left:6px;color:#6dffa8;}
+.aptetbio2_reviewYourTag{color:#ffd166;}
+.aptetbio2_reviewSkipped{font-size:12px;color:#ffd166;font-style:italic;margin-top:4px;}
+
+@media (max-width:480px){
+  .aptetbio2_wrap{margin:10px auto;}
+  .aptetbio2_card{padding:18px 14px 14px;border-radius:14px;}
+  .aptetbio2_title{font-size:21px;}
+  .aptetbio2_nav{flex-wrap:wrap;}
+  .aptetbio2_nav .aptetbio2_btn{min-width:100%;min-height:46px;}
+  .aptetbio2_btn{min-height:46px;}
+  .aptetbio2_topbar{flex-wrap:wrap;}
+  .aptetbio2_opt{padding:11px 13px;}
+  .aptetbio2_lockCountdown{font-size:14px;}
+}
+</style>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 25-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-25T12:30:00Z',
+    QUIZ_NAME: 'APTET Biological Sciences - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below. If you already deployed
+    // one for an earlier quiz, you can reuse that SAME URL here — this quiz will
+    // just add its own rows to the same Google Sheet (tagged with its own quiz name).
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  var QUESTIONS = [
+    {
+      enMain:"Match the following.",
+      enLines:["A) Hinge joint &rarr; i) Skull","B) Ball and socket joint &rarr; ii) Elbow","C) Pivot joint &rarr; iii) Shoulder","D) Fixed joint &rarr; iv) Neck"],
+      teMain:"క&#3105;ంది వానిని జతపరచండి.",
+      teLines:["A) మడతబందు కీలు &rarr; i) పుర్రె","B) బంతిగిన్నె కీలు &rarr; ii) మోచేయి","C) బొంగరపు కీలు &rarr; iii) భుజము","D) కదలని కీలు &rarr; iv) మెడ"],
+      options:["A-ii, B-iv, C-iii, D-i","A-ii, B-iii, C-iv, D-i","A-i, B-iv, C-iii, D-ii","A-ii, B-iv, C-i, D-iii"],
+      answer:1
+    },
+    {
+      enMain:"Bone is a strong, non-flexible tissue. The reason for calling it so is",
+      enLines:["A) It forms the skeletal frame that supports the body.","B) It anchors the muscles and main body organs.","C) The cells of bone are embedded in hard matrix.","D) The bone matrix is composed of calcium and phosphorus compounds."],
+      teMain:"ఎముక వంగే గుణం లేని దృఢమైన కణజాలము అని పిలవబడటానికి కారణం",
+      teLines:["A) ఇది అస్థిపంజరాన్ని ఏర్పరచి, శరీర భాగాలకు ఆధారాన్నిస్తుంది.","B) కండరాలను, శరీర ప్రధాన అవయవాలను కలిపి ఉంచుతుంది.","C) ఎముక కణాలు దృఢమైన మాత్రికలో ఇమిడి ఉంటాయి.","D) ఎముక మాత్రిక కాల్షియం మరియు ఫాస్పరస్ సమ్మేళనాలతో ఏర్పరచబడి ఉంటుంది."],
+      options:["A, B, C, & D","A & B","C & D","A, C & D"],
+      answer:2
+    },
+    {
+      enMain:"Find the correctly matched pair.",
+      enLines:[],
+      teMain:"సరిగా జతపరచబడిన జతను గుర్తించండి.",
+      teLines:[],
+      options:["Endoplasmic Reticulum - Breaking down organic materials","Vacuoles - Provide turgidity and rigidity to plant cell","Lysosomes - Making complex sugars from simple sugars","Golgi apparatus - Detoxification of poisons and drugs"],
+      answer:1
+    },
+    {
+      enMain:"Identify the incorrect pair of micronutrients.",
+      enLines:[],
+      teMain:"సూక్ష్మ పోషకాల సరికాని జతను గుర్తించండి.",
+      teLines:[],
+      options:["Iron, Manganese","Iron, Potassium","Manganese, Boron","Molybdenum, Copper"],
+      answer:1
+    },
+    {
+      enMain:"Find the correct pair of disease that cannot be cure by vaccination",
+      enLines:[],
+      teMain:"టీకాల ద్వారా నయం చేయలేని వ్యాధుల జతను గుర్తించండి.",
+      teLines:[],
+      options:["Tuberculosis, Typhoid","Hepatitis A, Typhoid","Chicken pox, Polio","Malaria, Dysentry"],
+      answer:3
+    },
+    {
+      enMain:"Match the teeth according to their function.",
+      enLines:["i) Incisor &rarr; a) Piercing and tearing","ii) Canine &rarr; b) Cutting and biting","iii) Molar &rarr; c) Chewing and grinding"],
+      teMain:"దంతాలను వాటి విధుల ఆధారంగా జతపరుచుము.",
+      teLines:["i) కుంతకాలు &rarr; a) గుచ్చడం, చీల్చడం","ii) రదనికలు &rarr; b) కత్తిరించడం, కొరకడం","iii) చర్వణకాలు &rarr; c) నమలడం, విసరడం"],
+      options:["i-a, ii-b, iii-c","i-c, ii-a, iii-b","i-b, ii-a, iii-c","i-a, ii-c, iii-b"],
+      answer:2
+    },
+    {
+      enMain:"Find the correct statement among the following.",
+      enLines:[],
+      teMain:"క&#3105;ంది వాటిలో సరైన వాక్యంను గుర్తించండి.",
+      teLines:[],
+      options:["The right atrium contracts when it is collecting blood.","The pulmonary artery collects oxygenated blood.","Valves are the controlling factors of relaxation and contraction of heart.","The pulmonary artery supplies deoxygenated blood to lungs for oxygenation."],
+      answer:3
+    },
+    {
+      enMain:"Match the following.",
+      enLines:["List-A:","A. Yeast","B. Lactobacillus","C. Cytoplasm","D. Mitochondria","List-B:","i) CO2 + H2O + energy","ii) Pyruvate + energy","iii) Lactic acid + energy","iv) Ethanol + CO2 + energy"],
+      teMain:"జతపరచండి.",
+      teLines:["పట్టిక-A:","A. ఈస్ట్","B. లాక్టోబాసిల్లస్","C. సైటోప్లాజమ్","D. మైటోకాండ్రియా","పట్టిక-B:","i) CO2 + H2O + శక్తి","ii) పైరూవేట్ + శక్తి","iii) లాక్టిక్ ఆమ్లం + శక్తి","iv) ఇథనాల్ + CO2 + శక్తి"],
+      options:["A-iv, B-i, C-ii, D-iii","A-iv, B-iii, C-i, D-ii","A-iv, B-ii, C-iii, D-i","A-iv, B-iii, C-ii, D-i"],
+      answer:3
+    },
+    {
+      enMain:"Find the correct pairs from the following.",
+      enLines:["A. Apical dominance : Indole Acetic Acid","B. Rapid cell division : Auxins","C. Delayed senescence : Gibberellins","D. Breaks seed dormancy : Abscisic Acid"],
+      teMain:"క&#3105;ంది వాటిలో సరైన జతలను గుర్తించండి.",
+      teLines:["A. అగ్రాధిక్యత : ఇండోల్ అసిటిక్ ఆమ్లం","B. వేగవంతమైన కణవిభజన : ఆక్సిన్లు","C. వృద్ధాప్యాన్ని ఆలస్యం చేయడం : జిబ్బరెల్లిన్","D. విత్తనాల సుప్తావస్థను పోగొట్టుట : అబ్సైసిక్ ఆమ్లం"],
+      options:["B and D","C and D","A and D","A and C"],
+      answer:3
+    },
+    {
+      enMain:"A student observed a thin filament with green colour under a microscope. The name of the organism and its reproduction method is from the following.",
+      enLines:[],
+      teMain:"ఒక విద్యార్థి ఒక ఆకుపచ్చని తంతువును సూక్ష్మదర్శిని క్రింద పరిశీలించాడు. క&#3105;ంది వానిలో ఆ జీవి పేరు మరియు దాని ప్రత్యుత్పత్తి విధానం.",
+      teLines:[],
+      options:["Uglena &#8211; sexual &#8211; formation of zygotes","Chlamydomonus &#8211; asexual &#8211; budding","Spirogyra &#8211; asexual &#8211; fragmentation","Planaria &#8211; asexual &#8211; regeneration"],
+      answer:2
+    },
+    {
+      enMain:"A student produced 400 new plants by crossing a homozygous tall plant with a heterozygous tall plant. Then, the number of tall plants produced is",
+      enLines:[],
+      teMain:"ఒక విద్యార్థి ఒక సమయుగ్మజ పొడవు మొక్కను, విషమ యుగ్మజ పొడవు మొక్కతో సంకరణం చేయడం ద్వారా 400 కొత్త మొక్కలను ఉత్పత్తి చేసాడు. అయిన ఉత్పత్తి అయిన పొడవు మొక్కల సంఖ్య",
+      teLines:[],
+      options:["100","200","300","400"],
+      answer:3
+    },
+    {
+      enMain:"This characteristic feature of &#8216;cuscuta&#8217; make it considered to be a &#8216;parasite&#8217;.",
+      enLines:["A. It does not have chlorophyll.","B. It climbs on other plants.","C. It deprives the host of valuable nutrients.","D. It provides water and minerals to the other plant and in return gets the food."],
+      teMain:"&#8216;కస్క్యూట&#8217; యొక్క ఈ లక్షణం దానిని పరాన్నజీవిగా పరిగణింపబడేటట్లు చేస్తుంది.",
+      teLines:["A. దీనిలో ప్రతహరితం ఉండదు.","B. ఇది ఇతర మొక్కల పై ఎగబ్రాకుతుంది.","C. ఇది ఆతిథేయికి విలువైన పోషకాలు అందకుండా చేస్తుంది.","D. ఇది నీటిని, ఖనిజ లవణాలను మరో మొక్కను అందించి, బదులుగా ఆహారాన్ని పొందుతుంది."],
+      options:["D only","C only","A, B & C","A, B & D"],
+      answer:2
+    },
+    {
+      enMain:"The protected area where the traditional life and culture of the tribals protected is",
+      enLines:[],
+      teMain:"గిరిజనుల సంస్కృతి మరియు జీవన విధానాలు పరిరక్షించబడే రక్షిత ప్రదేశం",
+      teLines:[],
+      options:["Wild life sanctuary","National Park","Biosphere Reserve","Mangroove forest"],
+      answer:2
+    },
+    {
+      enMain:"The consequences of ozone depletion are",
+      enLines:["1) Skin cancer","2) Formation of eye cataracts","3) Damage of crops","4) Haemophilia"],
+      teMain:"ఒజోన్ పార దెబ్బతినడం వలన కలిగే నష్టాలు.",
+      teLines:["1) చర్మ కాన్సర్","2) కంటి శుక్లం ఏర్పడటం","3) పంటలు దెబ్బతినడం","4) హీమోఫిలియా"],
+      options:["1, 2, 4","1, 2, 3","2, 3, 4","1, 4, 3"],
+      answer:1
+    },
+    {
+      enMain:"Identify the group with only non-biodegradable items",
+      enLines:[],
+      teMain:"జీవవిచ్చిన్నం కాని పదార్థాలు మాత్రమే గల సమూహాన్ని గుర్తించండి.",
+      teLines:[],
+      options:["Leather, coir","Wood, bones","Cardboard, husk","Tile, glass"],
+      answer:3
+    },
+    {
+      enMain:"Identify a character which is not seen in Hydrophytes.",
+      enLines:[],
+      teMain:"జలచర మొక్కలలో కనబడని ఒక లక్షణాన్ని గుర్తించండి.",
+      teLines:[],
+      options:["Roots may be absent or poorly developed.","Stem is strong and rigid.","Leaves are not having stomata in submerged hydrophytes.","Aerenchyma is predominantly seen."],
+      answer:1
+    },
+    {
+      enMain:"&#8220;On the structure (fabric) human body&#8221; is written by",
+      enLines:[],
+      teMain:"&#8220;On the structure (fabric) human body&#8221; అనే పుస్తకాన్ని రచించినది",
+      teLines:[],
+      options:["Andreas Vesalius","Louis Pasteur","Carolus Linnaeus","Hugo derives"],
+      answer:0
+    },
+    {
+      enMain:"The students make alternative equipment needed for experiments is belongs to this biological teaching value",
+      enLines:[],
+      teMain:"విద్యార్థులు ప్రయోగాలకు అవసరమైన ప్రత్యామ్నాయ పరికరాలను తయారు చేయడం ఈ జీవశాస్త్ర బోధన విలువ",
+      teLines:[],
+      options:["Training in scientific method value","Vocational value","Work for leisure time value","Creative value"],
+      answer:3
+    },
+    {
+      enMain:"This is not an advantage of the &#8220;Inductive method&#8221;.",
+      enLines:[],
+      teMain:"క&#3105;ంది వానిలో &#8220;ఆగమన పద్ధతి&#8221; యొక్క ప్రయోజనం కానిది.",
+      teLines:[],
+      options:["Self-reliance develops in students.","Things learned are remembered for a long time.","Student apply the acquired knowledge in real life.","Develops scientific attitude."],
+      answer:2
+    },
+    {
+      enMain:"Identify the &#8220;little media&#8221; teaching aids among the following.",
+      enLines:["a) Overhead projector","b) CCTV","c) Radio","d) Audio Cassettes"],
+      teMain:"క&#3105;ంది వానిలో &#8220;లిటిల్ మీడియా&#8221; బోధనోపకరణాలను గుర్తించండి.",
+      teLines:["a) ఓవర్‌హెడ్ ప్రాజెక్టర్","b) CCTV","c) రేడియో","d) ఆడియో కేసెట్లు"],
+      options:["a, b, c","b, c, d","a, b, d","a, c, d"],
+      answer:2
+    }
+  ];
+
+  var state = {order:[], optOrder:[], current:0, answers:[], score:0, timerId:null, lockTimerId:null, seconds:0, finished:false, studentName:'', studentDistrict:''};
+
+  function $(id){return document.getElementById(id);}
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateLockCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (state.lockTimerId) clearInterval(state.lockTimerId);
+      $('aptetbio2_locked').style.display = 'none';
+      $('aptetbio2_start').style.display = 'block';
+      return;
+    }
+    var h = Math.floor(diff/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    $('aptetbio2_countdown').textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      $('aptetbio2_locked').style.display = 'none';
+      $('aptetbio2_start').style.display = 'block';
+    } else {
+      $('aptetbio2_start').style.display = 'none';
+      $('aptetbio2_locked').style.display = 'block';
+      updateLockCountdown();
+      state.lockTimerId = setInterval(updateLockCountdown, 1000);
+    }
+  }
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t=a[i]; a[i]=a[j]; a[j]=t;
+    }
+    return a;
+  }
+
+  function startQuiz(){
+    state.order = shuffleArray(QUESTIONS.map(function(_,i){return i;}));
+    state.optOrder = state.order.map(function(qi){
+      var opts = QUESTIONS[qi].options.map(function(_,i){return i;});
+      return shuffleArray(opts);
+    });
+    state.current = 0;
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    state.score = 0;
+    state.seconds = 0;
+    state.finished = false;
+    $('aptetbio2_start').style.display='none';
+    $('aptetbio2_result').style.display='none';
+    $('aptetbio2_quiz').style.display='block';
+    $('aptetbio2_qtotal').textContent = QUESTIONS.length;
+    $('aptetbio2_liveScore').textContent = 0;
+    clearInterval(state.timerId);
+    state.timerId = setInterval(tick,1000);
+    updateTimerText();
+    renderQuestion();
+  }
+
+  function tick(){
+    state.seconds++;
+    updateTimerText();
+  }
+  function updateTimerText(){
+    var m = Math.floor(state.seconds/60);
+    var s = state.seconds%60;
+    $('aptetbio2_timerText').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+
+  function renderLines(container, lines, cls){
+    container.innerHTML = '';
+    lines.forEach(function(line){
+      var span = document.createElement('span');
+      span.className = cls;
+      span.innerHTML = line;
+      container.appendChild(span);
+    });
+  }
+
+  function renderQuestion(){
+    var qi = state.order[state.current];
+    var q = QUESTIONS[qi];
+    $('aptetbio2_qnum').textContent = state.current+1;
+    $('aptetbio2_progressBar').style.width = (((state.current+1)/QUESTIONS.length)*100)+'%';
+    $('aptetbio2_qEn').innerHTML = (state.current+1)+'. '+q.enMain;
+    renderLines($('aptetbio2_qEnLines'), q.enLines, 'aptetbio2_qline');
+    $('aptetbio2_qTe').innerHTML = q.teMain;
+    renderLines($('aptetbio2_qTeLines'), q.teLines, 'aptetbio2_qlineTe');
+
+    var optDiv = $('aptetbio2_options');
+    optDiv.innerHTML = '';
+    var order = state.optOrder[state.current];
+    var prevAns = state.answers[state.current];
+
+    order.forEach(function(origIdx){
+      var div = document.createElement('div');
+      div.className = 'aptetbio2_opt';
+      div.innerHTML = q.options[origIdx];
+      div.setAttribute('data-orig', origIdx);
+      if(prevAns !== null){
+        div.classList.add('aptetbio2_disabled');
+        if(origIdx === q.answer){ div.classList.add('aptetbio2_correct'); }
+        else if(origIdx === prevAns.selected){ div.classList.add('aptetbio2_wrong'); }
+      } else {
+        div.onclick = function(){ selectOption(origIdx); };
+      }
+      optDiv.appendChild(div);
+    });
+
+    var fb = $('aptetbio2_feedback');
+    if(prevAns !== null){
+      if(prevAns.selected === q.answer){
+        fb.textContent = '\u2713 Correct!';
+        fb.className = 'aptetbio2_feedback aptetbio2_right';
+      } else {
+        fb.textContent = '\u2717 Incorrect.';
+        fb.className = 'aptetbio2_feedback aptetbio2_wrongTxt';
+      }
+    } else {
+      fb.textContent = '';
+      fb.className = 'aptetbio2_feedback';
+    }
+
+    $('aptetbio2_prevBtn').disabled = state.current===0;
+    $('aptetbio2_prevBtn').style.opacity = state.current===0? '.4':'1';
+    if(state.current === QUESTIONS.length-1){
+      $('aptetbio2_nextBtn').style.display='none';
+      $('aptetbio2_submitTopBtn').style.display='inline-block';
+    } else {
+      $('aptetbio2_nextBtn').style.display='inline-block';
+      $('aptetbio2_submitTopBtn').style.display='none';
+    }
+  }
+
+  function selectOption(origIdx){
+    var qi = state.order[state.current];
+    var q = QUESTIONS[qi];
+    if(state.answers[state.current] !== null) return;
+    var correct = origIdx === q.answer;
+    state.answers[state.current] = {selected: origIdx, correct: correct, qi: qi};
+    if(correct){ state.score++; $('aptetbio2_liveScore').textContent = state.score; }
+    renderQuestion();
+  }
+
+  function finishQuiz(){
+    state.finished = true;
+    clearInterval(state.timerId);
+    $('aptetbio2_quiz').style.display='none';
+    $('aptetbio2_result').style.display='block';
+    $('aptetbio2_finalScore').textContent = state.score;
+    var pct = Math.round((state.score/QUESTIONS.length)*100);
+    $('aptetbio2_finalPercent').textContent = 'You scored '+pct+'%';
+    $('aptetbio2_finalTime').textContent = 'Time taken: '+$('aptetbio2_timerText').textContent;
+    $('aptetbio2_reviewBox').style.display='none';
+    $('aptetbio2_reviewBox').innerHTML='';
+  }
+
+  function buildReview(){
+    var box = $('aptetbio2_reviewBox');
+    box.innerHTML = '';
+    state.order.forEach(function(qi, idx){
+      var q = QUESTIONS[qi];
+      var ans = state.answers[idx];
+      var div = document.createElement('div');
+      div.className = 'aptetbio2_reviewItem';
+      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
+      var correctAns = q.options[q.answer];
+      var cls = ans && ans.correct ? 'aptetbio2_reviewCorrect':'aptetbio2_reviewWrong';
+      var html = '<b>Q'+(idx+1)+'.</b> '+q.enMain;
+      q.enLines.forEach(function(line){ html += '<span class="aptetbio2_reviewLine">'+line+'</span>'; });
+      html += '<span class="aptetbio2_reviewLine '+cls+'">Your answer: '+yourAns+'</span>';
+      html += '<span class="aptetbio2_reviewLine aptetbio2_reviewCorrect">Correct answer: '+correctAns+'</span>';
+      div.innerHTML = html;
+      box.appendChild(div);
+    });
+    box.style.display='block';
+  }
+
+  function downloadPDF(){
+    if(!window.jspdf){ alert('PDF library failed to load. Please check your internet connection.'); return; }
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF();
+    var y = 15;
+    doc.setFontSize(14);
+    doc.text('BIOLOGICAL SCIENCES - APTET Quiz Result',15,y); y+=8;
+    doc.setFontSize(10);
+    doc.text('Paper: APTET Previous Question Paper - 19 December 2025 (Second Shift)',15,y); y+=8;
+    doc.text('Score: '+state.score+' / '+QUESTIONS.length+'  |  Time: '+$('aptetbio2_timerText').textContent,15,y); y+=10;
+    state.order.forEach(function(qi, idx){
+      var q = QUESTIONS[qi];
+      var ans = state.answers[idx];
+      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
+      var correctAns = q.options[q.answer];
+      var plainMain = q.enMain.replace(/<[^>]*>/g,'');
+      var lines = doc.splitTextToSize((idx+1)+'. '+plainMain, 180);
+      if(y + lines.length*6 + 14 > 280){ doc.addPage(); y=15; }
+      doc.setFontSize(10);
+      doc.text(lines, 15, y); y += lines.length*6;
+      q.enLines.forEach(function(sub){
+        var subLines = doc.splitTextToSize(sub.replace(/<[^>]*>/g,''), 175);
+        if(y + subLines.length*5 > 280){ doc.addPage(); y=15; }
+        doc.setFontSize(9);
+        doc.text(subLines, 18, y); y += subLines.length*5;
+      });
+      doc.setFontSize(9);
+      doc.text('Your answer: '+yourAns.replace(/<[^>]*>/g,''), 18, y); y+=5;
+      doc.text('Correct answer: '+correctAns.replace(/<[^>]*>/g,''), 18, y); y+=8;
+    });
+    doc.setFontSize(9);
+    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE.',15,290);
+    doc.save('APTET_Biological_Sciences_Shift2_Result.pdf');
+  }
+
+  $('aptetbio2_startBtn').onclick = startQuiz;
+  $('aptetbio2_prevBtn').onclick = function(){ if(state.current>0){ state.current--; renderQuestion(); } };
+  $('aptetbio2_nextBtn').onclick = function(){ if(state.current < QUESTIONS.length-1){ state.current++; renderQuestion(); } };
+  $('aptetbio2_submitBtn').onclick = finishQuiz;
+  $('aptetbio2_restartBtn').onclick = startQuiz;
+  $('aptetbio2_reviewBtn').onclick = function(){
+    if($('aptetbio2_reviewBox').style.display === 'block'){
+      $('aptetbio2_reviewBox').style.display='none';
+    } else {
+      buildReview();
+    }
+  };
+  $('aptetbio2_pdfBtn').onclick = downloadPDF;
+})();
+</script>
