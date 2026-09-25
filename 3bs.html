@@ -65,7 +65,6 @@
       <div class="aptetbio2_nav">
         <button id="aptetbio2_prevBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#8592; Previous</button>
         <button id="aptetbio2_nextBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Next &#8594;</button>
-        <!-- RECTIFIED: Added missing submit button referenced in JavaScript -->
         <button id="aptetbio2_submitBtn" class="aptetbio2_btn aptetbio2_btnSuccess" style="display:none;">Submit Quiz</button>
       </div>
     </div>
@@ -81,9 +80,8 @@
       <div class="aptetbio2_resultBtns">
         <button id="aptetbio2_restartBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Restart Quiz</button>
         <button id="aptetbio2_reviewBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#128196; Show Responses</button>
-        <!-- RECTIFIED: Added missing pdf button referenced in JavaScript -->
-        <button id="aptetbio2_pdfBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#128190; Download PDF</button>
-        <button id="aptetbio2_leaderboardBtn" class="aptetbio2_btn aptetbio2_btnGhost" style="display:none;">&#127942; Leaderboard</button>
+        <!-- RECTIFIED: Leaderboard button enabled and download PDF removed -->
+        <button id="aptetbio2_leaderboardBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#127942; Leaderboard</button>
       </div>
       <div id="aptetbio2_reviewBox" class="aptetbio2_reviewBox" style="display:none;"></div>
       <div id="aptetbio2_leaderboardBox" class="aptetbio2_leaderboardBox" style="display:none;">
@@ -148,7 +146,9 @@
 .aptetbio2_resultCircle small{font-size:16px;color:#9fb3dd;margin-left:4px;}
 .aptetbio2_resultBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
 .aptetbio2_resultBtns .aptetbio2_btn{flex:1;min-width:140px;}
-.aptetbio2_reviewBox{margin-top:18px;border-top:1px solid #24447f;padding-top:14px;}
+.aptetbio2_reviewBox, .aptetbio2_leaderboardBox{margin-top:18px;border-top:1px solid #24447f;padding-top:14px;}
+.aptetbio2_lbTitle{text-align:center;color:#ffd166;margin:0 0 12px;font-size:18px;}
+.aptetbio2_lbLoading{text-align:center;color:#8fa2c9;font-size:14px;padding:10px;}
 .aptetbio2_reviewItem{background:#0e1f42;border:1px solid #22407a;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13.5px;}
 .aptetbio2_reviewItem b{color:#7fd3ff;}
 .aptetbio2_reviewLine{display:block;margin:2px 0;}
@@ -163,9 +163,11 @@
 }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 (function(){
+  // Replace this placeholder with your Google Apps Script Web App Deployment URL
+  var GOOGLE_SCRIPT_URL = "";
+
   var QUESTIONS = [
     {
       enMain:"Match the following.",
@@ -493,39 +495,44 @@
     box.style.display='block';
   }
 
-  function downloadPDF(){
-    if(!window.jspdf){ alert('PDF library failed to load. Please check your internet connection.'); return; }
-    var jsPDF = window.jspdf.jsPDF;
-    var doc = new jsPDF();
-    var y = 15;
-    doc.setFontSize(14);
-    doc.text('BIOLOGICAL SCIENCES - APTET Quiz Result',15,y); y+=8;
-    doc.setFontSize(10);
-    doc.text('Paper: APTET Previous Question Paper - 19 December 2025 (Second Shift)',15,y); y+=8;
-    doc.text('Score: '+state.score+' / '+QUESTIONS.length+'  |  Time: '+$('aptetbio2_timerText').textContent,15,y); y+=10;
-    state.order.forEach(function(qi, idx){
-      var q = QUESTIONS[qi];
-      var ans = state.answers[idx];
-      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
-      var correctAns = q.options[q.answer];
-      var plainMain = q.enMain.replace(/<[^>]*>/g,'');
-      var lines = doc.splitTextToSize((idx+1)+'. '+plainMain, 180);
-      if(y + lines.length*6 + 14 > 280){ doc.addPage(); y=15; }
-      doc.setFontSize(10);
-      doc.text(lines, 15, y); y += lines.length*6;
-      q.enLines.forEach(function(sub){
-        var subLines = doc.splitTextToSize(sub.replace(/<[^>]*>/g,''), 175);
-        if(y + subLines.length*5 > 280){ doc.addPage(); y=15; }
-        doc.setFontSize(9);
-        doc.text(subLines, 18, y); y += subLines.length*5;
+  function toggleLeaderboard(){
+    var lbBox = $('aptetbio2_leaderboardBox');
+    if(lbBox.style.display === 'block'){
+      lbBox.style.display = 'none';
+    } else {
+      lbBox.style.display = 'block';
+      fetchLeaderboard();
+    }
+  }
+
+  function fetchLeaderboard(){
+    var lbList = $('aptetbio2_lbList');
+    if(!GOOGLE_SCRIPT_URL){
+      lbList.innerHTML = '<p class="aptetbio2_lbLoading">Leaderboard URL is not configured yet.</p>';
+      return;
+    }
+    lbList.className = 'aptetbio2_lbLoading';
+    lbList.textContent = 'Loading...';
+    
+    fetch(GOOGLE_SCRIPT_URL + '?action=getLeaderboard')
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if(data && data.length > 0){
+          var html = '<table style="width:100%; text-align:left; border-collapse:collapse; font-size:13.5px;">';
+          html += '<tr style="border-bottom:1px solid #2c4d8f; color:#ffd166;"><th style="padding:6px;">Rank</th><th style="padding:6px;">Name</th><th style="padding:6px;">District</th><th style="padding:6px;">Score</th></tr>';
+          data.forEach(function(row, idx){
+            html += '<tr style="border-bottom:1px solid #1a3a72;"><td style="padding:6px;">#'+(idx+1)+'</td><td style="padding:6px;">'+row.name+'</td><td style="padding:6px;">'+row.district+'</td><td style="padding:6px; color:#8fffb0;">'+row.score+'</td></tr>';
+          });
+          html += '</table>';
+          lbList.className = '';
+          lbList.innerHTML = html;
+        } else {
+          lbList.innerHTML = '<p class="aptetbio2_lbLoading">No scores available yet.</p>';
+        }
+      })
+      .catch(function(){
+        lbList.innerHTML = '<p class="aptetbio2_lbLoading">Failed to load leaderboard data.</p>';
       });
-      doc.setFontSize(9);
-      doc.text('Your answer: '+yourAns.replace(/<[^>]*>/g,''), 18, y); y+=5;
-      doc.text('Correct answer: '+correctAns.replace(/<[^>]*>/g,''), 18, y); y+=8;
-    });
-    doc.setFontSize(9);
-    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE.',15,290);
-    doc.save('APTET_Biological_Sciences_Shift2_Result.pdf');
   }
 
   $('aptetbio2_startBtn').onclick = startQuiz;
@@ -540,7 +547,7 @@
       buildReview();
     }
   };
-  if($('aptetbio2_pdfBtn')) $('aptetbio2_pdfBtn').onclick = downloadPDF;
+  if($('aptetbio2_leaderboardBtn')) $('aptetbio2_leaderboardBtn').onclick = toggleLeaderboard;
 })();
 </script>
 </body>
