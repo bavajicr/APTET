@@ -10,15 +10,15 @@
 <div class="aptetbio2_wrap">
   <div class="aptetbio2_card">
 
-    <div id="aptetbio2_locked" class="aptetbio2_screen" style="display:none;">
+    <div id="aptetbio2_locked" class="aptetbio2_screen">
       <h2 class="aptetbio2_title">BIOLOGICAL SCIENCES</h2>
       <p class="aptetbio2_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (Second Shift)</p>
       <div class="aptetbio2_lockIcon">&#128274;</div>
-      <p class="aptetbio2_lockMsg">This quiz will open at <strong>6:00 PM IST TODAY</strong> (22-09-2026).</p>
+      <p class="aptetbio2_lockMsg">This quiz will open at <strong>6:00 PM IST on 25-09-2026</strong>.</p>
       <p class="aptetbio2_lockCountdown" id="aptetbio2_countdown">Opens in --:--:--</p>
     </div>
 
-    <div id="aptetbio2_start" class="aptetbio2_screen">
+    <div id="aptetbio2_start" class="aptetbio2_screen" style="display:none;">
       <h2 class="aptetbio2_title">BIOLOGICAL SCIENCES</h2>
       <p class="aptetbio2_subtitle">APTET Previous Question Paper &#8211; 19 December 2025 (Second Shift)</p>
       <div class="aptetbio2_info">
@@ -65,7 +65,6 @@
       <div class="aptetbio2_nav">
         <button id="aptetbio2_prevBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#8592; Previous</button>
         <button id="aptetbio2_nextBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Next &#8594;</button>
-        <button id="aptetbio2_submitBtn" class="aptetbio2_btn aptetbio2_btnSuccess" style="display:none;">Submit Quiz</button>
       </div>
     </div>
 
@@ -80,7 +79,6 @@
       <div class="aptetbio2_resultBtns">
         <button id="aptetbio2_restartBtn" class="aptetbio2_btn aptetbio2_btnPrimary">Restart Quiz</button>
         <button id="aptetbio2_reviewBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#128196; Show Responses</button>
-        <!-- RECTIFIED: Leaderboard button enabled and download PDF removed -->
         <button id="aptetbio2_leaderboardBtn" class="aptetbio2_btn aptetbio2_btnGhost">&#127942; Leaderboard</button>
       </div>
       <div id="aptetbio2_reviewBox" class="aptetbio2_reviewBox" style="display:none;"></div>
@@ -105,17 +103,12 @@
 .aptetbio2_infoBox{background:#132a55;border:1px solid #24447f;border-radius:12px;padding:12px 16px;text-align:center;min-width:90px;font-size:13px;color:#c7d6f5;}
 .aptetbio2_infoBox span{display:block;font-size:20px;font-weight:800;color:#ffd166;margin-bottom:2px;}
 .aptetbio2_note{text-align:center;font-size:12.5px;color:#8fa2c9;margin:6px 0 18px;}
-.aptetbio2_formRow{margin-bottom:12px;}
-.aptetbio2_label{display:block;font-size:13.5px;color:#c7d6f5;margin-bottom:4px;}
-.aptetbio2_req{color:#eb5757;}
-.aptetbio2_input{width:100%;box-sizing:border-box;padding:10px 14px;background:#0e1f42;border:1px solid #2c4d8f;border-radius:8px;color:#fff;font-size:14px;}
-.aptetbio2_startError{color:#eb5757;font-size:13px;text-align:center;margin-top:8px;}
 .aptetbio2_btn{border:none;border-radius:12px;padding:13px 22px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s transform,.2s box-shadow;}
 .aptetbio2_btn:active{transform:scale(.97);}
 .aptetbio2_btnPrimary{background:linear-gradient(135deg,#2f80ed,#1360d6);color:#fff;box-shadow:0 6px 16px rgba(47,128,237,.4);}
 .aptetbio2_btnSuccess{background:linear-gradient(135deg,#27ae60,#1e8e4d);color:#fff;box-shadow:0 6px 16px rgba(39,174,96,.4);}
 .aptetbio2_btnGhost{background:#152a52;color:#cfe0ff;border:1px solid #2c4d8f;}
-#aptetbio2_startBtn{display:block;margin:16px auto 0;}
+#aptetbio2_startBtn{display:block;margin:0 auto;}
 .aptetbio2_topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;font-weight:700;color:#ffd166;}
 .aptetbio2_scoreTop{color:#8fffb0;}
 .aptetbio2_progressOuter{background:#0e1e3d;border-radius:10px;height:10px;overflow:hidden;margin-bottom:8px;border:1px solid #24447f;}
@@ -146,33 +139,98 @@
 .aptetbio2_resultCircle small{font-size:16px;color:#9fb3dd;margin-left:4px;}
 .aptetbio2_resultBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
 .aptetbio2_resultBtns .aptetbio2_btn{flex:1;min-width:140px;}
-.aptetbio2_reviewBox, .aptetbio2_leaderboardBox{margin-top:18px;border-top:1px solid #24447f;padding-top:14px;}
-.aptetbio2_lbTitle{text-align:center;color:#ffd166;margin:0 0 12px;font-size:18px;}
-.aptetbio2_lbLoading{text-align:center;color:#8fa2c9;font-size:14px;padding:10px;}
+.aptetbio2_reviewBox{margin-top:18px;border-top:1px solid #24447f;padding-top:14px;}
 .aptetbio2_reviewItem{background:#0e1f42;border:1px solid #22407a;border-radius:10px;padding:12px;margin-bottom:10px;font-size:13.5px;}
 .aptetbio2_reviewItem b{color:#7fd3ff;}
 .aptetbio2_reviewLine{display:block;margin:2px 0;}
 .aptetbio2_reviewCorrect{color:#6dffa8;}
 .aptetbio2_reviewWrong{color:#ff9c9c;}
 .aptetbio2_credit{text-align:center;margin-top:18px;font-size:12px;color:#7f93bd;letter-spacing:.3px;}
+
+.aptetbio2_wrap{-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+.aptetbio2_wrap input{-webkit-user-select:text;-moz-user-select:text;user-select:text;}
+
+.aptetbio2_lockIcon{text-align:center;font-size:38px;margin:6px 0 10px;}
+.aptetbio2_lockMsg{text-align:center;font-size:14.5px;color:#eaf2ff;line-height:1.5;margin:0 0 10px;}
+.aptetbio2_lockCountdown{text-align:center;font-size:16px;font-weight:800;color:#ffd166;background:rgba(255,255,255,.06);border:1px solid #24447f;border-radius:10px;padding:10px;}
+
+.aptetbio2_formRow{margin-bottom:14px;text-align:left;}
+.aptetbio2_label{display:block;font-size:12.5px;color:#b9c8ea;margin-bottom:5px;}
+.aptetbio2_req{color:#ff9c9c;}
+.aptetbio2_input{width:100%;background:#132a55;border:1.5px solid #2c4d8f;color:#e8f0ff;border-radius:10px;padding:11px 13px;font-size:16px;outline:none;transition:border-color .15s ease;}
+.aptetbio2_input:focus{border-color:#56ccf2;}
+.aptetbio2_startError{color:#ff9c9c;font-size:12.5px;margin:-4px 0 12px;text-align:center;}
+
+.aptetbio2_topbar .aptetbio2_submitTopBtn{margin-left:auto;flex:none;width:auto;padding:8px 18px;font-size:13px;border-radius:20px;}
+
+.aptetbio2_lbStatus{font-size:12px;color:#8fffb0;margin:4px 0 0;min-height:15px;text-align:center;}
+.aptetbio2_leaderboardBox{margin-top:16px;border-top:1px solid #24447f;padding-top:14px;text-align:left;max-height:420px;overflow-y:auto;}
+.aptetbio2_lbTitle{margin:0 0 10px;font-size:14.5px;color:#ffd166;text-align:center;}
+.aptetbio2_lbLoading{text-align:center;font-size:12.5px;color:#9fb3dd;}
+.aptetbio2_lbRow{display:flex;align-items:center;gap:10px;padding:7px 4px;border-bottom:1px solid #24447f;font-size:13px;}
+.aptetbio2_lbRow:last-child{border-bottom:none;}
+.aptetbio2_lbRank{width:22px;text-align:center;font-weight:800;color:#ffd166;flex-shrink:0;}
+.aptetbio2_lbName{flex:1;color:#e8f0ff;}
+.aptetbio2_lbName small{color:#9fb3dd;}
+.aptetbio2_lbScore{font-weight:800;color:#6dffa8;flex-shrink:0;}
+
+.aptetbio2_reviewOpt{background:#132a55;border:1.5px solid #2c4d8f;border-radius:8px;padding:8px 12px;margin-bottom:6px;font-size:13px;line-height:1.4;}
+.aptetbio2_reviewOpt:last-child{margin-bottom:0;}
+.aptetbio2_reviewOptCorrect{border-color:#27ae60;background:rgba(39,174,96,.18);}
+.aptetbio2_reviewOptWrong{border-color:#eb5757;background:rgba(235,87,87,.18);}
+.aptetbio2_reviewTag{font-weight:700;font-size:11.5px;margin-left:6px;color:#6dffa8;}
+.aptetbio2_reviewYourTag{color:#ffd166;}
+.aptetbio2_reviewSkipped{font-size:12px;color:#ffd166;font-style:italic;margin-top:4px;}
+
 @media (max-width:480px){
+  .aptetbio2_wrap{margin:10px auto;}
   .aptetbio2_card{padding:18px 14px 14px;border-radius:14px;}
   .aptetbio2_title{font-size:21px;}
   .aptetbio2_nav{flex-wrap:wrap;}
-  .aptetbio2_nav .aptetbio2_btn{min-width:100%;}
+  .aptetbio2_nav .aptetbio2_btn{min-width:100%;min-height:46px;}
+  .aptetbio2_btn{min-height:46px;}
+  .aptetbio2_topbar{flex-wrap:wrap;}
+  .aptetbio2_opt{padding:11px 13px;}
+  .aptetbio2_lockCountdown{font-size:14px;}
 }
 </style>
 
 <script>
 (function(){
-  // Replace this placeholder with your Google Apps Script Web App Deployment URL
-  var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzDUgaJp7Umfv83AYgteWYP921XIM8P3rlkczpA6KqhOfSCxZGdqggv85PiBI2aBm8/exec";
+  "use strict";
+
+  // ---- CONFIGURATION ----
+  var CONFIG = {
+    // Quiz unlocks at 6:00 PM IST on 25-09-2026 (IST = UTC+5:30, so this is 12:30 UTC).
+    OPEN_AT: '2026-09-25T12:30:00Z',
+    QUIZ_NAME: 'APTET Biological Sciences - 19 Dec 2025 Shift 2',
+    // Paste your Google Apps Script Web App URL below. If you already deployed
+    // one for an earlier quiz, you can reuse that SAME URL here — this quiz will
+    // just add its own rows to the same Google Sheet (tagged with its own quiz name).
+    GOOGLE_SHEET_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  };
+
+  // ---- Basic content-protection (right-click / view-source / copy) ----
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+  document.addEventListener('keydown', function(e){
+    var k = e.key ? e.key.toLowerCase() : '';
+    if (k === 'f12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && (k === 'u' || k === 's')) { e.preventDefault(); return false; }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
 
   var QUESTIONS = [
     {
       enMain:"Match the following.",
       enLines:["A) Hinge joint &rarr; i) Skull","B) Ball and socket joint &rarr; ii) Elbow","C) Pivot joint &rarr; iii) Shoulder","D) Fixed joint &rarr; iv) Neck"],
-      teMain:"క్రింది వానిని జతపరచండి.",
+      teMain:"క&#3105;ంది వానిని జతపరచండి.",
       teLines:["A) మడతబందు కీలు &rarr; i) పుర్రె","B) బంతిగిన్నె కీలు &rarr; ii) మోచేయి","C) బొంగరపు కీలు &rarr; iii) భుజము","D) కదలని కీలు &rarr; iv) మెడ"],
       options:["A-ii, B-iv, C-iii, D-i","A-ii, B-iii, C-iv, D-i","A-i, B-iv, C-iii, D-ii","A-ii, B-iv, C-i, D-iii"],
       answer:1
@@ -220,7 +278,7 @@
     {
       enMain:"Find the correct statement among the following.",
       enLines:[],
-      teMain:"క్రింది వాటిలో సరైన వాక్యంను గుర్తించండి.",
+      teMain:"క&#3105;ంది వాటిలో సరైన వాక్యంను గుర్తించండి.",
       teLines:[],
       options:["The right atrium contracts when it is collecting blood.","The pulmonary artery collects oxygenated blood.","Valves are the controlling factors of relaxation and contraction of heart.","The pulmonary artery supplies deoxygenated blood to lungs for oxygenation."],
       answer:3
@@ -236,7 +294,7 @@
     {
       enMain:"Find the correct pairs from the following.",
       enLines:["A. Apical dominance : Indole Acetic Acid","B. Rapid cell division : Auxins","C. Delayed senescence : Gibberellins","D. Breaks seed dormancy : Abscisic Acid"],
-      teMain:"క్రింది వాటిలో సరైన జతలను గుర్తించండి.",
+      teMain:"క&#3105;ంది వాటిలో సరైన జతలను గుర్తించండి.",
       teLines:["A. అగ్రాధిక్యత : ఇండోల్ అసిటిక్ ఆమ్లం","B. వేగవంతమైన కణవిభజన : ఆక్సిన్లు","C. వృద్ధాప్యాన్ని ఆలస్యం చేయడం : జిబ్బరెల్లిన్","D. విత్తనాల సుప్తావస్థను పోగొట్టుట : అబ్సైసిక్ ఆమ్లం"],
       options:["B and D","C and D","A and D","A and C"],
       answer:3
@@ -244,7 +302,7 @@
     {
       enMain:"A student observed a thin filament with green colour under a microscope. The name of the organism and its reproduction method is from the following.",
       enLines:[],
-      teMain:"ఒక విద్యార్థి ఒక ఆకుపచ్చని తంతువును సూక్ష్మదర్శిని క్రింద పరిశీలించాడు. క్రింది వానిలో ఆ జీవి పేరు మరియు దాని ప్రత్యుత్పత్తి విధానం.",
+      teMain:"ఒక విద్యార్థి ఒక ఆకుపచ్చని తంతువును సూక్ష్మదర్శిని క్రింద పరిశీలించాడు. క&#3105;ంది వానిలో ఆ జీవి పేరు మరియు దాని ప్రత్యుత్పత్తి విధానం.",
       teLines:[],
       options:["Uglena &#8211; sexual &#8211; formation of zygotes","Chlamydomonus &#8211; asexual &#8211; budding","Spirogyra &#8211; asexual &#8211; fragmentation","Planaria &#8211; asexual &#8211; regeneration"],
       answer:2
@@ -316,7 +374,7 @@
     {
       enMain:"This is not an advantage of the &#8220;Inductive method&#8221;.",
       enLines:[],
-      teMain:"క్రింది వానిలో &#8220;ఆగమన పద్ధతి&#8221; యొక్క ప్రయోజనం కానిది.",
+      teMain:"క&#3105;ంది వానిలో &#8220;ఆగమన పద్ధతి&#8221; యొక్క ప్రయోజనం కానిది.",
       teLines:[],
       options:["Self-reliance develops in students.","Things learned are remembered for a long time.","Student apply the acquired knowledge in real life.","Develops scientific attitude."],
       answer:2
@@ -324,16 +382,46 @@
     {
       enMain:"Identify the &#8220;little media&#8221; teaching aids among the following.",
       enLines:["a) Overhead projector","b) CCTV","c) Radio","d) Audio Cassettes"],
-      teMain:"క్రింది వానిలో &#8220;లిటిల్ మీడియా&#8221; బోధనోపకరణాలను గుర్తించండి.",
+      teMain:"క&#3105;ంది వానిలో &#8220;లిటిల్ మీడియా&#8221; బోధనోపకరణాలను గుర్తించండి.",
       teLines:["a) ఓవర్‌హెడ్ ప్రాజెక్టర్","b) CCTV","c) రేడియో","d) ఆడియో కేసెట్లు"],
       options:["a, b, c","b, c, d","a, b, d","a, c, d"],
       answer:2
     }
   ];
 
-  var state = {order:[], optOrder:[], current:0, answers:[], score:0, timerId:null, seconds:0, finished:false};
+  var state = {order:[], optOrder:[], current:0, answers:[], score:0, timerId:null, lockTimerId:null, seconds:0, finished:false, studentName:'', studentDistrict:''};
 
   function $(id){return document.getElementById(id);}
+
+  function isQuizOpen(){
+    return Date.now() >= new Date(CONFIG.OPEN_AT).getTime();
+  }
+
+  function updateLockCountdown(){
+    var diff = new Date(CONFIG.OPEN_AT).getTime() - Date.now();
+    if (diff <= 0){
+      if (state.lockTimerId) clearInterval(state.lockTimerId);
+      $('aptetbio2_locked').style.display = 'none';
+      $('aptetbio2_start').style.display = 'block';
+      return;
+    }
+    var h = Math.floor(diff/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    $('aptetbio2_countdown').textContent = 'Opens in ' + (h<10?'0':'')+h + ':' + (m<10?'0':'')+m + ':' + (s<10?'0':'')+s;
+  }
+
+  function checkAccess(){
+    if (isQuizOpen()){
+      $('aptetbio2_locked').style.display = 'none';
+      $('aptetbio2_start').style.display = 'block';
+    } else {
+      $('aptetbio2_start').style.display = 'none';
+      $('aptetbio2_locked').style.display = 'block';
+      updateLockCountdown();
+      state.lockTimerId = setInterval(updateLockCountdown, 1000);
+    }
+  }
 
   function shuffleArray(arr){
     var a = arr.slice();
@@ -347,12 +435,14 @@
   function startQuiz(){
     var name = $('aptetbio2_nameInput').value.trim();
     var district = $('aptetbio2_districtInput').value.trim();
-
-    if(!name || !district){
+    if (!name || !district){
       $('aptetbio2_startError').style.display = 'block';
+      if (!name){ $('aptetbio2_nameInput').focus(); } else { $('aptetbio2_districtInput').focus(); }
       return;
     }
     $('aptetbio2_startError').style.display = 'none';
+    state.studentName = name;
+    state.studentDistrict = district;
 
     state.order = shuffleArray(QUESTIONS.map(function(_,i){return i;}));
     state.optOrder = state.order.map(function(qi){
@@ -441,13 +531,12 @@
 
     $('aptetbio2_prevBtn').disabled = state.current===0;
     $('aptetbio2_prevBtn').style.opacity = state.current===0? '.4':'1';
-
     if(state.current === QUESTIONS.length-1){
       $('aptetbio2_nextBtn').style.display='none';
-      if($('aptetbio2_submitBtn')) $('aptetbio2_submitBtn').style.display='inline-block';
+      $('aptetbio2_submitTopBtn').style.display='inline-block';
     } else {
       $('aptetbio2_nextBtn').style.display='inline-block';
-      if($('aptetbio2_submitBtn')) $('aptetbio2_submitBtn').style.display='none';
+      $('aptetbio2_submitTopBtn').style.display='none';
     }
   }
 
@@ -472,6 +561,8 @@
     $('aptetbio2_finalTime').textContent = 'Time taken: '+$('aptetbio2_timerText').textContent;
     $('aptetbio2_reviewBox').style.display='none';
     $('aptetbio2_reviewBox').innerHTML='';
+    $('aptetbio2_leaderboardBox').style.display='none';
+    submitScoreToLeaderboard(state.score, QUESTIONS.length, pct, $('aptetbio2_timerText').textContent);
   }
 
   function buildReview(){
@@ -480,74 +571,113 @@
     state.order.forEach(function(qi, idx){
       var q = QUESTIONS[qi];
       var ans = state.answers[idx];
+      var wasAnswered = ans !== null;
       var div = document.createElement('div');
       div.className = 'aptetbio2_reviewItem';
-      var yourAns = ans ? q.options[ans.selected] : '(Not answered)';
-      var correctAns = q.options[q.answer];
-      var cls = ans && ans.correct ? 'aptetbio2_reviewCorrect':'aptetbio2_reviewWrong';
       var html = '<b>Q'+(idx+1)+'.</b> '+q.enMain;
       q.enLines.forEach(function(line){ html += '<span class="aptetbio2_reviewLine">'+line+'</span>'; });
-      html += '<span class="aptetbio2_reviewLine '+cls+'">Your answer: '+yourAns+'</span>';
-      html += '<span class="aptetbio2_reviewLine aptetbio2_reviewCorrect">Correct answer: '+correctAns+'</span>';
+      if (q.teMain) html += '<span class="aptetbio2_reviewLine">'+q.teMain+'</span>';
+      q.teLines.forEach(function(line){ html += '<span class="aptetbio2_reviewLine">'+line+'</span>'; });
+      q.options.forEach(function(optText, i){
+        var isCorrect = i === q.answer;
+        var isChosen = wasAnswered && i === ans.selected;
+        var cls = 'aptetbio2_reviewOpt';
+        if (isCorrect) cls += ' aptetbio2_reviewOptCorrect';
+        if (isChosen && !isCorrect) cls += ' aptetbio2_reviewOptWrong';
+        var tag = '';
+        if (isCorrect) tag += ' <span class="aptetbio2_reviewTag">&#10003; Correct</span>';
+        if (isChosen) tag += ' <span class="aptetbio2_reviewTag aptetbio2_reviewYourTag">Your Answer</span>';
+        html += '<div class="'+cls+'">'+optText+tag+'</div>';
+      });
+      if (!wasAnswered) { html += '<div class="aptetbio2_reviewSkipped">Not answered</div>'; }
       div.innerHTML = html;
       box.appendChild(div);
     });
     box.style.display='block';
   }
 
-  function toggleLeaderboard(){
-    var lbBox = $('aptetbio2_leaderboardBox');
-    if(lbBox.style.display === 'block'){
-      lbBox.style.display = 'none';
-    } else {
-      lbBox.style.display = 'block';
-      fetchLeaderboard();
-    }
-  }
-
-  function fetchLeaderboard(){
-    var lbList = $('aptetbio2_lbList');
-    if(!GOOGLE_SCRIPT_URL){
-      lbList.innerHTML = '<p class="aptetbio2_lbLoading">Leaderboard URL is not configured yet.</p>';
+  function submitScoreToLeaderboard(correctScore, total, pct, timeStr){
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      $('aptetbio2_lbStatus').textContent = '';
       return;
     }
-    lbList.className = 'aptetbio2_lbLoading';
-    lbList.textContent = 'Loading...';
-    
-    fetch(GOOGLE_SCRIPT_URL + '?action=getLeaderboard')
+    $('aptetbio2_lbStatus').textContent = 'Saving your score...';
+    var payload = {
+      name: state.studentName,
+      district: state.studentDistrict,
+      quiz: CONFIG.QUIZ_NAME,
+      score: correctScore,
+      total: total,
+      percent: pct,
+      timeTaken: timeStr
+    };
+    fetch(CONFIG.GOOGLE_SHEET_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }).then(function(){
+      $('aptetbio2_lbStatus').textContent = '✅ Score saved to leaderboard.';
+    }).catch(function(){
+      $('aptetbio2_lbStatus').textContent = '';
+    });
+  }
+
+  function loadLeaderboard(){
+    var lbList = $('aptetbio2_lbList');
+    if (!CONFIG.GOOGLE_SHEET_URL || CONFIG.GOOGLE_SHEET_URL.indexOf('PASTE_YOUR') === 0){
+      lbList.innerHTML = '<p class="aptetbio2_lbLoading">Leaderboard is not set up yet.</p>';
+      return;
+    }
+    lbList.innerHTML = '<p class="aptetbio2_lbLoading">Loading...</p>';
+    fetch(CONFIG.GOOGLE_SHEET_URL + '?action=leaderboard')
       .then(function(res){ return res.json(); })
-      .then(function(data){
-        if(data && data.length > 0){
-          var html = '<table style="width:100%; text-align:left; border-collapse:collapse; font-size:13.5px;">';
-          html += '<tr style="border-bottom:1px solid #2c4d8f; color:#ffd166;"><th style="padding:6px;">Rank</th><th style="padding:6px;">Name</th><th style="padding:6px;">District</th><th style="padding:6px;">Score</th></tr>';
-          data.forEach(function(row, idx){
-            html += '<tr style="border-bottom:1px solid #1a3a72;"><td style="padding:6px;">#'+(idx+1)+'</td><td style="padding:6px;">'+row.name+'</td><td style="padding:6px;">'+row.district+'</td><td style="padding:6px; color:#8fffb0;">'+row.score+'</td></tr>';
-          });
-          html += '</table>';
-          lbList.className = '';
-          lbList.innerHTML = html;
-        } else {
-          lbList.innerHTML = '<p class="aptetbio2_lbLoading">No scores available yet.</p>';
+      .then(function(rows){
+        if (!rows || !rows.length){
+          lbList.innerHTML = '<p class="aptetbio2_lbLoading">No scores yet. Be the first!</p>';
+          return;
         }
+        rows.sort(function(a,b){ return b.score - a.score; });
+        var html = '';
+        rows.slice(0, 20).forEach(function(r, i){
+          html += '<div class="aptetbio2_lbRow"><span class="aptetbio2_lbRank">' + (i+1) + '</span>' +
+                  '<span class="aptetbio2_lbName">' + escapeHtml(r.name) + '<br><small>' + escapeHtml(r.district) + '</small></span>' +
+                  '<span class="aptetbio2_lbScore">' + escapeHtml(r.score) + '/' + escapeHtml(r.total) + '</span></div>';
+        });
+        lbList.innerHTML = html;
       })
       .catch(function(){
-        lbList.innerHTML = '<p class="aptetbio2_lbLoading">Failed to load leaderboard data.</p>';
+        lbList.innerHTML = '<p class="aptetbio2_lbLoading">Could not load leaderboard right now.</p>';
       });
   }
 
   $('aptetbio2_startBtn').onclick = startQuiz;
   $('aptetbio2_prevBtn').onclick = function(){ if(state.current>0){ state.current--; renderQuestion(); } };
   $('aptetbio2_nextBtn').onclick = function(){ if(state.current < QUESTIONS.length-1){ state.current++; renderQuestion(); } };
-  if($('aptetbio2_submitBtn')) $('aptetbio2_submitBtn').onclick = finishQuiz;
-  $('aptetbio2_restartBtn').onclick = startQuiz;
+  $('aptetbio2_submitTopBtn').onclick = function(){ if(state.answers[state.current] !== null){ finishQuiz(); } };
+  $('aptetbio2_restartBtn').onclick = function(){
+    $('aptetbio2_result').style.display='none';
+    $('aptetbio2_start').style.display='block';
+  };
   $('aptetbio2_reviewBtn').onclick = function(){
-    if($('aptetbio2_reviewBox').style.display === 'block'){
+    var showing = $('aptetbio2_reviewBox').style.display === 'block';
+    if (showing) {
       $('aptetbio2_reviewBox').style.display='none';
     } else {
+      $('aptetbio2_leaderboardBox').style.display='none';
       buildReview();
     }
   };
-  if($('aptetbio2_leaderboardBtn')) $('aptetbio2_leaderboardBtn').onclick = toggleLeaderboard;
+  $('aptetbio2_leaderboardBtn').onclick = function(){
+    var showing = $('aptetbio2_leaderboardBox').style.display === 'block';
+    if (showing) {
+      $('aptetbio2_leaderboardBox').style.display='none';
+    } else {
+      $('aptetbio2_reviewBox').style.display='none';
+      $('aptetbio2_leaderboardBox').style.display='block';
+      loadLeaderboard();
+    }
+  };
+
+  checkAccess();
 })();
 </script>
 </body>
