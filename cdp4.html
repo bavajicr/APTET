@@ -1,0 +1,1032 @@
+<div id="acdp20d1-root" class="acdp20d1-container">
+
+  <!-- SCREEN 0: TIME LOCK -->
+  <div id="acdp20d1-lock" class="acdp20d1-screen acdp20d1-active">
+    <div class="acdp20d1-card acdp20d1-start-card">
+      <h2 class="acdp20d1-title">QUIZ LOCKED</h2>
+      <p class="acdp20d1-subtitle">APTET Previous Question Paper &ndash; 20 December 2025 (First Shift)</p>
+      <div class="acdp20d1-instructions" style="text-align: center;">
+        <p style="margin-bottom: 10px; font-weight: 600;">This quiz will unlock at 8:00 PM on 28-09-2026.</p>
+        <div id="acdp20d1-countdown" class="acdp20d1-countdown">00d 00h 00m 00s</div>
+      </div>
+      <p class="acdp20d1-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: START / USER INFO -->
+  <div id="acdp20d1-start" class="acdp20d1-screen">
+    <div class="acdp20d1-card acdp20d1-start-card">
+      <h2 class="acdp20d1-title">CHILD DEVELOPMENT AND PEDAGOGY</h2>
+      <p class="acdp20d1-subtitle">APTET Previous Question Paper &ndash; 20 December 2025 (First Shift)</p>
+      <div class="acdp20d1-meta">
+        <span>&#128221; 30 Questions</span>
+        <span>&#9200; Timed</span>
+        <span>&#127760; English + Telugu</span>
+      </div>
+      
+      <!-- User Registration Form -->
+      <div class="acdp20d1-form-group">
+        <label for="acdp20d1-userName">Full Name <span style="color:#f87171;">*</span></label>
+        <input type="text" id="acdp20d1-userName" class="acdp20d1-input" placeholder="Enter your full name" required>
+      </div>
+      <div class="acdp20d1-form-group">
+        <label for="acdp20d1-userDistrict">District <span style="color:#f87171;">*</span></label>
+        <input type="text" id="acdp20d1-userDistrict" class="acdp20d1-input" placeholder="Enter your district" required>
+      </div>
+
+      <p class="acdp20d1-instructions">
+        This test carries all 30 questions from the paper (30 marks), with the question order shuffled on every attempt.
+        Select an answer to see instant feedback. Use Next / Previous to move between questions.
+      </p>
+      <button id="acdp20d1-startBtn" class="acdp20d1-btn acdp20d1-btn-primary">Start Quiz</button>
+      <p class="acdp20d1-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: QUIZ -->
+  <div id="acdp20d1-quiz" class="acdp20d1-screen">
+    <div class="acdp20d1-card">
+      <div class="acdp20d1-topbar">
+        <div class="acdp20d1-progressWrap">
+          <div class="acdp20d1-progressBar"><div id="acdp20d1-progressFill" class="acdp20d1-progressFill"></div></div>
+          <span id="acdp20d1-qCounter" class="acdp20d1-qCounter">Question 1 / 30</span>
+        </div>
+        <div class="acdp20d1-statsRow">
+          <span id="acdp20d1-timer" class="acdp20d1-pill">&#9200; 00:00</span>
+          <span id="acdp20d1-scorePill" class="acdp20d1-pill">&#11088; Score: 0</span>
+        </div>
+      </div>
+
+      <div class="acdp20d1-examHeading"><strong>Subject: Child Development and Pedagogy</strong><br>APTET Previous Question Paper &ndash; 20 December 2025 (First Shift)</div>
+
+      <div id="acdp20d1-qBlock" class="acdp20d1-qBlock"></div>
+
+      <div class="acdp20d1-navRow">
+        <button id="acdp20d1-prevBtn" class="acdp20d1-btn acdp20d1-btn-secondary">&larr; Previous</button>
+        <button id="acdp20d1-nextBtn" class="acdp20d1-btn acdp20d1-btn-primary" disabled>Next &rarr;</button>
+        <button id="acdp20d1-submitBtn" class="acdp20d1-btn acdp20d1-btn-primary" style="display:none;">Submit</button>
+      </div>
+
+      <p class="acdp20d1-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: RESULT -->
+  <div id="acdp20d1-result" class="acdp20d1-screen">
+    <div class="acdp20d1-card acdp20d1-result-card">
+      <h2 class="acdp20d1-title">Quiz Completed!</h2>
+      <p class="acdp20d1-subtitle">APTET Previous Question Paper &ndash; 20 December 2025 (First Shift)</p>
+
+      <div class="acdp20d1-scoreCircleWrap">
+        <div id="acdp20d1-scoreCircle" class="acdp20d1-scoreCircle">
+          <span id="acdp20d1-scoreText">0/30</span>
+        </div>
+      </div>
+
+      <div class="acdp20d1-resultStats">
+        <div class="acdp20d1-resultStatBox">
+          <span id="acdp20d1-percentText" class="acdp20d1-resultStatVal">0%</span>
+          <span class="acdp20d1-resultStatLabel">Accuracy</span>
+        </div>
+        <div class="acdp20d1-resultStatBox">
+          <span id="acdp20d1-timeTakenText" class="acdp20d1-resultStatVal">00:00</span>
+          <span class="acdp20d1-resultStatLabel">Time Taken</span>
+        </div>
+        <div class="acdp20d1-resultStatBox">
+          <span id="acdp20d1-correctText" class="acdp20d1-resultStatVal">0</span>
+          <span class="acdp20d1-resultStatLabel">Correct</span>
+        </div>
+        <div class="acdp20d1-resultStatBox">
+          <span id="acdp20d1-wrongText" class="acdp20d1-resultStatVal">0</span>
+          <span class="acdp20d1-resultStatLabel">Wrong</span>
+        </div>
+      </div>
+
+      <p id="acdp20d1-remark" class="acdp20d1-remark"></p>
+      <p id="acdp20d1-syncStatus" class="acdp20d1-syncStatus"></p>
+
+      <div class="acdp20d1-resultBtnRow">
+        <button id="acdp20d1-downloadBtn" class="acdp20d1-btn acdp20d1-btn-secondary">&#11015; Download Result (PDF)</button>
+        <button id="acdp20d1-restartBtn" class="acdp20d1-btn acdp20d1-btn-primary">&#8635; Restart Quiz</button>
+      </div>
+
+      <p class="acdp20d1-credit">C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  #acdp20d1-root, #acdp20d1-root * { box-sizing: border-box; }
+  #acdp20d1-root {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    max-width: 680px;
+    width: 100%;
+    margin: 10px auto;
+    padding: 0 10px;
+    color: #e8ecf5;
+  }
+  #acdp20d1-root .acdp20d1-screen { display: none; }
+  #acdp20d1-root .acdp20d1-screen.acdp20d1-active { display: block; }
+  #acdp20d1-root .acdp20d1-card {
+    background: linear-gradient(145deg,#0d1b3d,#122a5c);
+    border: 1px solid #2b4a8c;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  }
+  #acdp20d1-root .acdp20d1-title {
+    text-align: center;
+    color: #ffd166;
+    margin: 0 0 6px;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+  }
+  #acdp20d1-root .acdp20d1-subtitle {
+    text-align: center;
+    color: #9fc0ff;
+    margin: 0 0 18px;
+    font-size: 14px;
+  }
+  #acdp20d1-root .acdp20d1-meta {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #cfe0ff;
+  }
+  
+  /* Inputs & Form Group */
+  #acdp20d1-root .acdp20d1-form-group {
+    margin-bottom: 14px;
+    text-align: left;
+  }
+  #acdp20d1-root .acdp20d1-form-group label {
+    display: block;
+    font-size: 13.5px;
+    color: #cfe0ff;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  #acdp20d1-root .acdp20d1-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #2b4a8c;
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    font-size: 14.5px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  #acdp20d1-root .acdp20d1-input:focus {
+    border-color: #3fd0ff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  /* Countdown Lock */
+  #acdp20d1-root .acdp20d1-countdown {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffd166;
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  #acdp20d1-root .acdp20d1-instructions {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: #d7e2fb;
+    margin-bottom: 20px;
+  }
+  #acdp20d1-root .acdp20d1-btn {
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    touch-action: manipulation;
+  }
+  #acdp20d1-root .acdp20d1-btn:active { transform: scale(0.97); }
+  #acdp20d1-root .acdp20d1-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  #acdp20d1-root .acdp20d1-btn-primary {
+    background: linear-gradient(135deg,#2f6fed,#1a4fce);
+    color: #fff;
+    width: 100%;
+  }
+  #acdp20d1-root .acdp20d1-navRow .acdp20d1-btn-primary,
+  #acdp20d1-root .acdp20d1-navRow .acdp20d1-btn-secondary { width: auto; flex: 1; }
+  #acdp20d1-root .acdp20d1-btn-secondary {
+    background: rgba(255,255,255,0.08);
+    color: #cfe0ff;
+    border: 1px solid rgba(255,255,255,0.15);
+    width: 100%;
+  }
+  #acdp20d1-root .acdp20d1-credit {
+    text-align: center;
+    font-size: 11.5px;
+    color: #7d93c2;
+    margin-top: 18px;
+    letter-spacing: 0.3px;
+  }
+
+  #acdp20d1-root .acdp20d1-topbar { margin-bottom: 14px; }
+  #acdp20d1-root .acdp20d1-progressWrap { margin-bottom: 10px; }
+  #acdp20d1-root .acdp20d1-progressBar {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  #acdp20d1-root .acdp20d1-progressFill {
+    background: linear-gradient(90deg,#3fd0ff,#2f6fed);
+    height: 100%;
+    width: 3.33%;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+  }
+  #acdp20d1-root .acdp20d1-qCounter { font-size: 12.5px; color: #9fc0ff; }
+  #acdp20d1-root .acdp20d1-statsRow { display: flex; gap: 10px; justify-content: space-between; }
+  #acdp20d1-root .acdp20d1-pill {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12.5px;
+    color: #ffe08a;
+  }
+
+  #acdp20d1-root .acdp20d1-examHeading {
+    text-align: center;
+    font-size: 12.5px;
+    color: #8fb0f0;
+    border-bottom: 1px dashed rgba(255,255,255,0.15);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  #acdp20d1-root .acdp20d1-qText {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f2f5ff;
+    margin-bottom: 4px;
+    line-height: 1.45;
+    white-space: pre-line;
+  }
+  #acdp20d1-root .acdp20d1-qTextTe {
+    font-size: 15px;
+    color: #bcd2ff;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    white-space: pre-line;
+  }
+
+  #acdp20d1-root .acdp20d1-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    color: #e8ecf5;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+    touch-action: manipulation;
+  }
+  #acdp20d1-root .acdp20d1-option .acdp20d1-optTe {
+    display: block;
+    font-size: 13.5px;
+    color: #b7c8ee;
+    margin-top: 2px;
+  }
+  #acdp20d1-root .acdp20d1-option:hover:not(:disabled) {
+    border-color: #3fd0ff;
+    background: rgba(63,208,255,0.08);
+  }
+  #acdp20d1-root .acdp20d1-option.acdp20d1-selected {
+    border-color: #3fd0ff;
+    background: rgba(63,208,255,0.15);
+  }
+  #acdp20d1-root .acdp20d1-option.acdp20d1-correct {
+    border-color: #34d399 !important;
+    background: rgba(52,211,153,0.18) !important;
+  }
+  #acdp20d1-root .acdp20d1-option.acdp20d1-wrong {
+    border-color: #f87171 !important;
+    background: rgba(248,113,113,0.18) !important;
+  }
+  #acdp20d1-root .acdp20d1-option:disabled { cursor: default; }
+
+  #acdp20d1-root .acdp20d1-navRow {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  #acdp20d1-root .acdp20d1-result-card { text-align: center; }
+  #acdp20d1-root .acdp20d1-scoreCircleWrap { margin: 10px 0 20px; }
+  #acdp20d1-root .acdp20d1-scoreCircle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(#34d399 0deg, rgba(255,255,255,0.08) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  #acdp20d1-root .acdp20d1-scoreCircle span {
+    background: #0d1b3d;
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffd166;
+  }
+  #acdp20d1-root .acdp20d1-resultStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  #acdp20d1-root .acdp20d1-resultStatBox {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px;
+  }
+  #acdp20d1-root .acdp20d1-resultStatVal {
+    display: block;
+    font-size: 19px;
+    font-weight: 700;
+    color: #9fe6c8;
+  }
+  #acdp20d1-root .acdp20d1-resultStatLabel {
+    display: block;
+    font-size: 12px;
+    color: #9fc0ff;
+    margin-top: 3px;
+  }
+  #acdp20d1-root .acdp20d1-remark {
+    font-size: 14px;
+    color: #ffe08a;
+    margin: 14px 0 4px;
+  }
+  #acdp20d1-root .acdp20d1-syncStatus {
+    font-size: 12.5px;
+    color: #9fc0ff;
+    margin-top: 6px;
+  }
+  #acdp20d1-root .acdp20d1-resultBtnRow {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  /* Mobile Friendly Responsive Enhancements */
+  @media (max-width: 480px) {
+    #acdp20d1-root { padding: 0 6px; margin: 5px auto; }
+    #acdp20d1-root .acdp20d1-card { padding: 16px 12px; border-radius: 12px; }
+    #acdp20d1-root .acdp20d1-title { font-size: 18px; }
+    #acdp20d1-root .acdp20d1-subtitle { font-size: 13px; }
+    #acdp20d1-root .acdp20d1-qText { font-size: 15px; }
+    #acdp20d1-root .acdp20d1-qTextTe { font-size: 14px; }
+    #acdp20d1-root .acdp20d1-option { font-size: 14px; padding: 10px 12px; }
+    #acdp20d1-root .acdp20d1-resultBtnRow, #acdp20d1-root .acdp20d1-navRow { flex-direction: column; }
+    #acdp20d1-root .acdp20d1-countdown { font-size: 20px; }
+  }
+</style>
+
+<script>
+(function(){
+
+  // Configuration Constants
+  var GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzzDUgaJp7Umfv83AYgteWYP921XIM8P3rlkczpA6KqhOfSCxZGdqggv85PiBI2aBm8/exec";
+  var QUIZ_BASE_ID = "APTET_1A_cdp4";
+  var UNLOCK_TIME = new Date("2026-09-28T20:00:00").getTime();
+
+  var QUESTION_BANK = [
+    {en:"A student who could not excel in studies proves himself by showing excellence in sports to overcome his distress. This is an example of the following defense mechanism.",
+     te:"ఒక విద్యార్థి చదువులో రాణించలేకపోయిన బాధను ఆటల్లో ప్రతిభ చూపించి తనను తాను నిరూపించుకోవడం కింది రక్షణ తంత్రానికి ఉదాహరణ.",
+     opts:[
+       {en:"Withdrawal", te:"ఉపసంహరణ"},
+       {en:"Projection", te:"ప్రక్షేపణ"},
+       {en:"Fantasy", te:"స్వైర్యకల్పన"},
+       {en:"Compensation", te:"పరిహారం"}
+     ], correct:[3]},
+
+    {en:"At this stage, intellectual development reach its highest level",
+     te:"ప్రజ్ఞావికాసం అత్యున్నత స్థాయికి చేరుకునే దశ",
+     opts:[
+       {en:"Infancy", te:"శైశవదశ"},
+       {en:"Early childhood", te:"పూర్వ బాల్యదశ"},
+       {en:"Late childhood", te:"ఉత్తర బాల్యదశ"},
+       {en:"Adolescence", te:"కౌమార దశ"}
+     ], correct:[3]},
+
+    {en:"According to Stott, Brown, Sussman and others, the characteristic of 'partiers' type of group is.",
+     te:"స్టాట్, బ్రౌన్, సస్మన్ తదితరుల ప్రకారం గుంపు రకానికి చెందిన 'పార్టీయర్స్' లక్షణం",
+     opts:[
+       {en:"That give importance to studies rather than games.", te:"ఆటల కన్నా చదువుకు ప్రాధాన్యత నిచ్చేవి."},
+       {en:"That give importance to social activities rather than school work.", te:"పాఠశాల పనుల కన్నా సామాజిక అంశాలకు ప్రాధాన్యత నిచ్చేవి."},
+       {en:"That made up of problematic individuals addicted to drugs.", te:"మత్తుపదార్థాలకు అలవాటు పడిన సమస్యాత్మక వ్యక్తులతో కూడుకున్నవి."},
+       {en:"That participate more in sports.", te:"క్రీడలలో ఎక్కువగా పాల్గొనేవి."}
+     ], correct:[1]},
+
+    {en:"The stage where morality is based on rewards is",
+     te:"నైతికత 'ప్రతిఫలం'పై ఆధారపడి ఉండే దశ",
+     opts:[
+       {en:"Late childhood", te:"ఉత్తర బాల్యదశ"},
+       {en:"Early childhood", te:"పూర్వ బాల్యదశ"},
+       {en:"Adolescence", te:"కౌమారదశ"},
+       {en:"Infancy", te:"శైశవదశ"}
+     ], correct:[1]},
+
+    {en:"The characteristic of the stage 4 of Kohlberg's theory of moral development is",
+     te:"కోల్బర్గ్ నైతిక సిద్ధాంతం యొక్క 4వ స్థాయి లక్షణం.",
+     opts:[
+       {en:"Obedience and punishment orientation", te:"విధేయత, శిక్ష ఓరియంటేషన్"},
+       {en:"Authority and social order maintaining morality", te:"అధికారం, సాంఘిక్రమ నిర్వహణ నీతి"},
+       {en:"Good boy / Good girl morality", te:"మంచి బాలుడు / మంచి బాలిక నీతి"},
+       {en:"Individual Principle and Conscience", te:"వ్యక్తిగత సూత్రాలు, అంతరాత్మ నీతి"}
+     ], correct:[1]},
+
+    {en:"One of the following is a constructionist approach\na) Kohlberg's moral development theory\nb) Vygotsky's social cultural theory\nc) Chomsky's language development theory\nd) Piaget's cognitive development theory",
+     te:"కింది వానిలో నిర్మాణాత్మక ఉపగమనకు చెందినవి.\na) కోల్బర్గ్ నైతిక వికాస సిద్ధాంతం\nb) వైగాట్ స్కీ సాంఘిక సాంస్కృతిక సిద్ధాంతం\nc) చామ్స్కీ భాషా వికాస సిద్ధాంతం\nd) పియాజే సంజ్ఞానాత్మక వికాస సిద్ధాంతం",
+     opts:[
+       {en:"a, b", te:"a, b"},
+       {en:"b, c", te:"b, c"},
+       {en:"c, d", te:"c, d"},
+       {en:"b, d", te:"b, d"}
+     ], correct:[3]},
+
+    {en:"According to Elizabeth Hurlock, the age range of Adolescence is",
+     te:"ఎలిజబెత్ హార్లక్ ప్రకారం కౌమారదశ",
+     opts:[
+       {en:"13 or 14 years to 18 years age", te:"13 లేదా 14 నుండి 18 సం. వరకు"},
+       {en:"6 years to 10 or 12 years age", te:"6 సం. నుండి 10 లేదా 12 సం. వరకు"},
+       {en:"10 or 12 years to 13 or 14 years age", te:"10 లేదా 12 సం. నుండి 13 లేదా 14 సం.ల వరకు"},
+       {en:"18 years to 40 years", te:"18 సం. నుండి 40 సం. వరకు"}
+     ], correct:[0]},
+
+    {en:"A child with poor mental development falls behind in social and moral development. This explains the following principle of development.",
+     te:"మానసిక వికాసం సరిగా లేని పిల్లవాడు సాంఘిక, నైతిక వికాసాల్లో వెనుకబడటం అనేది కింది వికాస నియమానికి ఉదాహరణగా చెప్పవచ్చు.",
+     opts:[
+       {en:"Development is cumulative", te:"వికాసం సంచితమైనది."},
+       {en:"Development is continuous", te:"వికాసం అవిచ్ఛిన్నంగా కొనసాగుతుంది."},
+       {en:"Growth and development do not occur uniformly in all stages.", te:"పెరుగుదల, వికాసం అన్ని దశల్లో ఒకేవిధంగా ఉండదు."},
+       {en:"Different areas of development are interrelated.", te:"వివిధ వికాసాలు పరస్పర సంబంధం కలిగి ఉంటాయి."}
+     ], correct:[3]},
+
+    {en:"A District Educational Officer wants to compare the socialization of primary, elementary and secondary stage children at the same time. The method to be followed is",
+     te:"ఒక జిల్లా విద్యాధికారి ప్రైమరీ, ఎలిమెంటరీ మరియు సెకండరీ స్థాయిలోని విద్యార్థుల సాంఘీకీకరణ నైపుణ్యాలను ఒకే సమయంలో తులనాత్మక పరిశీలన చేయాలనుకున్నారు. వారు అనుసరించాల్సిన పద్ధతి.",
+     opts:[
+       {en:"Cross sectional", te:"ఖండచ్ఛేద విధానం"},
+       {en:"Case study", te:"కేస్‌స్టడీ విధానం"},
+       {en:"Longitudinal", te:"అనుదైర్ఘ్య విధానం"},
+       {en:"Experimental", te:"ప్రయోగ విధానం"}
+     ], correct:[0]},
+
+    {en:"A combination of Intellectual ability, Personality traits and Problem solving skills is",
+     te:"ప్రజ్ఞ సామర్థ్యాలు, మూర్తిమత్వ లక్షణాలు, సమస్యా పరిష్కార లక్షణాంశాల కలయిక",
+     opts:[
+       {en:"Intelligence", te:"ప్రజ్ఞ"},
+       {en:"Emotion", te:"ఉద్వేగము"},
+       {en:"Aptitude", te:"సహజ సామర్థ్యం"},
+       {en:"Creativity", te:"సృజనాత్మకత"}
+     ], correct:[3]},
+
+    {en:"NEP - 2020 recommended a new assessment center at National level is",
+     te:"జాతీయస్థాయిలో NEP - 2020 ప్రతిపాదించిన కొత్త మదింపు కేంద్రం",
+     opts:[
+       {en:"PARAKH", te:"PARAKH"},
+       {en:"DIKSHA", te:"DIKSHA"},
+       {en:"NISHTA", te:"NISHTA"},
+       {en:"SWAYAM", te:"SWAYAM"}
+     ], correct:[0]},
+
+    {en:"The capacity of the brain that record the learnt information through sensory reception is",
+     te:"జ్ఞానేంద్రియ గ్రాహకాల ద్వారా నేర్చుకున్న సమాచారాన్ని రికార్డు చేసే మెదడు సామర్థ్యం",
+     opts:[
+       {en:"Memory Process", te:"స్మృతి ప్రక్రియ"},
+       {en:"Sensory Register", te:"ఇంద్రియ నమోదు"},
+       {en:"Information Form", te:"సమాచార రూపం"},
+       {en:"Memory Store", te:"స్మృతి నిల్వ"}
+     ], correct:[3]},
+
+    {en:"An active process shaped by prior knowledge and the learner's ability, according to Bruner is",
+     te:"బ్రూనర్ ప్రకారం, పూర్వ జ్ఞానం మరియు అభ్యసన సామర్థ్యం ద్వారా రూపొందించబడిన ఒక క్రియాశీల ప్రక్రియను ఇలా అంటారు.",
+     opts:[
+       {en:"Coding System", te:"కోడింగ్ వ్యవస్థ"},
+       {en:"Reinforcement", te:"పునర్బలనం"},
+       {en:"Learning", te:"అభ్యసనం"},
+       {en:"Intuitive thinking", te:"అంతర్బుద్ధి ఆలోచన"}
+     ], correct:[2]},
+
+    {en:"More suspicious on every small matter is the symptom of",
+     te:"ప్రతి చిన్న విషయానికి అధికంగా అనుమానించడం అనే లక్షణం కలది.",
+     opts:[
+       {en:"Paranoia", te:"చిత్తభ్రమ"},
+       {en:"Psychasthenia", te:"సైకస్తీనియా"},
+       {en:"Schizophrenia", te:"స్కీజోఫ్రేనియా"},
+       {en:"Hypomania", te:"అల్పోన్మాదం"}
+     ], correct:[0]},
+
+    {en:"According to Donald Hebb this is an energizer of an organism.",
+     te:"డొనాల్డ్ హెబ్ ప్రకారం, ఇది జీవిని బలోపేతం చేస్తుంది.",
+     opts:[
+       {en:"Curiosity", te:"కుతూహలం"},
+       {en:"Arouser", te:"ఉత్తేజకం"},
+       {en:"Goal", te:"లక్ష్యం"},
+       {en:"Interest", te:"అభిరుచి"}
+     ], correct:[1]},
+
+    {en:"'Ego centric' in pre-operational stage means.",
+     te:"పూర్వ ప్రచాలక దశలో అహం కేంద్రీకృతం అంటే",
+     opts:[
+       {en:"Struggle to understand others perspective.", te:"ఇతరుల దృష్టికోణాలను అర్థం చేసుకోడానికి కష్టపడటం"},
+       {en:"Understand that others may have different thoughts.", te:"ఇతరులకు భిన్నమైన ఆలోచనలు ఉంటాయని అర్థం చేసుకోవడం"},
+       {en:"Think from other's point of view.", te:"ఇతరుల కోణం నుండి ఆలోచించడం"},
+       {en:"Solve problems related to conservation.", te:"పదిలపరచుకోనే భావనకు సంబంధించిన సమస్యను పరిష్కరించడం"}
+     ], correct:[0]},
+
+    {en:"Identify the correct answer related to Action Research.\na) Principles and theories can be formulated.\nb) Results cannot be generalized.\nc) Methods and Hypothesis can be changed.",
+     te:"చర్యాత్మక పరిశోధనకు సంబంధించి సరైన సమాధానమును గుర్తించుము.\na) దీని ద్వారా సూత్రాలు, సిద్ధాంతాలు రూపొందించబడతాయి.\nb) ఫలితాలను సాధారణీకరించడం జరగదు.\nc) పద్ధతులను, పరికల్పనలను మార్చుకోవచ్చు.",
+     opts:[
+       {en:"a, b, c", te:"a, b, c"},
+       {en:"a, b", te:"a, b"},
+       {en:"a, c", te:"a, c"},
+       {en:"b, c", te:"b, c"}
+     ], correct:[3]},
+
+    {en:"Identify the correct aspects of Psychoanalytical theory.\na) Economic aspect - Eros, Thanatos\nb) Dynamic aspect - Conscious, Unconscious\nc) Topographic aspect - Id, Ego, Super ego",
+     te:"మనో విశ్లేషణ సిద్ధాంతానికి సంబంధించి సరైన అంశాలను గుర్తించండి.\na) శ్రామిక శక్తి - ఈరాస్, థేనటాస్\nb) చలన శక్తి - చేతనావస్తు, అచేతనావస్తు\nc) శరీరోపరితల శక్తి - ఇడ్, ఈగో, సూపర్ ఈగో",
+     opts:[
+       {en:"a", te:"a"},
+       {en:"b", te:"b"},
+       {en:"a, b", te:"a, b"},
+       {en:"a, b, c", te:"a, b, c"}
+     ], correct:[0]},
+
+    {en:"As per NCF-2005, the multilingual character of Indian society should be seen as",
+     te:"NCF-2005 ప్రకారం, భారతీయ సమాజం యొక్క బహుభాషా లక్షణాన్ని ఈ విధంగా చూడాలి.",
+     opts:[
+       {en:"A challenge to be overcome", te:"అధిగమించలసిన సవాలు"},
+       {en:"A problem for the teacher", te:"ఉపాధ్యాయునికి ఒక సమస్య"},
+       {en:"A minor issue", te:"ఒక చిన్న సమస్య"},
+       {en:"A resource to promote multilingual proficiency", te:"బహుభాషా నైపుణ్యాన్ని ప్రోత్సహించుటకు ఒక వనరు"}
+     ], correct:[3]},
+
+    {en:"The Kothari Commission recommended that teacher training institutions should have these many working days per year.",
+     te:"కొఠారి కమీషన్ ఉపాధ్యాయ శిక్షణ సంస్థలకు సంవత్సరంలో ఇన్ని పనిదినాలు ఉండాలి అని సూచించింది.",
+     opts:[
+       {en:"180", te:"180"},
+       {en:"200", te:"200"},
+       {en:"230", te:"230"},
+       {en:"150", te:"150"}
+     ], correct:[2]},
+
+    {en:"Choose the correct answer regarding Statistics from the following.\na) Arithmetic mean is accurate and suitable for algebraic methods.\nb) Cumulative frequency value of 1, 2, 4, 8 frequencies is 15",
+     te:"సాంఖ్యకశాస్త్రానికి సంబంధించి కింది వానిలో సరైన సమాధానం గుర్తించండి.\na) అంకమధ్యమం ఖచ్చితమైనది, బీజగణిత పద్ధతులకు అనువైనది.\nb) 1, 2, 4, 8 పౌనఃపున్యాల సంచిత పౌనఃపున్య విలువ 15",
+     opts:[
+       {en:"a - correct", te:"a - correct"},
+       {en:"b - correct", te:"b - correct"},
+       {en:"a, b - not correct", te:"a, b - not correct"},
+       {en:"a, b - correct", te:"a, b - correct"}
+     ], correct:[3]},
+
+    {en:"Match the following.\ni) Positive Skewness\nii) Negative Skewness\niii) Lepto Kurtic\na) Data curve decreases towards left.\nb) Higher than data curve.\nc) Data curve concentrates on the left.\nd) Higher than normal probabilities.",
+     te:"ఈ కింది వాటిని జతపరచండి.\ni) ధనాత్మక వైషమ్యం\nii) రుణాత్మక వైషమ్యం\niii) ఉత్తుంగ కకుదత\na) దత్తాంశ వక్రం ఎడమవైపుకు తగ్గుతూ పోతుంది.\nb) దత్తాంశ వక్రం కంటే ఎత్తైనది.\nc) దత్తాంశ వక్రం ఎడమవైపు కేంద్రీకృతమై ఉంటుంది.\nd) సామాన్య విభాజనం కంటే ఎత్తైనది.",
+     opts:[
+       {en:"i-a, ii-c, iii-d", te:"i-a, ii-c, iii-d"},
+       {en:"i-b, ii-c, iii-d", te:"i-b, ii-c, iii-d"},
+       {en:"i-c, ii-a, iii-d", te:"i-c, ii-a, iii-d"},
+       {en:"i-a, ii-b, iii-c", te:"i-a, ii-b, iii-c"}
+     ], correct:[2]},
+
+    {en:"The word 'Information Technology' was first introduced by",
+     te:"'సమాచార సాంకేతికశాస్త్రం' అనే పదాన్ని మొట్టమొదటిగా ఉపయోగించినది.",
+     opts:[
+       {en:"Reeth and Calier", te:"రీత్ మరియు కాలియర్"},
+       {en:"Berlo and Dale", te:"బెర్లో మరియు డేల్"},
+       {en:"Leavitt and Wechsler", te:"లివిట్ మరియు వెష్లర్"},
+       {en:"Leavitt and Calier", te:"లివిట్ మరియు కాలియర్"}
+     ], correct:[2]},
+
+    {en:"Match the following regarding Information Communication.\ni) Intra personal\nii) Inter personal\niii) Group\niv) Mass\na) Interview\nb) Committee meeting\nc) Dairy writing\nd) Radio",
+     te:"సమాచార ప్రసారానికి సంబంధించి కింది వాటిని జతపరచండి.\ni) అంతస్త వ్యక్తిగత\nii) అంతర వ్యక్తిగత\niii) సమూహ\niv) భారీ\na) ఇంటర్వ్యూ\nb) కమిటి సమావేశం\nc) దైరీ రాయడం\nd) రేడియో",
+     opts:[
+       {en:"i-b, ii-c, iii-a, iv-d", te:"i-b, ii-c, iii-a, iv-d"},
+       {en:"i-c, ii-a, iii-b, iv-d", te:"i-c, ii-a, iii-b, iv-d"},
+       {en:"i-a, ii-c, iii-b, iv-d", te:"i-a, ii-c, iii-b, iv-d"},
+       {en:"i-d, ii-a, iii-b, iv-c", te:"i-d, ii-a, iii-b, iv-c"}
+     ], correct:[1]},
+
+    {en:"Choose the correct answer regarding Knowledge Acquisition Approach.\na) Tactic knowledge acquisition - Humour\nb) Explicit knowledge acquisition - Literature\nc) Implicit knowledge acquisition - Running",
+     te:"జ్ఞాన సముపార్జన ఉపగములకు సంబంధించి సరైన సమాధానం గుర్తించండి.\na) నిశ్శబ్ద జ్ఞాన సముపార్జన - హాస్యం\nb) స్పష్టమైన జ్ఞాన సముపార్జన - సాహిత్యం\nc) అవ్యక్త జ్ఞాన సముపార్జన - పరిగెత్తడం",
+     opts:[
+       {en:"a, b", te:"a, b"},
+       {en:"a, c", te:"a, c"},
+       {en:"b, c", te:"b, c"},
+       {en:"a, b, c", te:"a, b, c"}
+     ], correct:[3]},
+
+    {en:"Choose the incorrect sentence from the following.",
+     te:"కింది వానిలో సరికాని వాక్యాన్ని గుర్తించండి.",
+     opts:[
+       {en:"Information is temporarily stored in RAM.", te:"RAM లో సమాచారం తాత్కాలికంగా నిల్వ ఉంటుంది."},
+       {en:"Function keys are there in computer key board.", te:"కంప్యూటర్ కీబోర్డులో ఫంక్షన్ కీలు ఉంటాయి."},
+       {en:"Touch pad is used as a substitute for scanner.", te:"టచ్‌పాడ్ అనునది స్కానర్‌కు ప్రత్యామ్నాయంగా వాడుతారు."},
+       {en:"Joystick is a type of handle.", te:"జాయ్‌స్టిక్ అనునది ఒక హ్యాండిల్."}
+     ], correct:[2]},
+
+    {en:"Match the following regarding M.S. Word 2013.\ni) Text alignment\nii) View modes\niii) Language checking\na) Five types\nb) Seven types\nc) Four types\nd) Two types",
+     te:"M.S. వర్డ్ 2013కి సంబంధించి కింది వాటిని జతపరచండి.\ni) వచన సమలేఖనం\nii) వీక్షణ మోడ్‌లు\niii) భాష సవరణలు\na) ఐదు రకాలు\nb) ఏడు రకాలు\nc) నాలుగు రకాలు\nd) రెండు రకాలు",
+     opts:[
+       {en:"i-d, ii-b, iii-c", te:"i-d, ii-b, iii-c"},
+       {en:"i-c, ii-a, iii-d", te:"i-c, ii-a, iii-d"},
+       {en:"i-a, ii-c, iii-b", te:"i-a, ii-c, iii-b"},
+       {en:"i-b, ii-a, iii-c", te:"i-b, ii-a, iii-c"}
+     ], correct:[1]},
+
+    {en:"Identify the Odd one in master slides of power point.",
+     te:"పవర్‌పాయింట్ మాస్టర్ స్లయిడ్‌లలో వేరుగా ఉన్న దానిని గుర్తించండి.",
+     opts:[
+       {en:"Place Holder Master", te:"ప్లేస్ హోల్డర్ మాస్టర్"},
+       {en:"Slide Master", te:"స్లయిడ్ మాస్టర్"},
+       {en:"Hand Out Master", te:"హ్యాండ్ అవుట్ మాస్టర్"},
+       {en:"Notes Master", te:"నోట్స్ మాస్టర్"}
+     ], correct:[0]},
+
+    {en:"Choose the correct sentence from the following.\na) Dissemination of recorded or live content over internet - webcasting\nb) Vlog is a combination of Video and Blog",
+     te:"కింది వానిలో సరైన వాక్యాలు గుర్తించండి.\na) రికార్డు చేసిన లేదా లైవ్ కంటెంట్సు ఇంటర్నెట్ ద్వారా పంపిణీ చేయడం - వెబ్‌కాస్టింగ్\nb) వ్లాగ్ అనునది వీడియో మరియు బ్లాగ్ల సంయుక్త రూపం",
+     opts:[
+       {en:"a - correct", te:"a - correct"},
+       {en:"b - correct", te:"b - correct"},
+       {en:"a, b - not correct", te:"a, b - not correct"},
+       {en:"a, b - correct", te:"a, b - correct"}
+     ], correct:[3]},
+
+    {en:"CTRL + V is used to",
+     te:"CTRL + V అనునది దీనికి ఉపయోగిస్తారు.",
+     opts:[
+       {en:"Cut", te:"Cut"},
+       {en:"Copy", te:"Copy"},
+       {en:"Paste", te:"Paste"},
+       {en:"Delete", te:"Delete"}
+     ], correct:[2]}
+  ];
+
+  var TOTAL_TO_SHOW = 30;
+
+  var el = {
+    lock: document.getElementById('acdp20d1-lock'),
+    countdown: document.getElementById('acdp20d1-countdown'),
+    start: document.getElementById('acdp20d1-start'),
+    quiz: document.getElementById('acdp20d1-quiz'),
+    result: document.getElementById('acdp20d1-result'),
+    userName: document.getElementById('acdp20d1-userName'),
+    userDistrict: document.getElementById('acdp20d1-userDistrict'),
+    startBtn: document.getElementById('acdp20d1-startBtn'),
+    qBlock: document.getElementById('acdp20d1-qBlock'),
+    prevBtn: document.getElementById('acdp20d1-prevBtn'),
+    nextBtn: document.getElementById('acdp20d1-nextBtn'),
+    submitBtn: document.getElementById('acdp20d1-submitBtn'),
+    progressFill: document.getElementById('acdp20d1-progressFill'),
+    qCounter: document.getElementById('acdp20d1-qCounter'),
+    timer: document.getElementById('acdp20d1-timer'),
+    scorePill: document.getElementById('acdp20d1-scorePill'),
+    scoreCircle: document.getElementById('acdp20d1-scoreCircle'),
+    scoreText: document.getElementById('acdp20d1-scoreText'),
+    percentText: document.getElementById('acdp20d1-percentText'),
+    timeTakenText: document.getElementById('acdp20d1-timeTakenText'),
+    correctText: document.getElementById('acdp20d1-correctText'),
+    wrongText: document.getElementById('acdp20d1-wrongText'),
+    remark: document.getElementById('acdp20d1-remark'),
+    syncStatus: document.getElementById('acdp20d1-syncStatus'),
+    downloadBtn: document.getElementById('acdp20d1-downloadBtn'),
+    restartBtn: document.getElementById('acdp20d1-restartBtn')
+  };
+
+  var state = {
+    questions: [],
+    current: 0,
+    answers: [],
+    score: 0,
+    startTime: null,
+    timerInterval: null,
+    elapsedSeconds: 0,
+    user: { name: '', district: '' }
+  };
+
+  // Check Time Lock Status
+  function checkLockStatus() {
+    var now = new Date().getTime();
+    var diff = UNLOCK_TIME - now;
+
+    if (diff <= 0) {
+      showScreen('start');
+      return true;
+    } else {
+      showScreen('lock');
+      updateCountdown(diff);
+      var cdInterval = setInterval(function() {
+        var currentDiff = UNLOCK_TIME - new Date().getTime();
+        if (currentDiff <= 0) {
+          clearInterval(cdInterval);
+          showScreen('start');
+        } else {
+          updateCountdown(currentDiff);
+        }
+      }, 1000);
+      return false;
+    }
+  }
+
+  function updateCountdown(ms) {
+    var d = Math.floor(ms / (1000 * 60 * 60 * 24));
+    var h = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((ms % (1000 * 60)) / 1000);
+    el.countdown.innerHTML = (d < 10 ? '0' : '') + d + 'd ' +
+                             (h < 10 ? '0' : '') + h + 'h ' +
+                             (m < 10 ? '0' : '') + m + 'm ' +
+                             (s < 10 ? '0' : '') + s + 's';
+  }
+
+  function shuffleArray(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function buildQuestionSet(){
+    var pool = shuffleArray(QUESTION_BANK).slice(0, TOTAL_TO_SHOW);
+    return pool.map(function(q){
+      var order = shuffleArray(q.opts.map(function(o, idx){ return idx; }));
+      var newOpts = order.map(function(origIdx){ return q.opts[origIdx]; });
+      var newCorrect = order.map(function(origIdx, newIdx){
+        return q.correct.indexOf(origIdx) !== -1 ? newIdx : -1;
+      }).filter(function(v){ return v !== -1; });
+      return { en: q.en, te: q.te, opts: newOpts, correct: newCorrect };
+    });
+  }
+
+  function fmtTime(totalSeconds){
+    var m = Math.floor(totalSeconds / 60);
+    var s = totalSeconds % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function startTimer(){
+    state.startTime = Date.now();
+    state.timerInterval = setInterval(function(){
+      state.elapsedSeconds = Math.floor((Date.now() - state.startTime) / 1000);
+      el.timer.innerHTML = '&#9200; ' + fmtTime(state.elapsedSeconds);
+    }, 1000);
+  }
+
+  function stopTimer(){
+    if (state.timerInterval) clearInterval(state.timerInterval);
+  }
+
+  function showScreen(name){
+    el.lock.classList.remove('acdp20d1-active');
+    el.start.classList.remove('acdp20d1-active');
+    el.quiz.classList.remove('acdp20d1-active');
+    el.result.classList.remove('acdp20d1-active');
+    if (name === 'lock') el.lock.classList.add('acdp20d1-active');
+    if (name === 'start') el.start.classList.add('acdp20d1-active');
+    if (name === 'quiz') el.quiz.classList.add('acdp20d1-active');
+    if (name === 'result') el.result.classList.add('acdp20d1-active');
+  }
+
+  function renderQuestion(){
+    var idx = state.current;
+    var q = state.questions[idx];
+    var answered = state.answers[idx];
+
+    var html = '';
+    html += '<div class="acdp20d1-qText">Q' + (idx + 1) + '. ' + q.en + '</div>';
+    html += '<div class="acdp20d1-qTextTe">' + q.te + '</div>';
+
+    q.opts.forEach(function(opt, i){
+      var cls = 'acdp20d1-option';
+      var disabledAttr = '';
+      if (answered !== undefined && answered !== null) {
+        disabledAttr = 'disabled';
+        if (q.correct.indexOf(i) !== -1) {
+          cls += ' acdp20d1-correct';
+        } else if (i === answered) {
+          cls += ' acdp20d1-wrong';
+        }
+      }
+      html += '<button class="' + cls + '" data-idx="' + i + '" ' + disabledAttr + '>' +
+              (i + 1) + '. ' + opt.en +
+              '<span class="acdp20d1-optTe">' + opt.te + '</span>' +
+              '</button>';
+    });
+
+    el.qBlock.innerHTML = html;
+
+    var buttons = el.qBlock.querySelectorAll('.acdp20d1-option');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (state.answers[idx] !== undefined && state.answers[idx] !== null) return;
+        var chosen = parseInt(btn.getAttribute('data-idx'), 10);
+        state.answers[idx] = chosen;
+        if (q.correct.indexOf(chosen) !== -1) {
+          state.score++;
+          el.scorePill.innerHTML = '&#11088; Score: ' + state.score;
+        }
+        renderQuestion();
+        updateNav();
+      });
+    });
+
+    el.qCounter.textContent = 'Question ' + (idx + 1) + ' / ' + state.questions.length;
+    el.progressFill.style.width = (((idx + 1) / state.questions.length) * 100) + '%';
+  }
+
+  function updateNav(){
+    el.prevBtn.disabled = (state.current === 0);
+    var answered = state.answers[state.current];
+    var isAnswered = (answered !== undefined && answered !== null);
+    if (state.current === state.questions.length - 1) {
+      el.nextBtn.style.display = 'none';
+      el.submitBtn.style.display = 'inline-block';
+      el.submitBtn.disabled = !isAnswered;
+    } else {
+      el.nextBtn.style.display = 'inline-block';
+      el.submitBtn.style.display = 'none';
+      el.nextBtn.disabled = !isAnswered;
+    }
+  }
+
+  function goPrev(){
+    if (state.current > 0) {
+      state.current--;
+      renderQuestion();
+      updateNav();
+    }
+  }
+
+  function goNext(){
+    if (state.current < state.questions.length - 1) {
+      state.current++;
+      renderQuestion();
+      updateNav();
+    }
+  }
+
+  function sendToGoogleSheets(data) {
+    el.syncStatus.textContent = "Saving result to server...";
+    el.syncStatus.style.color = "#9fc0ff";
+
+    fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(){
+      el.syncStatus.textContent = "Result recorded successfully!";
+      el.syncStatus.style.color = "#34d399";
+    }).catch(function(err){
+      el.syncStatus.textContent = "Failed to save online. You can still download the PDF.";
+      el.syncStatus.style.color = "#f87171";
+    });
+  }
+
+  function finishQuiz(){
+    stopTimer();
+    var total = state.questions.length;
+    var correct = state.score;
+    var wrong = total - correct;
+    var percent = Math.round((correct / total) * 100);
+
+    el.scoreText.textContent = correct + '/' + total;
+    el.percentText.textContent = percent + '%';
+    el.timeTakenText.textContent = fmtTime(state.elapsedSeconds);
+    el.correctText.textContent = correct;
+    el.wrongText.textContent = wrong;
+
+    var circleColor = percent >= 70 ? '#34d399' : (percent >= 40 ? '#ffd166' : '#f87171');
+    el.scoreCircle.style.background = 'conic-gradient(' + circleColor + ' ' + (percent * 3.6) + 'deg, rgba(255,255,255,0.08) 0deg)';
+
+    var remarkMsg = '';
+    if (percent >= 85) remarkMsg = 'Excellent! Outstanding preparation.';
+    else if (percent >= 70) remarkMsg = 'Great job! Keep practicing to perfect it.';
+    else if (percent >= 50) remarkMsg = 'Good effort! Review the concepts and try again.';
+    else remarkMsg = 'Keep practicing — revise the topics and attempt again.';
+    el.remark.textContent = remarkMsg;
+
+    showScreen('result');
+
+    // Send payload to Google Sheets
+    sendToGoogleSheets({
+      quiz_id: QUIZ_BASE_ID,
+      name: state.user.name,
+      district: state.user.district,
+      score: correct,
+      total: total,
+      percentage: percent,
+      time_taken: fmtTime(state.elapsedSeconds),
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  function restartQuiz(){
+    state.questions = buildQuestionSet();
+    state.current = 0;
+    state.answers = [];
+    state.score = 0;
+    state.elapsedSeconds = 0;
+    el.scorePill.innerHTML = '&#11088; Score: 0';
+    el.timer.innerHTML = '&#9200; 00:00';
+    showScreen('quiz');
+    renderQuestion();
+    updateNav();
+    startTimer();
+  }
+
+  function downloadResultPDF(){
+    if (!window.jspdf) { alert('PDF library not loaded. Please check your internet connection.'); return; }
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF();
+    var total = state.questions.length;
+    var correct = state.score;
+    var wrong = total - correct;
+    var percent = Math.round((correct / total) * 100);
+
+    doc.setFontSize(16);
+    doc.text('APTET Previous Question Paper - 20 December 2025 (First Shift)', 15, 20);
+    doc.setFontSize(13);
+    doc.text('Child Development and Pedagogy - Quiz Result', 15, 30);
+
+    doc.setFontSize(11);
+    doc.text('Name: ' + state.user.name, 15, 42);
+    doc.text('District: ' + state.user.district, 15, 50);
+    doc.text('Date: ' + new Date().toLocaleString(), 15, 58);
+    doc.text('Total Questions: ' + total, 15, 66);
+    doc.text('Correct Answers: ' + correct, 15, 74);
+    doc.text('Wrong Answers: ' + wrong, 15, 82);
+    doc.text('Score: ' + correct + ' / ' + total + '  (' + percent + '%)', 15, 90);
+    doc.text('Time Taken: ' + fmtTime(state.elapsedSeconds), 15, 98);
+
+    doc.setFontSize(10);
+    doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE', 15, 115);
+
+    doc.save('APTET_ChildDev_Pedagogy_20Dec2025_Shift1_Result.pdf');
+  }
+
+  el.startBtn.addEventListener('click', function(){
+    var name = el.userName.value.trim();
+    var district = el.userDistrict.value.trim();
+
+    if (!name || !district) {
+      alert('Please fill in both mandatory fields: Full Name and District.');
+      return;
+    }
+
+    state.user.name = name;
+    state.user.district = district;
+    restartQuiz();
+  });
+
+  el.prevBtn.addEventListener('click', goPrev);
+  el.nextBtn.addEventListener('click', goNext);
+  el.submitBtn.addEventListener('click', finishQuiz);
+  el.restartBtn.addEventListener('click', function(){
+    showScreen('start');
+  });
+  el.downloadBtn.addEventListener('click', downloadResultPDF);
+
+  // Initialize Quiz Lock Check
+  checkLockStatus();
+
+})();
+</script>
