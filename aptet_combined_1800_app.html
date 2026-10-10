@@ -43,6 +43,7 @@ body.aq2025.no-select input, body.aq2025.no-select textarea{-webkit-user-select:
 .aq2025 .mode-card h3{margin:0 0 6px;font-size:15px;color:#fff;}
 .aq2025 .mode-card p{margin:0;font-size:12px;color:var(--ink-faint);}
 .aq2025 select, .aq2025 input[type=text]{
+  font-size:16px;
   width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--line);
   background:var(--navy-900);color:var(--ink);font-size:14px;margin-top:6px;
 }
@@ -189,9 +190,14 @@ body.aq2025.no-select input, body.aq2025.no-select textarea{-webkit-user-select:
     </div>
 
     <div class="field">
-      <label>Your Name (for certificate &amp; leaderboard)</label>
-      <input type="text" id="nameInput" placeholder="Enter your full name" maxlength="60">
-      <div class="name-note">Leave blank to take the test without a certificate/leaderboard entry.</div>
+      <label>Your Name <span style="color:#dc2626">*</span></label>
+      <input type="text" id="nameInput" placeholder="Enter your full name" maxlength="60" autocomplete="name" style="font-size:16px;min-height:46px;">
+    </div>
+    <div class="field">
+      <label>Your District <span style="color:#dc2626">*</span></label>
+      <input type="text" id="districtInput" placeholder="Enter your district" maxlength="40" style="font-size:16px;min-height:46px;">
+      <div class="name-note">Name and District are required (used for certificate &amp; leaderboard).</div>
+      <div id="startError" style="display:none;color:#dc2626;font-size:13px;font-weight:600;margin-top:8px;">Please enter both your Name and District to start.</div>
     </div>
 
     <button class="btn" id="startBtn" disabled>Select a mode to begin</button>
@@ -291,7 +297,9 @@ body.aq2025.no-select input, body.aq2025.no-select textarea{-webkit-user-select:
 /* =========================================================
    CONFIG
    ========================================================= */
-var APPS_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw05JPwwtOzDuEG1XkQ34md5p_bzZ_xhw3Nobdrq-dnE2SNAyuOFDI8WI9piwpgibzN/exec";
+var TESTNO = "1800";
+var TESTID = "APTET-1800-FULL";
 
 var PROTECTION = {
   disableRightClick: true,
@@ -329,6 +337,7 @@ var state = {
   submitted: false,
   tabSwitchCount: 0,
   candidateName: "",
+  candidateDistrict: "",
   autoSubmitted: false
 };
 
@@ -395,7 +404,15 @@ function selectMode(mode){
 }
 
 $('startBtn').addEventListener('click', function(){
-  state.candidateName = $('nameInput').value.trim();
+  var nm = $('nameInput').value.trim(), dt = $('districtInput').value.trim();
+  if(!nm || !dt){
+    $('startError').style.display = 'block';
+    (nm ? $('districtInput') : $('nameInput')).focus();
+    return;
+  }
+  $('startError').style.display = 'none';
+  state.candidateName = nm;
+  state.candidateDistrict = dt;
   if(state.mode==='single'){
     state.singleSubject = $('subjectPicker').value;
   }
@@ -773,12 +790,18 @@ function generateCertificate(){
 function submitToLeaderboard(correct, total, elapsed, pct){
   if(!state.candidateName) return;
   if(!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('PASTE_YOUR') === 0){ return; }
+  var uid = 'ID' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase();
+  var secs = Math.round(elapsed);
   var payload = {
+    timestamp: new Date().toISOString(),
+    id: uid,
     name: state.candidateName,
+    district: state.candidateDistrict,
+    testid: TESTID, testId: TESTID, 'TEST ID': TESTID, quiz: TESTID, testno: TESTNO,
+    score: correct, total: total, seconds: secs,
+    percent: pct, timeTaken: secs, timeSec: secs, correct: correct, pct: pct,
     mode: state.mode,
-    subject: state.mode==='single' ? state.singleSubject : 'FULL',
-    correct: correct, total: total, pct: pct, timeSec: elapsed,
-    ts: new Date().toISOString()
+    subject: state.mode==='single' ? state.singleSubject : 'FULL'
   };
   try{
     fetch(APPS_SCRIPT_URL, {
@@ -796,7 +819,7 @@ function loadLeaderboard(){
     area.innerHTML = '<div style="text-align:center;color:var(--ink-faint);font-size:12.5px;">Leaderboard not configured yet. (Set APPS_SCRIPT_URL in the script.)</div>';
     return;
   }
-  fetch(APPS_SCRIPT_URL + '?action=list')
+  fetch(APPS_SCRIPT_URL + '?action=list&testno=' + encodeURIComponent(TESTNO) + '&testid=' + encodeURIComponent(TESTID) + '&quiz=' + encodeURIComponent(TESTID))
     .then(function(r){ return r.json(); })
     .then(function(data){ renderLeaderboard(data); })
     .catch(function(){
@@ -804,20 +827,77 @@ function loadLeaderboard(){
     });
 }
 
+var lbRows = [];
+function normRow(r){
+  var m = {};
+  Object.keys(r||{}).forEach(function(k){ m[k.toLowerCase().replace(/[^a-z]/g,'')] = r[k]; });
+  var score = +(m.score!=null ? m.score : m.correct) || 0, total = +m.total || 0;
+  return {
+    timestamp: m.timestamp || m.ts || '', id: m.id || '', name: m.name || '', district: m.district || '',
+    testid: m.testid || m.quiz || '', score: score, total: total,
+    seconds: +(m.seconds!=null ? m.seconds : (m.timetaken!=null ? m.timetaken : m.timesec)) || 0,
+    pct: total ? (score/total*100) : 0
+  };
+}
+function fmtStamp(t){
+  if(!t) return '';
+  var d = new Date(t); if(isNaN(d)) return String(t);
+  return d.toLocaleString('en-IN', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
 function renderLeaderboard(rows){
   var area = $('leaderboardArea');
+  if(rows && !Array.isArray(rows)) rows = rows.rows || rows.data || [];
   if(!rows || !rows.length){
     area.innerHTML = '<div style="text-align:center;color:var(--ink-faint);font-size:12.5px;">No leaderboard entries yet. Be the first!</div>';
     return;
   }
-  rows.sort(function(a,b){ return b.pct - a.pct || a.timeSec - b.timeSec; });
-  var html = '<table class="lb-table"><thead><tr><th>#</th><th>Name</th><th>Mode</th><th>Score</th><th>Time</th></tr></thead><tbody>';
-  rows.slice(0,20).forEach(function(r, i){
+  lbRows = rows.map(normRow).filter(function(r){ return !r.testid || r.testid === TESTID; });
+  lbRows.sort(function(a,b){ return b.pct - a.pct || a.seconds - b.seconds; });
+  var html = '<table class="lb-table"><thead><tr><th>#</th><th>Name</th><th>District</th><th>Score</th><th>Time</th></tr></thead><tbody>';
+  lbRows.slice(0,20).forEach(function(r, i){
     var isMe = r.name === state.candidateName;
-    html += '<tr class="'+(isMe?'me':'')+'"><td>'+(i+1)+'</td><td>'+escapeHtml(r.name)+'</td><td>'+(r.mode==='full'?'Full Mock':SUBJECT_NAMES[r.subject]||r.subject)+'</td><td>'+r.correct+'/'+r.total+' ('+r.pct+'%)</td><td>'+formatTime(r.timeSec)+'</td></tr>';
+    html += '<tr class="'+(isMe?'me':'')+'"><td>'+(i+1)+'</td><td>'+escapeHtml(r.name)+'</td><td>'+escapeHtml(r.district)+'</td><td>'+r.score+'/'+r.total+' ('+Math.round(r.pct)+'%)</td><td>'+formatTime(r.seconds)+'</td></tr>';
   });
   html += '</tbody></table>';
+  html += '<button class="btn secondary" id="lbPdfBtn" style="margin-top:12px;min-height:46px;">&#11015; Download Responses (PDF)</button>';
   area.innerHTML = html;
+  $('lbPdfBtn').addEventListener('click', downloadResponsesPdf);
+}
+
+function loadScriptOnce(src){
+  return new Promise(function(res, rej){
+    var el = document.createElement('script'); el.src = src; el.onload = res; el.onerror = rej;
+    document.head.appendChild(el);
+  });
+}
+function downloadResponsesPdf(){
+  var btn = $('lbPdfBtn'); if(btn){ btn.disabled = true; btn.textContent = 'Preparing PDF…'; }
+  var base = 'https://cdnjs.cloudflare.com/ajax/libs/';
+  loadScriptOnce(base + 'jspdf/2.5.1/jspdf.umd.min.js')
+    .then(function(){ return loadScriptOnce(base + 'jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'); })
+    .then(function(){
+      var doc = new window.jspdf.jsPDF({orientation:'landscape', unit:'pt', format:'a4'});
+      doc.setFontSize(15); doc.text('APTET 1800 - Responses (' + TESTID + ')', 40, 36);
+      doc.setFontSize(9); doc.text('C. RASOOL BAVAJI, S.A.(P.S.), ZPHS, MADANAPALLE  |  Generated: ' + new Date().toLocaleString('en-IN'), 40, 52);
+      var body = lbRows.map(function(r){
+        return [fmtStamp(r.timestamp), r.id, r.name, r.district, r.testid || TESTID, r.score, r.total, r.seconds];
+      });
+      doc.autoTable({
+        startY: 64,
+        head: [['Timestamp','ID','Name','District','TEST ID','Score','Total','Seconds']],
+        body: body, styles:{fontSize:8}, headStyles:{fillColor:[30,58,138]}
+      });
+      doc.save('APTET_1800_Responses.pdf');
+    })
+    .catch(function(){
+      var w = window.open('', '_blank');
+      if(!w){ alert('Could not create the PDF. Please allow pop-ups and try again.'); return; }
+      var h = '<html><head><title>APTET 1800 Responses</title><style>body{font:12px Arial;padding:16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #888;padding:4px 6px;text-align:left}th{background:#1e3a8a;color:#fff}</style></head><body><h3>APTET 1800 - Responses ('+TESTID+')</h3><table><tr><th>Timestamp</th><th>ID</th><th>Name</th><th>District</th><th>TEST ID</th><th>Score</th><th>Total</th><th>Seconds</th></tr>';
+      lbRows.forEach(function(r){ h += '<tr><td>'+escapeHtml(fmtStamp(r.timestamp))+'</td><td>'+escapeHtml(r.id)+'</td><td>'+escapeHtml(r.name)+'</td><td>'+escapeHtml(r.district)+'</td><td>'+escapeHtml(r.testid||TESTID)+'</td><td>'+r.score+'</td><td>'+r.total+'</td><td>'+r.seconds+'</td></tr>'; });
+      h += '</table><p>Use Print &rarr; Save as PDF.</p></body></html>';
+      w.document.write(h); w.document.close(); w.focus(); w.print();
+    })
+    .then(function(){ var b2 = $('lbPdfBtn'); if(b2){ b2.disabled = false; b2.innerHTML = '&#11015; Download Responses (PDF)'; } });
 }
 
 /* =========================================================
